@@ -64,14 +64,13 @@ function WineCard({ wine }) {
         {/* Rating */}
         {wine.rating && (
           <div className="flex items-center space-x-2">
-            <span className="text-yellow-500">⭐</span>
             <span className="font-semibold text-gray-700">{wine.rating}</span>
           </div>
         )}
 
         {/* Description */}
         {wine.description && (
-          <p className="text-sm text-gray-600 line-clamp-2">
+          <p className="text-sm text-gray-600 line-clamp-4">
             {wine.description}
           </p>
         )}

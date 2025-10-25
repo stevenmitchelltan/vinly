@@ -19,7 +19,9 @@ function WineTypeFilter({ selectedType, onTypeChange }) {
               selectedType === type.value ? 'filter-button-active' : 'filter-button-inactive'
             }`}
           >
-            <span className="mr-2">{type.emoji}</span>
+            {type.value !== null && (
+              <span className="mr-2">{type.emoji}</span>
+            )}
             {type.label}
           </button>
         ))}

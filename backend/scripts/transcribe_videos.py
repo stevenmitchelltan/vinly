@@ -108,12 +108,13 @@ async def transcribe_pending_videos(username: str = None):
             
             # Step 3: Update database
             if transcription_result['status'] == 'success':
-                # Save transcription and post date on processed video
+                # Save transcription, metrics, and post date on processed video
                 update_doc = {
                     "transcription": transcription_result['text'],
                     "transcription_status": "success",
                     "transcription_date": datetime.now(timezone.utc),
                     "audio_duration_seconds": transcription_result['duration'],
+                    "asr_metrics": transcription_result.get('metrics', {}),
                     "transcription_error": None
                 }
                 if post_date:

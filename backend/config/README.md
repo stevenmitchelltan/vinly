@@ -41,6 +41,17 @@ Defines all wine-related keywords for filtering and detection.
 ---
 
 ### **3. scraping_settings.yaml**
+### **4. lexicon.yaml** (optional, for ASR prompting)
+Defines term lists used to guide ASR. Include supermarkets, brands, grapes, regions, and general wine terms (keep diacritics).
+
+Example:
+```yaml
+supermarkets: ["Albert Heijn", "Jumbo", "LIDL", "ALDI", "HEMA", "Dirk", "Plus"]
+brands: ["Château Musar", "Campo Viejo", "Marqués de Riscal", "Masi"]
+grapes: ["Albariño", "Tempranillo", "Grüner Veltliner", "Garnacha"]
+regions: ["Rioja", "Ribera del Duero", "Bourgogne", "Languedoc"]
+wine_terms: ["Grand Cru", "Reserva", "Crianza", "Cava", "Brut"]
+```
 Defines scraping behavior and optimization settings.
 
 **When to edit:**

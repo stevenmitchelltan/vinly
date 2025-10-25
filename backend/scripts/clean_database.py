@@ -1,4 +1,38 @@
 """
+Danger: Cleans database collections so the pipeline can re-run from scratch.
+
+Usage:
+  python scripts/clean_database.py
+"""
+import asyncio
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+from motor.motor_asyncio import AsyncIOMotorClient
+from app.config import settings
+
+
+async def main():
+    client = AsyncIOMotorClient(settings.mongodb_uri)
+    db = client.winedb
+    # Drop or delete collections
+    w = await db.wines.delete_many({})
+    p = await db.processed_videos.delete_many({})
+    # Optionally reset influencer counters but keep documents
+    await db.influencers.update_many({}, {"$set": {
+        "total_videos_processed": 0,
+        "total_wines_found": 0
+    }})
+    print(f"Cleared wines: {w.deleted_count}, processed_videos: {p.deleted_count}")
+    client.close()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+"""
 Clean database - removes all wines and processed videos
 Use this to start fresh
 """

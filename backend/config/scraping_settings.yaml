@@ -29,3 +29,10 @@ quality:
   minimum_rating_score: 6      # Minimum score (out of 10) to include
   only_positive_reviews: true  # Only extract positively reviewed wines
 
+# ASR settings
+asr:
+  provider: "whisper"           # whisper | google
+  enable_two_pass: true          # selective second pass with enriched prompt
+  enable_ocr: false              # OCR assist for label tokens (optional)
+  prompt_terms_max: 80           # cap terms in prompt to avoid token bloat
+
