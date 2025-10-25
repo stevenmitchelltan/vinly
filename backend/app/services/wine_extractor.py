@@ -105,7 +105,7 @@ Extract the SINGLE BEST RECOMMENDED wine with:
    - Accept aliases: AH/Appie = Albert Heijn, but the alias must be explicitly mentioned
 3. Wine type (red, white, rose, or sparkling)
 4. RATING: A short, enthusiastic phrase (max 3-5 words) capturing the influencer's verdict
-   - Prefer phrases like: "duidelijke winnaar", "echt een toppertje", "mooie balans", "absolute aanrader", "verrassend goed"
+   - Prefer phrases like: "duidelijke winnaar", "echt een toppertje", "mooie balans", "absolute aanrader", "verrassend goed", but infer from context.
    - Can include quality indicators or superlatives that show enthusiasm
    - Keep the influencer's tone and language style
 5. DESCRIPTION: A more elaborate description or quote from the influencer about the wine
