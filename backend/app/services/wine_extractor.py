@@ -81,12 +81,18 @@ PRONOUN RESOLUTION:
 NEGATIVE OVERRIDES:
 - If the earliest candidate is later criticized (bijv. matig/slecht/skip/niet aan te raden), discard it and continue searching for a later positive winner
 
-SUPERMARKET VALIDATION (STRICT):
-- The supermarket MUST be explicitly mentioned in the text (caption or transcription)
-- ONLY accept wines if one of these supermarkets is clearly stated: {', '.join(SUPERMARKETS)}
-- Accept aliases: AH/Appie = Albert Heijn, but the alias must still be explicitly mentioned
-- If NO supermarket from the list is mentioned, return [] - do NOT guess or infer a supermarket
-- Treat "Plus"/"PLUS" case-sensitively as supermarket; ignore generic "plus" in other contexts
+SUPERMARKET VALIDATION (CRITICAL - STRICTLY ENFORCE):
+- The wine MUST be purchased/available at one of these specific supermarkets: {', '.join(SUPERMARKETS)}
+- The supermarket name MUST be explicitly stated in the context of THIS SPECIFIC WINE
+- Accept aliases ONLY when mentioned: AH/Appie = Albert Heijn, but must be explicitly stated
+- REJECT if:
+  * Wine is from a "wijnwinkel" (wine shop) or specialty store
+  * Generic "supermarkt" mentioned without specifying which one
+  * Supermarket mentioned in unrelated context (e.g., general guide, other videos)
+  * No clear connection between the wine and a specific supermarket from the list
+- If you cannot identify which supermarket sells this specific wine, return []
+- NEVER guess a supermarket - it must be explicitly stated
+- Treat "Plus"/"PLUS" case-sensitively; ignore generic "plus"
 
 RUIS NEGEREN:
 - Negeer intros/outros, disclaimers, CTA's en muziek‑only gedeelten; focus op evaluatie en conclusie
@@ -126,7 +132,7 @@ Example output format:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a wine data extraction expert. Correct and normalize misheard wine names and appellations (preserve accents), prefer canonical names when brand is unclear, never invent brands. For the description field, return a short supporting quote in Dutch (preferably verbatim; max 20 words). For the rating field, return a short, enthusiastic phrase (max 3-5 words) capturing the influencer's verdict. Always return valid JSON."},
+                {"role": "system", "content": f"You are a wine data extraction expert for Dutch supermarket wines. CRITICAL RULE: Only extract wines if the supermarket is EXPLICITLY mentioned by name. Valid supermarkets: {', '.join(SUPERMARKETS)}. If the text mentions 'wijnwinkel' (wine shop) or generic 'supermarkt' without specifying which one, return []. NEVER guess which supermarket - it must be clearly stated in the text. Correct and normalize misheard wine names (preserve accents), prefer canonical names when brand is unclear, never invent brands. Return valid JSON only."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.3,
