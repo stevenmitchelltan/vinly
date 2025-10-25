@@ -1,10 +1,10 @@
 """
-Re-extract wines from videos that now have transcriptions
+Extract wines from transcribed videos
 
 This script finds videos that:
 - Have been transcribed (transcription_status = success)
-- Were already processed for wine extraction
-- Now can be re-analyzed with the transcription for better results
+- Are wine content (passed supermarket filter)
+- Extracts wine data using caption + transcription
 """
 import asyncio
 import sys
@@ -18,16 +18,16 @@ from app.config import settings
 from app.services.wine_extractor import extract_wines_from_caption_and_transcription
 
 
-async def reextract_with_transcriptions(username: str = None):
+async def extract_wines(username: str = None):
     """
-    Re-extract wines from transcribed videos
+    Extract wines from transcribed videos
     
     Args:
         username: Optional - only process this TikTok user
     """
     
     print("\n" + "="*70)
-    print("  RE-EXTRACTION WITH TRANSCRIPTIONS")
+    print("  WINE EXTRACTION FROM TRANSCRIPTIONS")
     print("="*70)
     print()
     
@@ -116,7 +116,7 @@ async def reextract_with_transcriptions(username: str = None):
     # Summary
     print()
     print("="*70)
-    print("RE-EXTRACTION COMPLETE")
+    print("EXTRACTION COMPLETE")
     print("="*70)
     print(f"Videos processed: {total}")
     print(f"NEW wines added: {wines_added}")
@@ -127,5 +127,5 @@ async def reextract_with_transcriptions(username: str = None):
 
 if __name__ == "__main__":
     username = sys.argv[1] if len(sys.argv) > 1 else None
-    asyncio.run(reextract_with_transcriptions(username))
+    asyncio.run(extract_wines(username))
 

@@ -17,7 +17,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from datetime import datetime, timezone
 from app.config import settings
 from app.scrapers.tiktok_oembed_scraper import TikTokOEmbedScraper
-from app.services.wine_extractor import extract_wines_from_text, extract_wines_from_caption_and_transcription
 from app.utils.config_loader import config
 
 
@@ -182,76 +181,22 @@ async def process_videos_smart(username: str, video_urls: list, db):
                 print(f"  Processed {i}/{len(videos)} videos... ({wine_videos} wine-related)")
             continue
         
-        # This video mentions a supermarket! Send to LLM for wine extraction
+        # This video mentions a supermarket! Queue for transcription
         wine_videos += 1
         caption_clean = caption.encode('ascii', 'ignore').decode('ascii')
         print(f"\n  Supermarket Video {wine_videos}: {caption_clean[:60]}...")
         
-        # Check if video has transcription in database
-        transcription = None
-        existing_video = await db.processed_videos.find_one({"video_url": video_url})
-        if existing_video and existing_video.get("transcription_status") == "success":
-            transcription = existing_video.get("transcription")
-            print(f"    [HAS TRANSCRIPTION] Using caption + transcription")
-        else:
-            # Queue for transcription and skip wine extraction for now
-            await db.processed_videos.insert_one({
-                "video_url": video_url,
-                "tiktok_handle": username,
-                "processed_date": datetime.now(timezone.utc),
-                "wines_found": 0,
-                "caption": caption[:200],
-                "is_wine_content": True,
-                "transcription_status": "pending"
-            })
-            queued_for_transcription += 1
-            continue
-        
-        # Extract wines using GPT (only with transcription)
-        llm_calls += 1
-        wines = extract_wines_from_caption_and_transcription(caption, transcription)
-        
-        if wines:
-            print(f"    Found {len(wines)} wine(s)!")
-            
-            for wine_data in wines:
-                # Check if exists
-                existing = await db.wines.find_one({
-                    "name": wine_data["name"],
-                    "supermarket": wine_data["supermarket"]
-                })
-                
-                if not existing:
-                    # Add wine
-                    wine_doc = {
-                        "name": wine_data["name"],
-                        "supermarket": wine_data["supermarket"],
-                        "wine_type": wine_data["wine_type"],
-                        "image_url": video.get("thumbnail_url"),
-                        "rating": wine_data.get("rating"),
-                        "description": wine_data.get("description"),
-                        "influencer_source": f"{username}_tiktok",
-                        "post_url": video["post_url"],
-                        "date_found": datetime.now(timezone.utc),
-                        "in_stock": None,
-                        "last_checked": None
-                    }
-                    
-                    await db.wines.insert_one(wine_doc)
-                    wines_added += 1
-                    print(f"      + {wine_data['name']} ({wine_data['supermarket']})")
-                else:
-                    print(f"      - Already in DB: {wine_data['name']}")
-        
-        # Mark video as processed
+        # Queue for transcription (wine extraction happens later in extract_wines.py)
         await db.processed_videos.insert_one({
             "video_url": video_url,
             "tiktok_handle": username,
             "processed_date": datetime.now(timezone.utc),
-            "wines_found": len(wines),
+            "wines_found": 0,
             "caption": caption[:200],
-            "is_wine_content": True
+            "is_wine_content": True,
+            "transcription_status": "pending"
         })
+        queued_for_transcription += 1
     
     return wines_added, wine_videos, non_wine_videos, queued_for_transcription, llm_calls
 
@@ -322,25 +267,12 @@ async def main():
     print()
     print(f"Supermarket videos detected: {wine_videos}")
     print(f"  - Queued for transcription: {queued_for_transcription}")
-    print(f"  - Sent to LLM (has transcription): {llm_calls}")
     print(f"Non-supermarket videos skipped: {non_wine} [FILTERED OUT] (saved GPT cost)")
     print()
-    print(f"NEW wines added: {wines_added}")
-    print()
-    
-    # Cost calculation
-    gpt_calls = llm_calls  # Only called GPT when transcription exists
-    estimated_cost = gpt_calls * 0.0003  # ~$0.0003 per call
-    print(f"GPT API calls: {gpt_calls}")
-    print(f"Estimated cost: ${estimated_cost:.4f}")
-    print()
-    
-    if wines_added > 0:
-        print("[SUCCESS] New wines added to database!")
-        print("View at: http://localhost:5173/vinly/")
-    else:
-        print("[INFO] No new wines found in recent videos")
-        print("(Wines may already exist or no wine content in new videos)")
+    print("[INFO] Wine extraction will happen after transcription")
+    print("Next steps:")
+    print("  1. Run: python scripts/transcribe_videos.py")
+    print("  2. Run: python scripts/extract_wines.py")
     
     print()
     

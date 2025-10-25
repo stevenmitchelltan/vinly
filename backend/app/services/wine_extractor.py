@@ -117,7 +117,7 @@ Example output format:
     "name": "Côtes du Rhône",
     "supermarket": "Jumbo",
     "wine_type": "red",
-    "rating": "aanrader",
+    "rating": "Dit is de winnaar!",
     "description": "Soepele rode wijn met fijne kruidigheid en zacht fruit, goede prijs-kwaliteit verhouding"
   }}
 ]"""
@@ -126,7 +126,7 @@ Example output format:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a wine data extraction expert. Correct and normalize misheard wine names and appellations (preserve accents), prefer canonical names when brand is unclear, never invent brands. For the description field, return a short supporting quote in Dutch (preferably verbatim; max 20 words). Always return valid JSON."},
+                {"role": "system", "content": "You are a wine data extraction expert. Correct and normalize misheard wine names and appellations (preserve accents), prefer canonical names when brand is unclear, never invent brands. For the description field, return a short supporting quote in Dutch (preferably verbatim; max 20 words). For the rating field, return a short, enthusiastic phrase (max 3-5 words) capturing the influencer's verdict. Always return valid JSON."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.3,
