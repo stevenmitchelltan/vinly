@@ -1,0 +1,21 @@
+name: Daily Wine Scraping
+
+on:
+  schedule:
+    # Run daily at 6:00 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Trigger backend scraping job
+        run: |
+          curl -X POST ${{ secrets.BACKEND_URL }}/api/admin/trigger-scrape
+        continue-on-error: true
+      
+      - name: Log completion
+        run: echo "Scraping job triggered at $(date)"
+

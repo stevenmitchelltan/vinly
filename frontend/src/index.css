@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-burgundy-50 via-rose-50 to-amber-50 min-h-screen;
+  }
+}
+
+@layer components {
+  .wine-card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden;
+  }
+  
+  .btn-primary {
+    @apply bg-burgundy-600 text-white px-6 py-2 rounded-lg hover:bg-burgundy-700 transition-colors duration-200 font-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-burgundy-600 border-2 border-burgundy-600 px-6 py-2 rounded-lg hover:bg-burgundy-50 transition-colors duration-200 font-medium;
+  }
+  
+  .filter-button {
+    @apply px-4 py-2 rounded-full transition-all duration-200 font-medium;
+  }
+  
+  .filter-button-active {
+    @apply bg-burgundy-600 text-white shadow-md;
+  }
+  
+  .filter-button-inactive {
+    @apply bg-white text-burgundy-600 hover:bg-burgundy-50;
+  }
+}
+
