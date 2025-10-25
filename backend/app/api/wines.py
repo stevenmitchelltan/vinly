@@ -51,7 +51,8 @@ async def get_supermarkets():
             {"name": "HEMA", "value": "HEMA"},
             {"name": "LIDL", "value": "LIDL"},
             {"name": "Jumbo", "value": "Jumbo"},
-            {"name": "ALDI", "value": "ALDI"}
+            {"name": "ALDI", "value": "ALDI"},
+            {"name": "Plus", "value": "Plus"}
         ]
     }
 

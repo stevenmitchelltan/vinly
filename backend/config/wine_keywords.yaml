@@ -1,0 +1,91 @@
+# Wine-related Keywords Configuration
+# Edit this file to improve video filtering and wine detection
+
+# Wine types
+wine_types:
+  - "red"
+  - "white"
+  - "rose"
+  - "sparkling"
+
+# Basic wine keywords (Dutch)
+wine_keywords:
+  - "wijn"
+  - "wijntje"
+  - "wijnen"
+  - "wijntest"
+
+# Wine type keywords (Dutch)
+wine_type_keywords:
+  - "rood"
+  - "rode"
+  - "wit"
+  - "witte"
+  - "rosé"
+  - "rose"
+  - "bubbels"
+  - "mousserende"
+  - "champagne"
+  - "prosecco"
+  - "cava"
+
+# Wine varieties (helps detect specific wines)
+wine_varieties:
+  - "malbec"
+  - "chardonnay"
+  - "sauvignon"
+  - "cabernet"
+  - "merlot"
+  - "pinot"
+  - "syrah"
+  - "shiraz"
+  - "riesling"
+  - "tempranillo"
+  - "grenache"
+  - "viognier"
+  - "zweigelt"
+  - "primitivo"
+  - "nebbiolo"
+  - "barbera"
+  - "sangiovese"
+  - "chianti"
+  - "rioja"
+  - "barolo"
+
+# Recommendation indicators (Dutch)
+recommendation_keywords:
+  - "test"
+  - "aanrader"
+  - "top"
+  - "koopje"
+  - "deal"
+  - "halen"
+  - "proberen"
+  - "rating"
+  - "parel"
+  - "verborgen parel"
+  - "absolute topper"
+  - "must have"
+
+# Negative indicators (to filter out bad wines)
+negative_keywords:
+  - "matig"
+  - "niet lekker"
+  - "skip"
+  - "vermijd"
+  - "niet aan te raden"
+  - "teleurstellend"
+  - "beter"  # "er zijn betere"
+  - "vreselijk"
+
+# Wine-related hashtags
+wine_hashtags:
+  - "#wijn"
+  - "#wijntje"
+  - "#wijnen"
+  - "#wijntest"
+  - "#supermarktwijn"
+  - "#wijnreview"
+  - "#wijntips"
+  - "#woensdagwijntje"
+

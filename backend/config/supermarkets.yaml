@@ -1,0 +1,50 @@
+# Supermarket Configuration
+# Edit this file to add/modify supermarkets and their aliases
+
+supermarkets:
+  - name: "Albert Heijn"
+    aliases:
+      - "albert heijn"
+      - "ah"
+      - "appie"
+      - "ah wijn"
+      - "#ah"
+    
+  - name: "Jumbo"
+    aliases:
+      - "jumbo"
+      - "jumbo wijn"
+    
+  - name: "LIDL"
+    aliases:
+      - "lidl"
+      - "lidl wijn"
+    
+  - name: "ALDI"
+    aliases:
+      - "aldi"
+      - "aldi wijn"
+    
+  - name: "HEMA"
+    aliases:
+      - "hema"
+      - "hema wijn"
+    
+  - name: "Dirk"
+    aliases:
+      - "dirk"
+      - "dirk wijn"
+    
+  - name: "Plus"
+    aliases:
+      - "plus"
+      - "plus supermarkt"
+      - "plus wijn"
+
+# General supermarket keywords
+general_keywords:
+  - "supermarkt"
+  - "supermarkten"
+  - "#supermarktwijn"
+  - "#supermarkt"
+

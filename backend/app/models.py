@@ -18,6 +18,7 @@ class Supermarket(str, Enum):
     lidl = "LIDL"
     jumbo = "Jumbo"
     aldi = "ALDI"
+    plus = "Plus"
 
 
 class Wine(BaseModel):

@@ -2,12 +2,13 @@ import json
 from openai import OpenAI
 from typing import List, Dict, Optional
 from ..config import settings
+from ..utils.config_loader import config
 
 client = OpenAI(api_key=settings.openai_api_key)
 
-
-SUPERMARKETS = ["Albert Heijn", "Dirk", "HEMA", "LIDL", "Jumbo", "ALDI"]
-WINE_TYPES = ["red", "white", "rose", "sparkling"]
+# Load from YAML configuration
+SUPERMARKETS = config.get_supermarket_list()
+WINE_TYPES = config.wine_keywords['wine_types']
 
 
 def extract_wines_from_text(text: str) -> List[Dict]:
@@ -18,28 +19,34 @@ def extract_wines_from_text(text: str) -> List[Dict]:
     if not text or len(text.strip()) < 10:
         return []
     
-    prompt = f"""Extract ALL wine recommendations from this Dutch text about supermarket wines.
+    prompt = f"""Extract ONLY RECOMMENDED/GOOD wines from this Dutch text about supermarket wines.
+
+IMPORTANT RULES:
+1. ONLY extract wines that are RECOMMENDED, POSITIVE, or rated as GOOD
+2. SKIP wines that are criticized, rated poorly, or mentioned as "avoid" or "niet goed"
+3. If a video compares multiple wines, only extract the winners/recommended ones
 
 Text: {text}
 
-For each wine mentioned, extract:
+For each RECOMMENDED wine, extract:
 1. Exact wine name (brand, variety, year if mentioned)
-2. Supermarket where it's sold (must be one of: {', '.join(SUPERMARKETS)})
+2. Supermarket (must be one of: {', '.join(SUPERMARKETS)})
+   - Accept aliases: AH/Appie = Albert Heijn
 3. Wine type (red, white, rose, or sparkling)
-4. Rating or recommendation (e.g., "highly recommended", "good deal", "avoid", or any score mentioned)
-5. Brief description (what the reviewer said about it)
+4. Rating (positive only: e.g., "aanrader", "top", "goed", scores 7+/10)
+5. Brief description (what the reviewer said POSITIVELY about it)
 
 Return ONLY a valid JSON array of objects with these exact keys: name, supermarket, wine_type, rating, description
-If no wines are found, return an empty array: []
+If NO RECOMMENDED wines found, return an empty array: []
 
 Example output format:
 [
   {{
-    "name": "Albert Heijn Huiswijn Malbec 2022",
+    "name": "Albert Heijn Excellent Malbec 2022",
     "supermarket": "Albert Heijn",
     "wine_type": "red",
-    "rating": "8/10",
-    "description": "Great value for money, fruity notes"
+    "rating": "8/10 - aanrader",
+    "description": "Uitstekende prijs-kwaliteit, vol en fruitig"
   }}
 ]"""
 

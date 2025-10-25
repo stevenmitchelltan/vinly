@@ -1,0 +1,31 @@
+# Scraping Settings Configuration
+
+# TikTok scraping settings
+tiktok:
+  max_videos_per_profile: 300  # Maximum videos to fetch per profile
+  scroll_timeout_ms: 1500      # Wait time between scrolls (milliseconds)
+  max_scrolls: 50              # Maximum scroll attempts
+  page_load_wait_ms: 5000      # Wait after initial page load
+  
+# Wine extraction settings
+extraction:
+  min_caption_length: 20       # Minimum caption length to process
+  min_wine_info_length: 30     # Minimum length for sufficient wine info
+  
+# Cost optimization
+cost_optimization:
+  use_caption_only: true       # Use captions instead of audio transcription
+  pre_filter_videos: true      # Filter non-wine videos before GPT
+  skip_processed_videos: true  # Don't re-process old videos
+  
+# GPT settings
+gpt:
+  model: "gpt-4o-mini"
+  temperature: 0.3
+  max_tokens: 1000
+  
+# Quality filters
+quality:
+  minimum_rating_score: 6      # Minimum score (out of 10) to include
+  only_positive_reviews: true  # Only extract positively reviewed wines
+

@@ -18,41 +18,43 @@ from datetime import datetime
 from app.config import settings
 from app.scrapers.tiktok_oembed_scraper import TikTokOEmbedScraper
 from app.services.wine_extractor import extract_wines_from_text
+from app.utils.config_loader import config
 
 
-def is_wine_related(caption: str) -> bool:
+def is_supermarket_wine_video(caption: str) -> bool:
     """
-    Pre-filter: Check if video is about wine BEFORE calling GPT
-    Saves money by not processing irrelevant videos
+    Pre-filter: Check if video is about SUPERMARKET wine recommendations
+    Uses keywords from YAML configuration files
+    Saves money by not processing general wine content
     """
-    if not caption or len(caption) < 20:
+    min_length = config.scraping_settings.get('extraction', {}).get('min_caption_length', 20)
+    
+    if not caption or len(caption) < min_length:
         return False
     
     caption_lower = caption.lower()
     
-    # Wine-related keywords in Dutch
-    wine_keywords = [
-        'wijn', 'wijntje', 'wijnen',  # wine
-        'rood', 'wit', 'rosé', 'rose', 'bubbels', 'mousserende',  # types
-        'fles', 'bottle',  # bottle
-        'proeven', 'smaak', 'rating', 'aanrader',  # tasting
-        'supermarkt', 'albert heijn', 'jumbo', 'lidl', 'aldi', 'hema', 'dirk',  # supermarkets
-        'koopje', 'deal', 'prijs',  # price/deal
-        'malbec', 'chardonnay', 'sauvignon', 'cabernet', 'merlot',  # varieties
-    ]
+    # Must mention wine (from YAML)
+    wine_keywords = config.wine_keywords.get('wine_keywords', [])
+    has_wine = any(word in caption_lower for word in wine_keywords)
     
-    # Check if caption contains any wine keywords
-    for keyword in wine_keywords:
-        if keyword in caption_lower:
-            return True
+    if not has_wine:
+        return False
     
-    # Check for wine hashtags
-    wine_hashtags = ['#wijn', '#wijntje', '#supermarktwijn', '#wijnreview']
-    for hashtag in wine_hashtags:
-        if hashtag in caption_lower:
-            return True
+    # Check for supermarket keywords (from YAML)
+    supermarket_keywords = config.get_all_supermarket_keywords()
+    has_supermarket = any(sm.lower() in caption_lower for sm in supermarket_keywords)
     
-    return False
+    # Check wine-specific hashtags (from YAML)
+    wine_hashtags = config.wine_keywords.get('wine_hashtags', [])
+    has_wine_hashtag = any(tag in caption_lower for tag in wine_hashtags)
+    
+    # Check recommendation indicators (from YAML)
+    recommendation_keywords = config.wine_keywords.get('recommendation_keywords', [])
+    has_recommendation = any(word in caption_lower for word in recommendation_keywords)
+    
+    # Return True if mentions wine + (supermarket OR wine hashtag OR recommendation)
+    return has_supermarket or (has_wine and has_wine_hashtag) or (has_wine and has_recommendation)
 
 
 async def get_new_video_urls(username: str, db):
@@ -155,8 +157,8 @@ async def process_videos_smart(username: str, video_urls: list, db):
         caption = video.get("caption", "")
         video_url = video.get("post_url")
         
-        # Pre-filter: Is this wine-related?
-        if not is_wine_related(caption):
+        # Pre-filter: Is this about supermarket wine recommendations?
+        if not is_supermarket_wine_video(caption):
             non_wine_videos += 1
             
             # Mark as processed (no wine content)
