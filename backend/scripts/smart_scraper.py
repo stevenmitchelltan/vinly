@@ -39,17 +39,26 @@ def is_supermarket_video(caption: str) -> bool:
         return False
     
     caption_lower = caption.lower()
+    caption_raw = caption
     
     # Check for ANY supermarket keywords (from YAML config)
     supermarket_keywords = config.get_all_supermarket_keywords()
-    has_supermarket = any(sm.lower() in caption_lower for sm in supermarket_keywords)
     
-    # Also check general supermarket hashtags
+    # Special handling for ambiguous 'plus': only accept case-sensitive 'Plus' or 'PLUS'
+    non_plus_keywords = [k for k in supermarket_keywords if k.lower() != 'plus']
+    has_non_plus_sm = any(k.lower() in caption_lower for k in non_plus_keywords)
+    
+    # Case-sensitive check for Plus/PLUS as a standalone word or hashtag
+    has_plus_cs_word = bool(re.search(r"\b(Plus|PLUS)\b", caption_raw))
+    has_plus_cs_hashtag = ('#Plus' in caption_raw) or ('#PLUS' in caption_raw)
+    has_plus_ok = has_plus_cs_word or has_plus_cs_hashtag
+    
+    # Also check general supermarket hashtags (case-insensitive)
     supermarket_hashtags = ['#supermarktwijn', '#supermarkt']
     has_supermarket_hashtag = any(tag in caption_lower for tag in supermarket_hashtags)
     
-    # Return True if ANY supermarket mention found
-    return has_supermarket or has_supermarket_hashtag
+    # Return True if ANY valid supermarket mention found
+    return has_non_plus_sm or has_plus_ok or has_supermarket_hashtag
 
 
 async def get_new_video_urls(username: str, db):
@@ -146,6 +155,8 @@ async def process_videos_smart(username: str, video_urls: list, db):
     wine_videos = 0
     non_wine_videos = 0
     wines_added = 0
+    queued_for_transcription = 0
+    llm_calls = 0
     
     # Process each video
     for i, video in enumerate(videos, 1):
@@ -183,11 +194,21 @@ async def process_videos_smart(username: str, video_urls: list, db):
             transcription = existing_video.get("transcription")
             print(f"    [HAS TRANSCRIPTION] Using caption + transcription")
         else:
-            print(f"    [NO TRANSCRIPTION] Skipping wine extraction (need transcription first)")
-            # Skip wine extraction - we need transcription for quality
+            # Queue for transcription and skip wine extraction for now
+            await db.processed_videos.insert_one({
+                "video_url": video_url,
+                "tiktok_handle": username,
+                "processed_date": datetime.now(timezone.utc),
+                "wines_found": 0,
+                "caption": caption[:200],
+                "is_wine_content": True,
+                "transcription_status": "pending"
+            })
+            queued_for_transcription += 1
             continue
         
         # Extract wines using GPT (only with transcription)
+        llm_calls += 1
         wines = extract_wines_from_caption_and_transcription(caption, transcription)
         
         if wines:
@@ -232,7 +253,7 @@ async def process_videos_smart(username: str, video_urls: list, db):
             "is_wine_content": True
         })
     
-    return wines_added, wine_videos, non_wine_videos
+    return wines_added, wine_videos, non_wine_videos, queued_for_transcription, llm_calls
 
 
 async def main():
@@ -274,7 +295,7 @@ async def main():
     print("STEP 2: SMART PROCESSING")
     print("="*60)
     
-    wines_added, wine_videos, non_wine = await process_videos_smart(username, new_urls, db)
+    wines_added, wine_videos, non_wine, queued_for_transcription, llm_calls = await process_videos_smart(username, new_urls, db)
     
     # Update influencer stats
     await db.influencers.update_one(
@@ -299,14 +320,16 @@ async def main():
     print(f"Already processed: {len(all_urls) - len(new_urls)}")
     print(f"NEW videos processed: {len(new_urls)}")
     print()
-    print(f"Supermarket videos processed: {wine_videos} [SENT TO LLM]")
+    print(f"Supermarket videos detected: {wine_videos}")
+    print(f"  - Queued for transcription: {queued_for_transcription}")
+    print(f"  - Sent to LLM (has transcription): {llm_calls}")
     print(f"Non-supermarket videos skipped: {non_wine} [FILTERED OUT] (saved GPT cost)")
     print()
     print(f"NEW wines added: {wines_added}")
     print()
     
     # Cost calculation
-    gpt_calls = wine_videos  # Only called GPT for wine videos
+    gpt_calls = llm_calls  # Only called GPT when transcription exists
     estimated_cost = gpt_calls * 0.0003  # ~$0.0003 per call
     print(f"GPT API calls: {gpt_calls}")
     print(f"Estimated cost: ${estimated_cost:.4f}")
