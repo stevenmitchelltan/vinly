@@ -183,9 +183,11 @@ async def process_videos_smart(username: str, video_urls: list, db):
             transcription = existing_video.get("transcription")
             print(f"    [HAS TRANSCRIPTION] Using caption + transcription")
         else:
-            print(f"    [NO TRANSCRIPTION] Using caption only")
+            print(f"    [NO TRANSCRIPTION] Skipping wine extraction (need transcription first)")
+            # Skip wine extraction - we need transcription for quality
+            continue
         
-        # Extract wines using GPT (with or without transcription)
+        # Extract wines using GPT (only with transcription)
         wines = extract_wines_from_caption_and_transcription(caption, transcription)
         
         if wines:
