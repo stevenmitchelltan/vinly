@@ -57,10 +57,11 @@ IMPORTANT RULES:
 1. ONLY extract wines that are RECOMMENDED, POSITIVE, or rated as GOOD
 2. SKIP wines that are criticized, rated poorly, or mentioned as "avoid" or "niet goed"
 3. If a video compares multiple wines, only extract the winners/recommended ones
+4. Return AT MOST ONE wine: choose the single BEST recommendation (most positive language or highest rating). If unclear, return an empty array.
 
 Text: {text}
 
-For each RECOMMENDED wine, extract:
+Extract the SINGLE BEST RECOMMENDED wine with:
 1. Exact wine name (brand, variety, year if mentioned)
 2. Supermarket (must be one of: {', '.join(SUPERMARKETS)})
    - Accept aliases: AH/Appie = Albert Heijn
@@ -68,8 +69,8 @@ For each RECOMMENDED wine, extract:
 4. Rating (positive only: e.g., "aanrader", "top", "goed", scores 7+/10)
 5. Brief description (what the reviewer said POSITIVELY about it)
 
-Return ONLY a valid JSON array of objects with these exact keys: name, supermarket, wine_type, rating, description
-If NO RECOMMENDED wines found, return an empty array: []
+Return ONLY a valid JSON array with AT MOST ONE object having these exact keys: name, supermarket, wine_type, rating, description
+If NO RECOMMENDED wine is clearly identified, return an empty array: []
 
 Example output format:
 [
@@ -107,13 +108,15 @@ Example output format:
         # Parse JSON response
         wines = json.loads(result)
         
-        # Validate and clean results
+        # Validate and clean results (enforce max 1 winner)
         valid_wines = []
         for wine in wines:
             if (wine.get("name") and 
                 wine.get("supermarket") in SUPERMARKETS and 
                 wine.get("wine_type") in WINE_TYPES):
                 valid_wines.append(wine)
+        if len(valid_wines) > 1:
+            valid_wines = valid_wines[:1]
         
         print(f"Extracted {len(valid_wines)} wines from text")
         return valid_wines
