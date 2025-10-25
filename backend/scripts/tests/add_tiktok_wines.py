@@ -4,7 +4,7 @@ Add wines from TikTok to the database
 import asyncio
 import sys
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
@@ -70,7 +70,7 @@ async def add_tiktok_wines():
                     "description": wine_data.get("description"),
                     "influencer_source": "pepijn.wijn_tiktok",
                     "post_url": video["post_url"],
-                    "date_found": datetime.utcnow(),
+                    "date_found": datetime.now(timezone.utc),
                     "in_stock": None,
                     "last_checked": None
                 }

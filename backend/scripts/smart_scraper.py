@@ -14,47 +14,42 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from playwright.async_api import async_playwright
 from motor.motor_asyncio import AsyncIOMotorClient
-from datetime import datetime
+from datetime import datetime, timezone
 from app.config import settings
 from app.scrapers.tiktok_oembed_scraper import TikTokOEmbedScraper
-from app.services.wine_extractor import extract_wines_from_text
+from app.services.wine_extractor import extract_wines_from_text, extract_wines_from_caption_and_transcription
 from app.utils.config_loader import config
 
 
-def is_supermarket_wine_video(caption: str) -> bool:
+def is_supermarket_video(caption: str) -> bool:
     """
-    Pre-filter: Check if video is about SUPERMARKET wine recommendations
-    Uses keywords from YAML configuration files
-    Saves money by not processing general wine content
+    Pre-filter: Check if video mentions ANY supermarket
+    
+    Philosophy: Keep this filter SIMPLE and CHEAP
+    - We're scraping wine influencer accounts, so ALL videos are about wine
+    - Only check: Does it mention a supermarket?
+    - Don't check: Wine keywords (redundant - it's a wine account!)
+    
+    Purpose: Save GPT costs by filtering out non-supermarket wine content
+    The LLM will then extract wine recommendations from supermarket videos
     """
-    min_length = config.scraping_settings.get('extraction', {}).get('min_caption_length', 20)
+    min_length = config.scraping_settings.get('extraction', {}).get('min_caption_length', 10)
     
     if not caption or len(caption) < min_length:
         return False
     
     caption_lower = caption.lower()
     
-    # Must mention wine (from YAML)
-    wine_keywords = config.wine_keywords.get('wine_keywords', [])
-    has_wine = any(word in caption_lower for word in wine_keywords)
-    
-    if not has_wine:
-        return False
-    
-    # Check for supermarket keywords (from YAML)
+    # Check for ANY supermarket keywords (from YAML config)
     supermarket_keywords = config.get_all_supermarket_keywords()
     has_supermarket = any(sm.lower() in caption_lower for sm in supermarket_keywords)
     
-    # Check wine-specific hashtags (from YAML)
-    wine_hashtags = config.wine_keywords.get('wine_hashtags', [])
-    has_wine_hashtag = any(tag in caption_lower for tag in wine_hashtags)
+    # Also check general supermarket hashtags
+    supermarket_hashtags = ['#supermarktwijn', '#supermarkt']
+    has_supermarket_hashtag = any(tag in caption_lower for tag in supermarket_hashtags)
     
-    # Check recommendation indicators (from YAML)
-    recommendation_keywords = config.wine_keywords.get('recommendation_keywords', [])
-    has_recommendation = any(word in caption_lower for word in recommendation_keywords)
-    
-    # Return True if mentions wine + (supermarket OR wine hashtag OR recommendation)
-    return has_supermarket or (has_wine and has_wine_hashtag) or (has_wine and has_recommendation)
+    # Return True if ANY supermarket mention found
+    return has_supermarket or has_supermarket_hashtag
 
 
 async def get_new_video_urls(username: str, db):
@@ -157,15 +152,16 @@ async def process_videos_smart(username: str, video_urls: list, db):
         caption = video.get("caption", "")
         video_url = video.get("post_url")
         
-        # Pre-filter: Is this about supermarket wine recommendations?
-        if not is_supermarket_wine_video(caption):
+        # Pre-filter: Does this mention any supermarket?
+        # (LLM will determine if it's actually a wine recommendation)
+        if not is_supermarket_video(caption):
             non_wine_videos += 1
             
             # Mark as processed (no wine content)
             await db.processed_videos.insert_one({
                 "video_url": video_url,
                 "tiktok_handle": username,
-                "processed_date": datetime.utcnow(),
+                "processed_date": datetime.now(timezone.utc),
                 "wines_found": 0,
                 "caption": caption[:200],
                 "is_wine_content": False
@@ -175,13 +171,22 @@ async def process_videos_smart(username: str, video_urls: list, db):
                 print(f"  Processed {i}/{len(videos)} videos... ({wine_videos} wine-related)")
             continue
         
-        # This video IS wine-related! Process it
+        # This video mentions a supermarket! Send to LLM for wine extraction
         wine_videos += 1
         caption_clean = caption.encode('ascii', 'ignore').decode('ascii')
-        print(f"\n  Wine Video {wine_videos}: {caption_clean[:60]}...")
+        print(f"\n  Supermarket Video {wine_videos}: {caption_clean[:60]}...")
         
-        # Extract wines using GPT
-        wines = extract_wines_from_text(caption)
+        # Check if video has transcription in database
+        transcription = None
+        existing_video = await db.processed_videos.find_one({"video_url": video_url})
+        if existing_video and existing_video.get("transcription_status") == "success":
+            transcription = existing_video.get("transcription")
+            print(f"    [HAS TRANSCRIPTION] Using caption + transcription")
+        else:
+            print(f"    [NO TRANSCRIPTION] Using caption only")
+        
+        # Extract wines using GPT (with or without transcription)
+        wines = extract_wines_from_caption_and_transcription(caption, transcription)
         
         if wines:
             print(f"    Found {len(wines)} wine(s)!")
@@ -204,7 +209,7 @@ async def process_videos_smart(username: str, video_urls: list, db):
                         "description": wine_data.get("description"),
                         "influencer_source": f"{username}_tiktok",
                         "post_url": video["post_url"],
-                        "date_found": datetime.utcnow(),
+                        "date_found": datetime.now(timezone.utc),
                         "in_stock": None,
                         "last_checked": None
                     }
@@ -219,7 +224,7 @@ async def process_videos_smart(username: str, video_urls: list, db):
         await db.processed_videos.insert_one({
             "video_url": video_url,
             "tiktok_handle": username,
-            "processed_date": datetime.utcnow(),
+            "processed_date": datetime.now(timezone.utc),
             "wines_found": len(wines),
             "caption": caption[:200],
             "is_wine_content": True
@@ -273,7 +278,7 @@ async def main():
     await db.influencers.update_one(
         {"tiktok_handle": username},
         {
-            "$set": {"last_scraped": datetime.utcnow()},
+            "$set": {"last_scraped": datetime.now(timezone.utc)},
             "$inc": {
                 "total_videos_processed": len(new_urls),
                 "total_wines_found": wines_added
@@ -292,8 +297,8 @@ async def main():
     print(f"Already processed: {len(all_urls) - len(new_urls)}")
     print(f"NEW videos processed: {len(new_urls)}")
     print()
-    print(f"Wine-related videos: {wine_videos} [WINE]")
-    print(f"Non-wine videos: {non_wine} [SKIP] (saved GPT cost)")
+    print(f"Supermarket videos processed: {wine_videos} [SENT TO LLM]")
+    print(f"Non-supermarket videos skipped: {non_wine} [FILTERED OUT] (saved GPT cost)")
     print()
     print(f"NEW wines added: {wines_added}")
     print()

@@ -11,6 +11,35 @@ SUPERMARKETS = config.get_supermarket_list()
 WINE_TYPES = config.wine_keywords['wine_types']
 
 
+def extract_wines_from_caption_and_transcription(
+    caption: str, 
+    transcription: Optional[str] = None
+) -> List[Dict]:
+    """
+    Extract wines from combined caption + transcription
+    Falls back to caption-only if no transcription
+    
+    Args:
+        caption: TikTok video caption
+        transcription: Video audio transcription (optional)
+    
+    Returns:
+        List of wine dictionaries
+    """
+    if transcription and len(transcription.strip()) > 20:
+        # Combine both sources for maximum information
+        combined_text = f"""Video Caption: {caption}
+
+Video Transcription (spoken content): {transcription}"""
+        print("    Using caption + transcription")
+    else:
+        # Fallback to caption only
+        combined_text = caption
+        print("    Using caption only (no transcription)")
+    
+    return extract_wines_from_text(combined_text)
+
+
 def extract_wines_from_text(text: str) -> List[Dict]:
     """
     Extract wine information from text using GPT-4o-mini
@@ -19,7 +48,10 @@ def extract_wines_from_text(text: str) -> List[Dict]:
     if not text or len(text.strip()) < 10:
         return []
     
-    prompt = f"""Extract ONLY RECOMMENDED/GOOD wines from this Dutch text about supermarket wines.
+    prompt = f"""Extract ONLY RECOMMENDED/GOOD wines from this Dutch TikTok content about supermarket wines.
+
+You may receive both a short caption and a longer transcription of what was spoken in the video.
+Use ALL available information to extract wine details.
 
 IMPORTANT RULES:
 1. ONLY extract wines that are RECOMMENDED, POSITIVE, or rated as GOOD

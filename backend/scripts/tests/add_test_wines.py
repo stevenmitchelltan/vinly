@@ -5,7 +5,7 @@ This bypasses Instagram and lets you test the frontend
 import asyncio
 import sys
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
@@ -29,9 +29,9 @@ async def add_test_wines():
             "rating": "8/10",
             "influencer_source": "test_data",
             "post_url": "https://instagram.com/p/test",
-            "date_found": datetime.utcnow(),
+            "date_found": datetime.now(timezone.utc),
             "in_stock": True,
-            "last_checked": datetime.utcnow(),
+            "last_checked": datetime.now(timezone.utc),
             "description": "Een volle rode wijn met mooie fruitige tonen. Uitstekende prijs-kwaliteit verhouding."
         },
         {
@@ -42,9 +42,9 @@ async def add_test_wines():
             "rating": "7/10",
             "influencer_source": "test_data",
             "post_url": "https://instagram.com/p/test2",
-            "date_found": datetime.utcnow(),
+            "date_found": datetime.now(timezone.utc),
             "in_stock": True,
-            "last_checked": datetime.utcnow(),
+            "last_checked": datetime.now(timezone.utc),
             "description": "Frisse witte wijn, perfect voor bij vis. Goed voor deze prijs."
         },
         {
@@ -55,9 +55,9 @@ async def add_test_wines():
             "rating": "7.5/10",
             "influencer_source": "test_data",
             "post_url": "https://instagram.com/p/test3",
-            "date_found": datetime.utcnow(),
+            "date_found": datetime.now(timezone.utc),
             "in_stock": True,
-            "last_checked": datetime.utcnow(),
+            "last_checked": datetime.now(timezone.utc),
             "description": "Heerlijke zomerse rosé. Zeer betaalbaar en lekker."
         },
         {
@@ -68,9 +68,9 @@ async def add_test_wines():
             "rating": "8.5/10",
             "influencer_source": "test_data",
             "post_url": "https://instagram.com/p/test4",
-            "date_found": datetime.utcnow(),
+            "date_found": datetime.now(timezone.utc),
             "in_stock": True,
-            "last_checked": datetime.utcnow(),
+            "last_checked": datetime.now(timezone.utc),
             "description": "Verrassend goede bubbels voor deze prijs. Perfect voor feestjes."
         },
         {
@@ -81,9 +81,9 @@ async def add_test_wines():
             "rating": "9/10",
             "influencer_source": "test_data",
             "post_url": "https://instagram.com/p/test5",
-            "date_found": datetime.utcnow(),
+            "date_found": datetime.now(timezone.utc),
             "in_stock": True,
-            "last_checked": datetime.utcnow(),
+            "last_checked": datetime.now(timezone.utc),
             "description": "Krachtige Italiaanse rode wijn. Absolute aanrader!"
         },
         {
@@ -94,9 +94,9 @@ async def add_test_wines():
             "rating": "7/10",
             "influencer_source": "test_data",
             "post_url": "https://instagram.com/p/test6",
-            "date_found": datetime.utcnow(),
+            "date_found": datetime.now(timezone.utc),
             "in_stock": True,
-            "last_checked": datetime.utcnow(),
+            "last_checked": datetime.now(timezone.utc),
             "description": "Frisse witte wijn met goede zuren. Goed voor de zomer."
         }
     ]

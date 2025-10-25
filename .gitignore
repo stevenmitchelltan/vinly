@@ -14,10 +14,11 @@ node_modules/
 dist/
 *.local
 
-# Environment
+# Environment (but keep .env.example!)
 .env
 .env.local
 .env.production
+!.env.example
 
 # IDEs
 .vscode/

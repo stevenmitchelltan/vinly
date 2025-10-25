@@ -1,5 +1,5 @@
 import asyncio
-from datetime import datetime
+from datetime import datetime, timezone
 from ..database import get_database
 from ..scrapers.tiktok_oembed_scraper import TikTokOEmbedScraper
 from ..services.wine_extractor import extract_wines_from_text
@@ -51,7 +51,7 @@ async def process_tiktok_videos(tiktok_handle: str, video_urls: list) -> int:
                     "description": wine_data.get("description"),
                     "influencer_source": f"{tiktok_handle}_tiktok",
                     "post_url": video["post_url"],
-                    "date_found": datetime.utcnow(),
+                    "date_found": datetime.now(timezone.utc),
                     "in_stock": None,
                     "last_checked": None
                 }
@@ -63,7 +63,7 @@ async def process_tiktok_videos(tiktok_handle: str, video_urls: list) -> int:
     # Update last scraped time
     await db.influencers.update_one(
         {"tiktok_handle": tiktok_handle},
-        {"$set": {"last_scraped": datetime.utcnow()}},
+        {"$set": {"last_scraped": datetime.now(timezone.utc)}},
         upsert=True
     )
     
@@ -79,7 +79,7 @@ async def run_scraping_job():
     - Add video URLs to the influencers collection
     - This job extracts wine data from those videos
     """
-    print(f"Starting TikTok scraping job at {datetime.utcnow()}")
+    print(f"Starting TikTok scraping job at {datetime.now(timezone.utc)}")
     
     db = get_database()
     total_wines_added = 0

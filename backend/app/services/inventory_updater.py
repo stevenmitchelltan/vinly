@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from ..database import get_database
 
 
@@ -17,7 +17,7 @@ async def mark_stale_wines():
     """Mark wines older than 30 days as potentially stale"""
     db = get_database()
     
-    thirty_days_ago = datetime.utcnow() - timedelta(days=30)
+    thirty_days_ago = datetime.now(timezone.utc) - timedelta(days=30)
     
     result = await db.wines.update_many(
         {"date_found": {"$lt": thirty_days_ago}, "in_stock": {"$ne": False}},

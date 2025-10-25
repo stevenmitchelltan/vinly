@@ -53,12 +53,21 @@ pip install -r requirements.txt
 
 **2. Configure Environment:**
 
-Create `backend/.env`:
+Copy the example file and fill in your credentials:
+```bash
+cd backend
+cp .env.example .env  # Mac/Linux
+# copy .env.example .env  # Windows
+```
+
+Then edit `backend/.env` with your actual values:
 ```env
 MONGODB_URI=your_mongodb_connection_string
 OPENAI_API_KEY=your_openai_api_key
 CORS_ORIGINS=http://localhost:5173
 ```
+
+**⚠️ NEVER commit the `.env` file to git!** It's already in `.gitignore`.
 
 **3. Start Backend:**
 ```bash
@@ -183,6 +192,27 @@ Contributions are welcome! Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) f
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔒 Security
+
+**Important:** This project uses sensitive credentials (MongoDB, OpenAI API keys).
+
+### Quick Security Checklist
+
+- ✅ `.env` files are gitignored
+- ✅ Use `.env.example` templates (never commit real `.env`)
+- ✅ Rotate credentials regularly
+- ✅ Set OpenAI spending limits ($10-20/month recommended)
+- ✅ Use MongoDB Network Access whitelist in production
+
+### ⚠️ Credentials Exposed During Development?
+
+If you shared credentials during setup (in chat, screenshots, etc.), **rotate them immediately**:
+
+1. **MongoDB:** Atlas → Database Access → Edit → Change Password
+2. **OpenAI:** platform.openai.com/api-keys → Revoke & Create New
+
+**See [SECURITY.md](SECURITY.md) for complete security guide and best practices.**
 
 ## ⚠️ Disclaimer
 
