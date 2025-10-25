@@ -12,7 +12,7 @@ class TikTokVideoDownloader:
         self.download_dir = "temp/videos"
         os.makedirs(self.download_dir, exist_ok=True)
     
-    def download_with_ytdlp(self, video_url: str) -> Optional[str]:
+    def download_with_ytdlp(self, video_url: str) -> Optional[tuple]:
         """
         Download video using yt-dlp (primary method)
         
@@ -20,7 +20,7 @@ class TikTokVideoDownloader:
             video_url: TikTok video URL
         
         Returns:
-            Path to downloaded audio file, or None if failed
+            Tuple (audio_path, post_date_datetime) or None if failed
         """
         try:
             # Extract video ID from URL for filename
@@ -69,7 +69,20 @@ class TikTokVideoDownloader:
                 
                 if os.path.exists(audio_file):
                     print(f"    Downloaded: {audio_file}")
-                    return audio_file
+                    # Determine post date from info
+                    post_dt = None
+                    try:
+                        if info.get('timestamp'):
+                            from datetime import datetime, timezone
+                            post_dt = datetime.fromtimestamp(info['timestamp'], tz=timezone.utc)
+                        elif info.get('upload_date'):
+                            # upload_date is YYYYMMDD
+                            s = str(info['upload_date'])
+                            from datetime import datetime, timezone
+                            post_dt = datetime.strptime(s, '%Y%m%d').replace(tzinfo=timezone.utc)
+                    except Exception:
+                        post_dt = None
+                    return (audio_file, post_dt)
                 else:
                     print(f"    Warning: Expected file not found: {audio_file}")
                     return None
@@ -78,7 +91,7 @@ class TikTokVideoDownloader:
             print(f"    Error downloading video: {e}")
             return None
     
-    def download_video_audio(self, video_url: str) -> Optional[str]:
+    def download_video_audio(self, video_url: str) -> Optional[tuple]:
         """
         Main method: Download video audio
         
@@ -88,7 +101,7 @@ class TikTokVideoDownloader:
             video_url: TikTok video URL
         
         Returns:
-            Path to audio file, or None if failed
+            Tuple (audio_path, post_date_datetime) or None if failed
         """
         return self.download_with_ytdlp(video_url)
     

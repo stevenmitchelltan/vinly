@@ -99,7 +99,8 @@ async def reextract_with_transcriptions(username: str = None):
                         "description": wine_data.get("description"),
                         "influencer_source": f"{video.get('tiktok_handle', 'unknown')}_tiktok",
                         "post_url": video_url,
-                        "date_found": datetime.now(timezone.utc),
+                        # Prefer original post date if available
+                        "date_found": video.get("post_date") or datetime.now(timezone.utc),
                         "in_stock": None,
                         "last_checked": None
                     }

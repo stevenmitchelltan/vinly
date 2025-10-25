@@ -82,8 +82,12 @@ async def transcribe_pending_videos(username: str = None):
         print(f"    URL: {video_url}")
         
         try:
-            # Step 1: Download audio
-            audio_path = downloader.download_video_audio(video_url)
+            # Step 1: Download audio (and try to get post date)
+            dl_result = downloader.download_video_audio(video_url)
+            if isinstance(dl_result, tuple):
+                audio_path, post_date = dl_result
+            else:
+                audio_path, post_date = dl_result, None
             
             if not audio_path:
                 # Download failed
@@ -104,15 +108,19 @@ async def transcribe_pending_videos(username: str = None):
             
             # Step 3: Update database
             if transcription_result['status'] == 'success':
+                # Save transcription and post date on processed video
+                update_doc = {
+                    "transcription": transcription_result['text'],
+                    "transcription_status": "success",
+                    "transcription_date": datetime.now(timezone.utc),
+                    "audio_duration_seconds": transcription_result['duration'],
+                    "transcription_error": None
+                }
+                if post_date:
+                    update_doc["post_date"] = post_date
                 await db.processed_videos.update_one(
                     {"video_url": video_url},
-                    {"$set": {
-                        "transcription": transcription_result['text'],
-                        "transcription_status": "success",
-                        "transcription_date": datetime.now(timezone.utc),
-                        "audio_duration_seconds": transcription_result['duration'],
-                        "transcription_error": None
-                    }}
+                    {"$set": update_doc}
                 )
                 transcribed += 1
                 print(f"    [SUCCESS] Transcribed ({transcription_result['duration']:.1f}s)")
