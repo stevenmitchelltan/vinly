@@ -14,7 +14,7 @@ function Footer() {
           </p>
           <div className="pt-4 border-t border-gray-200">
             <p className="text-xs text-gray-400">
-              © 2024 Vinly - MIT License
+              © 2025 Vinly - MIT License
             </p>
           </div>
         </div>

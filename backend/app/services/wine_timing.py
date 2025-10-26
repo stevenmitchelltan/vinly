@@ -50,40 +50,54 @@ def find_wine_mention_timestamp(wine_name: str, segments: list) -> Optional[floa
 
 def get_optimal_frame_times(mention_time: float, video_duration: float) -> List[float]:
     """
-    Generate list of good timestamps to extract frames based on when wine was mentioned.
+    Generate list of good timestamps to extract frames with better spread.
     
-    Strategy:
-    - Influencers typically show the bottle WHILE or just AFTER mentioning it
-    - Main frame: 0.5-1.5 seconds after mention (showing bottle)
-    - Backup frames: Just before and well after mention
-    - All times must be within valid video range
+    Strategy - Maximum Diversity:
+    1. Just after mention (showing bottle)
+    2. Well before mention (intro/establishing shot)
+    3. During mention (speaking while showing)
+    4. Later after mention (still in frame)
+    5. Early in video (first impression)
+    6. Late discussion (conclusion/recommendation)
     
     Args:
         mention_time: When wine was mentioned (seconds)
         video_duration: Total video length (seconds)
     
     Returns:
-        List of timestamps to try (in priority order)
+        List of timestamps to try (in priority order, spread out)
     """
     times = []
     
-    # Primary: 0.5-1.5 seconds after mention (most likely showing bottle)
+    # 1. Primary: Just after mention (0.75s - most likely showing bottle)
     times.append(mention_time + 0.75)
-    times.append(mention_time + 1.25)
     
-    # Secondary: Just before mention (intro/establishing shot)
-    if mention_time > 2:
-        times.append(mention_time - 1.0)
-        times.append(mention_time - 0.5)
+    # 2. Before mention - intro shot (if there's time)
+    if mention_time > 3:
+        times.append(mention_time - 2.0)
     
-    # Tertiary: Well after mention (still discussing/showing)
-    times.append(mention_time + 2.5)
-    times.append(mention_time + 3.5)
+    # 3. During/slightly after mention
+    times.append(mention_time + 1.5)
+    
+    # 4. Well after mention - still discussing
+    times.append(mention_time + 4.0)
+    
+    # 5. Early in video - first impression (if before mention)
+    if mention_time > 10:
+        early_time = min(mention_time * 0.3, mention_time - 5)
+        if early_time > 2:
+            times.append(early_time)
+    
+    # 6. Late discussion - conclusion (if after mention)
+    if mention_time + 8 < video_duration:
+        times.append(mention_time + 7.0)
+    elif mention_time + 5 < video_duration:
+        times.append(mention_time + 5.0)
     
     # Filter to valid range (0 to video_duration)
     valid_times = [t for t in times if 0 <= t <= video_duration]
     
-    logger.debug(f"Generated {len(valid_times)} frame times around {mention_time:.1f}s")
+    logger.debug(f"Generated {len(valid_times)} frame times with spread around {mention_time:.1f}s: {[f'{t:.1f}' for t in valid_times]}")
     
     return valid_times
 

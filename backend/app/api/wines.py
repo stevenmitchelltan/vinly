@@ -30,6 +30,7 @@ async def get_wines(
             supermarket=wine["supermarket"],
             wine_type=wine["wine_type"],
             image_url=wine.get("image_url"),
+            image_urls=wine.get("image_urls"),
             rating=wine.get("rating"),
             influencer_source=wine["influencer_source"],
             post_url=wine["post_url"],

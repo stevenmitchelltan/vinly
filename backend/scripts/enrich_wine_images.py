@@ -127,32 +127,39 @@ async def enrich_wine_images(username: str = None, limit: int = None):
                 
                 print(f"  Extracted {len(extracted_frames)} frames")
                 
-                # Select best frame
-                best_frame = select_best_frame(extracted_frames)
+                # Select all valid frames (up to 6)
+                valid_frames = []
+                for frame_path in extracted_frames:
+                    p = Path(frame_path)
+                    if p.exists() and p.stat().st_size > 10000:  # > 10KB
+                        valid_frames.append(frame_path)
                 
-                if not best_frame:
+                if not valid_frames:
                     print("  [FAIL] No valid frames extracted")
                     downloader.cleanup_video_file(video_path)
                     failed_count += 1
                     continue
                 
-                # Move best frame to static directory with permanent name
-                final_image_path = images_dir / f"wine_{wine_id}.jpg"
-                Path(best_frame).rename(final_image_path)
+                # Save top 3 frames to static directory
+                saved_image_urls = []
+                for idx, frame_path in enumerate(valid_frames):
+                    final_image_path = images_dir / f"wine_{wine_id}_{idx}.jpg"
+                    Path(frame_path).rename(final_image_path)
+                    image_url = f"/static/wine_images/wine_{wine_id}_{idx}.jpg"
+                    saved_image_urls.append(image_url)
                 
-                # Cleanup other frames
+                # Cleanup unused frames
                 for frame in extracted_frames:
-                    if frame != best_frame and os.path.exists(frame):
+                    if frame not in valid_frames and os.path.exists(frame):
                         os.remove(frame)
                 
-                # Update wine with image URL
-                image_url = f"/static/wine_images/wine_{wine_id}.jpg"
+                # Update wine with image URLs array
                 await db.wines.update_one(
                     {"_id": wine['_id']},
-                    {"$set": {"image_url": image_url}}
+                    {"$set": {"image_urls": saved_image_urls}}
                 )
                 
-                print(f"  [SUCCESS] Image saved: {image_url}")
+                print(f"  [SUCCESS] Saved {len(saved_image_urls)} images")
                 success_count += 1
                 
                 # Cleanup video

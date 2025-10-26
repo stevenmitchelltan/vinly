@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List
 from datetime import datetime
 from enum import Enum
 
@@ -25,7 +25,8 @@ class Wine(BaseModel):
     name: str
     supermarket: Supermarket
     wine_type: WineType
-    image_url: Optional[str] = None
+    image_url: Optional[str] = None  # Legacy - single image
+    image_urls: Optional[List[str]] = None  # New - multiple images for carousel
     rating: Optional[str] = None
     influencer_source: str
     post_url: str
@@ -40,7 +41,8 @@ class WineResponse(BaseModel):
     name: str
     supermarket: str
     wine_type: str
-    image_url: Optional[str]
+    image_url: Optional[str]  # Legacy
+    image_urls: Optional[List[str]]  # New - carousel images
     rating: Optional[str]
     influencer_source: str
     post_url: str
