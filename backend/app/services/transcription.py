@@ -88,7 +88,8 @@ def transcribe_audio_file(audio_path: str, retry_count: int = 1) -> Dict:
         'duration': 0,
         'status': 'failed',
         'error': '',
-        'metrics': {}
+        'metrics': {},
+        'segments': []  # Store timing segments for frame extraction
     }
     
     try:
@@ -115,16 +116,21 @@ def transcribe_audio_file(audio_path: str, retry_count: int = 1) -> Dict:
                 # Pass 1: baseline with lexicon-guided initial prompt
                 initial_prompt = _build_initial_prompt()
                 with open(processed_path, "rb") as audio_file:
-                    transcript = client.audio.transcriptions.create(
+                    transcript_response = client.audio.transcriptions.create(
                         model="whisper-1",
                         file=audio_file,
-                        response_format="text",
+                        response_format="verbose_json",  # Get timestamps for frame extraction!
                         language="nl",  # Dutch language hint
                         prompt=initial_prompt if initial_prompt else None
                     )
                 
+                # Extract text and segments
+                transcript = transcript_response.text
+                segments = transcript_response.segments if hasattr(transcript_response, 'segments') else []
+                
                 # Success!
                 result['text'] = transcript
+                result['segments'] = segments
                 result['status'] = 'success'
                 pass1_len = len(transcript)
                 print(f"    Transcribed: {pass1_len} characters")
@@ -159,16 +165,21 @@ def transcribe_audio_file(audio_path: str, retry_count: int = 1) -> Dict:
                     )
                     print("    Second pass: enriched prompt applied")
                     with open(processed_path, "rb") as audio_file:
-                        transcript2 = client.audio.transcriptions.create(
+                        transcript2_response = client.audio.transcriptions.create(
                             model="whisper-1",
                             file=audio_file,
-                            response_format="text",
+                            response_format="verbose_json",
                             language="nl",
                             prompt=enriched_prompt
                         )
+                    # Extract text and segments from second pass
+                    transcript2 = transcript2_response.text
+                    segments2 = transcript2_response.segments if hasattr(transcript2_response, 'segments') else segments
+                    
                     # Prefer longer transcript if it adds useful content
                     if transcript2 and len(transcript2) >= len(transcript) * 0.95:
                         result['text'] = transcript2
+                        result['segments'] = segments2  # Use second pass segments
                         pass2_len = len(transcript2)
                         used_pass2 = True
                         print(f"    Second pass accepted ({pass2_len} chars)")

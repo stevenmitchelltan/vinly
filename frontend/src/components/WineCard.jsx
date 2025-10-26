@@ -18,23 +18,33 @@ function WineCard({ wine }) {
     });
   };
 
+  // Prepend API base URL to image paths
+  const getImageUrl = (imageUrl) => {
+    if (!imageUrl) return null;
+    if (imageUrl.startsWith('http')) return imageUrl;
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+    return `${apiBaseUrl}${imageUrl}`;
+  };
+
   return (
     <div className="wine-card">
-      {/* Image */}
-      <div className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 h-48 flex items-center justify-center overflow-hidden">
-        {wine.image_url ? (
-          <img
-            src={wine.image_url}
-            alt={wine.name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = 'https://via.placeholder.com/300x400?text=Wine+Bottle';
-            }}
-          />
-        ) : (
-          <div className="text-6xl">{getWineTypeEmoji(wine.wine_type)}</div>
-        )}
+      {/* Image - 4:5 aspect ratio (vertical) */}
+      <div className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full" style={{ aspectRatio: '4/5' }}>
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+          {wine.image_url ? (
+            <img
+              src={getImageUrl(wine.image_url)}
+              alt={wine.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://via.placeholder.com/300x400?text=Wine+Bottle';
+              }}
+            />
+          ) : (
+            <div className="text-6xl">{getWineTypeEmoji(wine.wine_type)}</div>
+          )}
+        </div>
         
         {/* Stock status badge */}
         {wine.in_stock !== null && (
