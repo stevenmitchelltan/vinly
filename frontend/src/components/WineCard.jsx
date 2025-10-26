@@ -2,6 +2,11 @@ import React from 'react';
 
 function WineCard({ wine }) {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+  const [touchStart, setTouchStart] = React.useState(null);
+  const [touchEnd, setTouchEnd] = React.useState(null);
+
+  // Minimum swipe distance (in px) to trigger navigation
+  const minSwipeDistance = 50;
 
   const getWineTypeEmoji = (type) => {
     const emojis = {
@@ -42,10 +47,40 @@ function WineCard({ wine }) {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  // Touch event handlers for mobile swipe
+  const onTouchStart = (e) => {
+    setTouchEnd(null); // Reset end position
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
+  };
+
   return (
     <div className="wine-card">
       {/* Image Carousel - 4:5 aspect ratio (vertical) */}
-      <div className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full group" style={{ aspectRatio: '4/5' }}>
+      <div 
+        className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full group" 
+        style={{ aspectRatio: '4/5' }}
+        onTouchStart={hasMultipleImages ? onTouchStart : undefined}
+        onTouchMove={hasMultipleImages ? onTouchMove : undefined}
+        onTouchEnd={hasMultipleImages ? onTouchEnd : undefined}
+      >
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
           {images.length > 0 ? (
             <img
@@ -67,19 +102,19 @@ function WineCard({ wine }) {
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Previous image"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Next image"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -88,15 +123,15 @@ function WineCard({ wine }) {
 
         {/* Dots indicator - Instagram style */}
         {hasMultipleImages && (
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
             {images.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentImageIndex(idx)}
-                className={`w-1.5 h-1.5 rounded-full transition-all ${
+                className={`rounded-full transition-all p-1 ${
                   idx === currentImageIndex 
-                    ? 'bg-white w-2' 
-                    : 'bg-white/50 hover:bg-white/75'
+                    ? 'bg-white w-2 h-2' 
+                    : 'bg-white/50 hover:bg-white/75 w-2 h-2'
                 }`}
                 aria-label={`View image ${idx + 1}`}
               />

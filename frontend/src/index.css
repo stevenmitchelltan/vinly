@@ -6,6 +6,11 @@
   body {
     @apply bg-gradient-to-br from-burgundy-50 via-rose-50 to-amber-50 min-h-screen;
   }
+  
+  /* Disable tap highlight for better mobile UX */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @layer components {
@@ -22,7 +27,7 @@
   }
   
   .filter-button {
-    @apply px-4 py-2 rounded-full transition-all duration-200 font-medium;
+    @apply px-4 py-2 rounded-full transition-all duration-200 font-medium min-h-[44px] min-w-[44px];
   }
   
   .filter-button-active {

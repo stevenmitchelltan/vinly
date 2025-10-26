@@ -28,25 +28,34 @@ function Home() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    <div className="container mx-auto px-4 py-6 sm:py-8">
+      {/* Hero Section with Vinly Branding */}
+      <div className="text-center mb-8 sm:mb-12">
+        {/* Logo and Brand */}
+        <div className="flex items-center justify-center space-x-3 mb-4 sm:mb-6">
+          <div className="text-5xl sm:text-6xl">🍷</div>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-burgundy-600 to-burgundy-800 bg-clip-text text-transparent pb-4 leading-tight">
+            Vinly
+          </h1>
+        </div>
+        
+        {/* Tagline */}
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
           Ontdek de beste supermarkt wijnen
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2">
           Gecureerd door Nederlandse wijn influencers. Vind de beste deals en smaken uit jouw favoriete supermarkt.
         </p>
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-md p-6 mb-8 space-y-6">
+      <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-6 sm:mb-8 space-y-4 sm:space-y-6">
         <SupermarketSelector
           selectedSupermarket={selectedSupermarket}
           onSupermarketChange={setSelectedSupermarket}
         />
         
-        <div className="border-t border-gray-200 pt-6">
+        <div className="border-t border-gray-200 pt-4 sm:pt-6">
           <WineTypeFilter
             selectedType={selectedType}
             onTypeChange={setSelectedType}
