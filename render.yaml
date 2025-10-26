@@ -1,0 +1,67 @@
+# Render Blueprint - Deploy Vinly Backend for FREE
+# This file enables one-click deployment to Render's free tier
+# Learn more: https://render.com/docs/blueprint-spec
+
+services:
+  # Backend API - Python/FastAPI
+  - type: web
+    name: vinly-backend
+    runtime: python
+    region: frankfurt  # Closest to Netherlands
+    plan: free  # Free tier - sleeps after 15 min inactivity
+    branch: main
+    rootDir: backend
+    
+    # Build configuration
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      playwright install-deps
+      playwright install chromium
+    
+    # Start command
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    
+    # Health check
+    healthCheckPath: /health
+    
+    # Auto-deploy on git push
+    autoDeploy: true
+    
+    # Environment variables (set these in Render dashboard)
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false  # Manual - get from platform.openai.com
+      
+      - key: MONGODB_URI
+        sync: false  # Manual - get from MongoDB Atlas
+      
+      - key: CORS_ORIGINS
+        value: https://YOUR_USERNAME.github.io  # Update with your GitHub username
+      
+      - key: ENVIRONMENT
+        value: production
+      
+      - key: LOG_LEVEL
+        value: INFO
+      
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+# Notes:
+# 1. Free tier limitations:
+#    - Sleeps after 15 min inactivity (50s cold start)
+#    - 750 hours/month limit
+#    - Shared resources (slower)
+#    - No custom domains
+#
+# 2. After deployment, update frontend GitHub secret:
+#    VITE_API_BASE_URL = https://vinly-backend.onrender.com
+#
+# 3. MongoDB Atlas free tier (M0):
+#    - 512MB storage (free forever)
+#    - Create at: https://www.mongodb.com/cloud/atlas/register
+#
+# 4. To prevent sleep (optional):
+#    - Use UptimeRobot to ping every 5 minutes
+#    - Or upgrade to Starter plan ($7/month)

@@ -1,0 +1,72 @@
+# Render deployment ignore file
+# Excludes unnecessary files from deployment to speed up builds
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation (not needed at runtime)
+docs/
+*.md
+!README.md
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Development scripts
+scripts/dev/
+scripts/utilities/
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.log
+
+# Static files (images - large files, served from backend/static)
+static/wine_images/
+
+# Environment files (use Render dashboard for env vars)
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
