@@ -15,27 +15,27 @@
 
 @layer components {
   .wine-card {
-    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden;
+    @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-burgundy-200 hover:-translate-y-1;
   }
   
   .btn-primary {
-    @apply bg-burgundy-600 text-white px-6 py-2 rounded-lg hover:bg-burgundy-700 transition-colors duration-200 font-medium;
+    @apply bg-gradient-to-r from-burgundy-600 to-burgundy-700 text-white px-6 py-2.5 rounded-lg hover:from-burgundy-700 hover:to-burgundy-800 transition-all duration-200 font-semibold shadow-md hover:shadow-lg;
   }
   
   .btn-secondary {
-    @apply bg-white text-burgundy-600 border-2 border-burgundy-600 px-6 py-2 rounded-lg hover:bg-burgundy-50 transition-colors duration-200 font-medium;
+    @apply bg-white text-burgundy-600 border-2 border-burgundy-600 px-6 py-2.5 rounded-lg hover:bg-burgundy-50 hover:border-burgundy-700 transition-all duration-200 font-semibold shadow-sm hover:shadow-md;
   }
   
   .filter-button {
-    @apply px-4 py-2 rounded-full transition-all duration-200 font-medium min-h-[44px] min-w-[44px];
+    @apply px-4 py-2 rounded-full transition-all duration-200 font-semibold min-h-[44px] min-w-[44px] shadow-sm;
   }
   
   .filter-button-active {
-    @apply bg-burgundy-600 text-white shadow-md;
+    @apply bg-gradient-to-r from-burgundy-600 to-burgundy-700 text-white shadow-md hover:shadow-lg transform hover:scale-105;
   }
   
   .filter-button-inactive {
-    @apply bg-white text-burgundy-600 hover:bg-burgundy-50;
+    @apply bg-white text-burgundy-600 hover:bg-burgundy-50 border border-burgundy-200 hover:border-burgundy-400;
   }
 }
 

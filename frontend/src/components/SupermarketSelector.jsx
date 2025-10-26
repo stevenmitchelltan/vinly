@@ -25,8 +25,10 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
   }
 
   return (
-    <div className="space-y-3">
-      <h3 className="text-lg font-semibold text-gray-800">Kies je supermarkt</h3>
+    <div className="space-y-4">
+      <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+        🏪 <span>Kies je supermarkt</span>
+      </h3>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         <button
           onClick={() => onSupermarketChange(null)}

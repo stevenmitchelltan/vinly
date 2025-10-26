@@ -8,8 +8,10 @@ function WineTypeFilter({ selectedType, onTypeChange }) {
   ];
 
   return (
-    <div className="space-y-3">
-      <h3 className="text-lg font-semibold text-gray-800">Type wijn</h3>
+    <div className="space-y-4">
+      <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+        🍇 <span>Type wijn</span>
+      </h3>
       <div className="flex flex-wrap gap-3">
         {wineTypes.map((type) => (
           <button

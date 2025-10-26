@@ -72,7 +72,7 @@ function WineCard({ wine }) {
   };
 
   return (
-    <div className="wine-card">
+    <div className="wine-card animate-fade-in">
       {/* Image Carousel - 4:5 aspect ratio (vertical) */}
       <div 
         className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full group" 
@@ -150,38 +150,38 @@ function WineCard({ wine }) {
       </div>
 
       {/* Content */}
-      <div className="p-4 space-y-3">
+      <div className="p-5 space-y-3">
         {/* Supermarket badge */}
         <div className="flex items-center justify-between">
-          <span className="inline-block bg-burgundy-100 text-burgundy-800 px-3 py-1 rounded-full text-sm font-medium">
+          <span className="inline-block bg-gradient-to-r from-burgundy-100 to-burgundy-200 text-burgundy-800 px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wide shadow-sm">
             {wine.supermarket}
           </span>
-          <span className="text-2xl">{getWineTypeEmoji(wine.wine_type)}</span>
+          <span className="text-3xl">{getWineTypeEmoji(wine.wine_type)}</span>
         </div>
 
         {/* Wine name */}
-        <h3 className="font-bold text-lg text-gray-900 leading-tight">
+        <h3 className="font-bold text-xl text-gray-900 leading-tight min-h-[3rem] flex items-center">
           {wine.name}
         </h3>
 
         {/* Rating */}
         {wine.rating && (
           <div className="flex items-center space-x-2">
-            <span className="font-semibold text-gray-700">{wine.rating}</span>
+            <span className="text-2xl font-bold bg-gradient-to-r from-burgundy-600 to-burgundy-800 bg-clip-text text-transparent">{wine.rating}</span>
           </div>
         )}
 
         {/* Description */}
         {wine.description && (
-          <p className="text-sm text-gray-600 line-clamp-4">
+          <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">
             {wine.description}
           </p>
         )}
 
         {/* Footer */}
-        <div className="pt-3 border-t border-gray-200 space-y-2">
-          <p className="text-xs text-gray-500">
-            📸 van <span className="font-medium">@{wine.influencer_source}</span>
+        <div className="pt-4 border-t border-gray-100 space-y-2">
+          <p className="text-xs text-gray-500 font-medium">
+            📸 van <span className="font-semibold text-burgundy-700">@{wine.influencer_source}</span>
           </p>
           <p className="text-xs text-gray-400">
             {formatDate(wine.date_found)}
@@ -192,9 +192,10 @@ function WineCard({ wine }) {
             href={wine.post_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-xs text-burgundy-600 hover:text-burgundy-800 font-medium"
+            className="inline-flex items-center gap-1 text-xs text-burgundy-600 hover:text-burgundy-800 font-semibold hover:gap-2 transition-all"
           >
-            Bekijk originele post →
+            Bekijk originele post 
+            <span className="text-base">→</span>
           </a>
         </div>
       </div>
