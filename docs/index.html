@@ -1,181 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinly — Static Wine Images</title>
-  <style>
-    :root {
-      --bg: #0b0b0c;
-      --fg: #f7f7f9;
-      --muted: #b7b7bf;
-      --card: #151518;
-      --accent: #9e2a2b;
-      --accent2: #a63d40;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; }
-    header { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, rgba(11,11,12,0.95), rgba(11,11,12,0.75)); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 14px 18px; }
-    h1 { margin: 0; font-size: 18px; letter-spacing: 0.2px; }
-    a { color: var(--fg); text-decoration: none; }
-    a:hover { color: #fff; text-decoration: underline; }
-    .toolbar { display: flex; gap: 12px; align-items: center; justify-content: space-between; }
-
-    .note { color: var(--muted); font-size: 14px; }
-    .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .pill { background: rgba(255,255,255,0.06); color: var(--fg); padding: 6px 10px; border-radius: 999px; font-size: 12px; border: 1px solid rgba(255,255,255,0.08); }
-
-    main { padding: 18px; }
-    .grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
-
-    .card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; transition: transform 120ms ease, box-shadow 120ms ease; }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
-    .imgbox { width: 100%; aspect-ratio: 3/4; background: #0f0f12; display: grid; place-items: center; overflow: hidden; }
-    .imgbox img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .meta { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 6px; }
-    .filename { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    .empty, .error { max-width: 760px; margin: 28px auto; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; }
-    .error h3, .empty h3 { margin: 0 0 8px; font-size: 16px; }
-    .error p, .empty p { margin: 6px 0; color: var(--muted); }
-
-    footer { max-width: 1100px; margin: 30px auto; padding: 0 18px 24px; color: var(--muted); font-size: 12px; }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="wrap toolbar">
-      <h1>Vinly — Static Wine Gallery</h1>
-      <div class="controls">
-        <span id="repo-pill" class="pill">Static (docs/)</span>
-        <a id="repo-link" href="#" class="pill" target="_blank" rel="noopener" style="display:none;">Open Repo</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <div id="state"></div>
-    <div id="grid" class="grid"></div>
-  </main>
-
-  <footer>
-    Serves images from <code>docs/wine_images</code> via <code>docs/images_manifest.json</code>. Falls back to GitHub API if needed.
-  </footer>
-
-  <script>
-    (function() {
-      const stateEl = document.getElementById('state');
-      const gridEl = document.getElementById('grid');
-      const repoPill = document.getElementById('repo-pill');
-      const repoLink = document.getElementById('repo-link');
-
-      const qs = new URLSearchParams(location.search);
-      let owner = qs.get('owner');
-      let repo = qs.get('repo');
-      let branch = qs.get('branch') || 'main';
-
-      // Try to infer owner/repo from GitHub Pages URL (username.github.io/repo/)
-      if (!owner && location.hostname.endsWith('.github.io')) {
-        owner = location.hostname.split('.github.io')[0];
-      }
-      if (!repo) {
-        const parts = location.pathname.split('/').filter(Boolean);
-        if (parts.length > 0) repo = parts[0];
-      }
-
-      function renderError(title, message) {
-        stateEl.innerHTML = `
-          <div class="error">
-            <h3>${title}</h3>
-            <p>${message}</p>
-          </div>
-        `;
-      }
-
-      function renderFiles(files) {
-        if (!files || files.length === 0) {
-          stateEl.innerHTML = `<div class="empty"><h3>No images found</h3><p>Place files in <code>docs/wine_images</code>.</p></div>`;
-          return;
-        }
-        stateEl.innerHTML = '';
-        const frag = document.createDocumentFragment();
-        files.forEach(name => {
-          const src = `wine_images/${encodeURIComponent(name)}`;
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <div class="imgbox">
-              <img loading="lazy" src="${src}" alt="${name}" />
-            </div>
-            <div class="meta">
-              <div class="filename" title="${name}">${name}</div>
-            </div>
-          `;
-          frag.appendChild(card);
-        });
-        gridEl.appendChild(frag);
-      }
-
-      async function loadFromManifest() {
-        const res = await fetch('images_manifest.json', { cache: 'no-cache' });
-        if (!res.ok) throw new Error(`manifest ${res.status}`);
-        const list = await res.json();
-        const files = (Array.isArray(list) ? list : [])
-          .filter(x => typeof x === 'string')
-          .filter(x => /\.(jpg|jpeg|png|webp)$/i.test(x));
-        renderFiles(files);
-      }
-
-      async function loadFromGithub() {
-        if (!owner || !repo) return Promise.reject(new Error('owner/repo missing'));
-        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/backend/static/wine_images?ref=${encodeURIComponent(branch)}`;
-        const r = await fetch(apiUrl);
-        if (!r.ok) throw new Error(`GitHub API: ${r.status} ${r.statusText}`);
-        const list = await r.json();
-        const files = (Array.isArray(list) ? list : [])
-          .filter(x => x.type === 'file')
-          .filter(x => /\.(jpg|jpeg|png|webp)$/i.test(x.name))
-          .map(x => x.name);
-        if (!files.length) throw new Error('No images in repo path');
-        // When falling back, switch to static approach by creating anchors to download_url
-        stateEl.innerHTML = '';
-        const frag = document.createDocumentFragment();
-        list.filter(x => x.type === 'file').forEach(file => {
-          if (!/\.(jpg|jpeg|png|webp)$/i.test(file.name)) return;
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <div class=\"imgbox\">
-              <img loading=\"lazy\" src=\"${file.download_url}\" alt=\"${file.name}\" />
-            </div>
-            <div class=\"meta\">
-              <div class=\"filename\" title=\"${file.name}\">${file.name}</div>
-            </div>
-          `;
-          frag.appendChild(card);
-        });
-        gridEl.appendChild(frag);
-      }
-
-      (async () => {
-        try {
-          repoPill.textContent = 'Static (docs/)';
-          await loadFromManifest();
-        } catch (e) {
-          console.warn('Manifest load failed, falling back to GitHub API', e);
-          repoPill.textContent = owner && repo ? `${owner}/${repo}@${branch}` : 'GitHub API fallback';
-          if (owner && repo) repoLink.href = `https://github.com/${owner}/${repo}`;
-          repoLink.style.display = owner && repo ? 'inline-flex' : 'none';
-          try {
-            await loadFromGithub();
-          } catch (err) {
-            console.error(err);
-            renderError('Failed to load images', err.message);
-          }
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/wine-glass.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Discover the best wines from Dutch supermarkets" />
+    <title>Vinly - Dutch Supermarket Wine Finder</title>
+    <script type="module" crossorigin src="/vinly/assets/index-DN4aBYro.js"></script>
+    <link rel="stylesheet" crossorigin href="/vinly/assets/index-BwhNjZQv.css">
+  </head>
+  <body>
+    <!-- Handle redirect from 404.html for client-side routing -->
+    <script>
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
         }
       })();
-    })();
-  </script>
-</body>
+    </script>
+    
+    <div id="root"></div>
+  </body>
 </html>
+
