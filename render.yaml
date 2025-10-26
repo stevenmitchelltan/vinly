@@ -14,13 +14,14 @@ services:
     
     # Build configuration
     buildCommand: |
+      cd backend
       pip install --upgrade pip
       pip install -r requirements.txt
       playwright install-deps
       playwright install chromium
     
     # Start command
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     
     # Health check
     healthCheckPath: /health
