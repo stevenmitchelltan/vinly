@@ -48,8 +48,8 @@
     <div class="wrap toolbar">
       <h1>Vinly — Static Wine Gallery</h1>
       <div class="controls">
-        <span id="repo-pill" class="pill">Resolving repo…</span>
-        <a id="repo-link" href="#" class="pill" target="_blank" rel="noopener">Open Repo</a>
+        <span id="repo-pill" class="pill">Static (docs/)</span>
+        <a id="repo-link" href="#" class="pill" target="_blank" rel="noopener" style="display:none;">Open Repo</a>
       </div>
     </div>
   </header>
@@ -60,7 +60,7 @@
   </main>
 
   <footer>
-    Uses GitHub Contents API to list images from <code>backend/static/wine_images</code>. No backend required.
+    Serves images from <code>docs/wine_images</code> via <code>docs/images_manifest.json</code>. Falls back to GitHub API if needed.
   </footer>
 
   <script>
@@ -84,80 +84,97 @@
         if (parts.length > 0) repo = parts[0];
       }
 
-      function renderError(title, message, showForm) {
+      function renderError(title, message) {
         stateEl.innerHTML = `
           <div class="error">
             <h3>${title}</h3>
             <p>${message}</p>
-            ${showForm ? `
-            <form id="cfg" style="margin-top:10px; display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:8px;">
-              <input name="owner" placeholder="owner (username)" value="${owner || ''}" required style="padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#0f0f12;color:#fff;" />
-              <input name="repo" placeholder="repo" value="${repo || ''}" required style="padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#0f0f12;color:#fff;" />
-              <input name="branch" placeholder="branch" value="${branch}" required style="padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#0f0f12;color:#fff;" />
-              <button type="submit" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#1f1f24;color:#fff;cursor:pointer;">Reload</button>
-            </form>` : ''}
           </div>
         `;
-        const form = document.getElementById('cfg');
-        if (form) form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const data = new FormData(form);
-          const params = new URLSearchParams({
-            owner: data.get('owner'),
-            repo: data.get('repo'),
-            branch: data.get('branch')
-          });
-          location.search = params.toString();
+      }
+
+      function renderFiles(files) {
+        if (!files || files.length === 0) {
+          stateEl.innerHTML = `<div class="empty"><h3>No images found</h3><p>Place files in <code>docs/wine_images</code>.</p></div>`;
+          return;
+        }
+        stateEl.innerHTML = '';
+        const frag = document.createDocumentFragment();
+        files.forEach(name => {
+          const src = `wine_images/${encodeURIComponent(name)}`;
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="imgbox">
+              <img loading="lazy" src="${src}" alt="${name}" />
+            </div>
+            <div class="meta">
+              <div class="filename" title="${name}">${name}</div>
+            </div>
+          `;
+          frag.appendChild(card);
         });
+        gridEl.appendChild(frag);
       }
 
-      if (!owner || !repo) {
-        repoPill.textContent = 'Repo not detected';
-        repoLink.style.display = 'none';
-        return renderError('Repository not detected', 'Open this page via GitHub Pages (username.github.io/repo/) or provide ?owner=&repo= params.', true);
+      async function loadFromManifest() {
+        const res = await fetch('images_manifest.json', { cache: 'no-cache' });
+        if (!res.ok) throw new Error(`manifest ${res.status}`);
+        const list = await res.json();
+        const files = (Array.isArray(list) ? list : [])
+          .filter(x => typeof x === 'string')
+          .filter(x => /\.(jpg|jpeg|png|webp)$/i.test(x));
+        renderFiles(files);
       }
 
-      const repoUrl = `https://github.com/${owner}/${repo}`;
-      repoPill.textContent = `${owner}/${repo}@${branch}`;
-      repoLink.href = repoUrl;
+      async function loadFromGithub() {
+        if (!owner || !repo) return Promise.reject(new Error('owner/repo missing'));
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/backend/static/wine_images?ref=${encodeURIComponent(branch)}`;
+        const r = await fetch(apiUrl);
+        if (!r.ok) throw new Error(`GitHub API: ${r.status} ${r.statusText}`);
+        const list = await r.json();
+        const files = (Array.isArray(list) ? list : [])
+          .filter(x => x.type === 'file')
+          .filter(x => /\.(jpg|jpeg|png|webp)$/i.test(x.name))
+          .map(x => x.name);
+        if (!files.length) throw new Error('No images in repo path');
+        // When falling back, switch to static approach by creating anchors to download_url
+        stateEl.innerHTML = '';
+        const frag = document.createDocumentFragment();
+        list.filter(x => x.type === 'file').forEach(file => {
+          if (!/\.(jpg|jpeg|png|webp)$/i.test(file.name)) return;
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class=\"imgbox\">
+              <img loading=\"lazy\" src=\"${file.download_url}\" alt=\"${file.name}\" />
+            </div>
+            <div class=\"meta\">
+              <div class=\"filename\" title=\"${file.name}\">${file.name}</div>
+            </div>
+          `;
+          frag.appendChild(card);
+        });
+        gridEl.appendChild(frag);
+      }
 
-      const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/backend/static/wine_images?ref=${encodeURIComponent(branch)}`;
-      stateEl.innerHTML = `<div class="empty"><h3>Loading images…</h3><p>Fetching from GitHub Contents API.</p></div>`;
-
-      fetch(apiUrl)
-        .then(r => {
-          if (!r.ok) throw new Error(`GitHub API: ${r.status} ${r.statusText}`);
-          return r.json();
-        })
-        .then(list => {
-          const files = (Array.isArray(list) ? list : [])
-            .filter(x => x.type === 'file')
-            .filter(x => /\.(jpg|jpeg|png|webp)$/i.test(x.name));
-          if (files.length === 0) {
-            stateEl.innerHTML = `<div class="empty"><h3>No images found</h3><p>Expected files in <code>backend/static/wine_images</code> on branch <code>${branch}</code>.</p></div>`;
-            return;
+      (async () => {
+        try {
+          repoPill.textContent = 'Static (docs/)';
+          await loadFromManifest();
+        } catch (e) {
+          console.warn('Manifest load failed, falling back to GitHub API', e);
+          repoPill.textContent = owner && repo ? `${owner}/${repo}@${branch}` : 'GitHub API fallback';
+          if (owner && repo) repoLink.href = `https://github.com/${owner}/${repo}`;
+          repoLink.style.display = owner && repo ? 'inline-flex' : 'none';
+          try {
+            await loadFromGithub();
+          } catch (err) {
+            console.error(err);
+            renderError('Failed to load images', err.message);
           }
-          stateEl.innerHTML = '';
-          const frag = document.createDocumentFragment();
-          files.forEach(file => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-              <div class="imgbox">
-                <img loading="lazy" src="${file.download_url}" alt="${file.name}" />
-              </div>
-              <div class="meta">
-                <div class="filename" title="${file.name}">${file.name}</div>
-              </div>
-            `;
-            frag.appendChild(card);
-          });
-          gridEl.appendChild(frag);
-        })
-        .catch(err => {
-          console.error(err);
-          renderError('Failed to load images', `${err.message}. If rate-limited, try again later.`, false);
-        });
+        }
+      })();
     })();
   </script>
 </body>
