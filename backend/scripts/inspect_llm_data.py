@@ -105,7 +105,10 @@ For each RECOMMENDED wine, extract:
 2. Supermarket (must be one of: {', '.join(supermarkets)})
    - Accept aliases: AH/Appie = Albert Heijn
 3. Wine type (red, white, rose, or sparkling)
-4. Rating (positive only: e.g., "aanrader", "top", "goed", scores 7+/10)
+4. RATING: a short, enthusiastic phrase (max 3–6 words) without numeric scores
+   - Prefer a short verbatim quote from the influencer if it directly expresses the verdict.
+   - Avoid generic clichés (e.g., "echt een toppertje", "absolute aanrader", "duidelijke winnaar", "heel lekker") unless quoted verbatim.
+   - If synthesizing, include at least one concrete attribute (taste note, pairing, price/quality, balance) and keep the influencer's tone.
 5. Brief description (what the reviewer said POSITIVELY about it)
 
 Return ONLY a valid JSON array of objects with these exact keys: name, supermarket, wine_type, rating, description
@@ -117,7 +120,7 @@ Example output format:
     "name": "Albert Heijn Excellent Malbec 2022",
     "supermarket": "Albert Heijn",
     "wine_type": "red",
-    "rating": "8/10 - aanrader",
+    "rating": "Sterke prijs-kwaliteit",
     "description": "Uitstekende prijs-kwaliteit, vol en fruitig"
   }}
 ]"""

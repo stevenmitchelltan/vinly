@@ -1,4 +1,5 @@
 import json
+import re
 from openai import OpenAI
 from typing import List, Dict, Optional
 from ..config import settings
@@ -9,6 +10,74 @@ client = OpenAI(api_key=settings.openai_api_key)
 # Load from YAML configuration
 SUPERMARKETS = config.get_supermarket_list()
 WINE_TYPES = config.wine_keywords['wine_types']
+
+
+BANNED_RATING_PHRASES = {
+    "echt een toppertje",
+    "absolute aanrader",
+    "duidelijke winnaar",
+    "heel lekker",
+}
+
+ATTRIBUTE_ORDER = [
+    "fruitig",
+    "fris",
+    "kruidig",
+    "vol",
+    "zacht",
+    "mineraal",
+    "hout",
+    "tannines",
+    "zuur",
+    "zoet",
+    "balans",
+    "complex",
+    "prijs-kwaliteit",
+]
+
+
+def _normalize_rating(rating: Optional[str], description: Optional[str]) -> Optional[str]:
+    """Ensure rating is short, non-numeric, and not a cliché.
+
+    - Remove numeric score fragments (e.g., "8/10", "7.5/10").
+    - Replace banned clichés with a concise attribute-based phrase from description.
+    """
+    if not rating:
+        return rating
+
+    original = rating.strip()
+    lowered = original.lower()
+
+    # Remove numeric ratings like "8/10" or "7.5 / 10" while preserving original casing elsewhere
+    no_numeric_original = re.sub(r"\b\d+(?:[.,]\d+)?\s*/\s*10\b", "", original)
+    no_numeric_original = re.sub(r"\b\d+(?:[.,]\d+)?\s*/\s*\d+\b", "", no_numeric_original)
+    no_numeric_original = no_numeric_original.strip(" -–—:;,.!")
+
+    no_numeric_lowered = re.sub(r"\b\d+(?:[.,]\d+)?\s*/\s*10\b", "", lowered)
+    no_numeric_lowered = re.sub(r"\b\d+(?:[.,]\d+)?\s*/\s*\d+\b", "", no_numeric_lowered)
+    no_numeric_lowered = no_numeric_lowered.strip(" -–—:;,.!")
+
+    # If numeric part was the only content, fall back to description-derived phrase
+    candidate = no_numeric_original if no_numeric_lowered else ""
+
+    # If banned cliché, derive from description
+    if no_numeric_lowered in BANNED_RATING_PHRASES or lowered in BANNED_RATING_PHRASES:
+        candidate = ""
+
+    if not candidate:
+        desc = (description or "").lower()
+        if desc:
+            attrs = [a for a in ATTRIBUTE_ORDER if a in desc]
+            if len(attrs) >= 2:
+                return f"{attrs[0]} en {attrs[1]}"
+            if attrs:
+                return attrs[0]
+            if "prijs" in desc or "kwaliteit" in desc:
+                return "sterke prijs-kwaliteit"
+        # If nothing to derive, keep original without numeric pieces
+        return no_numeric_original or original
+
+    return candidate
 
 
 def extract_wines_from_caption_and_transcription(
@@ -104,15 +173,17 @@ Extract the SINGLE BEST RECOMMENDED wine with:
 2. Supermarket (must be one of: {', '.join(SUPERMARKETS)})
    - Accept aliases: AH/Appie = Albert Heijn, but the alias must be explicitly mentioned
 3. Wine type (red, white, rose, or sparkling)
-4. RATING: A short, enthusiastic phrase (max 3-5 words) capturing the influencer's verdict
-   - Prefer phrases like: "duidelijke winnaar", "echt een toppertje", "mooie balans", "absolute aanrader", "verrassend goed", but infer from context.
-   - Can include quality indicators or superlatives that show enthusiasm
-   - Keep the influencer's tone and language style
+4. RATING: A short, enthusiastic phrase (max 3–6 words) capturing the influencer's verdict
+   - Prefer a short verbatim quote from the influencer if it directly expresses the verdict (e.g., “dit is mijn favoriet”).
+   - Do NOT use numeric scores (e.g., no "8/10").
+   - Avoid generic clichés (e.g., "echt een toppertje", "absolute aanrader", "duidelijke winnaar", "heel lekker") unless quoted verbatim in the input.
+   - If synthesizing, include at least one concrete attribute (taste note, pairing, price/quality, balance) and match the influencer's tone.
+   - Vary wording; avoid repeating the same phrase across different wines.
 5. DESCRIPTION: A more elaborate description or quote from the influencer about the wine
-   - Prefer verbatim quotes or paraphrases from the transcript/caption
+   - Prefer verbatim quotes from the transcript/caption; otherwise paraphrase faithfully
    - Include taste notes, characteristics, or why it's recommended
    - Can be longer (10-20 words) to capture the full flavor profile or recommendation reasoning
-   - Examples: "Vol en fruitig met mooie tannines, perfect bij rood vlees", "Verrassend fris en kruidig voor de prijs, echt een toppertje"
+   - Examples: "Vol en fruitig met mooie tannines, perfect bij rood vlees", "Verrassend fris en kruidig voor de prijs"
 
 Return ONLY a valid JSON array with AT MOST ONE object having these exact keys: name, supermarket, wine_type, rating, description
 If NO RECOMMENDED wine is clearly identified, return an empty array: []
@@ -123,7 +194,7 @@ Example output format:
     "name": "Côtes du Rhône",
     "supermarket": "Jumbo",
     "wine_type": "red",
-    "rating": "Dit is de winnaar!",
+    "rating": "Mooi in balans",
     "description": "Soepele rode wijn met fijne kruidigheid en zacht fruit, goede prijs-kwaliteit verhouding"
   }}
 ]"""
@@ -162,7 +233,11 @@ Example output format:
                 valid_wines.append(wine)
         if len(valid_wines) > 1:
             valid_wines = valid_wines[:1]
-        
+
+        # Normalize ratings to avoid numeric scores and clichés
+        for w in valid_wines:
+            w["rating"] = _normalize_rating(w.get("rating"), w.get("description"))
+
         print(f"Extracted {len(valid_wines)} wines from text")
         return valid_wines
     
