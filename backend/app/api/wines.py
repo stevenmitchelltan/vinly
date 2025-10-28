@@ -53,7 +53,8 @@ async def get_supermarkets():
             {"name": "LIDL", "value": "LIDL"},
             {"name": "Jumbo", "value": "Jumbo"},
             {"name": "ALDI", "value": "ALDI"},
-            {"name": "Plus", "value": "Plus"}
+            {"name": "Plus", "value": "Plus"},
+            {"name": "Sligro", "value": "Sligro"}
         ]
     }
 

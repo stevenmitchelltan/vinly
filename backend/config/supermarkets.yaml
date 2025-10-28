@@ -41,6 +41,12 @@ supermarkets:
       - "plus supermarkt"
       - "plus wijn"
 
+  - name: "Sligro"
+    aliases:
+      - "sligro"
+      - "sligro wijn"
+      - "#sligro"
+
 # General supermarket keywords
 general_keywords:
   - "supermarkt"
