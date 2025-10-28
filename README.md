@@ -19,76 +19,64 @@ Vinly scrapes TikTok wine influencers, extracts wine recommendations using AI, a
 - 💰 **Cost Optimized** - Smart filtering saves on API costs (~$0.50/month)
 - 🚀 **Production Ready** - Built for Railway + GitHub Pages deployment
 
-## 🚀 Quick Start
+## 🚀 Quick Start with Docker
 
 ### Prerequisites
-- Python 3.9+
-- Node.js 18+
-- MongoDB Atlas account (free tier)
-- OpenAI API key
+- Docker Desktop ([download here](https://www.docker.com/products/docker-desktop/))
+- OpenAI API key ([get here](https://platform.openai.com/api-keys))
 
-### Installation
+### Installation (3 Steps!)
+
+**1. Clone the repository:**
+```bash
+git clone https://github.com/YOUR_USERNAME/vinly.git
+cd vinly
+```
+
+**2. Create `.env` file:**
+```bash
+# Copy the example
+cp .env.example .env
+
+# Edit .env and add your OpenAI API key:
+# OPENAI_API_KEY=sk-proj-your-actual-key-here
+```
+
+**3. Start everything with Docker:**
 
 **Windows:**
 ```bash
-quickstart.bat
+docker-dev.bat
 ```
 
 **Mac/Linux:**
 ```bash
-chmod +x quickstart.sh
-./quickstart.sh
+chmod +x docker-dev.sh
+./docker-dev.sh
 ```
 
-### Manual Setup
-
-**1. Backend:**
+**Or manually:**
 ```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate  # Windows
-# source venv/bin/activate  # Mac/Linux
-pip install -r requirements.txt
+docker-compose up --build
 ```
 
-**2. Configure Environment:**
+**4. Access the app:**
+- **Frontend**: http://localhost
+- **Backend API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs
 
-Copy the example file and fill in your credentials:
-```bash
-cd backend
-cp .env.example .env  # Mac/Linux
-# copy .env.example .env  # Windows
-```
+**That's it!** 🎉 Docker handles all dependencies (Python, Node, MongoDB, FFmpeg, Chromium)
 
-Then edit `backend/.env` with your actual values:
-```env
-MONGODB_URI=your_mongodb_connection_string
-OPENAI_API_KEY=your_openai_api_key
-CORS_ORIGINS=http://localhost:5173
-```
+### Why Docker?
 
-**⚠️ NEVER commit the `.env` file to git!** It's already in `.gitignore`.
-
-**3. Start Backend:**
-```bash
-cd backend
-venv\Scripts\activate
-uvicorn app.main:app --reload
-```
-
-**4. Start Frontend:**
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-**5. Visit:** http://localhost:5173/vinly/
+✅ **Zero dependency issues** - Everything packaged together  
+✅ **One command setup** - No manual installs  
+✅ **Works everywhere** - Same environment locally and in production  
+✅ **Includes everything** - FFmpeg, Chromium, MongoDB, all ready to go
 
 ## 📖 Documentation
 
-- **[Quick Start Guide](docs/QUICK_START_GUIDE.md)** - Get up and running quickly
-- **[Deployment Guide](docs/DEPLOYMENT.md)** - Deploy to production
+- **[Docker Deployment Guide](DOCKER_DEPLOYMENT.md)** - 🐳 Complete Docker deployment guide (local + production)
 - **[Configuration Guide](docs/CONFIGURATION_GUIDE.md)** - Customize keywords and settings
 - **[System Overview](docs/SYSTEM_COMPLETE.md)** - Complete feature documentation
 - **[Process Flow](docs/PROCESS_FLOW.md)** - How everything works
@@ -98,10 +86,12 @@ npm run dev
 
 ### Add Wines from TikTok
 
-**Automatic (Recommended):**
+**Run scripts inside Docker container:**
 ```bash
-cd backend
-venv\Scripts\activate
+# Access backend shell
+docker exec -it vinly-backend bash
+
+# Run the smart scraper
 python scripts/smart_scraper.py pepijn.wijn
 ```
 
@@ -114,6 +104,7 @@ This will:
 
 **Check Results:**
 ```bash
+# Inside container
 python scripts/check_wines.py
 ```
 
@@ -146,11 +137,11 @@ React Frontend
 
 **Monthly Operating Costs:**
 - MongoDB Atlas: **$0** (free tier, 512MB)
-- OpenAI API: **~$0.50** (GPT-4o-mini)
-- Railway Backend: **$0** (500 hrs free tier)
-- GitHub Pages: **$0** (static hosting)
+- OpenAI API: **~$5-10** (Whisper + GPT-4o-mini for 100 videos)
+- Render Backend: **$0** (free tier with sleep) or **$7** (always-on)
+- Local Development: **$0** (Docker runs locally)
 
-**Total: ~$0.50/month** ✨
+**Total: $5-17/month** depending on tier ✨
 
 ## 📁 Project Structure
 
@@ -175,15 +166,24 @@ vinly/
 **Backend:**
 - FastAPI (Python web framework)
 - MongoDB with Motor (async database)
-- OpenAI GPT-4o-mini (wine extraction)
+- OpenAI GPT-4o-mini (wine extraction) + Whisper (transcription)
 - Playwright (TikTok scraping)
+- yt-dlp (video downloads)
+- FFmpeg (video processing)
 - APScheduler (automated jobs)
+- Docker (containerization)
 
 **Frontend:**
 - React 18
 - Vite (build tool)
 - TailwindCSS (styling)
 - React Router (navigation)
+- nginx (production serving)
+
+**DevOps:**
+- Docker & Docker Compose
+- Render (deployment platform)
+- MongoDB Atlas (database hosting)
 
 ## 🤝 Contributing
 

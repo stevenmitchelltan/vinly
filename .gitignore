@@ -50,3 +50,7 @@ instaloader_cache/
 # Cursor generated files
 *.plan.md
 
+# Docker
+docker-compose.override.yml
+.docker/
+

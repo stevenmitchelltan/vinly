@@ -1,31 +1,29 @@
-# Render Blueprint - Deploy Vinly Backend for FREE
-# This file enables one-click deployment to Render's free tier
+# Render Blueprint - Deploy Vinly with Docker
+# Optimized Docker deployment with all dependencies included
 # Learn more: https://render.com/docs/blueprint-spec
 
 services:
-  # Backend API - Python/FastAPI
+  # Backend API - FastAPI with Docker
   - type: web
     name: vinly-backend
-    runtime: python
+    runtime: docker
     region: frankfurt  # Closest to Netherlands
-    plan: free  # Free tier - sleeps after 15 min inactivity
+    plan: starter  # $7/month - recommended for production (use 'free' for testing)
     branch: main
     rootDir: backend
-    
-    # Build configuration
-    buildCommand: |
-      cd backend
-      pip install --upgrade pip
-      pip install -r requirements.txt
-    
-    # Start command
-    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    dockerfilePath: ./Dockerfile
     
     # Health check
     healthCheckPath: /health
     
     # Auto-deploy on git push
     autoDeploy: true
+    
+    # Disk storage for wine images, videos, frames
+    disk:
+      name: vinly-storage
+      mountPath: /app/static
+      sizeGB: 1
     
     # Environment variables (set these in Render dashboard)
     envVars:
@@ -36,31 +34,54 @@ services:
         sync: false  # Manual - get from MongoDB Atlas
       
       - key: CORS_ORIGINS
-        value: https://YOUR_USERNAME.github.io  # Update with your GitHub username
+        value: https://vinly-backend.onrender.com  # Update with your actual domain if needed
       
       - key: ENVIRONMENT
         value: production
       
       - key: LOG_LEVEL
         value: INFO
-      
-      - key: PYTHON_VERSION
-        value: 3.11.0
 
 # Notes:
-# 1. Free tier limitations:
-#    - Sleeps after 15 min inactivity (50s cold start)
-#    - 750 hours/month limit
-#    - Shared resources (slower)
-#    - No custom domains
+# ============================================
+# Docker Deployment Benefits:
+# ============================================
+# ✅ All dependencies included (FFmpeg, Chromium, yt-dlp)
+# ✅ Consistent builds - no more dependency issues
+# ✅ Faster builds with layer caching
+# ✅ Portable - works on any platform
+# ✅ Secure - runs as non-root user
 #
-# 2. After deployment, update frontend GitHub secret:
-#    VITE_API_BASE_URL = https://vinly-backend.onrender.com
+# ============================================
+# Setup Instructions:
+# ============================================
+# 1. Create MongoDB Atlas cluster (free M0 tier):
+#    https://www.mongodb.com/cloud/atlas/register
 #
-# 3. MongoDB Atlas free tier (M0):
-#    - 512MB storage (free forever)
-#    - Create at: https://www.mongodb.com/cloud/atlas/register
+# 2. Get connection string:
+#    mongodb+srv://username:password@cluster.mongodb.net/vinly
 #
-# 4. To prevent sleep (optional):
-#    - Use UptimeRobot to ping every 5 minutes
-#    - Or upgrade to Starter plan ($7/month)
+# 3. Get OpenAI API key:
+#    https://platform.openai.com/api-keys
+#
+# 4. Deploy to Render:
+#    - Connect your GitHub repo
+#    - Render auto-detects this blueprint
+#    - Set OPENAI_API_KEY and MONGODB_URI in dashboard
+#    - Deploy!
+#
+# ============================================
+# Plan Options:
+# ============================================
+# - Free tier: Backend sleeps after 15min (50s cold start)
+#   Change 'plan: starter' to 'plan: free'
+#
+# - Starter ($7/month): Always-on, no cold starts
+#   Recommended for production use
+#
+# ============================================
+# Deployment:
+# ============================================
+# Backend: https://vinly-backend.onrender.com
+# API Docs: https://vinly-backend.onrender.com/docs
+# Health: https://vinly-backend.onrender.com/health
