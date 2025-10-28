@@ -44,11 +44,9 @@ Your Vinly app is now configured for **fully static deployment** on GitHub Pages
 
 ### 2. Configure GitHub Secrets
 - Go to repo Settings → Secrets and variables → Actions
-- Add 4 secrets:
-  - `OPENAI_API_KEY`
-  - `CLOUDINARY_CLOUD_NAME`
-  - `CLOUDINARY_API_KEY`
-  - `CLOUDINARY_API_SECRET`
+- Add 2 secrets:
+  - `OPENAI_API_KEY` - Your OpenAI API key
+  - `CLOUDINARY_URL` - Format: `cloudinary://api-key:api-secret@cloud-name` (copy from Cloudinary dashboard)
 
 ### 3. Enable GitHub Pages
 - Settings → Pages
@@ -63,9 +61,7 @@ Your Vinly app is now configured for **fully static deployment** on GitHub Pages
 docker-compose up -d
 
 # Add Cloudinary credentials to .env
-echo "CLOUDINARY_CLOUD_NAME=your-cloud-name" >> backend/.env
-echo "CLOUDINARY_API_KEY=your-api-key" >> backend/.env
-echo "CLOUDINARY_API_SECRET=your-api-secret" >> backend/.env
+echo "CLOUDINARY_URL=cloudinary://your-api-key:your-api-secret@your-cloud-name" >> backend/.env
 
 # Restart backend to load new env vars
 docker-compose restart backend

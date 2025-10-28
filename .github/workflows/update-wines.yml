@@ -56,9 +56,7 @@ jobs:
       - name: Scrape and process wines
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
           MONGODB_URI: mongodb://admin:temp-gh-actions@localhost:27017/vinly?authSource=admin
         run: |
           cd backend

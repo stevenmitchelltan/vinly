@@ -10,12 +10,27 @@ import os
 
 
 def configure_cloudinary():
-    """Configure Cloudinary with credentials from environment variables"""
-    cloudinary.config(
-        cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', ''),
-        api_key=os.getenv('CLOUDINARY_API_KEY', ''),
-        api_secret=os.getenv('CLOUDINARY_API_SECRET', '')
-    )
+    """
+    Configure Cloudinary with credentials from environment variables.
+    
+    Supports two formats:
+    1. CLOUDINARY_URL=cloudinary://API_KEY:API_SECRET@CLOUD_NAME (recommended, simpler)
+    2. Individual vars: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
+    """
+    # Check if CLOUDINARY_URL is set (simpler format)
+    cloudinary_url = os.getenv('CLOUDINARY_URL')
+    
+    if cloudinary_url:
+        # Cloudinary SDK automatically parses CLOUDINARY_URL
+        # Just need to set it in the environment
+        cloudinary.config()
+    else:
+        # Fall back to individual environment variables
+        cloudinary.config(
+            cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', ''),
+            api_key=os.getenv('CLOUDINARY_API_KEY', ''),
+            api_secret=os.getenv('CLOUDINARY_API_SECRET', '')
+        )
 
 
 def upload_wine_image(image_path: Path, wine_id: str, index: int) -> Optional[str]:

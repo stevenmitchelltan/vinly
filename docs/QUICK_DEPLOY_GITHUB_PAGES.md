@@ -17,21 +17,20 @@ Quick guide to get your Vinly app deployed to GitHub Pages with Cloudinary image
 
 1. Go to your GitHub repository
 2. Click Settings → Secrets and variables → Actions
-3. Add 4 secrets by clicking "New repository secret":
+3. Add 2 secrets by clicking "New repository secret":
 
    ```
    Name: OPENAI_API_KEY
    Value: sk-proj-your-openai-key-here
 
-   Name: CLOUDINARY_CLOUD_NAME
-   Value: your-cloud-name
-
-   Name: CLOUDINARY_API_KEY
-   Value: your-api-key
-
-   Name: CLOUDINARY_API_SECRET
-   Value: your-api-secret
+   Name: CLOUDINARY_URL
+   Value: cloudinary://your-api-key:your-api-secret@your-cloud-name
    ```
+
+   **How to get CLOUDINARY_URL:**
+   - Go to Cloudinary Dashboard
+   - Copy the "API Environment variable" shown at the top
+   - Format: `cloudinary://123456789012345:abcdef...xyz@your-cloud-name`
 
 ### 3. Enable GitHub Pages
 
@@ -52,11 +51,11 @@ Your site will be at: `https://yourusername.github.io/vinly/`
 # Start containers
 docker-compose up -d
 
-# Set Cloudinary credentials
-docker-compose exec backend bash
-export CLOUDINARY_CLOUD_NAME=your-cloud-name
-export CLOUDINARY_API_KEY=your-api-key
-export CLOUDINARY_API_SECRET=your-api-secret
+# Set Cloudinary credentials (add to .env file)
+echo "CLOUDINARY_URL=cloudinary://your-api-key:your-api-secret@your-cloud-name" >> backend/.env
+
+# Restart backend to load new env var
+docker-compose restart backend
 
 # Migrate images to Cloudinary
 python scripts/migrate_images_to_cloudinary.py

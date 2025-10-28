@@ -77,9 +77,9 @@ Users load wines instantly from CDN
 | Secret Name | Value | Where to Get It |
 |------------|-------|-----------------|
 | `OPENAI_API_KEY` | sk-proj-... | https://platform.openai.com/api-keys |
-| `CLOUDINARY_CLOUD_NAME` | your-cloud-name | Cloudinary Dashboard |
-| `CLOUDINARY_API_KEY` | 123456789012345 | Cloudinary Dashboard |
-| `CLOUDINARY_API_SECRET` | abc...xyz | Cloudinary Dashboard → API Keys |
+| `CLOUDINARY_URL` | cloudinary://key:secret@cloud_name | Cloudinary Dashboard → "API Environment variable" (copy the full URL) |
+
+**Note:** The CLOUDINARY_URL format is simpler than using separate cloud_name, api_key, and api_secret variables.
 
 ### Step 3: Enable GitHub Pages
 
