@@ -80,8 +80,9 @@ docker-compose up --build
 - **[START_HERE.md](START_HERE.md)** - ⭐ Read this first! Quick 3-step setup
 - **[GETTING_STARTED.md](GETTING_STARTED.md)** - Detailed 5-minute guide
 
-**Docker & Deployment:**
-- **[DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md)** - Complete deployment guide (local + production)
+**Deployment Options:**
+- **[docs/GITHUB_PAGES_DEPLOYMENT.md](docs/GITHUB_PAGES_DEPLOYMENT.md)** - 🌟 **Fully static, $0 hosting** (Recommended)
+- **[DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md)** - Docker deployment (local + Render)
 - **[DOCKER_QUICK_REFERENCE.md](DOCKER_QUICK_REFERENCE.md)** - Docker command cheatsheet
 
 **Configuration:**

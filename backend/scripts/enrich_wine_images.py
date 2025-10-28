@@ -1,6 +1,7 @@
 """
 Enrich wines with bottle images extracted from TikTok videos.
 Uses Whisper timestamps to find when wine is mentioned, then extracts frames.
+Images are automatically uploaded to Cloudinary CDN.
 
 Usage:
     python scripts/enrich_wine_images.py                 # Process all wines
@@ -22,6 +23,7 @@ from app.config import settings
 from app.services.video_downloader import TikTokVideoDownloader
 from app.services.wine_timing import find_wine_mention_timestamp, get_optimal_frame_times, get_fallback_frame_times
 from app.services.frame_extractor import extract_frame, select_best_frame
+from app.services.cloudinary_upload import upload_wine_image
 
 
 async def enrich_wine_images(username: str = None, limit: int = None):
@@ -141,17 +143,26 @@ async def enrich_wine_images(username: str = None, limit: int = None):
                     failed_count += 1
                     continue
                 
-                # Save top 3 frames to static directory
+                # Upload frames to Cloudinary and collect CDN URLs
+                print(f"  [UPLOAD] Uploading {len(valid_frames)} images to Cloudinary...")
                 saved_image_urls = []
                 for idx, frame_path in enumerate(valid_frames):
-                    final_image_path = images_dir / f"wine_{wine_id}_{idx}.jpg"
-                    shutil.copy2(frame_path, final_image_path)
-                    image_url = f"/static/wine_images/wine_{wine_id}_{idx}.jpg"
-                    saved_image_urls.append(image_url)
+                    cdn_url = upload_wine_image(Path(frame_path), wine_id, idx)
+                    if cdn_url:
+                        saved_image_urls.append(cdn_url)
+                        print(f"    ✓ Image {idx+1}/{len(valid_frames)} uploaded")
+                    else:
+                        print(f"    ✗ Image {idx+1}/{len(valid_frames)} failed")
                 
-                # Cleanup unused frames
+                if not saved_image_urls:
+                    print("  [FAIL] No images uploaded successfully")
+                    downloader.cleanup_video_file(video_path)
+                    failed_count += 1
+                    continue
+                
+                # Cleanup local frames (not needed after upload)
                 for frame in extracted_frames:
-                    if frame not in valid_frames and os.path.exists(frame):
+                    if os.path.exists(frame):
                         os.remove(frame)
                 
                 # Update wine with image URLs array
