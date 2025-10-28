@@ -40,9 +40,17 @@ async def export_wines():
         }
         wines.append(wine_data)
     
-    # Prepare output directory
-    output_path = Path(__file__).parent.parent.parent / 'docs' / 'wines.json'
-    output_path.parent.mkdir(exist_ok=True)
+    # Prepare output directory (create docs in project root)
+    # __file__ is /app/scripts/export_to_json.py
+    # parent.parent is /app
+    # parent.parent.parent is / (but we mounted the project at /app)
+    # So we use /app/../docs which maps to the host's docs folder
+    project_root = Path(__file__).parent.parent.parent  # This goes to /
+    docs_dir = project_root / 'docs'
+    
+    # Create docs directory if it doesn't exist
+    docs_dir.mkdir(parents=True, exist_ok=True)
+    output_path = docs_dir / 'wines.json'
     
     # Write JSON file
     print(f"💾 Writing to {output_path}...")
