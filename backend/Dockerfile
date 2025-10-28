@@ -53,9 +53,9 @@ WORKDIR /app
 # Copy requirements first for layer caching
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install Python dependencies (not using --user in builder stage)
 RUN pip install --upgrade pip && \
-    pip install --user --no-warn-script-location -r requirements.txt
+    pip install -r requirements.txt
 
 # Install Playwright browsers (Chromium only to save space)
 RUN python -m playwright install chromium && \
@@ -73,12 +73,13 @@ RUN useradd -m -u 1000 vinly && \
 
 WORKDIR /app
 
-# Copy Python packages from builder
-COPY --from=builder /root/.local /home/vinly/.local
+# Copy Python packages from builder (installed in system site-packages)
+COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
 COPY --from=builder /root/.cache/ms-playwright /home/vinly/.cache/ms-playwright
 
-# Make sure scripts in .local are usable
-ENV PATH=/home/vinly/.local/bin:$PATH
+# Fix ownership of playwright cache
+RUN chown -R vinly:vinly /home/vinly/.cache
 
 # Copy application code
 COPY --chown=vinly:vinly . .
