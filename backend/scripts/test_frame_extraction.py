@@ -15,7 +15,7 @@ from app.services.frame_extractor import extract_frame, select_best_frame
 
 async def main():
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Get one wine for testing
     wine = await db.wines.find_one({})

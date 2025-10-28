@@ -13,7 +13,7 @@ from app.config import settings
 
 async def check_failures():
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     print("\n=== FAILED TRANSCRIPTIONS ===\n")
     

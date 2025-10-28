@@ -45,8 +45,8 @@ services:
       MONGODB_URI: mongodb://admin:vinly-local-dev@mongodb:27017/vinly?authSource=admin
       # OpenAI API key (set in .env file)
       OPENAI_API_KEY: ${OPENAI_API_KEY}
-      # CORS origins
-      CORS_ORIGINS: http://localhost:3000,http://localhost:5173,http://localhost:80,http://frontend:80
+      # CORS origins (include localhost without port for browser default)
+      CORS_ORIGINS: http://localhost,http://localhost:3000,http://localhost:5173,http://localhost:80,http://frontend:80
       # Environment
       ENVIRONMENT: development
       LOG_LEVEL: INFO

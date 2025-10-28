@@ -23,7 +23,7 @@ def shorten(s: str, n: int = 160) -> str:
 
 async def inspect(handle: str = None, limit: int = 5, days: int = 7):
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
 
     since = datetime.now(timezone.utc) - timedelta(days=days)
     q = {"transcription_date": {"$gte": since}}

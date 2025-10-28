@@ -76,11 +76,17 @@ docker-compose up --build
 
 ## 📖 Documentation
 
-- **[Docker Deployment Guide](DOCKER_DEPLOYMENT.md)** - 🐳 Complete Docker deployment guide (local + production)
-- **[Configuration Guide](docs/CONFIGURATION_GUIDE.md)** - Customize keywords and settings
-- **[System Overview](docs/SYSTEM_COMPLETE.md)** - Complete feature documentation
-- **[Process Flow](docs/PROCESS_FLOW.md)** - How everything works
-- **[Contributing](docs/CONTRIBUTING.md)** - How to contribute
+**Getting Started:**
+- **[START_HERE.md](START_HERE.md)** - ⭐ Read this first! Quick 3-step setup
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** - Detailed 5-minute guide
+
+**Docker & Deployment:**
+- **[DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md)** - Complete deployment guide (local + production)
+- **[DOCKER_QUICK_REFERENCE.md](DOCKER_QUICK_REFERENCE.md)** - Docker command cheatsheet
+
+**Configuration:**
+- **[backend/config/README.md](backend/config/README.md)** - Customize supermarkets and keywords
+- **[SECURITY.md](SECURITY.md)** - Security best practices
 
 ## 🍷 Usage
 

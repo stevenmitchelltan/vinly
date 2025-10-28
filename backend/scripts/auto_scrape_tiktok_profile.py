@@ -88,7 +88,7 @@ async def process_videos(username: str, video_urls: list):
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Scrape video data
     scraper = TikTokOEmbedScraper()

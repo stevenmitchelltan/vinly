@@ -11,7 +11,7 @@ from app.config import settings
 
 async def main():
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     result = await db.wines.update_many(
         {},

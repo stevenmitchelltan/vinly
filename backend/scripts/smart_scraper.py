@@ -219,7 +219,7 @@ async def main():
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Step 1: Get ALL video URLs (only new ones)
     print("="*60)

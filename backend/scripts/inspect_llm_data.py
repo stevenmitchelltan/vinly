@@ -27,7 +27,7 @@ async def inspect_llm_data():
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Get a transcribed video
     video = await db.processed_videos.find_one({

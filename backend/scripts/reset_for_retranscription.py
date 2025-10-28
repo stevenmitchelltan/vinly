@@ -11,7 +11,7 @@ from app.config import settings
 
 async def main():
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Reset first 10 transcriptions to pending
     result = await db.processed_videos.update_many(

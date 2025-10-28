@@ -24,7 +24,7 @@ async def force_retranscribe(username: str = None, limit: int = 20):
     print()
 
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
 
     query = {"is_wine_content": True}
     if username:

@@ -11,7 +11,7 @@ from app.config import settings
 
 async def check_wines():
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     total = await db.wines.count_documents({})
     real_wines = await db.wines.count_documents({'influencer_source': {'$ne': 'test_data'}})

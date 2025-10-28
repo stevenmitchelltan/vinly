@@ -23,7 +23,7 @@ async def report_transcription_costs():
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Get all processed videos with transcription data
     total_videos = await db.processed_videos.count_documents({})

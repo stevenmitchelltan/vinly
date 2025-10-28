@@ -26,7 +26,7 @@ async def inspect_filtering():
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Get all processed videos
     total_videos = await db.processed_videos.count_documents({})

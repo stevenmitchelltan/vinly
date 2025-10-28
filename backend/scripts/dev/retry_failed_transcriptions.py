@@ -26,7 +26,7 @@ async def retry_failed():
     print()
     
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Get failed videos
     failed_videos = []

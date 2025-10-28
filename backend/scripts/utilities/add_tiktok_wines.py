@@ -38,7 +38,7 @@ async def add_tiktok_wines():
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     wines_added = 0
     

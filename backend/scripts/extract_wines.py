@@ -33,7 +33,7 @@ async def extract_wines(username: str = None):
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Find videos with successful transcriptions
     query = {

@@ -16,7 +16,7 @@ from app.config import settings
 
 async def main():
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     # Drop or delete collections
     w = await db.wines.delete_many({})
     p = await db.processed_videos.delete_many({})
@@ -56,7 +56,7 @@ async def clean_database():
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Count before deletion
     wines_count = await db.wines.count_documents({})

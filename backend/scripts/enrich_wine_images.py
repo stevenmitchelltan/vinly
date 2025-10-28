@@ -10,6 +10,7 @@ Usage:
 import asyncio
 import sys
 import os
+import shutil
 from pathlib import Path
 import argparse
 from datetime import datetime, timezone
@@ -32,7 +33,7 @@ async def enrich_wine_images(username: str = None, limit: int = None):
         limit: Optional limit on number of wines to process
     """
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     try:
         # Build query for wines without images
@@ -144,7 +145,7 @@ async def enrich_wine_images(username: str = None, limit: int = None):
                 saved_image_urls = []
                 for idx, frame_path in enumerate(valid_frames):
                     final_image_path = images_dir / f"wine_{wine_id}_{idx}.jpg"
-                    Path(frame_path).rename(final_image_path)
+                    shutil.copy2(frame_path, final_image_path)
                     image_url = f"/static/wine_images/wine_{wine_id}_{idx}.jpg"
                     saved_image_urls.append(image_url)
                 

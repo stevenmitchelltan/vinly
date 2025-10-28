@@ -16,7 +16,7 @@ from app.config import settings
 
 async def eval_asr(username: str = None, days: int = 30):
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
 
     since = datetime.now(timezone.utc) - timedelta(days=days)
     query = {

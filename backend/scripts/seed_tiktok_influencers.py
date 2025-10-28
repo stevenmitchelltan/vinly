@@ -16,7 +16,7 @@ async def seed_tiktok_influencers():
     """Add TikTok influencers with their wine video URLs"""
     
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # List of TikTok influencers and their wine video URLs
     # Add more as you discover them!

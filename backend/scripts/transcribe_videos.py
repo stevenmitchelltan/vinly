@@ -35,7 +35,7 @@ async def transcribe_pending_videos(username: str = None):
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Build query for pending videos
     query = {

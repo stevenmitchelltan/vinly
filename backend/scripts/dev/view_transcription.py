@@ -15,7 +15,7 @@ async def view_transcription(video_id: str):
     """Show transcription for a video"""
     
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Find video by ID
     video = await db.processed_videos.find_one(

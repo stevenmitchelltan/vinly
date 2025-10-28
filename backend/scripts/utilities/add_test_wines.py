@@ -17,7 +17,7 @@ async def add_test_wines():
     """Add test wines to database"""
     
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Test wines from various supermarkets
     test_wines = [

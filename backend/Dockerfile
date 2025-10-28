@@ -58,8 +58,8 @@ RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
 # Install Playwright browsers (Chromium only to save space)
-RUN python -m playwright install chromium && \
-    python -m playwright install-deps chromium
+# Note: We skip install-deps because we manually installed all dependencies in base stage
+RUN python -m playwright install chromium
 
 # ============================================
 # Stage 3: Production Image

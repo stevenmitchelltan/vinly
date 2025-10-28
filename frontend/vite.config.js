@@ -4,10 +4,10 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/vinly/', // GitHub Pages base path
+  base: '/', // Docker deployment uses root path
   build: {
-    outDir: '../docs',
-    emptyOutDir: false, // Keep existing files like images
+    outDir: 'dist', // Standard dist folder for Docker
+    emptyOutDir: true,
   },
   server: {
     port: 5173

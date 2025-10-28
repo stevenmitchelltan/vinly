@@ -25,7 +25,7 @@ async def test_filter_on_real_data():
     
     # Connect to database
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     
     # Get sample of processed videos
     print("Fetching 20 sample videos from database...")

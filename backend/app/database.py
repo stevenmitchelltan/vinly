@@ -8,7 +8,7 @@ db = None
 async def connect_to_mongo():
     global client, db
     client = AsyncIOMotorClient(settings.mongodb_uri)
-    db = client.winedb
+    db = client.vinly
     print("Connected to MongoDB")
 
 
