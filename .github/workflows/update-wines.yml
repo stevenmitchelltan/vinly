@@ -7,7 +7,7 @@ on:
 
 jobs:
   scrape-and-update:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # Use 22.04 instead of latest to avoid libasound2 issue
     timeout-minutes: 90
     
     steps:
@@ -22,10 +22,25 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
       
-      - name: Install FFmpeg
+      - name: Install FFmpeg and Chromium dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y \
+            ffmpeg \
+            libnss3 \
+            libnspr4 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libdrm2 \
+            libxkbcommon0 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxrandr2 \
+            libgbm1 \
+            libasound2 \
+            libatspi2.0-0
       
       - name: Install Python dependencies
         run: |
@@ -37,7 +52,7 @@ jobs:
         run: |
           cd backend
           python -m playwright install chromium
-          python -m playwright install-deps chromium
+          # Skip install-deps as we already have system dependencies from FFmpeg step
       
       - name: Set up MongoDB (temporary)
         run: |
