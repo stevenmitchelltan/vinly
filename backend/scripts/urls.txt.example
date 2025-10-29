@@ -1,0 +1,11 @@
+# Example TikTok URLs file for batch processing
+# Lines starting with # are ignored
+# One URL per line
+
+# Example usage:
+# docker-compose exec backend python scripts/add_manual_post.py --file urls.txt
+
+# Add your TikTok URLs below:
+# https://www.tiktok.com/@pepijn.wijn/video/7564708325217111329
+# https://www.tiktok.com/@pepijn.wijn/video/7234567890123456789
+

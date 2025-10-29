@@ -21,6 +21,10 @@ COPY . .
 ARG VITE_API_BASE_URL=http://localhost:8000
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 
+# Build argument for base path (defaults to '/' for Docker, '/vinly/' for GitHub Pages)
+ARG VITE_BASE_PATH=/
+ENV VITE_BASE_PATH=$VITE_BASE_PATH
+
 # Build the application
 RUN npm run build
 

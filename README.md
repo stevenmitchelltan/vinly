@@ -16,6 +16,7 @@ Vinly scrapes TikTok wine influencers, extracts wine recommendations using AI, a
 - 🤖 **AI Wine Extraction** - Uses GPT-4o-mini to extract wine data
 - 🏪 **7 Dutch Supermarkets** - Albert Heijn, Jumbo, LIDL, ALDI, HEMA, Dirk, Plus
 - 🎨 **Beautiful Frontend** - Modern React interface with filters
+- 🎛️ **Admin Panel** - Edit wines, manage images, add missed posts
 - 💰 **Cost Optimized** - Smart filtering saves on API costs (~$0.50/month)
 - 🚀 **Production Ready** - Built for Railway + GitHub Pages deployment
 
@@ -64,6 +65,7 @@ docker-compose up --build
 - **Frontend**: http://localhost
 - **Backend API**: http://localhost:8000
 - **API Docs**: http://localhost:8000/docs
+- **Admin Panel**: http://localhost:5173/admin (password: `admin`)
 
 **That's it!** 🎉 Docker handles all dependencies (Python, Node, MongoDB, FFmpeg, Chromium)
 
@@ -87,9 +89,25 @@ docker-compose up --build
 
 **Configuration:**
 - **[backend/config/README.md](backend/config/README.md)** - Customize supermarkets and keywords
+- **[backend/docs/ADMIN_PANEL.md](backend/docs/ADMIN_PANEL.md)** - 🎛️ Admin panel guide for managing wines
 - **[SECURITY.md](SECURITY.md)** - Security best practices
 
 ## 🍷 Usage
+
+### Admin Panel (New!)
+
+**Web Interface** for managing wines:
+```
+http://localhost:5173/admin
+```
+
+Features:
+- ✏️ Edit wine details (name, description, rating, images)
+- 🖼️ Add/remove/reorder images
+- ➕ Add missed TikTok posts
+- 🗑️ Delete incorrect wines
+
+See **[backend/docs/ADMIN_PANEL.md](backend/docs/ADMIN_PANEL.md)** for full guide.
 
 ### Add Wines from TikTok
 

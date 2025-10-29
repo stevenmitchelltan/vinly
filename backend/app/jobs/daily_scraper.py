@@ -34,10 +34,10 @@ async def process_tiktok_videos(tiktok_handle: str, video_urls: list) -> int:
         
         # Save wines to database
         for wine_data in wines:
-            # Check if wine already exists
+            # Check if this video already has a wine (one wine per video)
+            # Using post_url as unique identifier allows safe editing of all fields
             existing = await db.wines.find_one({
-                "name": wine_data["name"],
-                "supermarket": wine_data["supermarket"]
+                "post_url": video["post_url"]
             })
             
             if not existing:

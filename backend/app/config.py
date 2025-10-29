@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     cloudinary_cloud_name: str = ""
     cloudinary_api_key: str = ""
     cloudinary_api_secret: str = ""
+    admin_password: str = "admin"  # Simple password for admin panel
     
     # Signal words for frame extraction - indicate influencer is showing/presenting the wine
     frame_extraction_signal_words: List[str] = [

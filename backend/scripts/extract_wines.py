@@ -82,10 +82,10 @@ async def extract_wines(username: str = None):
             print(f"    Found {len(wines)} wine(s)!")
             
             for wine_data in wines:
-                # Check if exists
+                # Check if this video already has a wine (one wine per video)
+                # Using post_url as unique identifier allows safe editing of all fields
                 existing = await db.wines.find_one({
-                    "name": wine_data["name"],
-                    "supermarket": wine_data["supermarket"]
+                    "post_url": video_url
                 })
                 
                 if not existing:

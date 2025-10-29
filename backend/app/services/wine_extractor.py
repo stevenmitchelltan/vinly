@@ -1,9 +1,12 @@
 import json
 import re
+import logging
 from openai import OpenAI
 from typing import List, Dict, Optional
 from ..config import settings
 from ..utils.config_loader import config
+
+logger = logging.getLogger(__name__)
 
 client = OpenAI(api_key=settings.openai_api_key)
 
@@ -126,7 +129,14 @@ IMPORTANT RULES:
 1. ONLY extract wines that are RECOMMENDED, POSITIVE, or rated as GOOD
 2. SKIP wines that are criticized, rated poorly, or mentioned as "avoid" or "niet goed"
 3. If a video compares multiple wines, only extract the winners/recommended ones
-4. Return AT MOST ONE wine: choose the single BEST recommendation (most positive language or highest rating). If unclear, return an empty array.
+4. Return AT MOST ONE wine: choose the single BEST recommendation
+5. INCLUDE wines that are:
+   - Explicitly recommended or praised
+   - Described as a "winner", "top choice", or "best" in comparisons
+   - Given positive attributes even without strong superlatives
+   - Presented as "good value" or "worth trying"
+   - Shown positively in a comparison (even if not using words like "beste")
+6. Be INCLUSIVE rather than overly strict - if the wine is presented positively overall, include it
 
 NAME NORMALIZATION / CORRECTION:
 - Correct obvious transcription errors in wine names and appellations; PRESERVE accents/diacritics and native spelling
@@ -141,8 +151,9 @@ ORDERING HEURISTIC (INTRO FIRST → EXPLANATION AFTER):
 - Do not switch to a later-mentioned wine unless the earliest one is clearly rejected/criticized
 
 COMPARATIVE VIDEOS & WINNER SELECTION:
-- Handle enumerations (bijv. 1/2/3, links/midden/rechts, A vs B). Extract ONLY the explicit winnaar/aanrader/beste
-- If no clear winner is stated, return []
+- Handle enumerations (bijv. 1/2/3, links/midden/rechts, A vs B). Extract the explicit winnaar/aanrader/beste
+- If comparison shows one wine is clearly better than others (even without explicit "winner" language), extract that one
+- Look for context clues like "deze is beter", "dit vind ik lekkerder", or positive framing vs negative framing
 
 PRONOUN RESOLUTION:
 - Resolve “deze/die/dit” to the nearest prior concrete wine mention; do not create a new wine entity for pronouns alone
@@ -185,19 +196,39 @@ Extract the SINGLE BEST RECOMMENDED wine with:
    - Can be longer (10-20 words) to capture the full flavor profile or recommendation reasoning
    - Examples: "Vol en fruitig met mooie tannines, perfect bij rood vlees", "Verrassend fris en kruidig voor de prijs"
 
-Return ONLY a valid JSON array with AT MOST ONE object having these exact keys: name, supermarket, wine_type, rating, description
-If NO RECOMMENDED wine is clearly identified, return an empty array: []
+Return a valid JSON object with this structure:
+{{
+  "wines": [ /* array with 0 or 1 wine object */ ],
+  "reasoning": "Brief explanation of your extraction decision"
+}}
 
-Example output format:
-[
-  {{
-    "name": "Côtes du Rhône",
-    "supermarket": "Jumbo",
-    "wine_type": "red",
-    "rating": "Mooi in balans",
-    "description": "Soepele rode wijn met fijne kruidigheid en zacht fruit, goede prijs-kwaliteit verhouding"
-  }}
-]"""
+The wine object (if present) should have these exact keys: name, supermarket, wine_type, rating, description
+
+REASONING field guidelines:
+- If wine extracted: Explain WHY this wine is recommended (e.g., "Explicitly praised as winner in comparison" or "Positive attributes and sold at Albert Heijn")
+- If NO wine: Explain WHAT is missing (e.g., "No supermarket mentioned" or "Wine criticized, not recommended" or "Only from wine shop, not supermarket")
+- Keep it brief (1-2 sentences max)
+- Be specific about the decision factor
+
+Example output when wine found:
+{{
+  "wines": [
+    {{
+      "name": "Côtes du Rhône",
+      "supermarket": "Jumbo",
+      "wine_type": "red",
+      "rating": "Mooi in balans",
+      "description": "Soepele rode wijn met fijne kruidigheid en zacht fruit, goede prijs-kwaliteit verhouding"
+    }}
+  ],
+  "reasoning": "Wine is clearly recommended with positive attributes and explicitly sold at Jumbo"
+}}
+
+Example output when NO wine found:
+{{
+  "wines": [],
+  "reasoning": "No supermarket was explicitly mentioned for this wine"
+}}"""
 
     try:
         response = client.chat.completions.create(
@@ -222,15 +253,55 @@ Example output format:
         result = result.strip()
         
         # Parse JSON response
-        wines = json.loads(result)
+        response_obj = json.loads(result)
+        
+        # Handle both old format (array) and new format (object with wines + reasoning)
+        if isinstance(response_obj, list):
+            # Old format - convert to new format
+            wines = response_obj
+            reasoning = "No reasoning provided (old format response)"
+        elif isinstance(response_obj, dict):
+            # New format
+            wines = response_obj.get("wines", [])
+            reasoning = response_obj.get("reasoning", "No reasoning provided")
+        else:
+            print(f"    LLM returned unexpected format: {result[:200]}")
+            return []
+        
+        # Log the reasoning for debugging
+        print(f"    LLM Reasoning: {reasoning}")
+        logger.info(f"Wine extraction reasoning: {reasoning}")
+        
+        # Debug: log what LLM actually returned
+        if wines:
+            print(f"    LLM returned {len(wines)} wine(s):")
+            for wine in wines:
+                print(f"      - Name: {wine.get('name')}")
+                print(f"        Supermarket: {wine.get('supermarket')} (valid: {wine.get('supermarket') in SUPERMARKETS})")
+                print(f"        Type: {wine.get('wine_type')} (valid: {wine.get('wine_type') in WINE_TYPES})")
         
         # Validate and clean results (enforce max 1 winner)
         valid_wines = []
         for wine in wines:
+            # Normalize wine_type: rosé → rose (remove accent)
+            wine_type = wine.get("wine_type", "").lower()
+            if wine_type == "rosé":
+                wine_type = "rose"
+            wine["wine_type"] = wine_type
+            
             if (wine.get("name") and 
                 wine.get("supermarket") in SUPERMARKETS and 
                 wine.get("wine_type") in WINE_TYPES):
                 valid_wines.append(wine)
+            else:
+                # Log why this wine was rejected
+                if not wine.get("name"):
+                    print(f"    ❌ Rejected: Missing name")
+                elif wine.get("supermarket") not in SUPERMARKETS:
+                    print(f"    ❌ Rejected: Invalid supermarket '{wine.get('supermarket')}' (must be one of: {SUPERMARKETS})")
+                elif wine.get("wine_type") not in WINE_TYPES:
+                    print(f"    ❌ Rejected: Invalid wine_type '{wine.get('wine_type')}' (must be one of: {WINE_TYPES})")
+        
         if len(valid_wines) > 1:
             valid_wines = valid_wines[:1]
 

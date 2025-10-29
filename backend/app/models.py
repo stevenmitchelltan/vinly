@@ -74,3 +74,20 @@ class ScrapeResponse(BaseModel):
     status: str
     message: str
     wines_added: int = 0
+
+
+class WineUpdateRequest(BaseModel):
+    """Request model for updating wine details"""
+    name: Optional[str] = None
+    supermarket: Optional[str] = None
+    wine_type: Optional[str] = None
+    rating: Optional[str] = None
+    description: Optional[str] = None
+    image_urls: Optional[List[str]] = None
+    post_url: Optional[str] = None
+    influencer_source: Optional[str] = None
+
+
+class AddTikTokPostRequest(BaseModel):
+    """Request model for manually adding a TikTok post"""
+    tiktok_url: str

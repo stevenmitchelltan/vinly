@@ -98,3 +98,36 @@ def select_best_frame(frame_paths: List[str]) -> Optional[str]:
     logger.warning("No valid frames found (all too small or missing)")
     return None
 
+
+def extract_frames_at_times(video_path: str, timestamps: List[float]) -> List[str]:
+    """
+    Extract multiple frames from video at specified timestamps.
+    
+    Args:
+        video_path: Path to video file
+        timestamps: List of timestamps in seconds to extract frames at
+    
+    Returns:
+        List of paths to successfully extracted frames
+    """
+    frame_paths = []
+    video_path_obj = Path(video_path)
+    
+    # Create frames directory if it doesn't exist
+    frames_dir = Path("/app/temp/frames") if Path("/app/temp/frames").exists() else Path("temp/frames")
+    frames_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Extract each frame
+    for i, timestamp in enumerate(timestamps):
+        # Generate output path
+        output_path = frames_dir / f"{video_path_obj.stem}_frame_{i}_{int(timestamp*10)}.jpg"
+        
+        # Extract frame
+        if extract_frame(video_path, timestamp, str(output_path)):
+            frame_paths.append(str(output_path))
+            logger.info(f"Extracted frame {i+1}/{len(timestamps)} at {timestamp:.1f}s")
+        else:
+            logger.warning(f"Failed to extract frame at {timestamp:.1f}s")
+    
+    logger.info(f"Successfully extracted {len(frame_paths)}/{len(timestamps)} frames")
+    return frame_paths

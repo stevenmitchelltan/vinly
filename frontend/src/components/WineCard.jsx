@@ -439,11 +439,11 @@ function WineCard({ wine }) {
                     transform: `scale(${zoomState.scale}) translate(${zoomState.translateX / zoomState.scale}px, ${zoomState.translateY / zoomState.scale}px)`,
                     transition: zoomState.isPinching || dragState.isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
                   } : {}}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://via.placeholder.com/300x400?text=Wine+Bottle';
-                  }}
-                />
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://via.placeholder.com/300x400?text=Wine+Bottle';
+              }}
+            />
               </div>
             ))
           ) : (
@@ -475,7 +475,7 @@ function WineCard({ wine }) {
             ))}
           </div>
         )}
-
+        
         {/* Screen reader announcement for image changes */}
         <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
           {hasMultipleImages && `Image ${currentImageIndex + 1} of ${images.length}`}
@@ -505,11 +505,11 @@ function WineCard({ wine }) {
         </h3>
 
         {/* Quote */}
-{wine.rating && (
+        {wine.rating && (
   <p className="text-sm font-medium text-gray-700 italic leading-relaxed border-l-2 border-burgundy-300 pl-3">
     "{wine.rating}"
   </p>
-)}
+        )}
 
         {/* Description */}
         {wine.description && (

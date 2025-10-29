@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // Base URL changes based on environment
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
-const IS_PRODUCTION = import.meta.env.PROD;
-const GITHUB_PAGES_BASE = '/vinly';
+const IS_PRODUCTION = import.meta.env.VITE_USE_STATIC_DATA === 'true'; // Only use static data if explicitly set
+const GITHUB_PAGES_BASE = import.meta.env.BASE_URL || '/vinly';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -72,6 +72,82 @@ export const triggerScrape = async () => {
   } catch (error) {
     console.error('Error triggering scrape:', error);
     throw error;
+  }
+};
+
+// Admin API functions
+const getAdminToken = () => {
+  return localStorage.getItem('admin_token') || 'admin';
+};
+
+export const adminApi = {
+  // Get all wines for admin
+  async getAllWines() {
+    try {
+      const response = await api.get('/api/admin/wines', {
+        headers: {
+          'Authorization': `Bearer ${getAdminToken()}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching wines:', error);
+      throw error;
+    }
+  },
+
+  // Update wine
+  async updateWine(wineId, updates) {
+    try {
+      const response = await api.put(`/api/admin/wines/${wineId}`, updates, {
+        headers: {
+          'Authorization': `Bearer ${getAdminToken()}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error updating wine:', error);
+      throw error;
+    }
+  },
+
+  // Delete wine
+  async deleteWine(wineId) {
+    try {
+      const response = await api.delete(`/api/admin/wines/${wineId}`, {
+        headers: {
+          'Authorization': `Bearer ${getAdminToken()}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error deleting wine:', error);
+      throw error;
+    }
+  },
+
+  // Add TikTok post
+  async addTikTokPost(tiktokUrl) {
+    try {
+      const response = await api.post('/api/admin/add-tiktok-post', 
+        { tiktok_url: tiktokUrl },
+        {
+          headers: {
+            'Authorization': `Bearer ${getAdminToken()}`
+          },
+          timeout: 120000 // 2 minutes for processing
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error adding TikTok post:', error);
+      throw error;
+    }
+  },
+
+  // Set admin token
+  setToken(token) {
+    localStorage.setItem('admin_token', token);
   }
 };
 
