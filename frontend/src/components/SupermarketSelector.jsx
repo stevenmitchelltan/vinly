@@ -96,7 +96,7 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
             }`}
             aria-label={`Filter op ${supermarket.name}`}
           >
-            <span className="inline-flex items-center">
+            <span className="inline-flex items-center whitespace-nowrap">
               {renderLogo(supermarket.name)}
               <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-burgundy-100 text-burgundy-800 text-xs font-bold" style={{ display: 'none' }}>
                 {(supermarket.name || '').charAt(0).toUpperCase()}
