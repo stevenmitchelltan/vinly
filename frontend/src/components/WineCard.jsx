@@ -223,11 +223,10 @@ function WineCard({ wine }) {
   };
 
   const onTouchMove = (e) => {
-    // Always prevent default to stop page scrolling when touching carousel
-    e.preventDefault();
-    
     if (e.touches.length === 2 && zoomState.isPinching) {
-      // Two fingers: pinch zoom + pan simultaneously
+      // Two fingers: pinch zoom + pan simultaneously - prevent all scrolling
+      e.preventDefault();
+      
       const distance = getTouchDistance(e.touches[0], e.touches[1]);
       const scale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, 
         zoomState.initialScale * (distance / zoomState.initialDistance)
@@ -248,8 +247,9 @@ function WineCard({ wine }) {
       const touch = e.touches[0];
       
       if (zoomState.scale > 1) {
-        // Zoomed in: pan the image with one finger
-        // Calculate new position based on drag distance
+        // Zoomed in: pan the image with one finger - prevent all scrolling
+        e.preventDefault();
+        
         const newX = touch.clientX - dragState.startX;
         const newY = touch.clientY - dragState.startY;
         
@@ -259,8 +259,16 @@ function WineCard({ wine }) {
           translateY: newY,
         }));
       } else {
-        // Not zoomed: carousel swipe
-        handleDragMove(touch.clientX, touch.clientY);
+        // Not zoomed: check if horizontal or vertical swipe
+        const deltaX = Math.abs(touch.clientX - dragState.startX);
+        const deltaY = Math.abs(touch.clientY - dragState.startY);
+        
+        // Only prevent default for horizontal swipes (carousel navigation)
+        if (deltaX > deltaY && deltaX > 10) {
+          e.preventDefault();
+          handleDragMove(touch.clientX, touch.clientY);
+        }
+        // If vertical swipe (deltaY > deltaX), allow normal page scroll
       }
     }
   };
@@ -376,7 +384,7 @@ function WineCard({ wine }) {
         className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full group overflow-hidden" 
         style={{ 
           aspectRatio: '4/5', 
-          touchAction: 'none',
+          touchAction: 'pan-y pinch-zoom',
           WebkitUserSelect: 'none',
           userSelect: 'none',
         }}
