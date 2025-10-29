@@ -51,8 +51,9 @@ export const fetchSupermarkets = async () => {
     if (IS_PRODUCTION) {
       // Extract unique supermarkets from wines.json
       const wines = await fetchWines();
-      const supermarkets = [...new Set(wines.map(w => w.supermarket))].sort();
-      return supermarkets;
+      const uniqueNames = [...new Set(wines.map(w => w.supermarket))].sort();
+      // Transform to match backend format: {name, value}
+      return uniqueNames.map(name => ({ name, value: name }));
     } else {
       // Local development: use backend API
       const response = await api.get('/api/supermarkets');
