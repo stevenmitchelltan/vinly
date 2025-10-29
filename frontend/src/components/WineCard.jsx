@@ -248,23 +248,18 @@ function WineCard({ wine }) {
 
   const onTouchEnd = (e) => {
     if (zoomState.isPinching) {
-      // End pinch - keep zoom level and pan position
-      // User can now pan around or release to spring back
+      // End pinch - spring back to normal immediately
       setZoomState(prev => ({
         ...prev,
         isPinching: false,
       }));
       
-      // Spring back to normal zoom after 1.5 seconds of inactivity
+      // Spring back to normal zoom after brief delay (matches animation)
       setTimeout(() => {
-        // Only reset if user hasn't started pinching again
-        if (!zoomState.isPinching) {
-          resetZoom();
-        }
-      }, 1500);
+        resetZoom();
+      }, 100);
     } else if (zoomState.scale > 1 && dragState.isDragging) {
-      // End pan while zoomed - keep position, don't reset immediately
-      // Let user keep exploring, will reset after timeout
+      // End pan while zoomed - spring back after brief delay
       setDragState({
         isDragging: false,
         startX: 0,
@@ -273,6 +268,10 @@ function WineCard({ wine }) {
         currentY: 0,
         startTime: 0,
       });
+      
+      setTimeout(() => {
+        resetZoom();
+      }, 100);
     } else {
       // Normal carousel swipe end
       handleDragEnd();
