@@ -2,15 +2,97 @@
 Wine mention timing detection from Whisper transcription segments.
 Used to determine when to extract video frames showing the wine bottle.
 """
-from typing import Optional, List
+from typing import Optional, List, Tuple
 import logging
+from app.config import settings
 
 logger = logging.getLogger(__name__)
 
 
+def find_wine_mention_with_signal(wine_name: str, segments: list) -> Tuple[Optional[float], Optional[str]]:
+    """
+    Find the BEST wine mention - prioritizing segments with signal words.
+    
+    Signal words like "deze", "dit", "hier" indicate the influencer is 
+    actively showing the bottle, making these moments ideal for frame extraction.
+    
+    Signal words are configured in settings.frame_extraction_signal_words
+    
+    Args:
+        wine_name: Wine name to search for (e.g., "Côtes du Rhône")
+        segments: Whisper segments with timestamps
+                  [{"start": 0.0, "end": 5.2, "text": "..."}, ...]
+    
+    Returns:
+        Tuple of (timestamp, matching_method):
+        - timestamp: Best moment in seconds
+        - matching_method: How it was found ("signal+wine", "wine", "partial", None)
+    """
+    if not segments or not wine_name:
+        return None, None
+    
+    # Get signal words from config
+    signal_words = settings.frame_extraction_signal_words
+    
+    # Normalize wine name for matching
+    wine_normalized = wine_name.lower().strip()
+    wine_words = wine_normalized.split()
+    
+    logger.debug(f"Searching for wine '{wine_name}' in {len(segments)} segments (using {len(signal_words)} signal words)")
+    
+    # Track all mentions with scores
+    candidates = []
+    
+    # Search through segments
+    for segment in segments:
+        text = segment.get('text', '').lower()
+        start_time = segment['start']
+        
+        # Check for signal words in this segment
+        has_signal = any(signal in text for signal in signal_words)
+        
+        # Priority 1: Full wine name + signal word (BEST!)
+        if wine_normalized in text and has_signal:
+            signal_found = next((s for s in signal_words if s in text), '')
+            logger.info(f"⭐ BEST MATCH at {start_time:.1f}s: Wine + signal word '{signal_found}': '{segment['text'][:80]}'")
+            candidates.append((start_time, 100, "signal+wine", signal_found))
+        
+        # Priority 2: Full wine name (without signal)
+        elif wine_normalized in text:
+            logger.info(f"✓ Wine mention at {start_time:.1f}s: '{segment['text'][:80]}'")
+            candidates.append((start_time, 70, "wine", None))
+        
+        # Priority 3: Partial wine name + signal word
+        else:
+            for word in wine_words:
+                if len(word) > 4 and word in text:
+                    if has_signal:
+                        signal_found = next((s for s in signal_words if s in text), '')
+                        logger.info(f"↗ Partial + signal at {start_time:.1f}s: '{word}' + '{signal_found}'")
+                        candidates.append((start_time, 50, "partial+signal", signal_found))
+                    else:
+                        logger.debug(f"→ Partial match at {start_time:.1f}s: '{word}'")
+                        candidates.append((start_time, 30, "partial", None))
+                    break  # Only count first matching word per segment
+    
+    if not candidates:
+        logger.warning(f"Wine '{wine_name}' not found in transcription segments")
+        return None, None
+    
+    # Return the best candidate (highest score, earliest if tied)
+    candidates.sort(key=lambda x: (-x[1], x[0]))  # Sort by score desc, then time asc
+    best_time, best_score, best_method, signal_word = candidates[0]
+    
+    logger.info(f"🎯 Selected timestamp: {best_time:.1f}s (method: {best_method}, score: {best_score})")
+    
+    return best_time, best_method
+
+
 def find_wine_mention_timestamp(wine_name: str, segments: list) -> Optional[float]:
     """
-    Find when the wine is mentioned in the transcription.
+    Find when the wine is mentioned in the transcription (legacy interface).
+    
+    Now enhanced with signal word detection for better frame extraction.
     
     Args:
         wine_name: Wine name to search for (e.g., "Côtes du Rhône")
@@ -20,32 +102,8 @@ def find_wine_mention_timestamp(wine_name: str, segments: list) -> Optional[floa
     Returns:
         Timestamp in seconds when wine is mentioned, or None if not found
     """
-    if not segments or not wine_name:
-        return None
-    
-    # Normalize wine name for matching
-    wine_normalized = wine_name.lower().strip()
-    wine_words = wine_normalized.split()
-    
-    logger.debug(f"Searching for wine '{wine_name}' in {len(segments)} segments")
-    
-    # Search through segments
-    for segment in segments:
-        text = segment.get('text', '').lower()
-        
-        # Check if full wine name appears in this segment
-        if wine_normalized in text:
-            logger.info(f"Found wine mention at {segment['start']:.1f}s: '{segment['text'][:50]}...'")
-            return segment['start']
-        
-        # Check for partial matches (first significant word, brand, region)
-        for word in wine_words:
-            if len(word) > 4 and word in text:
-                logger.info(f"Found partial match '{word}' at {segment['start']:.1f}s")
-                return segment['start']
-    
-    logger.warning(f"Wine '{wine_name}' not found in transcription segments")
-    return None
+    timestamp, _ = find_wine_mention_with_signal(wine_name, segments)
+    return timestamp
 
 
 def get_optimal_frame_times(mention_time: float, video_duration: float) -> List[float]:
