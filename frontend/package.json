@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:pages": "cross-env VITE_BASE_PATH=/vinly/ vite build && node verify-build.js",
+    "build:pages": "cross-env VITE_BASE_PATH=/vinly/ VITE_USE_STATIC_DATA=true vite build && node verify-build.js",
     "verify": "node verify-build.js",
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist"
