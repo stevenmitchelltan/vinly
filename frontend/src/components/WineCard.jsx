@@ -10,11 +10,22 @@ function WineCard({ wine }) {
     currentY: 0,
     startTime: 0,
   });
+  const [zoomState, setZoomState] = React.useState({
+    scale: 1,
+    translateX: 0,
+    translateY: 0,
+    isPinching: false,
+    initialDistance: 0,
+    initialScale: 1,
+  });
   const containerRef = React.useRef(null);
+  const imageContainerRef = React.useRef(null);
 
   // Swipe thresholds
   const SWIPE_THRESHOLD = 50; // px to trigger navigation
   const VELOCITY_THRESHOLD = 0.5; // px/ms for quick flick
+  const MIN_ZOOM = 1;
+  const MAX_ZOOM = 3;
 
   const getWineTypeEmoji = (type) => {
     const emojis = {
@@ -52,6 +63,33 @@ function WineCard({ wine }) {
   // Get images array (prefer image_urls, fallback to image_url)
   const images = wine.image_urls || (wine.image_url ? [wine.image_url] : []);
   const hasMultipleImages = images.length > 1;
+
+  // Helper: Calculate distance between two touch points
+  const getTouchDistance = (touch1, touch2) => {
+    const dx = touch1.clientX - touch2.clientX;
+    const dy = touch1.clientY - touch2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  // Helper: Get center point between two touches
+  const getTouchCenter = (touch1, touch2) => {
+    return {
+      x: (touch1.clientX + touch2.clientX) / 2,
+      y: (touch1.clientY + touch2.clientY) / 2,
+    };
+  };
+
+  // Reset zoom to default
+  const resetZoom = () => {
+    setZoomState({
+      scale: 1,
+      translateX: 0,
+      translateY: 0,
+      isPinching: false,
+      initialDistance: 0,
+      initialScale: 1,
+    });
+  };
 
   const goToNext = () => {
     if (currentImageIndex < images.length - 1) {
@@ -140,30 +178,98 @@ function WineCard({ wine }) {
     });
   };
 
-  // Touch event handlers
+  // Touch event handlers with pinch-to-zoom support
   const onTouchStart = (e) => {
-    const touch = e.touches[0];
-    handleDragStart(touch.clientX, touch.clientY);
+    if (e.touches.length === 2) {
+      // Two fingers: start pinch zoom
+      e.preventDefault();
+      const distance = getTouchDistance(e.touches[0], e.touches[1]);
+      setZoomState(prev => ({
+        ...prev,
+        isPinching: true,
+        initialDistance: distance,
+        initialScale: prev.scale,
+      }));
+    } else if (e.touches.length === 1) {
+      // One finger: start drag/swipe (only if not zoomed)
+      const touch = e.touches[0];
+      if (zoomState.scale <= 1) {
+        handleDragStart(touch.clientX, touch.clientY);
+      } else {
+        // When zoomed, one finger pans the image
+        setDragState({
+          isDragging: true,
+          startX: touch.clientX,
+          startY: touch.clientY,
+          currentX: touch.clientX,
+          currentY: touch.clientY,
+          startTime: Date.now(),
+        });
+      }
+    }
   };
 
   const onTouchMove = (e) => {
-    const touch = e.touches[0];
+    // Always prevent default to stop page scrolling when touching carousel
+    e.preventDefault();
     
-    // Detect swipe direction to prevent unwanted scroll
-    const deltaX = Math.abs(touch.clientX - dragState.startX);
-    const deltaY = Math.abs(touch.clientY - dragState.startY);
-    
-    // If horizontal movement is greater than vertical, it's a carousel swipe
-    if (deltaX > deltaY && deltaX > 10) {
-      // Prevent page scroll during horizontal swipe
-      e.preventDefault();
+    if (e.touches.length === 2 && zoomState.isPinching) {
+      // Pinch zoom
+      const distance = getTouchDistance(e.touches[0], e.touches[1]);
+      const scale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, 
+        zoomState.initialScale * (distance / zoomState.initialDistance)
+      ));
+      
+      setZoomState(prev => ({
+        ...prev,
+        scale,
+      }));
+    } else if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      
+      if (zoomState.scale > 1) {
+        // Zoomed in: pan the image
+        const deltaX = touch.clientX - dragState.startX;
+        const deltaY = touch.clientY - dragState.startY;
+        
+        setZoomState(prev => ({
+          ...prev,
+          translateX: deltaX,
+          translateY: deltaY,
+        }));
+      } else {
+        // Not zoomed: carousel swipe
+        handleDragMove(touch.clientX, touch.clientY);
+      }
     }
-    
-    handleDragMove(touch.clientX, touch.clientY);
   };
 
-  const onTouchEnd = () => {
-    handleDragEnd();
+  const onTouchEnd = (e) => {
+    if (zoomState.isPinching) {
+      // End pinch
+      setZoomState(prev => ({
+        ...prev,
+        isPinching: false,
+      }));
+      
+      // If zoomed out completely, reset
+      if (zoomState.scale <= 1.1) {
+        resetZoom();
+      }
+    } else if (zoomState.scale > 1) {
+      // End pan - reset translate
+      setDragState({
+        isDragging: false,
+        startX: 0,
+        startY: 0,
+        currentX: 0,
+        currentY: 0,
+        startTime: 0,
+      });
+    } else {
+      // Normal carousel swipe end
+      handleDragEnd();
+    }
   };
 
   // Mouse event handlers for desktop
@@ -189,6 +295,29 @@ function WineCard({ wine }) {
     }
   };
 
+  // Mouse wheel zoom for desktop
+  const onWheel = (e) => {
+    if (e.ctrlKey || e.metaKey) {
+      // Ctrl/Cmd + scroll = zoom
+      e.preventDefault();
+      const delta = -e.deltaY;
+      const zoomSpeed = 0.01;
+      const newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, 
+        zoomState.scale + delta * zoomSpeed
+      ));
+      
+      setZoomState(prev => ({
+        ...prev,
+        scale: newScale,
+      }));
+
+      // Auto-reset if zoomed all the way out
+      if (newScale <= 1.05) {
+        resetZoom();
+      }
+    }
+  };
+
   // Keyboard navigation
   React.useEffect(() => {
     const handleKeyDown = (e) => {
@@ -209,18 +338,24 @@ function WineCard({ wine }) {
 
   return (
     <div className="wine-card animate-fade-in">
-      {/* Image Carousel - 4:5 aspect ratio (vertical) - Instagram style */}
+      {/* Image Carousel - 4:5 aspect ratio (vertical) - Instagram style with pinch zoom */}
       <div 
         ref={containerRef}
         className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full group overflow-hidden" 
-        style={{ aspectRatio: '4/5' }}
-        onTouchStart={hasMultipleImages ? onTouchStart : undefined}
-        onTouchMove={hasMultipleImages ? onTouchMove : undefined}
-        onTouchEnd={hasMultipleImages ? onTouchEnd : undefined}
-        onMouseDown={hasMultipleImages ? onMouseDown : undefined}
-        onMouseMove={hasMultipleImages ? onMouseMove : undefined}
-        onMouseUp={hasMultipleImages ? onMouseUp : undefined}
-        onMouseLeave={hasMultipleImages ? onMouseLeave : undefined}
+        style={{ 
+          aspectRatio: '4/5', 
+          touchAction: 'none',
+          WebkitUserSelect: 'none',
+          userSelect: 'none',
+        }}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        onMouseDown={hasMultipleImages && zoomState.scale <= 1 ? onMouseDown : undefined}
+        onMouseMove={hasMultipleImages && zoomState.scale <= 1 ? onMouseMove : undefined}
+        onMouseUp={hasMultipleImages && zoomState.scale <= 1 ? onMouseUp : undefined}
+        onMouseLeave={hasMultipleImages && zoomState.scale <= 1 ? onMouseLeave : undefined}
+        onWheel={onWheel}
         tabIndex={hasMultipleImages ? 0 : -1}
         role={hasMultipleImages ? "region" : undefined}
         aria-label={hasMultipleImages ? `Image carousel, ${images.length} images` : undefined}
@@ -240,8 +375,12 @@ function WineCard({ wine }) {
             images.map((img, idx) => (
               <div 
                 key={idx} 
+                ref={idx === currentImageIndex ? imageContainerRef : null}
                 className="flex-shrink-0 w-full h-full flex items-center justify-center"
-                style={{ width: '100%' }}
+                style={{ 
+                  width: '100%',
+                  overflow: zoomState.scale > 1 ? 'visible' : 'hidden',
+                }}
               >
                 <img
                   src={getImageUrl(img)}
@@ -257,6 +396,10 @@ function WineCard({ wine }) {
                   sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
                   className="w-full h-full object-cover pointer-events-none"
                   draggable="false"
+                  style={idx === currentImageIndex ? {
+                    transform: `scale(${zoomState.scale}) translate(${zoomState.translateX / zoomState.scale}px, ${zoomState.translateY / zoomState.scale}px)`,
+                    transition: zoomState.isPinching || dragState.isDragging ? 'none' : 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  } : {}}
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = 'https://via.placeholder.com/300x400?text=Wine+Bottle';
@@ -271,8 +414,8 @@ function WineCard({ wine }) {
           )}
         </div>
 
-        {/* Navigation arrows - show on hover if multiple images */}
-        {hasMultipleImages && (
+        {/* Navigation arrows - show on hover if multiple images (hidden when zoomed) */}
+        {hasMultipleImages && zoomState.scale <= 1 && (
           <>
             <button
               onClick={goToPrevious}
@@ -295,8 +438,8 @@ function WineCard({ wine }) {
           </>
         )}
 
-        {/* Dots indicator - Instagram style */}
-        {hasMultipleImages && (
+        {/* Dots indicator - Instagram style (hidden when zoomed) */}
+        {hasMultipleImages && zoomState.scale <= 1 && (
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5" role="tablist" aria-label="Image navigation">
             {images.map((_, idx) => (
               <button
@@ -319,6 +462,20 @@ function WineCard({ wine }) {
         <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
           {hasMultipleImages && `Image ${currentImageIndex + 1} of ${images.length}`}
         </div>
+
+        {/* Zoom level indicator */}
+        {zoomState.scale > 1.1 && (
+          <div className="absolute top-2 right-2 bg-black/70 text-white px-3 py-1.5 rounded-full text-xs font-medium">
+            {Math.round(zoomState.scale * 100)}%
+          </div>
+        )}
+
+        {/* Zoom hint (desktop only) */}
+        {!hasMultipleImages && (
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block">
+            Ctrl + scroll to zoom
+          </div>
+        )}
       </div>
 
       {/* Content */}
