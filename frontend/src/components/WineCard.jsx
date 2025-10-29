@@ -235,17 +235,22 @@ function WineCard({ wine }) {
       const touch = e.touches[0];
       
       if (zoomState.scale > 1) {
-        // Zoomed in: pan the image with one finger - prevent all scrolling
-        e.preventDefault();
+        // Zoomed in: pan the image horizontally, but allow vertical page scrolling
+        const deltaX = Math.abs(touch.clientX - dragState.startX);
+        const deltaY = Math.abs(touch.clientY - dragState.startY);
         
-        const newX = touch.clientX - dragState.startX;
-        const newY = touch.clientY - dragState.startY;
-        
-        setZoomState(prev => ({
-          ...prev,
-          translateX: newX,
-          translateY: newY,
-        }));
+        // Only prevent default for horizontal panning
+        if (deltaX > deltaY) {
+          e.preventDefault();
+          
+          const newX = touch.clientX - dragState.startX;
+          
+          setZoomState(prev => ({
+            ...prev,
+            translateX: newX,
+          }));
+        }
+        // If vertical movement (deltaY > deltaX), allow normal page scroll
       } else {
         // Not zoomed: check if horizontal or vertical swipe
         const deltaX = Math.abs(touch.clientX - dragState.startX);
