@@ -5,6 +5,18 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
   const [supermarkets, setSupermarkets] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Map supermarket names to their website domains for favicon fetching
+  const supermarketDomains = {
+    'Albert Heijn': 'ah.nl',
+    'Dirk': 'dirk.nl',
+    'HEMA': 'hema.nl',
+    'LIDL': 'lidl.nl',
+    'Jumbo': 'jumbo.com',
+    'ALDI': 'aldi.nl',
+    'Plus': 'plus.nl',
+    'Sligro': 'sligro.nl',
+  };
+
   useEffect(() => {
     loadSupermarkets();
   }, []);
@@ -24,10 +36,35 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
     return <div className="text-center py-4">Laden...</div>;
   }
 
-  const renderLogo = (name) => {
+  const getFaviconUrl = (name) => {
+    const domain = supermarketDomains[name];
+    if (!domain) return null;
+    // Use Google's favicon service for reliable, high-quality icons
+    return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+  };
+
+  const renderLogo = (name, showFavicon = true) => {
     const letter = (name || '').charAt(0).toUpperCase();
+    const faviconUrl = showFavicon ? getFaviconUrl(name) : null;
+    
+    if (faviconUrl) {
+      return (
+        <img 
+          src={faviconUrl} 
+          alt="" 
+          aria-hidden
+          className="mr-2 w-5 h-5 rounded-sm object-contain"
+          onError={(e) => {
+            // Fallback to letter icon if favicon fails to load
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'inline-flex';
+          }}
+        />
+      );
+    }
+    
     return (
-      <span aria-hidden className="mr-2 inline-flex items-center justify-center w-6 h-6 rounded-full bg-burgundy-100 text-burgundy-800 text-xs font-bold">
+      <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-burgundy-100 text-burgundy-800 text-xs font-bold">
         {letter}
       </span>
     );
@@ -46,7 +83,7 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
           }`}
           aria-label="Toon alle supermarkten"
         >
-          <span className="inline-flex items-center">{renderLogo('A')}<span>Alle</span></span>
+          Alle
         </button>
         {supermarkets.map((supermarket) => (
           <button
@@ -59,7 +96,13 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
             }`}
             aria-label={`Filter op ${supermarket.name}`}
           >
-            <span className="inline-flex items-center">{renderLogo(supermarket.name)}<span>{supermarket.name}</span></span>
+            <span className="inline-flex items-center">
+              {renderLogo(supermarket.name)}
+              <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-burgundy-100 text-burgundy-800 text-xs font-bold" style={{ display: 'none' }}>
+                {(supermarket.name || '').charAt(0).toUpperCase()}
+              </span>
+              <span>{supermarket.name}</span>
+            </span>
           </button>
         ))}
       </div>

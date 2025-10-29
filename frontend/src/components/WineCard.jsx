@@ -5,7 +5,9 @@ function WineCard({ wine }) {
   const [dragState, setDragState] = React.useState({
     isDragging: false,
     startX: 0,
+    startY: 0,
     currentX: 0,
+    currentY: 0,
     startTime: 0,
   });
   const containerRef = React.useRef(null);
@@ -87,21 +89,24 @@ function WineCard({ wine }) {
   };
 
   // Unified handler for both touch and mouse events
-  const handleDragStart = (clientX) => {
+  const handleDragStart = (clientX, clientY) => {
     setDragState({
       isDragging: true,
       startX: clientX,
+      startY: clientY,
       currentX: clientX,
+      currentY: clientY,
       startTime: Date.now(),
     });
   };
 
-  const handleDragMove = (clientX) => {
+  const handleDragMove = (clientX, clientY) => {
     if (!dragState.isDragging) return;
     
     setDragState(prev => ({
       ...prev,
       currentX: clientX,
+      currentY: clientY,
     }));
   };
 
@@ -128,18 +133,33 @@ function WineCard({ wine }) {
     setDragState({
       isDragging: false,
       startX: 0,
+      startY: 0,
       currentX: 0,
+      currentY: 0,
       startTime: 0,
     });
   };
 
   // Touch event handlers
   const onTouchStart = (e) => {
-    handleDragStart(e.touches[0].clientX);
+    const touch = e.touches[0];
+    handleDragStart(touch.clientX, touch.clientY);
   };
 
   const onTouchMove = (e) => {
-    handleDragMove(e.touches[0].clientX);
+    const touch = e.touches[0];
+    
+    // Detect swipe direction to prevent unwanted scroll
+    const deltaX = Math.abs(touch.clientX - dragState.startX);
+    const deltaY = Math.abs(touch.clientY - dragState.startY);
+    
+    // If horizontal movement is greater than vertical, it's a carousel swipe
+    if (deltaX > deltaY && deltaX > 10) {
+      // Prevent page scroll during horizontal swipe
+      e.preventDefault();
+    }
+    
+    handleDragMove(touch.clientX, touch.clientY);
   };
 
   const onTouchEnd = () => {
@@ -149,13 +169,13 @@ function WineCard({ wine }) {
   // Mouse event handlers for desktop
   const onMouseDown = (e) => {
     e.preventDefault();
-    handleDragStart(e.clientX);
+    handleDragStart(e.clientX, e.clientY);
   };
 
   const onMouseMove = (e) => {
     if (dragState.isDragging) {
       e.preventDefault();
-      handleDragMove(e.clientX);
+      handleDragMove(e.clientX, e.clientY);
     }
   };
 
