@@ -181,15 +181,27 @@ function WineCard({ wine }) {
   // Touch event handlers with pinch-to-zoom support
   const onTouchStart = (e) => {
     if (e.touches.length === 2) {
-      // Two fingers: start pinch zoom
+      // Two fingers: start pinch zoom + pan
       e.preventDefault();
       const distance = getTouchDistance(e.touches[0], e.touches[1]);
+      const center = getTouchCenter(e.touches[0], e.touches[1]);
+      
       setZoomState(prev => ({
         ...prev,
         isPinching: true,
         initialDistance: distance,
         initialScale: prev.scale,
       }));
+      
+      // Store center point for panning with two fingers
+      setDragState({
+        isDragging: true,
+        startX: center.x - zoomState.translateX,
+        startY: center.y - zoomState.translateY,
+        currentX: center.x,
+        currentY: center.y,
+        startTime: Date.now(),
+      });
     } else if (e.touches.length === 1) {
       // One finger: start drag/swipe (only if not zoomed)
       const touch = e.touches[0];
@@ -215,21 +227,28 @@ function WineCard({ wine }) {
     e.preventDefault();
     
     if (e.touches.length === 2 && zoomState.isPinching) {
-      // Pinch zoom
+      // Two fingers: pinch zoom + pan simultaneously
       const distance = getTouchDistance(e.touches[0], e.touches[1]);
       const scale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, 
         zoomState.initialScale * (distance / zoomState.initialDistance)
       ));
       
+      // Calculate center point of the pinch for panning
+      const center = getTouchCenter(e.touches[0], e.touches[1]);
+      const newX = center.x - dragState.startX;
+      const newY = center.y - dragState.startY;
+      
       setZoomState(prev => ({
         ...prev,
         scale,
+        translateX: newX,
+        translateY: newY,
       }));
     } else if (e.touches.length === 1) {
       const touch = e.touches[0];
       
       if (zoomState.scale > 1) {
-        // Zoomed in: pan the image
+        // Zoomed in: pan the image with one finger
         // Calculate new position based on drag distance
         const newX = touch.clientX - dragState.startX;
         const newY = touch.clientY - dragState.startY;
