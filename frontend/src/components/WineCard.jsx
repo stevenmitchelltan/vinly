@@ -372,7 +372,7 @@ function WineCard({ wine }) {
         className="relative bg-gradient-to-br from-gray-50 to-stone-100 w-full group overflow-hidden"
         style={{ 
           aspectRatio: '4/5', 
-          touchAction: 'pan-y pinch-zoom',
+          touchAction: 'pan-y',
           WebkitUserSelect: 'none',
           userSelect: 'none',
         }}
