@@ -24,6 +24,15 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
     return <div className="text-center py-4">Laden...</div>;
   }
 
+  const renderLogo = (name) => {
+    const letter = (name || '').charAt(0).toUpperCase();
+    return (
+      <span aria-hidden className="mr-2 inline-flex items-center justify-center w-6 h-6 rounded-full bg-burgundy-100 text-burgundy-800 text-xs font-bold">
+        {letter}
+      </span>
+    );
+  };
+
   return (
     <div className="space-y-4">
       <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -32,23 +41,25 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         <button
           onClick={() => onSupermarketChange(null)}
-          className={`filter-button ${
+          className={`filter-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 ${
             selectedSupermarket === null ? 'filter-button-active' : 'filter-button-inactive'
           }`}
+          aria-label="Toon alle supermarkten"
         >
-          Alle
+          <span className="inline-flex items-center">{renderLogo('A')}<span>Alle</span></span>
         </button>
         {supermarkets.map((supermarket) => (
           <button
             key={supermarket.value}
             onClick={() => onSupermarketChange(supermarket.value)}
-            className={`filter-button ${
+            className={`filter-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 ${
               selectedSupermarket === supermarket.value
                 ? 'filter-button-active'
                 : 'filter-button-inactive'
             }`}
+            aria-label={`Filter op ${supermarket.name}`}
           >
-            {supermarket.name}
+            <span className="inline-flex items-center">{renderLogo(supermarket.name)}<span>{supermarket.name}</span></span>
           </button>
         ))}
       </div>

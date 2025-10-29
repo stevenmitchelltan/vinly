@@ -4,6 +4,8 @@ function WineCard({ wine }) {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   const [touchStart, setTouchStart] = React.useState(null);
   const [touchEnd, setTouchEnd] = React.useState(null);
+  const [isDragging, setIsDragging] = React.useState(false);
+  const [dragOffset, setDragOffset] = React.useState(0);
 
   // Minimum swipe distance (in px) to trigger navigation
   const minSwipeDistance = 50;
@@ -35,6 +37,12 @@ function WineCard({ wine }) {
     return `${apiBaseUrl}${imageUrl}`;
   };
 
+  const isCloudinary = (url) => /res\.cloudinary\.com/.test(url || '');
+  const buildCloudinarySrcSet = (url) => {
+    const widths = [320, 480, 640, 768, 1024, 1280];
+    return widths.map((w) => url.replace('/upload/', `/upload/w_${w}/`) + ` ${w}w`).join(', ');
+  };
+
   // Get images array (prefer image_urls, fallback to image_url)
   const images = wine.image_urls || (wine.image_url ? [wine.image_url] : []);
   const hasMultipleImages = images.length > 1;
@@ -47,28 +55,50 @@ function WineCard({ wine }) {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  // Touch event handlers for mobile swipe
+  // Touch event handlers for mobile swipe with live drag feedback
   const onTouchStart = (e) => {
-    setTouchEnd(null); // Reset end position
+    setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
   const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    if (!touchStart) return;
+    const currentTouch = e.targetTouches[0].clientX;
+    setTouchEnd(currentTouch);
+    
+    // Calculate drag offset for live feedback
+    const offset = currentTouch - touchStart;
+    
+    // Only set dragging state if user has moved more than 5px (prevents accidental drag on tap)
+    if (Math.abs(offset) > 5) {
+      setIsDragging(true);
+      // Limit drag to reasonable range
+      setDragOffset(Math.max(-150, Math.min(150, offset)));
+    }
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    if (!touchStart || !touchEnd) {
+      setIsDragging(false);
+      setDragOffset(0);
+      return;
+    }
     
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
 
-    if (isLeftSwipe) {
+    if (isLeftSwipe && currentImageIndex < images.length - 1) {
       goToNext();
-    } else if (isRightSwipe) {
+    } else if (isRightSwipe && currentImageIndex > 0) {
       goToPrevious();
     }
+    
+    // Reset drag state
+    setIsDragging(false);
+    setDragOffset(0);
+    setTouchStart(null);
+    setTouchEnd(null);
   };
 
   return (
@@ -81,11 +111,26 @@ function WineCard({ wine }) {
         onTouchMove={hasMultipleImages ? onTouchMove : undefined}
         onTouchEnd={hasMultipleImages ? onTouchEnd : undefined}
       >
-        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 flex items-center justify-center overflow-hidden"
+          style={{
+            transform: isDragging ? `translateX(${dragOffset}px)` : 'translateX(0)',
+            transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
+        >
           {images.length > 0 ? (
             <img
               src={getImageUrl(images[currentImageIndex])}
               alt={wine.name}
+              loading="lazy"
+              decoding="async"
+              width={800}
+              height={1000}
+              srcSet={(() => {
+                const raw = getImageUrl(images[currentImageIndex]);
+                return isCloudinary(raw) ? buildCloudinarySrcSet(raw) : undefined;
+              })()}
+              sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
               className="w-full h-full object-cover transition-opacity duration-300"
               onError={(e) => {
                 e.target.onerror = null;
@@ -102,7 +147,7 @@ function WineCard({ wine }) {
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400"
               aria-label="Previous image"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,7 +156,7 @@ function WineCard({ wine }) {
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400"
               aria-label="Next image"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,21 +184,14 @@ function WineCard({ wine }) {
           </div>
         )}
         
-        {/* Stock status badge */}
-        {wine.in_stock !== null && (
-          <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium ${
-            wine.in_stock ? 'bg-green-500 text-white' : 'bg-gray-400 text-white'
-          }`}>
-            {wine.in_stock ? '✓ Op voorraad' : '✗ Mogelijk uitverkocht'}
-          </div>
-        )}
+        {/* Voorraad functionality removed */}
       </div>
 
       {/* Content */}
       <div className="p-5 space-y-3">
         {/* Supermarket badge */}
         <div className="flex items-center justify-between">
-          <span className="inline-block bg-gradient-to-r from-burgundy-100 to-burgundy-200 text-burgundy-800 px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wide shadow-sm">
+          <span className="inline-block bg-gradient-to-r from-burgundy-100 to-burgundy-200 text-burgundy-900 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-sm">
             {wine.supermarket}
           </span>
           <span className="text-3xl">{getWineTypeEmoji(wine.wine_type)}</span>
@@ -164,16 +202,16 @@ function WineCard({ wine }) {
           {wine.name}
         </h3>
 
-        {/* Rating */}
-        {wine.rating && (
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-burgundy-600 to-burgundy-800 bg-clip-text text-transparent">{wine.rating}</span>
-          </div>
-        )}
+        {/* Quote */}
+{wine.rating && (
+  <p className="text-sm font-medium text-gray-700 italic leading-relaxed border-l-2 border-burgundy-300 pl-3">
+    "{wine.rating}"
+  </p>
+)}
 
         {/* Description */}
         {wine.description && (
-          <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">
+          <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed font-inter">
             {wine.description}
           </p>
         )}
@@ -181,9 +219,9 @@ function WineCard({ wine }) {
         {/* Footer */}
         <div className="pt-4 border-t border-gray-100 space-y-2">
           <p className="text-xs text-gray-500 font-medium">
-            📸 van <span className="font-semibold text-burgundy-700">@{wine.influencer_source}</span>
+            📸 van <span className="font-semibold text-burgundy-800">@{wine.influencer_source}</span>
           </p>
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-gray-500">
             {formatDate(wine.date_found)}
           </p>
           
@@ -192,7 +230,7 @@ function WineCard({ wine }) {
             href={wine.post_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs text-burgundy-600 hover:text-burgundy-800 font-semibold hover:gap-2 transition-all"
+            className="inline-flex items-center gap-1 text-xs text-burgundy-700 hover:text-burgundy-900 font-semibold hover:gap-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 rounded"
           >
             Bekijk originele post 
             <span className="text-base">→</span>

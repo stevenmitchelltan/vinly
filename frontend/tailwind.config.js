@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        fraunces: ['"Fraunces"', 'serif'],
+        inter: ['"Inter"', 'system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+      },
       colors: {
         wine: {
           50: '#fdf2f8',

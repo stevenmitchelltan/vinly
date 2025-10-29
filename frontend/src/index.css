@@ -4,8 +4,13 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-burgundy-50 via-rose-50 to-amber-50 min-h-screen;
+    @apply bg-gradient-to-br from-burgundy-50 via-rose-50 to-amber-50 min-h-screen font-inter;
   }
+  h1, h2, h3, h4 { @apply font-fraunces; }
+  h1 { @apply text-5xl md:text-6xl font-bold leading-tight; }
+  h2 { @apply text-3xl md:text-4xl font-bold leading-snug; }
+  h3 { @apply text-2xl font-semibold leading-snug; }
+  h4 { @apply text-xl font-semibold leading-snug; }
   
   /* Disable tap highlight for better mobile UX */
   * {
@@ -27,7 +32,7 @@
   }
   
   .filter-button {
-    @apply px-4 py-2 rounded-full transition-all duration-200 font-semibold min-h-[44px] min-w-[44px] shadow-sm;
+    @apply px-4 py-2 rounded-full transition-all duration-200 font-semibold min-h-[44px] min-w-[44px] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400;
   }
   
   .filter-button-active {

@@ -1,34 +1,75 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import SupermarketSelector from '../components/SupermarketSelector';
 import WineTypeFilter from '../components/WineTypeFilter';
 import WineGrid from '../components/WineGrid';
 import { fetchWines } from '../services/api';
 
 function Home() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [wines, setWines] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedSupermarket, setSelectedSupermarket] = useState(null);
-  const [selectedType, setSelectedType] = useState(null);
+  const [error, setError] = useState(null);
+  const [selectedSupermarket, setSelectedSupermarket] = useState(searchParams.get('supermarket'));
+  const [selectedType, setSelectedType] = useState(searchParams.get('type'));
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
+  const [debouncedQuery, setDebouncedQuery] = useState(searchQuery);
 
   useEffect(() => {
     loadWines();
   }, [selectedSupermarket, selectedType]);
 
+  // Debounce search to reduce re-render storms
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedQuery(searchQuery), 250);
+    return () => clearTimeout(t);
+  }, [searchQuery]);
+
   const loadWines = async () => {
     setLoading(true);
+    setError(null);
     try {
       const data = await fetchWines(selectedSupermarket, selectedType);
       setWines(data);
     } catch (error) {
       console.error('Failed to load wines:', error);
       setWines([]);
+      setError('Laden van wijnen is mislukt. Probeer het later opnieuw.');
     } finally {
       setLoading(false);
     }
   };
 
+  // Sync UI state with URL query params (shareable filters)
+  useEffect(() => {
+    const next = {};
+    if (selectedSupermarket) next.supermarket = selectedSupermarket;
+    if (selectedType) next.type = selectedType;
+    if (searchQuery) next.q = searchQuery;
+    setSearchParams(next, { replace: true });
+  }, [selectedSupermarket, selectedType, searchQuery, setSearchParams]);
+
+  const displayedWines = useMemo(() => {
+    let list = wines;
+    if (debouncedQuery) {
+      const q = debouncedQuery.toLowerCase();
+      list = list.filter((w) =>
+        (w.name || '').toLowerCase().includes(q) ||
+        (w.description || '').toLowerCase().includes(q) ||
+        (w.supermarket || '').toLowerCase().includes(q)
+      );
+    }
+    // Default sort: newest first by date_found
+    return [...list].sort((a, b) => new Date(b.date_found) - new Date(a.date_found));
+  }, [wines, debouncedQuery]);
+
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8">
+      {error && (
+        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 text-red-800 p-4 animate-fade-in">
+          {error}
+        </div>
+      )}
       {/* Hero Section with Vinly Branding */}
       <div className="text-center mb-8 sm:mb-12 pt-6 sm:pt-8 md:pt-12 animate-fade-in">
         {/* Logo and Brand */}
@@ -61,6 +102,19 @@ function Home() {
             onTypeChange={setSelectedType}
           />
         </div>
+
+        {/* Search */}
+        <div className="border-t border-gray-200 pt-6 sm:pt-8">
+          <div className="flex flex-col md:flex-row gap-4 md:items-center">
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Zoek op naam, omschrijving of supermarkt"
+              className="w-full md:flex-1 rounded-xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-burgundy-300"
+            />
+          </div>
+        </div>
       </div>
 
       {/* Results count */}
@@ -68,15 +122,15 @@ function Home() {
         <div className="mb-6 animate-fade-in">
           <div className="flex items-center gap-2">
             <div className="w-1 h-6 bg-gradient-to-b from-burgundy-600 to-burgundy-800 rounded-full"></div>
-            <p className="text-lg font-bold text-gray-800">
-              {wines.length} {wines.length === 1 ? 'wijn' : 'wijnen'} gevonden
+            <p aria-live="polite" className="text-lg font-bold text-gray-800">
+              {displayedWines.length} {displayedWines.length === 1 ? 'wijn' : 'wijnen'} gevonden
             </p>
           </div>
         </div>
       )}
 
       {/* Wine Grid */}
-      <WineGrid wines={wines} loading={loading} />
+      <WineGrid wines={displayedWines} loading={loading} />
     </div>
   );
 }
