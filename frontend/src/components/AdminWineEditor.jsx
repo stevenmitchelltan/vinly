@@ -252,11 +252,12 @@ const AdminWineEditor = ({ wine, onSave, onClose, onDelete }) => {
                   onDragOver={(e) => handleDragOver(e, index)}
                   onDragEnd={handleDragEnd}
                   className="relative group cursor-move border-2 border-gray-200 rounded-lg overflow-hidden hover:border-burgundy-400 transition-colors"
+                  style={{ aspectRatio: '4/5' }}
                 >
                   <img
                     src={url}
                     alt={`Wine ${index + 1}`}
-                    className="w-full h-32 object-cover"
+                    className="w-full h-full object-cover"
                   />
                   <button
                     type="button"
