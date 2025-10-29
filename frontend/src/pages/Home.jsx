@@ -71,17 +71,16 @@ function Home() {
         </div>
       )}
       {/* Hero Section with Vinly Branding */}
-      <div className="text-center mb-8 sm:mb-12 pt-6 sm:pt-8 md:pt-12 animate-fade-in">
+      <div className="text-center mb-8 sm:mb-12 pt-4 sm:pt-6 md:pt-8 animate-fade-in">
         {/* Logo and Brand */}
-        <div className="flex items-center justify-center space-x-3 mb-4 sm:mb-6 animate-scale-in">
-          <div className="text-5xl sm:text-6xl drop-shadow-sm">🍷</div>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-burgundy-600 via-burgundy-700 to-burgundy-800 bg-clip-text text-transparent pb-4 leading-tight drop-shadow-sm">
+        <div className="flex items-center justify-center mb-6 sm:mb-8 animate-scale-in">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-burgundy-600 via-burgundy-700 to-burgundy-800 bg-clip-text text-transparent leading-tight drop-shadow-sm py-2">
             Vinly
           </h1>
         </div>
         
         {/* Tagline */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 animate-slide-up">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 animate-slide-up">
           Ontdek de beste supermarkt wijnen
         </h2>
         <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2 leading-relaxed">
