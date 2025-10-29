@@ -513,7 +513,7 @@ function WineCard({ wine }) {
 
         {/* Description */}
         {wine.description && (
-          <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed font-inter">
+          <p className="text-sm text-gray-600 line-clamp-4 leading-relaxed font-inter">
             {wine.description}
           </p>
         )}
