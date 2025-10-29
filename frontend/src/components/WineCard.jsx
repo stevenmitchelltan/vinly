@@ -91,18 +91,6 @@ function WineCard({ wine }) {
     });
   };
 
-  const goToNext = () => {
-    if (currentImageIndex < images.length - 1) {
-      setCurrentImageIndex((prev) => prev + 1);
-    }
-  };
-
-  const goToPrevious = () => {
-    if (currentImageIndex > 0) {
-      setCurrentImageIndex((prev) => prev - 1);
-    }
-  };
-
   // Calculate the translateX value based on current index and drag offset
   const getTranslateX = () => {
     const containerWidth = containerRef.current?.offsetWidth || 0;
@@ -453,30 +441,6 @@ function WineCard({ wine }) {
             </div>
           )}
         </div>
-
-        {/* Navigation arrows - show on hover if multiple images (hidden when zoomed) */}
-        {hasMultipleImages && zoomState.scale <= 1 && (
-          <>
-            <button
-              onClick={goToPrevious}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400"
-              aria-label="Previous image"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={goToNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400"
-              aria-label="Next image"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </>
-        )}
 
         {/* Dots indicator - Instagram style (hidden when zoomed) */}
         {hasMultipleImages && zoomState.scale <= 1 && (
