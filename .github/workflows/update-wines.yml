@@ -92,6 +92,8 @@ jobs:
       
       - name: Export to JSON
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
           MONGODB_URI: mongodb://admin:temp-gh-actions@localhost:27017/vinly?authSource=admin
         run: |
           cd backend
