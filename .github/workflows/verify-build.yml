@@ -1,0 +1,96 @@
+name: Verify Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    name: Verify Frontend Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+      
+      - name: Verify wines.json exists and is valid
+        run: |
+          if [ ! -f "docs/wines.json" ]; then
+            echo "❌ docs/wines.json not found"
+            exit 1
+          fi
+          
+          # Check file size
+          size=$(stat -c%s "docs/wines.json" 2>/dev/null || stat -f%z "docs/wines.json")
+          if [ "$size" -lt 1024 ]; then
+            echo "❌ wines.json is too small ($size bytes)"
+            exit 1
+          fi
+          
+          # Validate JSON
+          if ! jq empty docs/wines.json 2>/dev/null; then
+            echo "❌ wines.json is not valid JSON"
+            exit 1
+          fi
+          
+          wine_count=$(jq '. | length' docs/wines.json)
+          echo "✅ wines.json is valid ($wine_count wines, $size bytes)"
+      
+      - name: Build with local base path
+        working-directory: ./frontend
+        run: |
+          echo "Building for local (base: /)"
+          npm run build
+      
+      - name: Build with GitHub Pages base path
+        working-directory: ./frontend
+        run: |
+          echo "Building for GitHub Pages (base: /vinly/)"
+          npm run build:pages
+      
+      - name: Verify build output
+        run: |
+          # Check that index.html exists
+          if [ ! -f "docs/index.html" ]; then
+            echo "❌ docs/index.html not found"
+            exit 1
+          fi
+          
+          # Check that assets exist
+          if [ ! -d "docs/assets" ]; then
+            echo "❌ docs/assets directory not found"
+            exit 1
+          fi
+          
+          asset_count=$(find docs/assets -type f | wc -l)
+          if [ "$asset_count" -lt 1 ]; then
+            echo "❌ No assets found in docs/assets"
+            exit 1
+          fi
+          
+          echo "✅ Build output verified ($asset_count assets)"
+      
+      - name: Summary
+        run: |
+          echo "## Build Verification ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Frontend builds successfully with both base paths" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Asset paths are correct for GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ wines.json is valid" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          wine_count=$(jq '. | length' docs/wines.json)
+          echo "**Wines:** $wine_count" >> $GITHUB_STEP_SUMMARY
+

@@ -2,9 +2,28 @@
 
 ## GitHub Pages Deployment
 
-### Quick Deploy
+### Quick Deploy (Automated)
 
-To deploy the latest wines to GitHub Pages:
+To deploy the latest wines to GitHub Pages, just run:
+
+```powershell
+# Windows
+.\scripts\deploy.ps1
+
+# The script will:
+# ✓ Export wines from MongoDB
+# ✓ Build frontend with correct base path
+# ✓ Verify everything is correct
+# ✓ Show you what changed
+# ✓ Ask for confirmation
+# ✓ Commit and push
+```
+
+**Wait 1-2 minutes**, then check: https://stevenmitchelltan.github.io/vinly/
+
+### Manual Deploy (If Needed)
+
+If you prefer to deploy manually:
 
 ```bash
 # 1. Export wines from MongoDB to JSON
@@ -20,8 +39,6 @@ git add docs/
 git commit -m "Deploy: Updated wines"
 git push
 ```
-
-**Wait 1-2 minutes**, then check: https://stevenmitchelltan.github.io/vinly/
 
 ---
 
@@ -60,6 +77,16 @@ Set in:
 
 ### After Adding/Editing Wines
 
+**Option 1: Automated (Recommended)**
+
+```powershell
+.\scripts\deploy.ps1
+```
+
+Type `y` when prompted to confirm deployment.
+
+**Option 2: Manual**
+
 1. **Export wines**:
    ```bash
    docker-compose exec backend python scripts/export_to_json.py
@@ -68,7 +95,7 @@ Set in:
 2. **Build for GitHub Pages**:
    ```bash
    cd frontend
-   npm run build:pages
+   npm run build:pages  # Includes automatic verification
    ```
 
 3. **Commit and push**:
@@ -182,14 +209,51 @@ docker-compose up -d
 
 ---
 
+## Safety Features
+
+### Automated Verification
+
+The deployment process includes automatic safety checks:
+
+1. **Build Verification** (`verify-build.js`):
+   - Runs automatically after `npm run build:pages`
+   - Checks all asset paths use `/vinly/` prefix
+   - Fails build if paths are incorrect
+
+2. **Deployment Script** (`deploy.ps1`):
+   - Checks Docker is running
+   - Exports and validates wines.json
+   - Builds with verification
+   - Shows git diff before deploying
+   - Requires confirmation before pushing
+
+3. **GitHub Actions** (`verify-build.yml`):
+   - Runs on every push and pull request
+   - Verifies builds work with both base paths
+   - Validates wines.json structure
+   - Prevents merging broken code
+
+### Manual Verification
+
+To manually verify a build:
+
+```bash
+cd frontend
+npm run verify
+```
+
+This checks that `docs/index.html` has correct asset paths.
+
 ## Quick Reference
 
 | Task | Command |
 |------|---------|
+| **Deploy (automated)** | `.\scripts\deploy.ps1` |
 | **Export wines** | `docker-compose exec backend python scripts/export_to_json.py` |
 | **Build for local** | `docker-compose build frontend` |
 | **Build for GitHub Pages** | `cd frontend && npm run build:pages` |
-| **Deploy** | `git add docs/ && git commit -m "Deploy" && git push` |
+| **Verify build** | `cd frontend && npm run verify` |
+| **Deploy (manual)** | `git add docs/ && git commit -m "Deploy" && git push` |
 | **Check deployment** | Visit https://github.com/stevenmitchelltan/vinly/actions |
 
 ---
