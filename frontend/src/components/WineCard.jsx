@@ -2,13 +2,17 @@ import React from 'react';
 
 function WineCard({ wine }) {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-  const [touchStart, setTouchStart] = React.useState(null);
-  const [touchEnd, setTouchEnd] = React.useState(null);
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [dragOffset, setDragOffset] = React.useState(0);
+  const [dragState, setDragState] = React.useState({
+    isDragging: false,
+    startX: 0,
+    currentX: 0,
+    startTime: 0,
+  });
+  const containerRef = React.useRef(null);
 
-  // Minimum swipe distance (in px) to trigger navigation
-  const minSwipeDistance = 50;
+  // Swipe thresholds
+  const SWIPE_THRESHOLD = 50; // px to trigger navigation
+  const VELOCITY_THRESHOLD = 0.5; // px/ms for quick flick
 
   const getWineTypeEmoji = (type) => {
     const emojis = {
@@ -48,97 +52,202 @@ function WineCard({ wine }) {
   const hasMultipleImages = images.length > 1;
 
   const goToNext = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    if (currentImageIndex < images.length - 1) {
+      setCurrentImageIndex((prev) => prev + 1);
+    }
   };
 
   const goToPrevious = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex((prev) => prev - 1);
+    }
   };
 
-  // Touch event handlers for mobile swipe with live drag feedback
+  // Calculate the translateX value based on current index and drag offset
+  const getTranslateX = () => {
+    const containerWidth = containerRef.current?.offsetWidth || 0;
+    const baseOffset = -currentImageIndex * containerWidth;
+    
+    if (!dragState.isDragging) {
+      return baseOffset;
+    }
+    
+    const dragOffset = dragState.currentX - dragState.startX;
+    
+    // Add resistance at edges (rubber band effect)
+    const isAtStart = currentImageIndex === 0 && dragOffset > 0;
+    const isAtEnd = currentImageIndex === images.length - 1 && dragOffset < 0;
+    
+    if (isAtStart || isAtEnd) {
+      // Apply resistance: diminishing returns as you drag further
+      return baseOffset + dragOffset * 0.3;
+    }
+    
+    return baseOffset + dragOffset;
+  };
+
+  // Unified handler for both touch and mouse events
+  const handleDragStart = (clientX) => {
+    setDragState({
+      isDragging: true,
+      startX: clientX,
+      currentX: clientX,
+      startTime: Date.now(),
+    });
+  };
+
+  const handleDragMove = (clientX) => {
+    if (!dragState.isDragging) return;
+    
+    setDragState(prev => ({
+      ...prev,
+      currentX: clientX,
+    }));
+  };
+
+  const handleDragEnd = () => {
+    if (!dragState.isDragging) return;
+    
+    const dragDistance = dragState.currentX - dragState.startX;
+    const dragDuration = Date.now() - dragState.startTime;
+    const velocity = Math.abs(dragDistance) / dragDuration;
+    
+    // Determine if we should navigate based on distance OR velocity
+    const shouldNavigate = Math.abs(dragDistance) > SWIPE_THRESHOLD || velocity > VELOCITY_THRESHOLD;
+    
+    if (shouldNavigate) {
+      if (dragDistance < 0 && currentImageIndex < images.length - 1) {
+        // Swiped left -> next image
+        setCurrentImageIndex(prev => prev + 1);
+      } else if (dragDistance > 0 && currentImageIndex > 0) {
+        // Swiped right -> previous image
+        setCurrentImageIndex(prev => prev - 1);
+      }
+    }
+    
+    setDragState({
+      isDragging: false,
+      startX: 0,
+      currentX: 0,
+      startTime: 0,
+    });
+  };
+
+  // Touch event handlers
   const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    handleDragStart(e.touches[0].clientX);
   };
 
   const onTouchMove = (e) => {
-    if (!touchStart) return;
-    const currentTouch = e.targetTouches[0].clientX;
-    setTouchEnd(currentTouch);
-    
-    // Calculate drag offset for live feedback
-    const offset = currentTouch - touchStart;
-    
-    // Only set dragging state if user has moved more than 5px (prevents accidental drag on tap)
-    if (Math.abs(offset) > 5) {
-      setIsDragging(true);
-      // Limit drag to reasonable range
-      setDragOffset(Math.max(-150, Math.min(150, offset)));
-    }
+    handleDragMove(e.touches[0].clientX);
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) {
-      setIsDragging(false);
-      setDragOffset(0);
-      return;
-    }
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe && currentImageIndex < images.length - 1) {
-      goToNext();
-    } else if (isRightSwipe && currentImageIndex > 0) {
-      goToPrevious();
-    }
-    
-    // Reset drag state
-    setIsDragging(false);
-    setDragOffset(0);
-    setTouchStart(null);
-    setTouchEnd(null);
+    handleDragEnd();
   };
+
+  // Mouse event handlers for desktop
+  const onMouseDown = (e) => {
+    e.preventDefault();
+    handleDragStart(e.clientX);
+  };
+
+  const onMouseMove = (e) => {
+    if (dragState.isDragging) {
+      e.preventDefault();
+      handleDragMove(e.clientX);
+    }
+  };
+
+  const onMouseUp = () => {
+    handleDragEnd();
+  };
+
+  const onMouseLeave = () => {
+    if (dragState.isDragging) {
+      handleDragEnd();
+    }
+  };
+
+  // Keyboard navigation
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!containerRef.current?.contains(document.activeElement)) return;
+      
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goToPrevious();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goToNext();
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [currentImageIndex, images.length]);
 
   return (
     <div className="wine-card animate-fade-in">
-      {/* Image Carousel - 4:5 aspect ratio (vertical) */}
+      {/* Image Carousel - 4:5 aspect ratio (vertical) - Instagram style */}
       <div 
-        className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full group" 
+        ref={containerRef}
+        className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full group overflow-hidden" 
         style={{ aspectRatio: '4/5' }}
         onTouchStart={hasMultipleImages ? onTouchStart : undefined}
         onTouchMove={hasMultipleImages ? onTouchMove : undefined}
         onTouchEnd={hasMultipleImages ? onTouchEnd : undefined}
+        onMouseDown={hasMultipleImages ? onMouseDown : undefined}
+        onMouseMove={hasMultipleImages ? onMouseMove : undefined}
+        onMouseUp={hasMultipleImages ? onMouseUp : undefined}
+        onMouseLeave={hasMultipleImages ? onMouseLeave : undefined}
+        tabIndex={hasMultipleImages ? 0 : -1}
+        role={hasMultipleImages ? "region" : undefined}
+        aria-label={hasMultipleImages ? `Image carousel, ${images.length} images` : undefined}
       >
+        {/* All images rendered side-by-side */}
         <div 
-          className="absolute inset-0 flex items-center justify-center overflow-hidden"
+          className="absolute inset-0 flex"
           style={{
-            transform: isDragging ? `translateX(${dragOffset}px)` : 'translateX(0)',
-            transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transform: `translateX(${getTranslateX()}px)`,
+            transition: dragState.isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            cursor: dragState.isDragging ? 'grabbing' : (hasMultipleImages ? 'grab' : 'default'),
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
           }}
         >
           {images.length > 0 ? (
-            <img
-              src={getImageUrl(images[currentImageIndex])}
-              alt={wine.name}
-              loading="lazy"
-              decoding="async"
-              width={800}
-              height={1000}
-              srcSet={(() => {
-                const raw = getImageUrl(images[currentImageIndex]);
-                return isCloudinary(raw) ? buildCloudinarySrcSet(raw) : undefined;
-              })()}
-              sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-              className="w-full h-full object-cover transition-opacity duration-300"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = 'https://via.placeholder.com/300x400?text=Wine+Bottle';
-              }}
-            />
+            images.map((img, idx) => (
+              <div 
+                key={idx} 
+                className="flex-shrink-0 w-full h-full flex items-center justify-center"
+                style={{ width: '100%' }}
+              >
+                <img
+                  src={getImageUrl(img)}
+                  alt={`${wine.name} - image ${idx + 1}`}
+                  loading={idx === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  width={800}
+                  height={1000}
+                  srcSet={(() => {
+                    const raw = getImageUrl(img);
+                    return isCloudinary(raw) ? buildCloudinarySrcSet(raw) : undefined;
+                  })()}
+                  sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                  className="w-full h-full object-cover pointer-events-none"
+                  draggable="false"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = 'https://via.placeholder.com/300x400?text=Wine+Bottle';
+                  }}
+                />
+              </div>
+            ))
           ) : (
-            <div className="text-6xl">{getWineTypeEmoji(wine.wine_type)}</div>
+            <div className="w-full h-full flex items-center justify-center text-6xl">
+              {getWineTypeEmoji(wine.wine_type)}
+            </div>
           )}
         </div>
 
@@ -168,23 +277,28 @@ function WineCard({ wine }) {
 
         {/* Dots indicator - Instagram style */}
         {hasMultipleImages && (
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5" role="tablist" aria-label="Image navigation">
             {images.map((_, idx) => (
               <button
                 key={idx}
+                role="tab"
+                aria-selected={idx === currentImageIndex}
+                aria-label={`View image ${idx + 1} of ${images.length}`}
                 onClick={() => setCurrentImageIndex(idx)}
-                className={`rounded-full transition-all p-1 ${
+                className={`rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                   idx === currentImageIndex 
                     ? 'bg-white w-2 h-2' 
                     : 'bg-white/50 hover:bg-white/75 w-2 h-2'
                 }`}
-                aria-label={`View image ${idx + 1}`}
               />
             ))}
           </div>
         )}
-        
-        {/* Voorraad functionality removed */}
+
+        {/* Screen reader announcement for image changes */}
+        <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          {hasMultipleImages && `Image ${currentImageIndex + 1} of ${images.length}`}
+        </div>
       </div>
 
       {/* Content */}
