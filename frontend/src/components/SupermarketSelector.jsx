@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchSupermarkets } from '../services/api';
+import { lightHaptic } from '../utils/haptics';
 
 function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
   const [supermarkets, setSupermarkets] = useState([]);
@@ -77,7 +78,10 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
       </h3>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         <button
-          onClick={() => onSupermarketChange(null)}
+          onClick={() => {
+            lightHaptic();
+            onSupermarketChange(null);
+          }}
           className={`filter-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 ${
             selectedSupermarket === null ? 'filter-button-active' : 'filter-button-inactive'
           }`}
@@ -88,7 +92,10 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
         {supermarkets.map((supermarket) => (
           <button
             key={supermarket.value}
-            onClick={() => onSupermarketChange(supermarket.value)}
+            onClick={() => {
+              lightHaptic();
+              onSupermarketChange(supermarket.value);
+            }}
             className={`filter-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 ${
               selectedSupermarket === supermarket.value
                 ? 'filter-button-active'

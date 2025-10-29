@@ -1,3 +1,5 @@
+import { lightHaptic } from '../utils/haptics';
+
 function WineTypeFilter({ selectedType, onTypeChange }) {
   const wineTypes = [
     { value: null, label: 'Alle', emoji: '🍷' },
@@ -16,7 +18,10 @@ function WineTypeFilter({ selectedType, onTypeChange }) {
         {wineTypes.map((type) => (
           <button
             key={type.value || 'all'}
-            onClick={() => onTypeChange(type.value)}
+            onClick={() => {
+              lightHaptic();
+              onTypeChange(type.value);
+            }}
             className={`filter-button ${
               selectedType === type.value ? 'filter-button-active' : 'filter-button-inactive'
             }`}

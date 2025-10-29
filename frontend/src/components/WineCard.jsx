@@ -1,4 +1,5 @@
 import React from 'react';
+import { lightHaptic, mediumHaptic, selectionHaptic } from '../utils/haptics';
 
 function WineCard({ wine }) {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
@@ -93,12 +94,14 @@ function WineCard({ wine }) {
 
   const goToNext = () => {
     if (currentImageIndex < images.length - 1) {
+      selectionHaptic(); // Light haptic on carousel navigation
       setCurrentImageIndex((prev) => prev + 1);
     }
   };
 
   const goToPrevious = () => {
     if (currentImageIndex > 0) {
+      selectionHaptic(); // Light haptic on carousel navigation
       setCurrentImageIndex((prev) => prev - 1);
     }
   };
@@ -161,9 +164,11 @@ function WineCard({ wine }) {
     if (shouldNavigate) {
       if (dragDistance < 0 && currentImageIndex < images.length - 1) {
         // Swiped left -> next image
+        mediumHaptic(); // Medium haptic on successful swipe
         setCurrentImageIndex(prev => prev + 1);
       } else if (dragDistance > 0 && currentImageIndex > 0) {
         // Swiped right -> previous image
+        mediumHaptic(); // Medium haptic on successful swipe
         setCurrentImageIndex(prev => prev - 1);
       }
     }
@@ -246,18 +251,22 @@ function WineCard({ wine }) {
 
   const onTouchEnd = (e) => {
     if (zoomState.isPinching) {
-      // End pinch
+      // End pinch - always spring back to normal (Instagram behavior)
       setZoomState(prev => ({
         ...prev,
         isPinching: false,
       }));
       
-      // If zoomed out completely, reset
-      if (zoomState.scale <= 1.1) {
+      // Spring back to normal zoom after a brief delay
+      setTimeout(() => {
         resetZoom();
-      }
+      }, 50);
     } else if (zoomState.scale > 1) {
-      // End pan - reset translate
+      // End pan - spring back to normal
+      setTimeout(() => {
+        resetZoom();
+      }, 50);
+      
       setDragState({
         isDragging: false,
         startX: 0,
@@ -295,7 +304,9 @@ function WineCard({ wine }) {
     }
   };
 
-  // Mouse wheel zoom for desktop
+  // Mouse wheel zoom for desktop with auto-reset
+  const wheelResetTimeoutRef = React.useRef(null);
+  
   const onWheel = (e) => {
     if (e.ctrlKey || e.metaKey) {
       // Ctrl/Cmd + scroll = zoom
@@ -311,10 +322,15 @@ function WineCard({ wine }) {
         scale: newScale,
       }));
 
-      // Auto-reset if zoomed all the way out
-      if (newScale <= 1.05) {
-        resetZoom();
+      // Clear previous timeout
+      if (wheelResetTimeoutRef.current) {
+        clearTimeout(wheelResetTimeoutRef.current);
       }
+
+      // Auto spring back after user stops scrolling
+      wheelResetTimeoutRef.current = setTimeout(() => {
+        resetZoom();
+      }, 300);
     }
   };
 
@@ -398,7 +414,7 @@ function WineCard({ wine }) {
                   draggable="false"
                   style={idx === currentImageIndex ? {
                     transform: `scale(${zoomState.scale}) translate(${zoomState.translateX / zoomState.scale}px, ${zoomState.translateY / zoomState.scale}px)`,
-                    transition: zoomState.isPinching || dragState.isDragging ? 'none' : 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                    transition: zoomState.isPinching || dragState.isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                   } : {}}
                   onError={(e) => {
                     e.target.onerror = null;
@@ -418,7 +434,10 @@ function WineCard({ wine }) {
         {hasMultipleImages && zoomState.scale <= 1 && (
           <>
             <button
-              onClick={goToPrevious}
+              onClick={() => {
+                lightHaptic(); // Light haptic on button click
+                goToPrevious();
+              }}
               className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400"
               aria-label="Previous image"
             >
@@ -427,7 +446,10 @@ function WineCard({ wine }) {
               </svg>
             </button>
             <button
-              onClick={goToNext}
+              onClick={() => {
+                lightHaptic(); // Light haptic on button click
+                goToNext();
+              }}
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400"
               aria-label="Next image"
             >
@@ -447,7 +469,10 @@ function WineCard({ wine }) {
                 role="tab"
                 aria-selected={idx === currentImageIndex}
                 aria-label={`View image ${idx + 1} of ${images.length}`}
-                onClick={() => setCurrentImageIndex(idx)}
+                onClick={() => {
+                  lightHaptic(); // Light haptic on dot click
+                  setCurrentImageIndex(idx);
+                }}
                 className={`rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                   idx === currentImageIndex 
                     ? 'bg-white w-2 h-2' 
@@ -462,13 +487,6 @@ function WineCard({ wine }) {
         <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
           {hasMultipleImages && `Image ${currentImageIndex + 1} of ${images.length}`}
         </div>
-
-        {/* Zoom level indicator */}
-        {zoomState.scale > 1.1 && (
-          <div className="absolute top-2 right-2 bg-black/70 text-white px-3 py-1.5 rounded-full text-xs font-medium">
-            {Math.round(zoomState.scale * 100)}%
-          </div>
-        )}
 
         {/* Zoom hint (desktop only) */}
         {!hasMultipleImages && (
