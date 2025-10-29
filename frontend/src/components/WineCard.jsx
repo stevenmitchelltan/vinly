@@ -367,9 +367,9 @@ function WineCard({ wine }) {
   return (
     <div className="wine-card animate-fade-in">
       {/* Image Carousel - 4:5 aspect ratio (vertical) - Instagram style with pinch zoom */}
-      <div 
+      <div
         ref={containerRef}
-        className="relative bg-gradient-to-br from-burgundy-100 to-rose-100 w-full group overflow-hidden" 
+        className="relative bg-gradient-to-br from-gray-50 to-stone-100 w-full group overflow-hidden"
         style={{ 
           aspectRatio: '4/5', 
           touchAction: 'pan-y pinch-zoom',
@@ -442,9 +442,9 @@ function WineCard({ wine }) {
           )}
         </div>
 
-        {/* Dots indicator - Instagram style (hidden when zoomed) */}
+        {/* Dots indicator - Subtle pill morph style (hidden when zoomed) */}
         {hasMultipleImages && zoomState.scale <= 1 && (
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5" role="tablist" aria-label="Image navigation">
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 px-2.5 py-1.5 rounded-full bg-white/30 backdrop-blur-sm" role="tablist" aria-label="Image navigation">
             {images.map((_, idx) => (
               <button
                 key={idx}
@@ -452,11 +452,14 @@ function WineCard({ wine }) {
                 aria-selected={idx === currentImageIndex}
                 aria-label={`View image ${idx + 1} of ${images.length}`}
                 onClick={() => setCurrentImageIndex(idx)}
-                className={`rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+                className={`rounded-full transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black/20 ${
                   idx === currentImageIndex 
-                    ? 'bg-white w-2 h-2' 
-                    : 'bg-white/50 hover:bg-white/75 w-2 h-2'
+                    ? 'bg-white w-5 h-1.5' 
+                    : 'bg-white/50 hover:bg-white/70 w-1.5 h-1.5 hover:scale-110'
                 }`}
+                style={{
+                  transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)', // Smoother easing
+                }}
               />
             ))}
           </div>
@@ -479,7 +482,7 @@ function WineCard({ wine }) {
       <div className="p-5 space-y-3">
         {/* Supermarket badge */}
         <div className="flex items-center justify-between">
-          <span className="inline-block bg-gradient-to-r from-burgundy-100 to-burgundy-200 text-burgundy-900 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+          <span className="inline-block bg-gray-100 text-gray-700 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-sm">
             {wine.supermarket}
           </span>
           <span className="text-3xl">{getWineTypeEmoji(wine.wine_type)}</span>
@@ -507,7 +510,7 @@ function WineCard({ wine }) {
         {/* Footer */}
         <div className="pt-4 border-t border-gray-100 space-y-2">
           <p className="text-xs text-gray-500 font-medium">
-            📸 van <span className="font-semibold text-burgundy-800">@{wine.influencer_source}</span>
+            📸 van <span className="font-semibold text-amber-700">@{wine.influencer_source}</span>
           </p>
           <p className="text-xs text-gray-500">
             {formatDate(wine.date_found)}

@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-burgundy-50 via-rose-50 to-amber-50 min-h-screen font-inter;
+    @apply bg-gradient-to-br from-amber-50 via-rose-50 to-burgundy-50 min-h-screen font-inter;
   }
   h1, h2, h3, h4 { @apply font-fraunces; }
   h1 { @apply text-5xl md:text-6xl font-bold leading-tight; }
