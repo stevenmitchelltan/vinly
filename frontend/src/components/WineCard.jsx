@@ -1,5 +1,4 @@
 import React from 'react';
-import { lightHaptic, mediumHaptic, selectionHaptic } from '../utils/haptics';
 
 function WineCard({ wine }) {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
@@ -94,14 +93,12 @@ function WineCard({ wine }) {
 
   const goToNext = () => {
     if (currentImageIndex < images.length - 1) {
-      selectionHaptic(); // Light haptic on carousel navigation
       setCurrentImageIndex((prev) => prev + 1);
     }
   };
 
   const goToPrevious = () => {
     if (currentImageIndex > 0) {
-      selectionHaptic(); // Light haptic on carousel navigation
       setCurrentImageIndex((prev) => prev - 1);
     }
   };
@@ -164,11 +161,9 @@ function WineCard({ wine }) {
     if (shouldNavigate) {
       if (dragDistance < 0 && currentImageIndex < images.length - 1) {
         // Swiped left -> next image
-        mediumHaptic(); // Medium haptic on successful swipe
         setCurrentImageIndex(prev => prev + 1);
       } else if (dragDistance > 0 && currentImageIndex > 0) {
         // Swiped right -> previous image
-        mediumHaptic(); // Medium haptic on successful swipe
         setCurrentImageIndex(prev => prev - 1);
       }
     }
@@ -434,10 +429,7 @@ function WineCard({ wine }) {
         {hasMultipleImages && zoomState.scale <= 1 && (
           <>
             <button
-              onClick={() => {
-                lightHaptic(); // Light haptic on button click
-                goToPrevious();
-              }}
+              onClick={goToPrevious}
               className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400"
               aria-label="Previous image"
             >
@@ -446,10 +438,7 @@ function WineCard({ wine }) {
               </svg>
             </button>
             <button
-              onClick={() => {
-                lightHaptic(); // Light haptic on button click
-                goToNext();
-              }}
+              onClick={goToNext}
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400"
               aria-label="Next image"
             >
@@ -469,10 +458,7 @@ function WineCard({ wine }) {
                 role="tab"
                 aria-selected={idx === currentImageIndex}
                 aria-label={`View image ${idx + 1} of ${images.length}`}
-                onClick={() => {
-                  lightHaptic(); // Light haptic on dot click
-                  setCurrentImageIndex(idx);
-                }}
+                onClick={() => setCurrentImageIndex(idx)}
                 className={`rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                   idx === currentImageIndex 
                     ? 'bg-white w-2 h-2' 
