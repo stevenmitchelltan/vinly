@@ -5,6 +5,9 @@ on:
     - cron: '0 2 * * 0'  # Every Sunday at 2am UTC
   workflow_dispatch:      # Allow manual trigger from GitHub UI
 
+permissions:
+  contents: write
+
 jobs:
   scrape-and-update:
     runs-on: ubuntu-22.04  # Use 22.04 instead of latest to avoid libasound2 issue
