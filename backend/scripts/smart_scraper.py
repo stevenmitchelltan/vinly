@@ -78,8 +78,28 @@ async def get_new_video_urls(username: str, db):
         page = await context.new_page()
         
         try:
+            print(f"  Loading page: {url}")
             await page.goto(url, wait_until='domcontentloaded', timeout=60000)
             await page.wait_for_timeout(5000)
+            
+            # Debug: Check page title and save screenshot
+            page_title = await page.title()
+            print(f"  Page title: {page_title}")
+            
+            # Take screenshot for debugging
+            screenshot_path = f"/app/temp/debug_tiktok_{username}.png"
+            try:
+                await page.screenshot(path=screenshot_path)
+                print(f"  Screenshot saved: {screenshot_path}")
+            except:
+                pass
+            
+            # Check if we got blocked or hit CAPTCHA
+            page_content = await page.content()
+            if 'captcha' in page_content.lower():
+                print("  ⚠️ WARNING: CAPTCHA detected! TikTok may be blocking us.")
+            if 'blocked' in page_content.lower():
+                print("  ⚠️ WARNING: Access blocked message detected!")
             
             # Scroll to load all videos
             previous_count = 0
@@ -117,6 +137,29 @@ async def get_new_video_urls(username: str, db):
                 await page.wait_for_timeout(1500)
             
             print(f"  Total: {len(all_video_urls)} videos")
+            
+            # Debug: If no videos found, log page structure
+            if len(all_video_urls) == 0:
+                print("\n  🔍 DEBUG: No videos found! Checking page structure...")
+                print(f"  Page URL: {page.url}")
+                
+                # Check for common TikTok selectors
+                selectors_to_check = [
+                    '[data-e2e="user-post-item"]',
+                    '[data-e2e="user-post-item-list"]',
+                    'a[href*="/video/"]',
+                    '.tiktok-video-card',
+                    '[class*="DivItemContainer"]'
+                ]
+                
+                for selector in selectors_to_check:
+                    count = await page.locator(selector).count()
+                    print(f"    Selector '{selector}': {count} elements")
+                
+                # Log if we see a login wall
+                login_button = await page.locator('text=Log in').count()
+                if login_button > 0:
+                    print("  ⚠️ WARNING: TikTok showing login wall!")
             
         finally:
             await browser.close()
