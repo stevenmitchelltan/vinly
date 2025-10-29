@@ -40,17 +40,17 @@ async def export_wines():
         }
         wines.append(wine_data)
     
-    # Prepare output directory (create docs in project root)
-    # __file__ is /app/scripts/export_to_json.py
-    # parent.parent is /app
-    # parent.parent.parent is / (but we mounted the project at /app)
-    # So we use /app/../docs which maps to the host's docs folder
-    project_root = Path(__file__).parent.parent.parent  # This goes to /
-    docs_dir = project_root / 'docs'
-    
-    # Create docs directory if it doesn't exist
-    docs_dir.mkdir(parents=True, exist_ok=True)
-    output_path = docs_dir / 'wines.json'
+    # Prepare output directory
+    # In Docker: /docs is mounted from the host's docs folder
+    # In GitHub Actions: /home/runner/work/vinly/vinly/docs
+    if Path('/docs').exists():
+        # Running in Docker
+        output_path = Path('/docs/wines.json')
+    else:
+        # Running in GitHub Actions or locally without Docker
+        project_root = Path(__file__).parent.parent.parent
+        output_path = project_root / 'docs' / 'wines.json'
+        output_path.parent.mkdir(parents=True, exist_ok=True)
     
     # Write JSON file
     print(f"💾 Writing to {output_path}...")
