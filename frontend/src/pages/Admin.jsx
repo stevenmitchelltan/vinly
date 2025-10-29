@@ -212,7 +212,10 @@ const Admin = () => {
           
           <div className="bg-amber-50 border border-amber-200 rounded-md p-4">
             <p className="text-sm text-amber-800">
-              <strong>📝 Remember:</strong> After making changes, run <code className="bg-amber-100 px-2 py-1 rounded">docker-compose exec backend python scripts/export_to_json.py</code> and deploy to update GitHub Pages.
+              <strong>📝 Remember:</strong> After making changes, run <code className="bg-amber-100 px-2 py-1 rounded">.\scripts\deploy.ps1</code> to deploy to GitHub Pages.
+            </p>
+            <p className="text-xs text-amber-700 mt-2">
+              The deploy script will export wines, build, verify, and push automatically.
             </p>
           </div>
         </div>
