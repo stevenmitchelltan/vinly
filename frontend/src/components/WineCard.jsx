@@ -197,10 +197,11 @@ function WineCard({ wine }) {
         handleDragStart(touch.clientX, touch.clientY);
       } else {
         // When zoomed, one finger pans the image
+        // Store current translate as the starting point for this pan
         setDragState({
           isDragging: true,
-          startX: touch.clientX,
-          startY: touch.clientY,
+          startX: touch.clientX - zoomState.translateX,
+          startY: touch.clientY - zoomState.translateY,
           currentX: touch.clientX,
           currentY: touch.clientY,
           startTime: Date.now(),
@@ -229,13 +230,14 @@ function WineCard({ wine }) {
       
       if (zoomState.scale > 1) {
         // Zoomed in: pan the image
-        const deltaX = touch.clientX - dragState.startX;
-        const deltaY = touch.clientY - dragState.startY;
+        // Calculate new position based on drag distance
+        const newX = touch.clientX - dragState.startX;
+        const newY = touch.clientY - dragState.startY;
         
         setZoomState(prev => ({
           ...prev,
-          translateX: deltaX,
-          translateY: deltaY,
+          translateX: newX,
+          translateY: newY,
         }));
       } else {
         // Not zoomed: carousel swipe
@@ -246,22 +248,23 @@ function WineCard({ wine }) {
 
   const onTouchEnd = (e) => {
     if (zoomState.isPinching) {
-      // End pinch - always spring back to normal (Instagram behavior)
+      // End pinch - keep zoom level and pan position
+      // User can now pan around or release to spring back
       setZoomState(prev => ({
         ...prev,
         isPinching: false,
       }));
       
-      // Spring back to normal zoom after a brief delay
+      // Spring back to normal zoom after 1.5 seconds of inactivity
       setTimeout(() => {
-        resetZoom();
-      }, 50);
-    } else if (zoomState.scale > 1) {
-      // End pan - spring back to normal
-      setTimeout(() => {
-        resetZoom();
-      }, 50);
-      
+        // Only reset if user hasn't started pinching again
+        if (!zoomState.isPinching) {
+          resetZoom();
+        }
+      }, 1500);
+    } else if (zoomState.scale > 1 && dragState.isDragging) {
+      // End pan while zoomed - keep position, don't reset immediately
+      // Let user keep exploring, will reset after timeout
       setDragState({
         isDragging: false,
         startX: 0,
@@ -409,7 +412,7 @@ function WineCard({ wine }) {
                   draggable="false"
                   style={idx === currentImageIndex ? {
                     transform: `scale(${zoomState.scale}) translate(${zoomState.translateX / zoomState.scale}px, ${zoomState.translateY / zoomState.scale}px)`,
-                    transition: zoomState.isPinching || dragState.isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    transition: zoomState.isPinching || dragState.isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
                   } : {}}
                   onError={(e) => {
                     e.target.onerror = null;
