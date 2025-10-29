@@ -212,25 +212,31 @@ function WineCard({ wine }) {
 
   const onTouchMove = (e) => {
     if (e.touches.length === 2 && zoomState.isPinching) {
-      // Two fingers: pinch zoom + pan simultaneously - prevent all scrolling
-      e.preventDefault();
-      
+      // Two fingers: check if actually pinching or just scrolling
       const distance = getTouchDistance(e.touches[0], e.touches[1]);
-      const scale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, 
-        zoomState.initialScale * (distance / zoomState.initialDistance)
-      ));
+      const distanceChange = Math.abs(distance - zoomState.initialDistance);
       
-      // Calculate center point of the pinch for panning
-      const center = getTouchCenter(e.touches[0], e.touches[1]);
-      const newX = center.x - dragState.startX;
-      const newY = center.y - dragState.startY;
-      
-      setZoomState(prev => ({
-        ...prev,
-        scale,
-        translateX: newX,
-        translateY: newY,
-      }));
+      // Only prevent default if actually pinching (distance changing significantly)
+      if (distanceChange > 10) {
+        e.preventDefault();
+        
+        const scale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, 
+          zoomState.initialScale * (distance / zoomState.initialDistance)
+        ));
+        
+        // Calculate center point of the pinch for panning
+        const center = getTouchCenter(e.touches[0], e.touches[1]);
+        const newX = center.x - dragState.startX;
+        const newY = center.y - dragState.startY;
+        
+        setZoomState(prev => ({
+          ...prev,
+          scale,
+          translateX: newX,
+          translateY: newY,
+        }));
+      }
+      // If distance isn't changing much, allow normal vertical scroll
     } else if (e.touches.length === 1) {
       const touch = e.touches[0];
       
