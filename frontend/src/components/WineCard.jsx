@@ -378,10 +378,10 @@ function WineCard({ wine }) {
   return (
     <div className="wine-card animate-fade-in">
       {/* Image Carousel - 4:5 aspect ratio (vertical) - Instagram style with pinch zoom */}
-      <div className="p-2">
+      <div className="p-3">
         <div
           ref={containerRef}
-          className="relative bg-gradient-to-br from-gray-50 to-stone-100 w-full group overflow-hidden rounded-lg"
+          className="relative bg-gradient-to-br from-gray-50 to-stone-100 w-full group overflow-hidden rounded-xl"
         style={{ 
           aspectRatio: '4/5', 
           touchAction: 'pan-y',

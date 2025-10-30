@@ -21,7 +21,7 @@
 
 @layer components {
   .wine-card {
-    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 hover:border-burgundy-200;
+    @apply bg-white rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 hover:border-burgundy-200;
   }
   
   .btn-primary {
