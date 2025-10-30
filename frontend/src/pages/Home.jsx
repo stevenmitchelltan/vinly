@@ -64,14 +64,14 @@ function Home() {
   }, [wines, debouncedQuery]);
 
   return (
-    <div className="container mx-auto px-4 py-6 sm:py-8">
+    <div className="container mx-auto px-4 py-8 sm:py-12">
       {error && (
         <div className="mb-6 rounded-xl border border-red-200 bg-red-50 text-red-800 p-4 animate-fade-in">
           {error}
         </div>
       )}
       {/* Hero Section with Vinly Branding */}
-      <div className="text-center mb-8 sm:mb-12 pt-4 sm:pt-6 md:pt-8 animate-fade-in">
+      <div className="text-center mb-10 sm:mb-14 pt-4 sm:pt-6 md:pt-8 animate-fade-in">
         {/* Logo and Brand */}
         <div className="flex items-center justify-center mb-6 sm:mb-8 animate-scale-in">
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-burgundy-600 via-burgundy-700 to-burgundy-800 bg-clip-text text-transparent leading-tight drop-shadow-sm py-2">
@@ -89,7 +89,7 @@ function Home() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-2xl shadow-xl p-5 sm:p-8 mb-6 sm:mb-8 space-y-6 sm:space-y-8 border border-gray-100 animate-slide-up">
+      <div className="bg-white rounded-2xl shadow-xl p-5 sm:p-8 mb-8 sm:mb-10 space-y-6 sm:space-y-8 border border-gray-100 animate-slide-up">
         <SupermarketSelector
           selectedSupermarket={selectedSupermarket}
           onSupermarketChange={setSelectedSupermarket}

@@ -378,9 +378,10 @@ function WineCard({ wine }) {
   return (
     <div className="wine-card animate-fade-in">
       {/* Image Carousel - 4:5 aspect ratio (vertical) - Instagram style with pinch zoom */}
-      <div
-        ref={containerRef}
-        className="relative bg-gradient-to-br from-gray-50 to-stone-100 w-full group overflow-hidden"
+      <div className="p-2">
+        <div
+          ref={containerRef}
+          className="relative bg-gradient-to-br from-gray-50 to-stone-100 w-full group overflow-hidden rounded-lg"
         style={{ 
           aspectRatio: '4/5', 
           touchAction: 'pan-y',
@@ -487,10 +488,11 @@ function WineCard({ wine }) {
             Ctrl + scroll to zoom
           </div>
         )}
+        </div>
       </div>
 
       {/* Content */}
-      <div className="p-5 space-y-3">
+      <div className="p-6 space-y-3">
         {/* Supermarket badge */}
         <div className="flex items-center justify-between">
           <span className="inline-block bg-gray-100 text-gray-700 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-sm">
@@ -500,30 +502,30 @@ function WineCard({ wine }) {
         </div>
 
         {/* Wine name */}
-        <h3 className="font-bold text-xl text-gray-900 leading-tight min-h-[3rem] flex items-center">
+        <h3 className="font-bold text-2xl text-gray-900 leading-snug min-h-[3rem] flex items-center">
           {wine.name}
         </h3>
 
         {/* Quote */}
         {wine.rating && (
-  <p className="text-sm font-medium text-gray-700 italic leading-relaxed border-l-2 border-burgundy-300 pl-3">
+  <p className="text-sm font-medium text-gray-800 italic leading-relaxed border-l-2 border-burgundy-300 pl-3">
     "{wine.rating}"
   </p>
         )}
 
         {/* Description */}
         {wine.description && (
-          <p className="text-sm text-gray-600 line-clamp-4 leading-relaxed font-inter">
+          <p className="text-sm text-gray-700 line-clamp-4 leading-loose font-inter">
             {wine.description}
           </p>
         )}
 
         {/* Footer */}
         <div className="pt-4 border-t border-gray-100 space-y-2">
-          <p className="text-xs text-gray-500 font-medium">
+          <p className="text-xs text-gray-600 font-medium">
             📸 van <span className="font-semibold text-amber-700">@{wine.influencer_source}</span>
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-600">
             {formatDate(wine.date_found)}
           </p>
           
