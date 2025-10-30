@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { adminApi } from '../services/api';
 
 const AdminWineEditor = ({ wine, onSave, onClose, onDelete }) => {
   const [formData, setFormData] = useState({
@@ -104,6 +105,19 @@ const AdminWineEditor = ({ wine, onSave, onClose, onDelete }) => {
     }
   };
 
+  const handleDuplicate = async () => {
+    const defaultSuffix = '2';
+    const suffix = window.prompt('Suffix for duplicate (e.g., 2)', defaultSuffix);
+    if (suffix === null) return;
+    try {
+      await adminApi.duplicateWine(wine.id, suffix || defaultSuffix);
+      toast.success('Wine duplicated successfully', { duration: 3000 });
+      onClose();
+    } catch (error) {
+      toast.error('Failed to duplicate wine: ' + (error.response?.data?.detail || error.message), { duration: 5000 });
+    }
+  };
+
   if (!wine) return null;
 
   return (
@@ -111,13 +125,22 @@ const AdminWineEditor = ({ wine, onSave, onClose, onDelete }) => {
       <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-gray-900">Edit Wine</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-2xl"
-            aria-label="Close"
-          >
-            ×
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={handleDuplicate}
+              className="px-3 py-1.5 text-sm bg-amber-100 text-amber-800 rounded hover:bg-amber-200 transition-colors"
+            >
+              Duplicate as new
+            </button>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-600 text-2xl"
+              aria-label="Close"
+            >
+              ×
+            </button>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">

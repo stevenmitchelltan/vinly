@@ -267,3 +267,64 @@ async def add_tiktok_post(
         raise HTTPException(status_code=500, detail=f"Error processing TikTok post: {str(e)}")
 
 
+@router.post("/wines/{wine_id}/duplicate")
+async def duplicate_wine(wine_id: str, suffix: Optional[str] = "2", authorization: Optional[str] = Header(None)):
+    """Duplicate an existing wine as a new entry, allowing multiple wines per video.
+
+    Strategy: keep original video URL unique by adding a fragment suffix (e.g., #2) to post_url.
+    Frontend strips the fragment when linking out, so users still reach the original post.
+    """
+    verify_admin_auth(authorization)
+    db = get_database()
+
+    # Validate ObjectId
+    try:
+        obj_id = ObjectId(wine_id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid wine ID format")
+
+    original = await db.wines.find_one({"_id": obj_id})
+    if not original:
+        raise HTTPException(status_code=404, detail="Wine not found")
+
+    base_url = (original.get("post_url") or "").split("#")[0]
+    if not base_url:
+        raise HTTPException(status_code=400, detail="Original wine has no post_url")
+
+    # Compute new unique post_url with suffix; auto-increment if needed
+    candidate_suffix = (suffix or "2").strip()
+    attempt = 0
+    new_post_url = None
+    while attempt < 20:
+        post_url_candidate = f"{base_url}#{candidate_suffix}" if candidate_suffix else f"{base_url}#2"
+        exists = await db.wines.find_one({"post_url": post_url_candidate})
+        if not exists:
+            new_post_url = post_url_candidate
+            break
+        # increment numeric suffix if collision
+        try:
+            digits = ''.join(ch for ch in candidate_suffix if ch.isdigit())
+            num = int(digits) if digits else 1
+            num += 1
+            candidate_suffix = str(num)
+        except Exception:
+            candidate_suffix = "2"
+        attempt += 1
+
+    if not new_post_url:
+        raise HTTPException(status_code=409, detail="Could not allocate unique post_url suffix")
+
+    # Build new document
+    new_doc = {k: v for k, v in original.items() if k != "_id"}
+    new_doc["post_url"] = new_post_url
+    new_doc["date_found"] = datetime.now(timezone.utc)
+
+    result = await db.wines.insert_one(new_doc)
+
+    return {
+        "status": "success",
+        "message": "Wine duplicated",
+        "wine_id": str(result.inserted_id),
+        "post_url": new_post_url,
+    }
+

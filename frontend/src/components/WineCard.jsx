@@ -527,9 +527,9 @@ function WineCard({ wine }) {
             {formatDate(wine.date_found)}
           </p>
           
-          {/* Link to Instagram post */}
+          {/* Link to original post (strip any manual fragment suffix) */}
           <a
-            href={wine.post_url}
+            href={(wine.post_url || '').split('#')[0]}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-xs text-burgundy-700 hover:text-burgundy-900 font-semibold hover:gap-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 rounded"

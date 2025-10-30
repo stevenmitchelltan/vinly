@@ -145,6 +145,22 @@ export const adminApi = {
     }
   },
 
+  // Duplicate wine (manual second wine for same video)
+  async duplicateWine(wineId, suffix = '2') {
+    try {
+      const response = await api.post(`/api/admin/wines/${wineId}/duplicate`, null, {
+        params: { suffix },
+        headers: {
+          'Authorization': `Bearer ${getAdminToken()}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error duplicating wine:', error);
+      throw error;
+    }
+  },
+
   // Set admin token
   setToken(token) {
     localStorage.setItem('admin_token', token);
