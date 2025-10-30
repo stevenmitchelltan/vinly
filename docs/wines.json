@@ -1,11 +1,46 @@
 [
   {
+    "id": "6902b32c2abb5bc35f3fceec",
+    "name": "Andrés Alonso Garnacha & Syrah",
+    "supermarket": "Plus",
+    "wine_type": "red",
+    "price": null,
+    "rating": "Super fruitig en vol",
+    "description": "Krachtige rode wijn met cranberry aroma's, heel veel fruitigheid voor een supermarkt wijn",
+    "image_urls": [
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710752/vinly/wines/69016b767e0bd0235bd82ad5_0.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710754/vinly/wines/69016b767e0bd0235bd82ad5_1.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710755/vinly/wines/69016b767e0bd0235bd82ad5_2.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710757/vinly/wines/69016b767e0bd0235bd82ad5_3.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700846/vinly/wines/69016b767e0bd0235bd82ad5_4.jpg"
+    ],
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7330196235531472160#2",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2025-10-30T00:37:00.403000"
+  },
+  {
+    "id": "6902a6a22abb5bc35f3fceea",
+    "name": "Baron de Vaillantcourt Chardonnay",
+    "supermarket": "Dirk",
+    "wine_type": "white",
+    "price": null,
+    "rating": "Als jou houdt van houtgerijpte Chardonnay",
+    "description": "Veel hout, hij is wat zachter, voller en romiger.",
+    "image_urls": [
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761715091/vinly/wines/69016bbc7e0bd0235bd82aee_3.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761715115/vinly/wines/69016bbc7e0bd0235bd82aee_4.jpg"
+    ],
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7322458881924320545#2",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2025-10-29T23:43:30.617000"
+  },
+  {
     "id": "6902451db6671ab66c41f02a",
-    "name": "Bag & Box Sauvignon Blanc",
+    "name": "Sauvignon Blanc bag-in-box",
     "supermarket": "ALDI",
     "wine_type": "white",
     "price": null,
-    "rating": "Verfrissend drankje voor de hitte",
+    "rating": "Verfrissend drankje voor de lowlands hitte",
     "description": "Lichte, frisse, droge wijn met een beetje citrus en appel, perfect voor warme dagen.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756436/vinly/wines/de466627d78306d7_0.jpg",
@@ -20,28 +55,8 @@
     "date_found": "2025-10-29T16:47:25.701000"
   },
   {
-    "id": "69024434b6671ab66c41f029",
-    "name": "Mount Fishtail Sauvignon Blanc",
-    "supermarket": "Jumbo",
-    "wine_type": "white",
-    "price": null,
-    "rating": "Best wel een goede doordrinkbare wijn",
-    "description": "Heeft veel aroma-intensiteit en is fruit gedreven, bijna overdadig clean",
-    "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756204/vinly/wines/ac0d9f8ea6df13d3_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756206/vinly/wines/ac0d9f8ea6df13d3_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756207/vinly/wines/ac0d9f8ea6df13d3_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756208/vinly/wines/ac0d9f8ea6df13d3_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756210/vinly/wines/ac0d9f8ea6df13d3_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756211/vinly/wines/ac0d9f8ea6df13d3_5.jpg"
-    ],
-    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7549569359514062113",
-    "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T16:43:32.965000"
-  },
-  {
     "id": "690243d2b6671ab66c41f028",
-    "name": "Spaanse wijn",
+    "name": "Marqués de Montañana Garnacha",
     "supermarket": "Jumbo",
     "wine_type": "red",
     "price": null,
@@ -49,10 +64,7 @@
     "description": "Die tanninen zijn wel echt aan de hoge kant, maar het fruit kan er tegenop beuken. Voor die zeven euro heb je gewoon een oer-degelijke wijn.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756106/vinly/wines/fd653d3b27e6daa4_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756108/vinly/wines/fd653d3b27e6daa4_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756109/vinly/wines/fd653d3b27e6daa4_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756110/vinly/wines/fd653d3b27e6daa4_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761756112/vinly/wines/fd653d3b27e6daa4_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756113/vinly/wines/fd653d3b27e6daa4_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7553730201126014241",
@@ -80,26 +92,6 @@
     "date_found": "2025-10-29T16:39:31.792000"
   },
   {
-    "id": "690242fab6671ab66c41f026",
-    "name": "Grand Bateau - Beychevelle 2023",
-    "supermarket": "Albert Heijn",
-    "wine_type": "white",
-    "price": null,
-    "rating": "Dit is gewoon top",
-    "description": "Een 100% sauvignon blanc met tonen van banaan, ananas, boter en vanille, perfect voor 11 euro.",
-    "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755889/vinly/wines/35a8363bc6efd78d_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755891/vinly/wines/35a8363bc6efd78d_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755892/vinly/wines/35a8363bc6efd78d_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755894/vinly/wines/35a8363bc6efd78d_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755896/vinly/wines/35a8363bc6efd78d_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755897/vinly/wines/35a8363bc6efd78d_5.jpg"
-    ],
-    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7558083982248791328",
-    "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T16:38:18.284000"
-  },
-  {
     "id": "690241efb6671ab66c41f025",
     "name": "Val de Vid Verdejo",
     "supermarket": "Sligro",
@@ -108,12 +100,7 @@
     "rating": "Prima voor als er mensen komen",
     "description": "Gewoon een lekkere, simpele Verdejo, altijd een goede keuze voor gasten.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755618/vinly/wines/34a851e1807fdd5b_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755621/vinly/wines/34a851e1807fdd5b_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755625/vinly/wines/34a851e1807fdd5b_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755626/vinly/wines/34a851e1807fdd5b_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755628/vinly/wines/34a851e1807fdd5b_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755630/vinly/wines/34a851e1807fdd5b_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761785121/Val_de_Vid_Verdejo_jjxa7j.png"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7565637065161854240",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -121,19 +108,15 @@
   },
   {
     "id": "690241b1b6671ab66c41f024",
-    "name": "Château Coulombe",
+    "name": "Château Coulon",
     "supermarket": "Albert Heijn",
     "wine_type": "red",
     "price": null,
-    "rating": "Een goede supermarktwijn",
+    "rating": "Ben je bij de Albert Heijn? Ga voor deze rode wijn!",
     "description": "Het heeft ook nog structuur en het fruit blijft wat langer hangen.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755561/vinly/wines/c1c99095488e3e10_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755562/vinly/wines/c1c99095488e3e10_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755564/vinly/wines/c1c99095488e3e10_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755566/vinly/wines/c1c99095488e3e10_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755567/vinly/wines/c1c99095488e3e10_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755568/vinly/wines/c1c99095488e3e10_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755568/vinly/wines/c1c99095488e3e10_5.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761755561/vinly/wines/c1c99095488e3e10_0.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7566649229100289313",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -149,11 +132,7 @@
     "description": "Hij drinkt goed door, vooral framboos moet ik zeggen, voor zijn prijs.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761754118/vinly/wines/8ae3f29f6b950723_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761754119/vinly/wines/8ae3f29f6b950723_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761754121/vinly/wines/8ae3f29f6b950723_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761754122/vinly/wines/8ae3f29f6b950723_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761754124/vinly/wines/8ae3f29f6b950723_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761754125/vinly/wines/8ae3f29f6b950723_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761754119/vinly/wines/8ae3f29f6b950723_1.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7353670393489657120",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -171,7 +150,6 @@
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700951/vinly/wines/69016b927e0bd0235bd82ae0_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700952/vinly/wines/69016b927e0bd0235bd82ae0_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700953/vinly/wines/69016b927e0bd0235bd82ae0_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700955/vinly/wines/69016b927e0bd0235bd82ae0_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700956/vinly/wines/69016b927e0bd0235bd82ae0_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700957/vinly/wines/69016b927e0bd0235bd82ae0_5.jpg"
     ],
@@ -181,18 +159,16 @@
   },
   {
     "id": "69016ba77e0bd0235bd82ae8",
-    "name": "Beaujolais",
+    "name": "Beaujolais Morgon 2024",
     "supermarket": "LIDL",
     "wine_type": "red",
     "price": null,
     "rating": "Voor deze val ik wel te paaien",
-    "description": "Ruikt naar rozen en viooltjes, heel herfstig met meer fruit, perfect voor een zonnige dag.",
+    "description": "Ruikt naar rozen en viooltjes, heel herfstig met meer fruit, perfect voor een zonnige dag. Kun je ook top koelen.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701031/vinly/wines/69016ba77e0bd0235bd82ae8_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701033/vinly/wines/69016ba77e0bd0235bd82ae8_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701035/vinly/wines/69016ba77e0bd0235bd82ae8_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701036/vinly/wines/69016ba77e0bd0235bd82ae8_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701038/vinly/wines/69016ba77e0bd0235bd82ae8_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701039/vinly/wines/69016ba77e0bd0235bd82ae8_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7556217972960840992",
@@ -208,11 +184,8 @@
     "rating": "Duidelijk winnaartje hoor",
     "description": "Deze heeft een beetje meloen, een beetje appel, minder snoeprug, en het smaak blijft langer hangen.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711061/vinly/wines/69016b8f7e0bd0235bd82ade_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711062/vinly/wines/69016b8f7e0bd0235bd82ade_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711064/vinly/wines/69016b8f7e0bd0235bd82ade_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711065/vinly/wines/69016b8f7e0bd0235bd82ade_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711067/vinly/wines/69016b8f7e0bd0235bd82ade_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711068/vinly/wines/69016b8f7e0bd0235bd82ade_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7530169584389754134",
@@ -229,11 +202,7 @@
     "description": "Typische Zuid-Franse chardonnay en voor dat geldt onder 10 euro.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716531/vinly/wines/69016bc87e0bd0235bd82af2_5.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716477/vinly/wines/69016bc87e0bd0235bd82af2_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716478/vinly/wines/69016bc87e0bd0235bd82af2_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716506/vinly/wines/69016bc87e0bd0235bd82af2_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716508/vinly/wines/69016bc87e0bd0235bd82af2_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716510/vinly/wines/69016bc87e0bd0235bd82af2_4.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716477/vinly/wines/69016bc87e0bd0235bd82af2_0.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7519791763133959457",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -241,12 +210,12 @@
   },
   {
     "id": "69016bb17e0bd0235bd82aea",
-    "name": "Côtes du Rhône",
+    "name": "Côtes du Rhône E. Guigal ",
     "supermarket": "Albert Heijn",
     "wine_type": "red",
     "price": null,
-    "rating": "Gewoon een goede supermarkt wijn",
-    "description": "Je ruikt wat fruit zoals bramen, blauwe bessen, beetje kersen, verder heb je nog leer, beetje peper, een volle kracht gerode wijn.",
+    "rating": "Gemaakt door een wereldberomede wijnfamilie",
+    "description": "Je ruikt wat fruit zoals bramen, blauwe bessen, beetje kersen, verder heb je nog leer, beetje peper, een volle krachtige rode wijn.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701052/vinly/wines/69016bb17e0bd0235bd82aea_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701054/vinly/wines/69016bb17e0bd0235bd82aea_1.jpg",
@@ -261,18 +230,14 @@
   },
   {
     "id": "69016ba67e0bd0235bd82ae7",
-    "name": "Penfold Chardonnay",
+    "name": "Penfolds Koonunga hill chardonnay",
     "supermarket": "Albert Heijn",
     "wine_type": "white",
     "price": null,
     "rating": "Veruit de beste tot nu toe",
     "description": "Vol, houtgrijpt met balans tussen fruit en houtsmaken, ideaal voor Chardonnay liefhebbers",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761712738/vinly/wines/69016ba67e0bd0235bd82ae7_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761712740/vinly/wines/69016ba67e0bd0235bd82ae7_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761712741/vinly/wines/69016ba67e0bd0235bd82ae7_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761712743/vinly/wines/69016ba67e0bd0235bd82ae7_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761712744/vinly/wines/69016ba67e0bd0235bd82ae7_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761712746/vinly/wines/69016ba67e0bd0235bd82ae7_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7511996540433550614",
@@ -288,7 +253,7 @@
     "rating": "Deze kun je prima pakken",
     "description": "Tannine en zuren zitten er beter in, prima voor wie houdt van een vollere, zwaardere rode wijn. Een goede wijn, maar je hoeft er niet voor om te fietsen.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716890/vinly/wines/69016bd07e0bd0235bd82af4_0.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/finca-del-tuerto-parcella_kmmtif.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716891/vinly/wines/69016bd07e0bd0235bd82af4_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716893/vinly/wines/69016bd07e0bd0235bd82af4_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716916/vinly/wines/69016bd07e0bd0235bd82af4_3.jpg",
@@ -301,7 +266,7 @@
   },
   {
     "id": "69016ba07e0bd0235bd82ae4",
-    "name": "Riesling",
+    "name": "Nik Weis Riesling",
     "supermarket": "Sligro",
     "wine_type": "white",
     "price": null,
@@ -309,11 +274,8 @@
     "description": "Super fris met veel fruit, minerale tonen en een lichte stijl, perfect om koel te drinken",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700991/vinly/wines/69016ba07e0bd0235bd82ae4_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700992/vinly/wines/69016ba07e0bd0235bd82ae4_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700994/vinly/wines/69016ba07e0bd0235bd82ae4_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700995/vinly/wines/69016ba07e0bd0235bd82ae4_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700996/vinly/wines/69016ba07e0bd0235bd82ae4_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700998/vinly/wines/69016ba07e0bd0235bd82ae4_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700995/vinly/wines/69016ba07e0bd0235bd82ae4_3.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7506794190043368726",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -321,19 +283,16 @@
   },
   {
     "id": "69016bb67e0bd0235bd82aec",
-    "name": "witte wijn van de HEMA",
+    "name": "Ours Blanc Luberon 2024",
     "supermarket": "HEMA",
     "wine_type": "white",
     "price": null,
-    "rating": "Top voor dit geld",
+    "rating": "Hiermee zit je top voor 21-diners",
     "description": "Licht, droog en hartstikke fris, met classic citroen en limoen, perfect voor in de zon.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714725/vinly/wines/69016bb67e0bd0235bd82aec_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761714727/vinly/wines/69016bb67e0bd0235bd82aec_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761714729/vinly/wines/69016bb67e0bd0235bd82aec_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714751/vinly/wines/69016bb67e0bd0235bd82aec_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714752/vinly/wines/69016bb67e0bd0235bd82aec_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714755/vinly/wines/69016bb67e0bd0235bd82aec_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714751/vinly/wines/69016bb67e0bd0235bd82aec_3.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7499006170577816854",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -345,15 +304,11 @@
     "supermarket": "LIDL",
     "wine_type": "red",
     "price": null,
-    "rating": "Prijs en kwaliteit is het",
-    "description": "Deze wijn is prima voor de prijs en een goede keuze bij de Lidl.",
+    "rating": "Als ik een wijn moet halen bij de Lidl is dit hem.",
+    "description": "Neus is goed, peperachtig. Deze wijn is prima voor de prijs en een goede keuze bij de Lidl.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701108/vinly/wines/69016bc17e0bd0235bd82aef_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701109/vinly/wines/69016bc17e0bd0235bd82aef_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701111/vinly/wines/69016bc17e0bd0235bd82aef_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701112/vinly/wines/69016bc17e0bd0235bd82aef_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701114/vinly/wines/69016bc17e0bd0235bd82aef_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701115/vinly/wines/69016bc17e0bd0235bd82aef_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761783562/cotesdurhonelidl_vvqcsv.png",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761783628/cotesdurhone2_gowwlr.png"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7496414808984554774",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -372,32 +327,11 @@
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701012/vinly/wines/69016ba37e0bd0235bd82ae6_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701014/vinly/wines/69016ba37e0bd0235bd82ae6_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701016/vinly/wines/69016ba37e0bd0235bd82ae6_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701017/vinly/wines/69016ba37e0bd0235bd82ae6_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701018/vinly/wines/69016ba37e0bd0235bd82ae6_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7478246611328568598",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2025-03-05T08:56:19"
-  },
-  {
-    "id": "69016b787e0bd0235bd82ad6",
-    "name": "Villier",
-    "supermarket": "LIDL",
-    "wine_type": "white",
-    "price": null,
-    "rating": "Als beste van deze test",
-    "description": "Hier is dat fruit iets meer naar de voorgrond gedrukt, waardoor het ook lekkerder proeft in combinatie met die zuren.",
-    "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700851/vinly/wines/69016b787e0bd0235bd82ad6_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700852/vinly/wines/69016b787e0bd0235bd82ad6_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700854/vinly/wines/69016b787e0bd0235bd82ad6_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700855/vinly/wines/69016b787e0bd0235bd82ad6_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700856/vinly/wines/69016b787e0bd0235bd82ad6_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700858/vinly/wines/69016b787e0bd0235bd82ad6_5.jpg"
-    ],
-    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7475766316071259414",
-    "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-02-26T16:31:27"
   },
   {
     "id": "69016b877e0bd0235bd82adb",
@@ -406,10 +340,9 @@
     "wine_type": "white",
     "price": null,
     "rating": "Goeie supermarktwijn",
-    "description": "Veel smaak in de mond en die smaak blijft ook nog redelijk lang hangen.",
+    "description": "Heeft veel aroma-intensiteit en is fruit gedreven, bijna overdadig clean",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710963/vinly/wines/69016b877e0bd0235bd82adb_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710965/vinly/wines/69016b877e0bd0235bd82adb_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710961/vinly/wines/69016b877e0bd0235bd82adb_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710966/vinly/wines/69016b877e0bd0235bd82adb_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710967/vinly/wines/69016b877e0bd0235bd82adb_4.jpg",
@@ -421,17 +354,17 @@
   },
   {
     "id": "69016b7b7e0bd0235bd82ad7",
-    "name": "Pegus 2023",
+    "name": "Adega de Pegões",
     "supermarket": "ALDI",
     "wine_type": "white",
     "price": null,
     "rating": "Volle, zachte, houtgrijpte wijn",
     "description": "Als je op zoek bent naar een volle, zachte, houtgrijpte wijn voor een laag prijs, dan doet deze het echt heel goed.",
     "image_urls": [
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710831/vinly/wines/69016b7b7e0bd0235bd82ad7_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710826/vinly/wines/69016b7b7e0bd0235bd82ad7_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710828/vinly/wines/69016b7b7e0bd0235bd82ad7_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710829/vinly/wines/69016b7b7e0bd0235bd82ad7_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710831/vinly/wines/69016b7b7e0bd0235bd82ad7_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710833/vinly/wines/69016b7b7e0bd0235bd82ad7_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710834/vinly/wines/69016b7b7e0bd0235bd82ad7_5.jpg"
     ],
@@ -445,14 +378,12 @@
     "supermarket": "HEMA",
     "wine_type": "red",
     "price": null,
-    "rating": "Echt top voor de prijs",
-    "description": "Veel rood fruit, beetje peper, tijm, rozemarijn; perfect voor een winterbarbecuetje",
+    "rating": "Echt top voor grote groepen",
+    "description": "Veel rood fruit, beetje peper, tijm, rozemarijn; perfect voor een winterbarbecuetje. Gemaakt door de wereldberoemde familie Perrin.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711091/vinly/wines/69016b907e0bd0235bd82adf_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711092/vinly/wines/69016b907e0bd0235bd82adf_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711094/vinly/wines/69016b907e0bd0235bd82adf_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711096/vinly/wines/69016b907e0bd0235bd82adf_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711098/vinly/wines/69016b907e0bd0235bd82adf_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711099/vinly/wines/69016b907e0bd0235bd82adf_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7462755756278942998",
@@ -465,14 +396,11 @@
     "supermarket": "Sligro",
     "wine_type": "red",
     "price": null,
-    "rating": "Zeker een zware rode wijn",
-    "description": "Iets minder zwoel dan de eerste, met intenser fruit en minder suiker, onder de 10 euro.",
+    "rating": "Deze zou ik zeker halen",
+    "description": "Een iets zwaardere rode wijn. Kers, cederhout, boomschorsachtig, met intenser fruit en minder suiker.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710996/vinly/wines/69016b897e0bd0235bd82adc_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710997/vinly/wines/69016b897e0bd0235bd82adc_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710999/vinly/wines/69016b897e0bd0235bd82adc_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711000/vinly/wines/69016b897e0bd0235bd82adc_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711002/vinly/wines/69016b897e0bd0235bd82adc_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711004/vinly/wines/69016b897e0bd0235bd82adc_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7460160381558803734",
@@ -488,12 +416,8 @@
     "rating": "Deze is top voor 8 euro",
     "description": "Fris met veel smaken zoals citrus, perzik en een beetje honing, perfect voor bij kerstgerechten.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701042/vinly/wines/69016bab7e0bd0235bd82ae9_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701043/vinly/wines/69016bab7e0bd0235bd82ae9_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701044/vinly/wines/69016bab7e0bd0235bd82ae9_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701046/vinly/wines/69016bab7e0bd0235bd82ae9_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701047/vinly/wines/69016bab7e0bd0235bd82ae9_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701048/vinly/wines/69016bab7e0bd0235bd82ae9_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701043/vinly/wines/69016bab7e0bd0235bd82ae9_1.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7451166439492406550",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -505,14 +429,10 @@
     "supermarket": "Plus",
     "wine_type": "sparkling",
     "price": null,
-    "rating": "Kijk, zo zou die in de schappen moeten liggen",
-    "description": "Deze is echt stukken beter dan de eerste. Die smaak blijft wat langer hangen en die bubbel is iets fijner.",
+    "rating": "Deze is echt stukken beter",
+    "description": "Die smaak blijft wat langer hangen en die bubbel is iets fijner.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701002/vinly/wines/69016ba17e0bd0235bd82ae5_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701004/vinly/wines/69016ba17e0bd0235bd82ae5_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701005/vinly/wines/69016ba17e0bd0235bd82ae5_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701006/vinly/wines/69016ba17e0bd0235bd82ae5_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701007/vinly/wines/69016ba17e0bd0235bd82ae5_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701008/vinly/wines/69016ba17e0bd0235bd82ae5_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7447858111169285398",
@@ -526,13 +446,10 @@
     "wine_type": "sparkling",
     "price": null,
     "rating": "Deze is overduidelijk het beste",
-    "description": "Citrus fruit met een notarige amandelachtige tint, maakt het spannender.",
+    "description": "Honingtintje, citrus fruit met een notarige amandelachtige tint, maakt het spannender.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716319/vinly/wines/69016bc67e0bd0235bd82af1_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716341/vinly/wines/69016bc67e0bd0235bd82af1_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716343/vinly/wines/69016bc67e0bd0235bd82af1_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716344/vinly/wines/69016bc67e0bd0235bd82af1_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761716345/vinly/wines/69016bc67e0bd0235bd82af1_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716348/vinly/wines/69016bc67e0bd0235bd82af1_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7444910232519658774",
@@ -549,9 +466,7 @@
     "description": "Je ruikt best snel dat het uit zo'n warm land komt, met zwoele fruitachtige tonen en een relaxte structuur, perfect voor kerst.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700882/vinly/wines/69016b7f7e0bd0235bd82ad9_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700883/vinly/wines/69016b7f7e0bd0235bd82ad9_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700884/vinly/wines/69016b7f7e0bd0235bd82ad9_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700885/vinly/wines/69016b7f7e0bd0235bd82ad9_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700887/vinly/wines/69016b7f7e0bd0235bd82ad9_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700888/vinly/wines/69016b7f7e0bd0235bd82ad9_5.jpg"
     ],
@@ -565,13 +480,11 @@
     "supermarket": "Albert Heijn",
     "wine_type": "red",
     "price": null,
-    "rating": "Zou je deze zeker pakken?",
+    "rating": "Hier heb je echt een goeie deal",
     "description": "Beter in balans met fruitige smaken van kersen en bramen, en zachte tanninen.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700960/vinly/wines/69016b947e0bd0235bd82ae1_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700961/vinly/wines/69016b947e0bd0235bd82ae1_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700963/vinly/wines/69016b947e0bd0235bd82ae1_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700964/vinly/wines/69016b947e0bd0235bd82ae1_3.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700963/vinly/wines/69016b947e0bd0235bd82ae1_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700965/vinly/wines/69016b947e0bd0235bd82ae1_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700966/vinly/wines/69016b947e0bd0235bd82ae1_5.jpg"
     ],
@@ -589,11 +502,7 @@
     "description": "Kruidiger dan de eerste, met een beetje hete peper idee en beter in balans voor onder de vier euro.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701087/vinly/wines/69016bb77e0bd0235bd82aed_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701085/vinly/wines/69016bb77e0bd0235bd82aed_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701088/vinly/wines/69016bb77e0bd0235bd82aed_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701090/vinly/wines/69016bb77e0bd0235bd82aed_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701091/vinly/wines/69016bb77e0bd0235bd82aed_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701092/vinly/wines/69016bb77e0bd0235bd82aed_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701091/vinly/wines/69016bb77e0bd0235bd82aed_4.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7424439708698086688",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -609,9 +518,7 @@
     "description": "Helemaal prima, een goede supermarkt wijn met een aangename smaak.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701119/vinly/wines/69016bc37e0bd0235bd82af0_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701120/vinly/wines/69016bc37e0bd0235bd82af0_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701121/vinly/wines/69016bc37e0bd0235bd82af0_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761701123/vinly/wines/69016bc37e0bd0235bd82af0_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701124/vinly/wines/69016bc37e0bd0235bd82af0_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701125/vinly/wines/69016bc37e0bd0235bd82af0_5.jpg"
     ],
@@ -626,14 +533,10 @@
     "wine_type": "white",
     "price": null,
     "rating": "Keurig hoor Lidl, echt helemaal keurig",
-    "description": "Goed fruitig in de mond, echt best wel veel smaak nog",
+    "description": "Grapefruit. Goed fruitig in de mond, echt best wel veel smaak nog. Iets jongere wijn. ",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714382/vinly/wines/69016bb37e0bd0235bd82aeb_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714403/vinly/wines/69016bb37e0bd0235bd82aeb_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714405/vinly/wines/69016bb37e0bd0235bd82aeb_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761714407/vinly/wines/69016bb37e0bd0235bd82aeb_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714411/vinly/wines/69016bb37e0bd0235bd82aeb_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714412/vinly/wines/69016bb37e0bd0235bd82aeb_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761714405/vinly/wines/69016bb37e0bd0235bd82aeb_2.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7409280940490493216",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -665,15 +568,11 @@
     "supermarket": "Jumbo",
     "wine_type": "red",
     "price": null,
-    "rating": "Echt stukken beter",
+    "rating": "Een wereld van verschil",
     "description": "Het ruikt echt net alsof je in een gloednieuwe auto achterin zit, met kruiden en een beetje peperig.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711025/vinly/wines/69016b8b7e0bd0235bd82add_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711027/vinly/wines/69016b8b7e0bd0235bd82add_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711029/vinly/wines/69016b8b7e0bd0235bd82add_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711030/vinly/wines/69016b8b7e0bd0235bd82add_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711032/vinly/wines/69016b8b7e0bd0235bd82add_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711034/vinly/wines/69016b8b7e0bd0235bd82add_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711029/vinly/wines/69016b8b7e0bd0235bd82add_2.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7389926738257644832",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -681,12 +580,12 @@
   },
   {
     "id": "69016b737e0bd0235bd82ad4",
-    "name": "Chardonnay",
+    "name": "Danie de Wet Chardonnay",
     "supermarket": "Plus",
     "wine_type": "white",
     "price": null,
     "rating": "Frisse stijl chardonnay, top",
-    "description": "Deze chardonnay heeft frisse tonen van limoen en groene appel, met een hint van passievrucht.",
+    "description": "Heeft geen hout gehad. Deze chardonnay heeft frisse tonen van limoen en groene appel, met een hint van passievrucht.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700831/vinly/wines/69016b737e0bd0235bd82ad4_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700833/vinly/wines/69016b737e0bd0235bd82ad4_1.jpg",
@@ -705,15 +604,13 @@
     "supermarket": "Jumbo",
     "wine_type": "red",
     "price": null,
-    "rating": "Gewoon een goede supermarkt wijn",
-    "description": "Nauwelijks tannine, heel klein beetje zuur, drinkt gewoon heel erg makkelijk weg.",
+    "rating": "Drinkt heel erg makkelijk weg",
+    "description": "Lekker als gekoelde rode wijn (half uurtje in de ijskast). Licht en elegand. Nauwelijks tannine, heel klein beetje zuur, drinkt gewoon heel erg makkelijk weg.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700970/vinly/wines/69016b987e0bd0235bd82ae2_0.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700974/vinly/wines/69016b987e0bd0235bd82ae2_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700971/vinly/wines/69016b987e0bd0235bd82ae2_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700973/vinly/wines/69016b987e0bd0235bd82ae2_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700974/vinly/wines/69016b987e0bd0235bd82ae2_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700975/vinly/wines/69016b987e0bd0235bd82ae2_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700976/vinly/wines/69016b987e0bd0235bd82ae2_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700975/vinly/wines/69016b987e0bd0235bd82ae2_4.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7366627118324796704",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -721,17 +618,16 @@
   },
   {
     "id": "69016b997e0bd0235bd82ae3",
-    "name": "Sylvaner",
+    "name": "Divino Nordheim Silvaner",
     "supermarket": "Albert Heijn",
     "wine_type": "white",
     "price": null,
     "rating": "Echt goed voor zijn prijs",
-    "description": "Fris, knisperend, met veel citrusfruit en groene appel, bijna een beetje koolzuur op de tong",
+    "description": "Geschonken uit de balzak van een geit. Fris, knisperend, met veel citrusfruit en groene appel, bijna een beetje koolzuur op de tong.",
     "image_urls": [
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711665/vinly/wines/69016b997e0bd0235bd82ae3_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711668/vinly/wines/69016b997e0bd0235bd82ae3_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711670/vinly/wines/69016b997e0bd0235bd82ae3_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761711671/vinly/wines/69016b997e0bd0235bd82ae3_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711700/vinly/wines/69016b997e0bd0235bd82ae3_4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711703/vinly/wines/69016b997e0bd0235bd82ae3_5.jpg"
     ],
@@ -741,7 +637,7 @@
   },
   {
     "id": "69016b7d7e0bd0235bd82ad8",
-    "name": "Rioja Crianza",
+    "name": "Rioja Rivallana Crianza",
     "supermarket": "ALDI",
     "wine_type": "red",
     "price": null,
@@ -761,19 +657,15 @@
   },
   {
     "id": "69016b767e0bd0235bd82ad5",
-    "name": "Calatayud Garnacha-Syrah",
+    "name": "Mas du Petit",
     "supermarket": "Plus",
     "wine_type": "red",
     "price": null,
-    "rating": "Super fruitig en vol",
-    "description": "Krachtige rode wijn met cranberry aroma's, heel veel fruitigheid voor een supermarkt wijn",
+    "rating": "Ik zou 'm zo pakken!",
+    "description": "Biowijn, gemaakt van Syrah en Grenache. Ruikt naar bloemetjes, viooltjes of rozen. Die Plus is lekker bezig.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710752/vinly/wines/69016b767e0bd0235bd82ad5_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710754/vinly/wines/69016b767e0bd0235bd82ad5_1.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710755/vinly/wines/69016b767e0bd0235bd82ad5_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710757/vinly/wines/69016b767e0bd0235bd82ad5_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761700846/vinly/wines/69016b767e0bd0235bd82ad5_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710764/vinly/wines/69016b767e0bd0235bd82ad5_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761784813/Mas_du_Petit_Azegat_Rouge_bpxycq.png",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710754/vinly/wines/69016b767e0bd0235bd82ad5_1.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7330196235531472160",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -781,19 +673,15 @@
   },
   {
     "id": "69016bbc7e0bd0235bd82aee",
-    "name": "Baron de Vaillantcourt Chardonnay",
+    "name": "Favoritos Chardonnay",
     "supermarket": "Dirk",
     "wine_type": "white",
     "price": null,
-    "rating": "Ik vind hem goed",
-    "description": "Voor 5 euro vind ik dit echt best wel goed. Hij ruikt rijp met tonen van ananas en mango, en heeft een frisse stijl met citrus en perzik.",
+    "rating": "Best wel goed voor 5 euro!",
+    "description": "Een wat frissere stijl Chardonnay, gemixt met Viognier, maar voor deze prijs kwaliteit helemaal prima. Je proeft rijper fruit zoals ananas, mango en perzik.",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761715091/vinly/wines/69016bbc7e0bd0235bd82aee_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761715084/vinly/wines/69016bbc7e0bd0235bd82aee_0.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761715087/vinly/wines/69016bbc7e0bd0235bd82aee_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761715089/vinly/wines/69016bbc7e0bd0235bd82aee_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761715115/vinly/wines/69016bbc7e0bd0235bd82aee_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761715117/vinly/wines/69016bbc7e0bd0235bd82aee_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761715084/vinly/wines/69016bbc7e0bd0235bd82aee_0.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7322458881924320545",
     "influencer_source": "pepijn.wijn_tiktok",
@@ -801,19 +689,17 @@
   },
   {
     "id": "69016b857e0bd0235bd82ada",
-    "name": "Marques de Vitoria",
+    "name": "Marqués de Vitoria Rioja crianza",
     "supermarket": "Albert Heijn",
     "wine_type": "red",
     "price": null,
     "rating": "Het is wel honderd procent spannender",
     "description": "Bijna een soort geroosterd hout met bramen, echt wat meer het idee dat je wijn drinkt",
     "image_urls": [
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710922/vinly/wines/69016b857e0bd0235bd82ada_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710925/vinly/wines/69016b857e0bd0235bd82ada_1.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710922/vinly/wines/69016b857e0bd0235bd82ada_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710926/vinly/wines/69016b857e0bd0235bd82ada_2.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710928/vinly/wines/69016b857e0bd0235bd82ada_3.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710928/vinly/wines/69016b857e0bd0235bd82ada_4.jpg",
-      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710930/vinly/wines/69016b857e0bd0235bd82ada_5.jpg"
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1761710928/vinly/wines/69016b857e0bd0235bd82ada_4.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7312136826779700512",
     "influencer_source": "pepijn.wijn_tiktok",
