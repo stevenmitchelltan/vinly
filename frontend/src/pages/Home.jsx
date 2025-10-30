@@ -84,7 +84,7 @@ function Home() {
           Ontdek de beste supermarkt wijnen
         </h2>
         <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2 leading-relaxed">
-          Hou je van goede wijn, maar heb je geen geld? Sta je urenlang wispelturig voor het schap? Bij Vinly vind je de best beoordeelde flessen uit jouw supermarkt, zorgvuldig geselecteerd door Nederlandse wijnexperts.
+          Hou je van goede wijn, maar heb je geen geld? Sta je urenlang wispelturig voor het schap? Dan ben je hier aan het juiste adres!
         </p>
       </div>
 
