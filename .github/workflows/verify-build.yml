@@ -48,18 +48,31 @@ jobs:
           
           wine_count=$(jq '. | length' docs/wines.json)
           echo "✅ wines.json is valid ($wine_count wines, $size bytes)"
-      
+          
+          # Backup wines.json before builds
+          cp docs/wines.json docs/wines.json.backup
+          echo "✅ Backed up wines.json before builds"
+
       - name: Build with local base path
         working-directory: ./frontend
         run: |
           echo "Building for local (base: /)"
           npm run build
-      
+
       - name: Build with GitHub Pages base path
         working-directory: ./frontend
         run: |
           echo "Building for GitHub Pages (base: /vinly/)"
           npm run build:pages
+
+      - name: Restore wines.json after builds
+        run: |
+          if [ -f docs/wines.json.backup ]; then
+            mv docs/wines.json.backup docs/wines.json
+            echo "✅ Restored wines.json from backup"
+          else
+            echo "⚠️ No backup found"
+          fi
       
       - name: Verify build output
         run: |

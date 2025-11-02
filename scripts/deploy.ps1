@@ -67,7 +67,17 @@ try {
     exit 1
 }
 
-# Step 4: Build frontend for GitHub Pages
+# Step 4: Backup wines.json before building
+Write-Host ""
+Write-Host "Backing up wines.json before build..." -ForegroundColor Cyan
+if (Test-Path "docs/wines.json") {
+    Copy-Item "docs/wines.json" "docs/wines.json.backup" -Force
+    Write-Host "SUCCESS: wines.json backed up" -ForegroundColor Green
+} else {
+    Write-Host "WARNING: wines.json not found, skipping backup" -ForegroundColor Yellow
+}
+
+# Step 5: Build frontend for GitHub Pages
 Write-Host ""
 Write-Host "Building frontend for GitHub Pages..." -ForegroundColor Cyan
 Push-Location frontend
@@ -83,7 +93,17 @@ try {
     Pop-Location
 }
 
-# Step 5: Show git changes
+# Step 6: Restore wines.json after building
+Write-Host ""
+Write-Host "Restoring wines.json after build..." -ForegroundColor Cyan
+if (Test-Path "docs/wines.json.backup") {
+    Move-Item "docs/wines.json.backup" "docs/wines.json" -Force
+    Write-Host "SUCCESS: wines.json restored from backup" -ForegroundColor Green
+} else {
+    Write-Host "WARNING: No backup found, wines.json may have been overwritten" -ForegroundColor Yellow
+}
+
+# Step 7: Show git changes
 Write-Host ""
 Write-Host "Changes to deploy:" -ForegroundColor Cyan
 Write-Host "-------------------" -ForegroundColor Gray
@@ -105,7 +125,7 @@ if ($gitStatus -match "wines.json") {
     Write-Host "wines.json has been updated" -ForegroundColor Cyan
 }
 
-# Step 6: Confirm deployment
+# Step 8: Confirm deployment
 Write-Host ""
 Write-Host "Ready to deploy to GitHub Pages" -ForegroundColor Green
 Write-Host ""
@@ -117,7 +137,7 @@ if ($confirmation -ne 'y' -and $confirmation -ne 'Y') {
     exit 0
 }
 
-# Step 7: Commit and push
+# Step 9: Commit and push
 Write-Host ""
 Write-Host "Deploying..." -ForegroundColor Cyan
 
