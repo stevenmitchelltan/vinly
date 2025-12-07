@@ -1,5 +1,21 @@
 [
   {
+    "id": "6935e00cb9d7bc717ee1e669",
+    "name": "Pomerol Chateau Les Vieux Ormes",
+    "supermarket": "LIDL",
+    "wine_type": "red",
+    "price": null,
+    "rating": "Lekker klassiek",
+    "description": "Deze Pomerol uit de Bordeaux vind ik het best. Donker rood fruit. Hij is best wel clean gemaakt. Deze wijn kun je goed combineren met een vettig stuk vlees.",
+    "image_urls": [
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1765138838/pomerol_emyzej.png",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1765138437/vinly/wines/7d7e57a1c9f58ca9_2.jpg"
+    ],
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7577340180328238369",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2025-12-07T20:14:04.849000"
+  },
+  {
     "id": "690f5af87e04e829c4000d0e",
     "name": "Comte de Saint Aignan Touraine Sauvignon Blanc",
     "supermarket": "Plus",
