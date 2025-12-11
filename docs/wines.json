@@ -1,5 +1,21 @@
 [
   {
+    "id": "693aeb43d1eb6cca7061e5f3",
+    "name": "Chateau Camplong",
+    "supermarket": "Albert Heijn",
+    "wine_type": "red",
+    "price": null,
+    "rating": "Een uitstekende supermarkt wijn",
+    "description": "Volle bak fruit in je mond, met kruidigheid en goed geïntegreerde tannines, voor 6 euro.",
+    "image_urls": [
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1765469174/chateau_camplong_eyyv9z.png",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1765468989/vinly/wines/cdbf71bc339caf46_0.jpg"
+    ],
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7582135614661872928",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2025-12-11T16:03:15.687000"
+  },
+  {
     "id": "6935e00cb9d7bc717ee1e669",
     "name": "Pomerol Chateau Les Vieux Ormes",
     "supermarket": "LIDL",
