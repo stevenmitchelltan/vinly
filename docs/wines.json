@@ -1,5 +1,22 @@
 [
   {
+    "id": "6942eb834ffed09443ba7d19",
+    "name": "TerraPura Carménère",
+    "supermarket": "Jumbo",
+    "wine_type": "red",
+    "price": null,
+    "rating": "Een goede stevige rode wijn",
+    "description": "Gewoon genoeg fruitconcentratie, maar het wordt niet slobberig. Dit is echt nog wat groenigs en heeft ook nog wat peperigs. Hij blijft gewoon een paar seconden in je mond hangen.",
+    "image_urls": [
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1765993344/vinly/wines/17dfb89624010e0f_3.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1765993343/vinly/wines/17dfb89624010e0f_2.jpg",
+      "https://res.cloudinary.com/duimalhdk/image/upload/v1765993347/vinly/wines/17dfb89624010e0f_5.jpg"
+    ],
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7584857309122186528",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2025-12-17T17:42:27.625000"
+  },
+  {
     "id": "693aeb43d1eb6cca7061e5f3",
     "name": "Chateau Camplong",
     "supermarket": "Albert Heijn",
