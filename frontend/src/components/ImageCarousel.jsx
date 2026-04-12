@@ -3,7 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { getImageUrl, isCloudinary, buildCloudinarySrcSet } from '../utils/image';
 import { getWineTypeEmoji } from '../utils/wine';
 
-function ImageCarousel({ images = [], wineName = '', wineType = '', overlay = false, hideIndicators = false }) {
+function ImageCarousel({ images = [], wineName = '', wineType = '', overlay = false, hideIndicators = false, counterPill = false }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, dragFree: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [errorIndices, setErrorIndices] = useState(new Set());
@@ -115,6 +115,13 @@ function ImageCarousel({ images = [], wineName = '', wineType = '', overlay = fa
               }`}
             />
           ))}
+        </div>
+      )}
+
+      {/* Counter pill (e.g. "1 / 3") */}
+      {hasMultiple && counterPill && (
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white/90 text-xs font-medium tabular-nums">
+          {selectedIndex + 1} / {images.length}
         </div>
       )}
 

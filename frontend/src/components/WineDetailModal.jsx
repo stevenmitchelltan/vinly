@@ -104,7 +104,7 @@ function WineDetailModal({ wine, onClose }) {
       <div className="md:hidden absolute inset-0 bg-black">
         {/* Full-screen image */}
         <div className="absolute inset-0">
-          <ImageCarousel images={images} wineName={wine.name} wineType={wine.wine_type} overlay />
+          <ImageCarousel images={images} wineName={wine.name} wineType={wine.wine_type} overlay counterPill hideIndicators />
         </div>
 
         {/* Close button on image */}
