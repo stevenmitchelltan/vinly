@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 
 const Admin = lazy(() => import('./pages/Admin'))
+const Analytics = lazy(() => import('./pages/Analytics'))
 
 const IS_STATIC = import.meta.env.VITE_USE_STATIC_DATA === 'true';
 
@@ -20,6 +21,7 @@ function App() {
         }>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/analytics" element={<Analytics />} />
             <Route
               path="/admin"
               element={IS_STATIC ? <Navigate to="/" replace /> : <Admin />}
