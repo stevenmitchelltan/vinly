@@ -97,6 +97,16 @@ function SectionCard({ title, delay, children }) {
   );
 }
 
+// --- Helpers ---
+
+function parseStats(stats, limit = 6) {
+  return stats
+    .filter(s => s.count > 0)
+    .map(s => ({ label: s.name || 'Onbekend', value: s.count }))
+    .sort((a, b) => b.value - a.value)
+    .slice(0, limit);
+}
+
 // --- GoatCounter API helpers ---
 
 async function gcFetch(endpoint, params = {}) {
@@ -131,6 +141,9 @@ function Analytics() {
   const [gcDaily, setGcDaily] = useState([]);
   const [gcPages, setGcPages] = useState([]);
   const [gcBrowsers, setGcBrowsers] = useState([]);
+  const [gcSystems, setGcSystems] = useState([]);
+  const [gcLocations, setGcLocations] = useState([]);
+  const [gcSizes, setGcSizes] = useState([]);
   const [gcReferrers, setGcReferrers] = useState([]);
   const [gcAvailable, setGcAvailable] = useState(true);
 
@@ -154,10 +167,14 @@ function Analytics() {
     try {
       const { start, end } = getDateRange(30);
 
-      const [totalData, hitsData, browserData] = await Promise.all([
+      const [totalData, hitsData, browserData, systemData, locationData, sizeData, refData] = await Promise.all([
         gcFetch('stats/total', { start, end }),
         gcFetch('stats/hits', { start, end, limit: 10 }),
         gcFetch('stats/browsers', { start, end }),
+        gcFetch('stats/systems', { start, end }),
+        gcFetch('stats/locations', { start, end }),
+        gcFetch('stats/sizes', { start, end }),
+        gcFetch('stats/toprefs', { start, end }),
       ]);
 
       if (!totalData) {
@@ -165,11 +182,10 @@ function Analytics() {
         return;
       }
 
-      // Total — response has { total, total_events, total_utc, stats }
+      // Total
       setGcTotal(totalData);
 
       // Daily visitors — aggregate all paths into per-day totals
-      // Each hit has .stats array with { day, daily, hourly[], monthly, weekly }
       if (hitsData?.hits) {
         const dailyMap = {};
         hitsData.hits.forEach(path => {
@@ -187,7 +203,7 @@ function Analytics() {
           }));
         setGcDaily(dailyArr);
 
-        // Top pages — each hit has { path, title, count }
+        // Top pages
         const pages = hitsData.hits
           .map(h => ({
             label: h.path === '/' || h.path === '/vinly/' ? 'Home' : (h.title || h.path.replace('/vinly/', '/')),
@@ -198,13 +214,39 @@ function Analytics() {
         setGcPages(pages);
       }
 
-      // Browsers — response has { stats: [{ name, count, id }] }
+      // Browsers
       if (browserData?.stats) {
-        const browsers = browserData.stats
-          .map(b => ({ label: b.name || 'Onbekend', value: b.count }))
+        setGcBrowsers(parseStats(browserData.stats));
+      }
+
+      // Operating systems
+      if (systemData?.stats) {
+        setGcSystems(parseStats(systemData.stats));
+      }
+
+      // Locations (countries)
+      if (locationData?.stats) {
+        setGcLocations(parseStats(locationData.stats));
+      }
+
+      // Screen sizes — uses id as label since name is empty
+      if (sizeData?.stats) {
+        const SIZE_LABELS = { phone: 'Telefoon', tablet: 'Tablet', desktop: 'Desktop', desktophd: 'Desktop HD', unknown: 'Onbekend' };
+        const sizes = sizeData.stats
+          .filter(s => s.count > 0)
+          .map(s => ({ label: SIZE_LABELS[s.id] || s.id, value: s.count }))
+          .sort((a, b) => b.value - a.value);
+        setGcSizes(sizes);
+      }
+
+      // Top referrers
+      if (refData?.stats) {
+        const refs = refData.stats
+          .filter(r => r.count > 0)
+          .map(r => ({ label: r.name || 'Direct / onbekend', value: r.count }))
           .sort((a, b) => b.value - a.value)
-          .slice(0, 6);
-        setGcBrowsers(browsers);
+          .slice(0, 8);
+        setGcReferrers(refs);
       }
 
     } catch (e) {
@@ -334,6 +376,32 @@ function Analytics() {
           {gcBrowsers.length > 0 && (
             <SectionCard title="Browsers" delay={360}>
               <BarChart items={gcBrowsers} maxValue={Math.max(...gcBrowsers.map(i => i.value))} />
+            </SectionCard>
+          )}
+        </div>
+      )}
+
+      {/* OS, Locations, Sizes, Referrers */}
+      {(gcSystems.length > 0 || gcLocations.length > 0 || gcSizes.length > 0 || gcReferrers.length > 0) && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+          {gcSystems.length > 0 && (
+            <SectionCard title="Besturingssystemen" delay={380}>
+              <BarChart items={gcSystems} maxValue={Math.max(...gcSystems.map(i => i.value))} />
+            </SectionCard>
+          )}
+          {gcLocations.length > 0 && (
+            <SectionCard title="Landen" delay={400}>
+              <BarChart items={gcLocations} maxValue={Math.max(...gcLocations.map(i => i.value))} />
+            </SectionCard>
+          )}
+          {gcSizes.length > 0 && (
+            <SectionCard title="Schermgrootte" delay={420}>
+              <BarChart items={gcSizes} maxValue={Math.max(...gcSizes.map(i => i.value))} />
+            </SectionCard>
+          )}
+          {gcReferrers.length > 0 && (
+            <SectionCard title="Verwijzingen" delay={440}>
+              <BarChart items={gcReferrers} maxValue={Math.max(...gcReferrers.map(i => i.value))} />
             </SectionCard>
           )}
         </div>
