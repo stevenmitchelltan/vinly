@@ -18,7 +18,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="fixed top-4 right-4 z-50 p-2.5 rounded-full bg-th-surface border border-th-border shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+      className="p-2 rounded-lg hover:bg-th-elevated transition-colors"
       aria-label={dark ? 'Licht thema' : 'Donker thema'}
     >
       {dark ? (

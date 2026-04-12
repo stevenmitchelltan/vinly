@@ -1,6 +1,22 @@
 import WineCard from './WineCard';
+import { useInView } from '../hooks/useInView';
 
-function WineGrid({ wines, loading }) {
+function AnimatedCard({ children }) {
+  const [ref, isInView] = useInView({ threshold: 0.1 });
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-500 ease-out ${
+        isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function WineGrid({ wines, loading, onWineClick }) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -45,14 +61,10 @@ function WineGrid({ wines, loading }) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {wines.map((wine, index) => (
-        <div
-          key={wine.id}
-          className="animate-slide-up"
-          style={{ animationDelay: `${Math.min(index * 50, 600)}ms` }}
-        >
-          <WineCard wine={wine} />
-        </div>
+      {wines.map((wine) => (
+        <AnimatedCard key={wine.id}>
+          <WineCard wine={wine} onClick={onWineClick} />
+        </AnimatedCard>
       ))}
     </div>
   );
