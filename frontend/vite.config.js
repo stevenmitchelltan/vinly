@@ -2,11 +2,17 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default defineConfig({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/vinly/' : '/',
+  base: isProduction ? '/vinly/' : '/',
+  define: {
+    // In production builds, use static wines.json instead of localhost API
+    ...(isProduction && { 'import.meta.env.VITE_USE_STATIC_DATA': JSON.stringify('true') }),
+  },
   build: {
-    outDir: '../docs', // Build to docs folder for GitHub Pages
+    outDir: '../docs',
     emptyOutDir: false, // Don't empty docs (keep documentation and images)
   },
   server: {
