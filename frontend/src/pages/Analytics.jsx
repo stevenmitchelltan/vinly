@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { fetchWines } from '../services/api';
 
 const GOATCOUNTER_URL = 'https://stevenmitchelltan.goatcounter.com';
-// GoatCounter API token — data is public, token is read-only
 const GC_TOKEN = import.meta.env.VITE_GOATCOUNTER_TOKEN || '';
 
 const TYPE_COLORS = {
@@ -17,6 +16,16 @@ const TYPE_LABELS = {
   white: 'Wit',
   rose: 'Ros\u00e9',
   sparkling: 'Bubbels',
+};
+
+// Distinct colors for visitor stat categories
+const VISITOR_COLORS = {
+  browsers: 'bg-sky-500',
+  systems: 'bg-violet-500',
+  locations: 'bg-emerald-500',
+  sizes: 'bg-amber-500',
+  referrers: 'bg-rose-500',
+  pages: 'bg-th-accent',
 };
 
 // --- Shared components ---
@@ -34,10 +43,10 @@ function StatCard({ label, value, sub, delay = 0 }) {
   );
 }
 
-function BarChart({ items, maxValue }) {
+function BarChart({ items, maxValue, color }) {
   return (
     <div className="space-y-3">
-      {items.map(({ label, value, color }, i) => (
+      {items.map(({ label, value, color: itemColor }, i) => (
         <div key={label} className="animate-slide-up" style={{ animationDelay: `${300 + i * 60}ms` }}>
           <div className="flex items-center justify-between mb-1">
             <span className="text-sm font-medium text-th-text truncate mr-2">{label}</span>
@@ -45,7 +54,7 @@ function BarChart({ items, maxValue }) {
           </div>
           <div className="h-2.5 bg-th-elevated rounded-full overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-700 ease-out ${color || 'bg-th-accent'}`}
+              className={`h-full rounded-full transition-all duration-700 ease-out ${itemColor || color || 'bg-th-accent'}`}
               style={{ width: `${Math.max((value / maxValue) * 100, 4)}%` }}
             />
           </div>
@@ -97,6 +106,23 @@ function SectionCard({ title, delay, children }) {
   );
 }
 
+function LoadingSkeleton() {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+      {[0, 1, 2, 3].map(i => (
+        <div key={i} className="bg-th-surface border border-th-border rounded-2xl p-5 sm:p-6 animate-pulse">
+          <div className="h-5 w-24 bg-th-elevated rounded mb-4" />
+          <div className="space-y-3">
+            <div className="h-2.5 bg-th-elevated rounded-full w-full" />
+            <div className="h-2.5 bg-th-elevated rounded-full w-3/4" />
+            <div className="h-2.5 bg-th-elevated rounded-full w-1/2" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // --- Helpers ---
 
 function parseStats(stats, limit = 6) {
@@ -124,7 +150,6 @@ async function gcFetch(endpoint, params = {}) {
       if (!res.ok) throw new Error(`GoatCounter API ${res.status}`);
       return res.json();
     } catch (e) {
-      // Preflight 429 surfaces as TypeError — retry
       if (attempt === 3) throw e;
     }
   }
@@ -157,6 +182,7 @@ function Analytics() {
   const [gcSizes, setGcSizes] = useState([]);
   const [gcReferrers, setGcReferrers] = useState([]);
   const [gcAvailable, setGcAvailable] = useState(true);
+  const [gcLoading, setGcLoading] = useState(true);
 
   useEffect(() => {
     loadWines();
@@ -177,101 +203,92 @@ function Analytics() {
   const loadGoatCounter = async () => {
     try {
       const { start, end } = getDateRange(30);
-
-      // GoatCounter rate limit: 4 req/s, but each call needs a preflight
-      // so space calls ~500ms apart to avoid 429s
       const wait = () => new Promise(r => setTimeout(r, 500));
 
+      // 1. Total
       const totalData = await gcFetch('stats/total', { start, end });
-      if (!totalData) { setGcAvailable(false); return; }
-
-      await wait();
-      const hitsData = await gcFetch('stats/hits', { start, end, limit: 10 });
-      await wait();
-      const browserData = await gcFetch('stats/browsers', { start, end });
-      await wait();
-      const systemData = await gcFetch('stats/systems', { start, end });
-      await wait();
-      const locationData = await gcFetch('stats/locations', { start, end });
-      await wait();
-      const sizeData = await gcFetch('stats/sizes', { start, end });
-      await wait();
-      const refData = await gcFetch('stats/toprefs', { start, end });
-
-      // Total
+      if (!totalData) { setGcAvailable(false); setGcLoading(false); return; }
       setGcTotal(totalData);
 
-      // Daily visitors — aggregate all paths into per-day totals
+      // 2. Hits (daily + pages)
+      await wait();
+      const hitsData = await gcFetch('stats/hits', { start, end, limit: 10 });
       if (hitsData?.hits) {
         const dailyMap = {};
         hitsData.hits.forEach(path => {
           (path.stats || []).forEach(stat => {
-            const day = stat.day;
-            dailyMap[day] = (dailyMap[day] || 0) + (stat.daily || 0);
+            dailyMap[stat.day] = (dailyMap[stat.day] || 0) + (stat.daily || 0);
           });
         });
-        const dailyArr = Object.entries(dailyMap)
-          .sort(([a], [b]) => a.localeCompare(b))
-          .map(([day, count]) => ({
-            day,
-            count,
-            label: new Date(day).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' }),
-          }));
-        setGcDaily(dailyArr);
-
-        // Top pages
-        const pages = hitsData.hits
-          .map(h => ({
-            label: h.path === '/' || h.path === '/vinly/' ? 'Home' : (h.title || h.path.replace('/vinly/', '/')),
-            value: h.count,
-          }))
-          .sort((a, b) => b.value - a.value)
-          .slice(0, 8);
-        setGcPages(pages);
+        setGcDaily(
+          Object.entries(dailyMap)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([day, count]) => ({
+              day, count,
+              label: new Date(day).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' }),
+            }))
+        );
+        setGcPages(
+          hitsData.hits
+            .map(h => ({
+              label: h.path === '/' || h.path === '/vinly/' ? 'Home' : (h.title || h.path.replace('/vinly/', '/')),
+              value: h.count,
+            }))
+            .sort((a, b) => b.value - a.value)
+            .slice(0, 8)
+        );
       }
 
-      // Browsers
-      if (browserData?.stats) {
-        setGcBrowsers(parseStats(browserData.stats));
-      }
+      // 3. Browsers
+      await wait();
+      const browserData = await gcFetch('stats/browsers', { start, end });
+      if (browserData?.stats) setGcBrowsers(parseStats(browserData.stats));
 
-      // Operating systems
-      if (systemData?.stats) {
-        setGcSystems(parseStats(systemData.stats));
-      }
+      // 4. Systems
+      await wait();
+      const systemData = await gcFetch('stats/systems', { start, end });
+      if (systemData?.stats) setGcSystems(parseStats(systemData.stats));
 
-      // Locations (countries)
-      if (locationData?.stats) {
-        setGcLocations(parseStats(locationData.stats));
-      }
+      // 5. Locations
+      await wait();
+      const locationData = await gcFetch('stats/locations', { start, end });
+      if (locationData?.stats) setGcLocations(parseStats(locationData.stats));
 
-      // Screen sizes — uses id as label since name is empty
+      // 6. Sizes
+      await wait();
+      const sizeData = await gcFetch('stats/sizes', { start, end });
       if (sizeData?.stats) {
         const SIZE_LABELS = { phone: 'Telefoon', tablet: 'Tablet', desktop: 'Desktop', desktophd: 'Desktop HD', unknown: 'Onbekend' };
-        const sizes = sizeData.stats
-          .filter(s => s.count > 0)
-          .map(s => ({ label: SIZE_LABELS[s.id] || s.id, value: s.count }))
-          .sort((a, b) => b.value - a.value);
-        setGcSizes(sizes);
+        setGcSizes(
+          sizeData.stats
+            .filter(s => s.count > 0)
+            .map(s => ({ label: SIZE_LABELS[s.id] || s.id, value: s.count }))
+            .sort((a, b) => b.value - a.value)
+        );
       }
 
-      // Top referrers
+      // 7. Referrers
+      await wait();
+      const refData = await gcFetch('stats/toprefs', { start, end });
       if (refData?.stats) {
-        const refs = refData.stats
-          .filter(r => r.count > 0)
-          .map(r => ({ label: r.name || 'Direct / onbekend', value: r.count }))
-          .sort((a, b) => b.value - a.value)
-          .slice(0, 8);
-        setGcReferrers(refs);
+        setGcReferrers(
+          refData.stats
+            .filter(r => r.count > 0)
+            .map(r => ({ label: r.name || 'Direct / onbekend', value: r.count }))
+            .sort((a, b) => b.value - a.value)
+            .slice(0, 8)
+        );
       }
 
     } catch (e) {
       console.error('GoatCounter API error:', e);
       setGcAvailable(false);
+    } finally {
+      setGcLoading(false);
     }
   };
 
-  // Wine stats (unchanged)
+  // Wine stats
   const stats = useMemo(() => {
     if (!wines.length) return null;
 
@@ -337,8 +354,21 @@ function Analytics() {
     );
   }
 
-  // GoatCounter stats/total returns { total, total_events, total_utc }
-  const totalViews = gcTotal?.total ?? null;
+  // Use total from API, but fall back to browser count sum if total is 0
+  const categorySum = gcBrowsers.reduce((sum, b) => sum + b.value, 0);
+  const totalViews = gcTotal != null
+    ? ((gcTotal.total || 0) > 0 ? gcTotal.total : categorySum) || null
+    : null;
+
+  // All visitor chart sections to render in one grid
+  const visitorSections = [
+    gcPages.length > 0 && { title: "Populaire pagina's", items: gcPages, color: VISITOR_COLORS.pages },
+    gcBrowsers.length > 0 && { title: 'Browsers', items: gcBrowsers, color: VISITOR_COLORS.browsers },
+    gcSystems.length > 0 && { title: 'Besturingssystemen', items: gcSystems, color: VISITOR_COLORS.systems },
+    gcLocations.length > 0 && { title: 'Landen', items: gcLocations, color: VISITOR_COLORS.locations },
+    gcSizes.length > 0 && { title: 'Schermgrootte', items: gcSizes, color: VISITOR_COLORS.sizes },
+    gcReferrers.length > 0 && { title: 'Verwijzingen', items: gcReferrers, color: VISITOR_COLORS.referrers },
+  ].filter(Boolean);
 
   return (
     <div className="container mx-auto px-4 sm:px-6 pb-12">
@@ -362,7 +392,7 @@ function Analytics() {
         />
         <StatCard
           label="Bezoekers"
-          value={totalViews != null ? totalViews.toLocaleString('nl-NL') : '-'}
+          value={gcLoading ? '...' : (totalViews != null ? totalViews.toLocaleString('nl-NL') : '-')}
           sub="laatste 30 dagen"
           delay={200}
         />
@@ -374,6 +404,11 @@ function Analytics() {
         />
       </div>
 
+      {/* --- Bezoekers section --- */}
+      <h2 className="text-xl font-bold text-th-text mb-4 mt-2 animate-slide-up" style={{ animationDelay: '270ms' }}>
+        Bezoekers
+      </h2>
+
       {/* Daily visitors chart */}
       {gcDaily.length > 0 && (
         <SectionCard title="Bezoekers per dag (laatste 30 dagen)" delay={280}>
@@ -381,50 +416,33 @@ function Analytics() {
         </SectionCard>
       )}
 
-      {/* Visitor stats row */}
-      {(gcPages.length > 0 || gcBrowsers.length > 0) && (
+      {/* Loading skeleton while fetching */}
+      {gcLoading && <LoadingSkeleton />}
+
+      {/* Visitor stats — single unified grid */}
+      {visitorSections.length > 0 && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          {gcPages.length > 0 && (
-            <SectionCard title="Populaire pagina's" delay={320}>
-              <BarChart items={gcPages} maxValue={Math.max(...gcPages.map(i => i.value))} />
+          {visitorSections.map((section, i) => (
+            <SectionCard key={section.title} title={section.title} delay={300 + i * 40}>
+              <BarChart
+                items={section.items}
+                maxValue={Math.max(...section.items.map(item => item.value))}
+                color={section.color}
+              />
             </SectionCard>
-          )}
-          {gcBrowsers.length > 0 && (
-            <SectionCard title="Browsers" delay={360}>
-              <BarChart items={gcBrowsers} maxValue={Math.max(...gcBrowsers.map(i => i.value))} />
-            </SectionCard>
-          )}
+          ))}
         </div>
       )}
 
-      {/* OS, Locations, Sizes, Referrers */}
-      {(gcSystems.length > 0 || gcLocations.length > 0 || gcSizes.length > 0 || gcReferrers.length > 0) && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          {gcSystems.length > 0 && (
-            <SectionCard title="Besturingssystemen" delay={380}>
-              <BarChart items={gcSystems} maxValue={Math.max(...gcSystems.map(i => i.value))} />
-            </SectionCard>
-          )}
-          {gcLocations.length > 0 && (
-            <SectionCard title="Landen" delay={400}>
-              <BarChart items={gcLocations} maxValue={Math.max(...gcLocations.map(i => i.value))} />
-            </SectionCard>
-          )}
-          {gcSizes.length > 0 && (
-            <SectionCard title="Schermgrootte" delay={420}>
-              <BarChart items={gcSizes} maxValue={Math.max(...gcSizes.map(i => i.value))} />
-            </SectionCard>
-          )}
-          {gcReferrers.length > 0 && (
-            <SectionCard title="Verwijzingen" delay={440}>
-              <BarChart items={gcReferrers} maxValue={Math.max(...gcReferrers.map(i => i.value))} />
-            </SectionCard>
-          )}
+      {/* No visitor data message */}
+      {!gcLoading && !gcAvailable && (
+        <div className="bg-th-surface border border-th-border rounded-2xl p-5 sm:p-6 mt-6 animate-slide-up">
+          <p className="text-sm text-th-text-dim">Bezoekersdata is momenteel niet beschikbaar.</p>
         </div>
       )}
 
       {/* GoatCounter dashboard link */}
-      {gcAvailable && (
+      {gcAvailable && !gcLoading && (
         <a
           href={GOATCOUNTER_URL}
           target="_blank"
@@ -436,7 +454,7 @@ function Analytics() {
             <div>
               <h2 className="text-base font-bold text-th-text mb-0.5">Volledig dashboard</h2>
               <p className="text-sm text-th-text-sub">
-                Meer details op GoatCounter: apparaten, landen, talen en meer
+                Gedetailleerde statistieken en trends op GoatCounter
               </p>
             </div>
             <svg className="w-5 h-5 text-th-text-dim group-hover:text-th-accent transition-colors flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -446,7 +464,7 @@ function Analytics() {
         </a>
       )}
 
-      {/* Wine collection charts */}
+      {/* --- Wijn collectie section --- */}
       <h2 className="text-xl font-bold text-th-text mb-4 mt-4 animate-slide-up" style={{ animationDelay: '430ms' }}>
         Wijn collectie
       </h2>
