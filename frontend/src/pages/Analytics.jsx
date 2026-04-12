@@ -178,15 +178,24 @@ function Analytics() {
     try {
       const { start, end } = getDateRange(30);
 
-      // GoatCounter rate limit is strict — fetch sequentially
+      // GoatCounter rate limit: 4 req/s, but each call needs a preflight
+      // so space calls ~500ms apart to avoid 429s
+      const wait = () => new Promise(r => setTimeout(r, 500));
+
       const totalData = await gcFetch('stats/total', { start, end });
       if (!totalData) { setGcAvailable(false); return; }
 
+      await wait();
       const hitsData = await gcFetch('stats/hits', { start, end, limit: 10 });
+      await wait();
       const browserData = await gcFetch('stats/browsers', { start, end });
+      await wait();
       const systemData = await gcFetch('stats/systems', { start, end });
+      await wait();
       const locationData = await gcFetch('stats/locations', { start, end });
+      await wait();
       const sizeData = await gcFetch('stats/sizes', { start, end });
+      await wait();
       const refData = await gcFetch('stats/toprefs', { start, end });
 
       // Total
