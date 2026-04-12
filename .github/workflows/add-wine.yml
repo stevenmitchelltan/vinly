@@ -1,0 +1,47 @@
+name: Add Wine from TikTok
+
+on:
+  workflow_dispatch:
+    inputs:
+      tiktok_url:
+        description: 'TikTok video URL'
+        required: true
+        type: string
+
+jobs:
+  add-wine:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        working-directory: backend
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        working-directory: backend
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+          MONGODB_URI: "mongodb://localhost:27017/unused"
+        run: python scripts/ci_add_wine.py "${{ github.event.inputs.tiktok_url }}"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/wines.json
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          WINE_COUNT=$(python -c "import json; print(len(json.load(open('docs/wines.json'))))")
+          git commit -m "Deploy: Updated wines ($WINE_COUNT total)"
+          git push
