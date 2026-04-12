@@ -101,7 +101,7 @@ function SectionCard({ title, delay, children }) {
 
 async function gcFetch(endpoint, params = {}) {
   if (!GC_TOKEN || GC_TOKEN === 'PASTE_YOUR_TOKEN_HERE') return null;
-  const url = new URL(`${GOATCOUNTER_URL}/api/v1/${endpoint}`);
+  const url = new URL(`${GOATCOUNTER_URL}/api/v0/${endpoint}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
   const res = await fetch(url, {
     headers: { Authorization: `Bearer ${GC_TOKEN}` },
@@ -156,8 +156,8 @@ function Analytics() {
 
       const [totalData, hitsData, browserData] = await Promise.all([
         gcFetch('stats/total', { start, end }),
-        gcFetch('stats/hits', { start, end, daily: true, limit: 10 }),
-        gcFetch('stats/browsers', { start, end, limit: 8 }),
+        gcFetch('stats/hits', { start, end, limit: 10 }),
+        gcFetch('stats/browsers', { start, end }),
       ]);
 
       if (!totalData) {
@@ -165,16 +165,17 @@ function Analytics() {
         return;
       }
 
-      // Total
+      // Total — response has { total, total_events, total_utc, stats }
       setGcTotal(totalData);
 
       // Daily visitors — aggregate all paths into per-day totals
+      // Each hit has .stats array with { day, daily, hourly[], monthly, weekly }
       if (hitsData?.hits) {
         const dailyMap = {};
         hitsData.hits.forEach(path => {
           (path.stats || []).forEach(stat => {
             const day = stat.day;
-            dailyMap[day] = (dailyMap[day] || 0) + stat.daily_unique;
+            dailyMap[day] = (dailyMap[day] || 0) + (stat.daily || 0);
           });
         });
         const dailyArr = Object.entries(dailyMap)
@@ -186,10 +187,10 @@ function Analytics() {
           }));
         setGcDaily(dailyArr);
 
-        // Top pages
+        // Top pages — each hit has { path, title, count }
         const pages = hitsData.hits
           .map(h => ({
-            label: h.path === '/' || h.path === '/vinly/' ? 'Home' : h.path.replace('/vinly/', '/'),
+            label: h.path === '/' || h.path === '/vinly/' ? 'Home' : (h.title || h.path.replace('/vinly/', '/')),
             value: h.count,
           }))
           .sort((a, b) => b.value - a.value)
@@ -197,21 +198,14 @@ function Analytics() {
         setGcPages(pages);
       }
 
-      // Browsers
-      if (browserData?.browsers) {
-        const browsers = browserData.browsers
-          .map(b => ({ label: b.name || b.browser || 'Onbekend', value: b.count }))
+      // Browsers — response has { stats: [{ name, count, id }] }
+      if (browserData?.stats) {
+        const browsers = browserData.stats
+          .map(b => ({ label: b.name || 'Onbekend', value: b.count }))
           .sort((a, b) => b.value - a.value)
           .slice(0, 6);
         setGcBrowsers(browsers);
       }
-
-      // Try referrers (separate call, non-critical)
-      try {
-        const refData = await gcFetch('stats/hits', { start, end, limit: 8, filter: '' });
-        // GoatCounter doesn't have a dedicated referrer endpoint in all versions,
-        // so referrers might come from a different source. Skip gracefully.
-      } catch { /* ignore */ }
 
     } catch (e) {
       console.error('GoatCounter API error:', e);
@@ -285,8 +279,8 @@ function Analytics() {
     );
   }
 
-  const totalViews = gcTotal?.total ?? gcTotal?.count ?? null;
-  const totalUnique = gcTotal?.total_unique ?? gcTotal?.count_unique ?? null;
+  // GoatCounter stats/total returns { total, total_events, total_utc }
+  const totalViews = gcTotal?.total ?? null;
 
   return (
     <div className="container mx-auto px-4 sm:px-6 pb-12">
@@ -310,8 +304,8 @@ function Analytics() {
         />
         <StatCard
           label="Bezoekers"
-          value={totalUnique != null ? totalUnique.toLocaleString('nl-NL') : '-'}
-          sub={totalViews != null ? `${totalViews.toLocaleString('nl-NL')} weergaven` : null}
+          value={totalViews != null ? totalViews.toLocaleString('nl-NL') : '-'}
+          sub="laatste 30 dagen"
           delay={200}
         />
         <StatCard
