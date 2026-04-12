@@ -167,24 +167,16 @@ function Analytics() {
     try {
       const { start, end } = getDateRange(30);
 
-      // GoatCounter rate limit is 4 req/s — split into two batches
-      const [totalData, hitsData, browserData, systemData] = await Promise.all([
-        gcFetch('stats/total', { start, end }),
-        gcFetch('stats/hits', { start, end, limit: 10 }),
-        gcFetch('stats/browsers', { start, end }),
-        gcFetch('stats/systems', { start, end }),
-      ]);
+      // GoatCounter rate limit is strict — fetch sequentially
+      const totalData = await gcFetch('stats/total', { start, end });
+      if (!totalData) { setGcAvailable(false); return; }
 
-      if (!totalData) {
-        setGcAvailable(false);
-        return;
-      }
-
-      const [locationData, sizeData, refData] = await Promise.all([
-        gcFetch('stats/locations', { start, end }),
-        gcFetch('stats/sizes', { start, end }),
-        gcFetch('stats/toprefs', { start, end }),
-      ]);
+      const hitsData = await gcFetch('stats/hits', { start, end, limit: 10 });
+      const browserData = await gcFetch('stats/browsers', { start, end });
+      const systemData = await gcFetch('stats/systems', { start, end });
+      const locationData = await gcFetch('stats/locations', { start, end });
+      const sizeData = await gcFetch('stats/sizes', { start, end });
+      const refData = await gcFetch('stats/toprefs', { start, end });
 
       // Total
       setGcTotal(totalData);
