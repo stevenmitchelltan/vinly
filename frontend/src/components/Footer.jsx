@@ -10,12 +10,9 @@ function Footer() {
             Wijn aanbevelingen van Nederlandse influencers. Data verzameld van TikTok wijn influencers.
             Deze app is niet officieel geaffilieerd met supermarkten.
           </p>
-          <p className="text-xs text-th-text-dim bg-th-elevated/60 border border-th-border-sub rounded-lg py-2 px-4 inline-block">
-            ⚠️ Wijn aanbevelingen zijn gebaseerd op influencer meningen. Drink verantwoord.
-          </p>
           <div className="pt-6 border-t border-th-border">
             <p className="text-xs text-th-text-dim font-medium">
-              © 2025 Vinly
+              © 2026 Vinly
             </p>
           </div>
         </div>

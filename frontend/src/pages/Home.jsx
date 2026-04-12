@@ -43,7 +43,7 @@ function Home() {
 
   useEffect(() => {
     loadWines();
-  }, [selectedSupermarket, selectedType]);
+  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedQuery(searchQuery), 250);
@@ -54,7 +54,7 @@ function Home() {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchWines(selectedSupermarket, selectedType);
+      const data = await fetchWines();
       setWines(data);
     } catch (error) {
       console.error('Failed to load wines:', error);
@@ -83,6 +83,12 @@ function Home() {
 
   const displayedWines = useMemo(() => {
     let list = wines;
+    if (selectedSupermarket) {
+      list = list.filter((w) => w.supermarket === selectedSupermarket);
+    }
+    if (selectedType) {
+      list = list.filter((w) => w.wine_type === selectedType);
+    }
     if (showFavorites) {
       list = list.filter((w) => favorites.includes(w.id));
     }
@@ -107,7 +113,7 @@ function Home() {
         sorted.sort((a, b) => new Date(b.date_found) - new Date(a.date_found));
     }
     return sorted;
-  }, [wines, debouncedQuery, sortBy, showFavorites, favorites]);
+  }, [wines, selectedSupermarket, selectedType, debouncedQuery, sortBy, showFavorites, favorites]);
 
   // Count active filters
   const activeFilterCount = [selectedSupermarket, selectedType, searchQuery].filter(Boolean).length;
@@ -130,7 +136,49 @@ function Home() {
         </p>
       </div>
 
-      {/* Mobile filter toggle */}
+      {/* Desktop: compact horizontal filter bar */}
+      <div className="hidden md:block sticky top-[57px] z-30 bg-th-bg/80 backdrop-blur-md py-3 mb-6 animate-slide-up" style={{ animationDelay: '250ms' }}>
+        <div className="flex items-center gap-3">
+          <select
+            value={selectedSupermarket || ''}
+            onChange={(e) => setSelectedSupermarket(e.target.value || null)}
+            className="text-sm bg-th-elevated/60 border border-th-border-sub rounded-lg px-3 py-2 text-th-text-sub focus:outline-none focus:ring-2 focus:ring-th-accent/30 min-w-[150px]"
+          >
+            <option value="">Alle supermarkten</option>
+            {supermarkets.map((s) => (
+              <option key={s.value} value={s.value}>{s.name}</option>
+            ))}
+          </select>
+          <select
+            value={selectedType || ''}
+            onChange={(e) => setSelectedType(e.target.value || null)}
+            className="text-sm bg-th-elevated/60 border border-th-border-sub rounded-lg px-3 py-2 text-th-text-sub focus:outline-none focus:ring-2 focus:ring-th-accent/30 min-w-[130px]"
+          >
+            <option value="">Alle types</option>
+            <option value="red">Rood</option>
+            <option value="white">Wit</option>
+            <option value="rose">Rosé</option>
+            <option value="sparkling">Bubbels</option>
+          </select>
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Zoeken..."
+            className="flex-1 text-sm bg-th-elevated/60 border border-th-border-sub rounded-lg px-3 py-2 text-th-text placeholder:text-th-text-dim focus:outline-none focus:ring-2 focus:ring-th-accent/30"
+          />
+          {activeFilterCount > 0 && (
+            <button
+              onClick={() => { setSelectedSupermarket(null); setSelectedType(null); setSearchQuery(''); }}
+              className="text-xs text-th-text-dim hover:text-th-text transition-colors whitespace-nowrap"
+            >
+              Reset
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile: collapsible filter drawer */}
       <div className="md:hidden mb-4">
         <button
           onClick={() => setFiltersOpen(!filtersOpen)}
@@ -152,7 +200,7 @@ function Home() {
           </svg>
         </button>
 
-        {/* Active filter chips (shown when filters collapsed) */}
+        {/* Active filter chips (shown when collapsed) */}
         {!filtersOpen && activeFilterCount > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-2">
             {selectedSupermarket && (
@@ -175,40 +223,35 @@ function Home() {
             )}
           </div>
         )}
-      </div>
 
-      {/* Filters - sticky on desktop, collapsible on mobile */}
-      <div className={`md:sticky md:top-[57px] md:z-30 bg-th-surface/50 backdrop-blur-sm rounded-2xl border border-th-border/80 p-5 sm:p-8 mb-6 space-y-6 animate-slide-up ${
-        filtersOpen ? 'block' : 'hidden md:block'
-      }`} style={{ animationDelay: '250ms' }}>
-        <SupermarketSelector
-          supermarkets={supermarkets}
-          selectedSupermarket={selectedSupermarket}
-          onSupermarketChange={setSelectedSupermarket}
-        />
-
-        <div className="border-t border-th-border" />
-
-        <WineTypeFilter
-          selectedType={selectedType}
-          onTypeChange={setSelectedType}
-        />
-
-        <div className="border-t border-th-border" />
-
-        {/* Search */}
-        <div>
-          <label className="block text-xs font-semibold uppercase tracking-widest text-th-text-dim mb-3">
-            Zoeken
-          </label>
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Zoek op naam, omschrijving of supermarkt..."
-            className="w-full rounded-xl bg-th-elevated/60 border border-th-border-sub px-5 py-3.5 text-th-text placeholder:text-th-text-dim focus:outline-none focus:ring-2 focus:ring-th-accent/30 focus:border-th-border-sub transition-all"
-          />
-        </div>
+        {/* Expanded mobile filters */}
+        {filtersOpen && (
+          <div className="mt-3 bg-th-surface/50 backdrop-blur-sm rounded-2xl border border-th-border/80 p-5 space-y-6">
+            <SupermarketSelector
+              supermarkets={supermarkets}
+              selectedSupermarket={selectedSupermarket}
+              onSupermarketChange={setSelectedSupermarket}
+            />
+            <div className="border-t border-th-border" />
+            <WineTypeFilter
+              selectedType={selectedType}
+              onTypeChange={setSelectedType}
+            />
+            <div className="border-t border-th-border" />
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-widest text-th-text-dim mb-3">
+                Zoeken
+              </label>
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Zoek op naam, omschrijving of supermarkt..."
+                className="w-full rounded-xl bg-th-elevated/60 border border-th-border-sub px-5 py-3.5 text-th-text placeholder:text-th-text-dim focus:outline-none focus:ring-2 focus:ring-th-accent/30 focus:border-th-border-sub transition-all"
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Results bar: count + favorites toggle + sort */}

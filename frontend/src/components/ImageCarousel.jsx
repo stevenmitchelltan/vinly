@@ -6,6 +6,7 @@ import { getWineTypeEmoji } from '../utils/wine';
 function ImageCarousel({ images = [], wineName = '', wineType = '' }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, dragFree: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [errorIndices, setErrorIndices] = useState(new Set());
 
   const hasMultiple = images.length > 1;
 
@@ -42,7 +43,7 @@ function ImageCarousel({ images = [], wineName = '', wineType = '' }) {
 
   if (images.length === 0) {
     return (
-      <div className="bg-gradient-to-br from-stone-100 to-stone-50 rounded-xl flex items-center justify-center text-6xl" style={{ aspectRatio: '4/5' }}>
+      <div className="bg-gradient-to-br from-stone-100 to-stone-50 rounded-xl flex items-center justify-center text-6xl" style={{ aspectRatio: '3/4' }}>
         {getWineTypeEmoji(wineType)}
       </div>
     );
@@ -53,7 +54,7 @@ function ImageCarousel({ images = [], wineName = '', wineType = '' }) {
       <div
         ref={emblaRef}
         className="overflow-hidden rounded-xl bg-gradient-to-br from-stone-100 to-stone-50"
-        style={{ aspectRatio: '4/5' }}
+        style={{ aspectRatio: '3/4' }}
         tabIndex={hasMultiple ? 0 : -1}
         role={hasMultiple ? 'region' : undefined}
         aria-label={hasMultiple ? `Afbeeldingen carrousel, ${images.length} afbeeldingen` : undefined}
@@ -63,22 +64,23 @@ function ImageCarousel({ images = [], wineName = '', wineType = '' }) {
             const url = getImageUrl(img);
             return (
               <div key={idx} className="flex-[0_0_100%] min-w-0 h-full flex items-center justify-center">
-                <img
-                  src={url}
-                  alt={`${wineName} - afbeelding ${idx + 1}`}
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  width={800}
-                  height={1000}
-                  srcSet={isCloudinary(url) ? buildCloudinarySrcSet(url) : undefined}
-                  sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                  className="w-full h-full object-cover pointer-events-none"
-                  draggable="false"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://via.placeholder.com/300x400?text=Wine+Bottle';
-                  }}
-                />
+                {errorIndices.has(idx) ? (
+                  <span className="text-6xl">{getWineTypeEmoji(wineType)}</span>
+                ) : (
+                  <img
+                    src={url}
+                    alt={`${wineName} - afbeelding ${idx + 1}`}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    width={800}
+                    height={1000}
+                    srcSet={isCloudinary(url) ? buildCloudinarySrcSet(url) : undefined}
+                    sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                    className="w-full h-full object-cover pointer-events-none"
+                    draggable="false"
+                    onError={() => setErrorIndices(prev => new Set(prev).add(idx))}
+                  />
+                )}
               </div>
             );
           })}

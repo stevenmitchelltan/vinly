@@ -1,17 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import { useFavorites } from '../context/FavoritesContext';
 
 function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
   const { count } = useFavorites();
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [location.pathname]);
 
   return (
     <nav className="sticky top-0 z-40 bg-th-bg/80 backdrop-blur-md border-b border-th-border">
@@ -20,31 +12,6 @@ function Navbar() {
         <Link to="/" className="font-fraunces text-xl font-bold text-th-accent hover:opacity-80 transition-opacity">
           Vinly
         </Link>
-
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-6">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `text-sm font-medium transition-colors ${
-                isActive ? 'text-th-accent' : 'text-th-text-sub hover:text-th-text'
-              }`
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              `text-sm font-medium transition-colors ${
-                isActive ? 'text-th-accent' : 'text-th-text-sub hover:text-th-text'
-              }`
-            }
-          >
-            Over
-          </NavLink>
-        </div>
 
         {/* Right section */}
         <div className="flex items-center gap-1">
@@ -61,52 +28,8 @@ function Navbar() {
           )}
 
           <ThemeToggle />
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-th-elevated transition-colors"
-            aria-label={mobileOpen ? 'Menu sluiten' : 'Menu openen'}
-          >
-            <svg className="w-5 h-5 text-th-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              {mobileOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="md:hidden border-t border-th-border bg-th-bg/95 backdrop-blur-md">
-          <div className="container mx-auto px-4 py-3 space-y-1">
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                `block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isActive ? 'text-th-accent bg-th-elevated/60' : 'text-th-text-sub hover:text-th-text hover:bg-th-elevated/40'
-                }`
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isActive ? 'text-th-accent bg-th-elevated/60' : 'text-th-text-sub hover:text-th-text hover:bg-th-elevated/40'
-                }`
-              }
-            >
-              Over
-            </NavLink>
-          </div>
-        </div>
-      )}
     </nav>
   );
 }

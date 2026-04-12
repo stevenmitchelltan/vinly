@@ -22,18 +22,20 @@ function WineGrid({ wines, loading, onWineClick }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {Array.from({ length: 12 }).map((_, idx) => (
           <div key={idx} className="animate-pulse rounded-2xl overflow-hidden border border-th-border bg-th-surface">
-            <div className="bg-th-elevated" style={{ aspectRatio: '4/5' }} />
-            <div className="p-5 space-y-3">
+            <div className="bg-th-elevated" style={{ aspectRatio: '3/4' }} />
+            <div className="p-4 space-y-2.5">
               <div className="flex items-center justify-between">
                 <div className="h-6 w-28 bg-th-elevated rounded-full" />
                 <div className="h-7 w-7 bg-th-elevated rounded-full" />
               </div>
               <div className="h-6 bg-th-elevated rounded w-3/4" />
-              <div className="h-4 bg-th-elevated rounded w-full" />
-              <div className="h-4 bg-th-elevated rounded w-5/6" />
-              <div className="pt-4 border-t border-th-border space-y-2">
-                <div className="h-3 bg-th-elevated rounded w-1/2" />
+              <div className="space-y-1">
+                <div className="h-4 bg-th-elevated rounded w-full" />
+                <div className="h-4 bg-th-elevated rounded w-4/5" />
+              </div>
+              <div className="pt-3 border-t border-th-border flex items-center justify-between">
                 <div className="h-3 bg-th-elevated rounded w-1/3" />
+                <div className="h-3 bg-th-elevated rounded w-1/4" />
               </div>
             </div>
           </div>

@@ -32,7 +32,7 @@ function WineCard({ wine, onClick }) {
       </div>
 
       {/* Content */}
-      <div className="p-6 space-y-3">
+      <div className="p-4 space-y-2.5">
         {/* Supermarket badge */}
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 bg-th-elevated text-th-text-sub px-4 py-1.5 rounded-full text-sm font-medium tracking-wide">
@@ -43,43 +43,34 @@ function WineCard({ wine, onClick }) {
         </div>
 
         {/* Wine name */}
-        <h3 className="font-bold text-2xl text-th-text leading-snug min-h-[3rem] flex items-center">
+        <h3 className="font-bold text-2xl text-th-text leading-snug line-clamp-2">
           {wine.name}
         </h3>
 
-        {/* Quote */}
-        {wine.rating && (
-          <p className="text-sm font-medium text-th-text-sub italic leading-relaxed border-l-2 border-th-accent pl-3">
-            &ldquo;{wine.rating}&rdquo;
-          </p>
-        )}
-
-        {/* Description */}
-        {wine.description && (
-          <p className="text-sm text-th-text-dim line-clamp-4 leading-loose">
-            {wine.description}
-          </p>
+        {/* Quote + description merged */}
+        {(wine.rating || wine.description) && (
+          <div className="space-y-1">
+            {wine.rating && (
+              <p className="text-sm font-semibold text-th-text-sub">
+                &ldquo;{wine.rating}&rdquo;
+              </p>
+            )}
+            {wine.description && (
+              <p className="text-sm text-th-text-dim line-clamp-2 leading-relaxed">
+                {wine.description}
+              </p>
+            )}
+          </div>
         )}
 
         {/* Footer */}
-        <div className="pt-4 border-t border-th-border space-y-2">
+        <div className="pt-3 border-t border-th-border flex items-center justify-between">
           <p className="text-xs text-th-text-dim font-medium">
-            📸 van <span className="font-semibold text-th-accent">@{wine.influencer_source}</span>
+            📸 <span className="font-semibold text-th-accent">@{wine.influencer_source}</span>
           </p>
           <p className="text-xs text-th-text-dim">
             {formatDate(wine.date_found)}
           </p>
-
-          <a
-            href={(wine.post_url || '').split('#')[0]}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1 text-xs text-th-accent hover:text-th-accent-h font-semibold hover:gap-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-th-accent/50 rounded"
-          >
-            Bekijk originele post
-            <span className="text-base">&rarr;</span>
-          </a>
         </div>
       </div>
     </div>
