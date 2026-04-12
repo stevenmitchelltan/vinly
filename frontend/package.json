@@ -6,10 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:pages": "cross-env VITE_BASE_PATH=/vinly/ VITE_USE_STATIC_DATA=true vite build && node verify-build.js",
+    "build:pages": "vite build && node verify-build.js",
     "verify": "node verify-build.js",
-    "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.6.2",
@@ -20,13 +19,11 @@
     "react-router-dom": "^6.20.0"
   },
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
     "cross-env": "^10.1.0",
-    "gh-pages": "^6.1.0",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.3.6",
     "vite": "^5.0.8"

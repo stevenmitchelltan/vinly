@@ -13,7 +13,7 @@ export default defineConfig({
   },
   build: {
     outDir: '../docs',
-    emptyOutDir: false, // Don't empty docs (keep documentation and images)
+    emptyOutDir: true,
   },
   server: {
     port: 5173

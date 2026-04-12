@@ -26,7 +26,7 @@
 
 **Fix:**
 1. Go to [OpenAI API Keys](https://platform.openai.com/api-keys)
-2. **Revoke** the exposed key: `sk-proj-TQY2GVd9UHm8t_...`
+2. **Revoke** the exposed key
 3. Create a new API key
 4. Update `OPENAI_API_KEY` in `.env`
 5. Restart your backend
