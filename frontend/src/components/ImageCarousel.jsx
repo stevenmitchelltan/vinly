@@ -3,7 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { getImageUrl, isCloudinary, buildCloudinarySrcSet } from '../utils/image';
 import { getWineTypeEmoji } from '../utils/wine';
 
-function ImageCarousel({ images = [], wineName = '', wineType = '' }) {
+function ImageCarousel({ images = [], wineName = '', wineType = '', overlay = false, hideIndicators = false }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, dragFree: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [errorIndices, setErrorIndices] = useState(new Set());
@@ -42,19 +42,26 @@ function ImageCarousel({ images = [], wineName = '', wineType = '' }) {
   }, [emblaApi, hasMultiple]);
 
   if (images.length === 0) {
+    const fallbackClass = overlay
+      ? 'w-full h-full flex items-center justify-center text-6xl'
+      : 'bg-gradient-to-br from-stone-100 to-stone-50 rounded-xl flex items-center justify-center text-6xl';
     return (
-      <div className="bg-gradient-to-br from-stone-100 to-stone-50 rounded-xl flex items-center justify-center text-6xl" style={{ aspectRatio: '3/4' }}>
+      <div className={fallbackClass} style={overlay ? undefined : { aspectRatio: '3/4' }}>
         {getWineTypeEmoji(wineType)}
       </div>
     );
   }
 
+  const containerClass = overlay
+    ? 'overflow-hidden w-full h-full select-none'
+    : 'overflow-hidden rounded-xl bg-gradient-to-br from-stone-100 to-stone-50 select-none';
+
   return (
-    <div className="relative">
+    <div className="relative w-full h-full">
       <div
         ref={emblaRef}
-        className="overflow-hidden rounded-xl bg-gradient-to-br from-stone-100 to-stone-50"
-        style={{ aspectRatio: '3/4' }}
+        className={containerClass}
+        style={overlay ? undefined : { aspectRatio: '3/4' }}
         tabIndex={hasMultiple ? 0 : -1}
         role={hasMultiple ? 'region' : undefined}
         aria-label={hasMultiple ? `Afbeeldingen carrousel, ${images.length} afbeeldingen` : undefined}
@@ -88,15 +95,19 @@ function ImageCarousel({ images = [], wineName = '', wineType = '' }) {
       </div>
 
       {/* Dot indicators */}
-      {hasMultiple && (
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 px-2.5 py-1.5 rounded-full bg-white/30 backdrop-blur-sm" role="tablist" aria-label="Afbeelding navigatie">
+      {hasMultiple && !hideIndicators && (
+        <div
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 px-2.5 py-1.5 rounded-full bg-black/30 backdrop-blur-sm"
+          role="tablist"
+          aria-label="Afbeelding navigatie"
+        >
           {images.map((_, idx) => (
             <button
               key={idx}
               role="tab"
               aria-selected={idx === selectedIndex}
               aria-label={`Bekijk afbeelding ${idx + 1} van ${images.length}`}
-              onClick={() => emblaApi?.scrollTo(idx)}
+              onClick={(e) => { e.stopPropagation(); emblaApi?.scrollTo(idx); }}
               className={`rounded-full transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                 idx === selectedIndex
                   ? 'bg-white w-5 h-1.5'

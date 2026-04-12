@@ -68,11 +68,6 @@
 }
 
 @layer components {
-  .wine-card {
-    @apply bg-th-surface rounded-2xl overflow-hidden border border-th-border
-           transition-all duration-300 hover:border-th-border-sub hover:-translate-y-1 hover:shadow-xl;
-  }
-
   .filter-button {
     @apply px-4 py-2.5 rounded-full transition-all duration-200 font-medium text-sm
            min-h-[44px] min-w-[44px]

@@ -21,22 +21,17 @@ function WineGrid({ wines, loading, onWineClick }) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {Array.from({ length: 12 }).map((_, idx) => (
-          <div key={idx} className="animate-pulse rounded-2xl overflow-hidden border border-th-border bg-th-surface">
-            <div className="bg-th-elevated" style={{ aspectRatio: '3/4' }} />
-            <div className="p-4 space-y-2.5">
-              <div className="flex items-center justify-between">
-                <div className="h-6 w-28 bg-th-elevated rounded-full" />
-                <div className="h-7 w-7 bg-th-elevated rounded-full" />
-              </div>
-              <div className="h-6 bg-th-elevated rounded w-3/4" />
-              <div className="space-y-1">
-                <div className="h-4 bg-th-elevated rounded w-full" />
-                <div className="h-4 bg-th-elevated rounded w-4/5" />
-              </div>
-              <div className="pt-3 border-t border-th-border flex items-center justify-between">
-                <div className="h-3 bg-th-elevated rounded w-1/3" />
-                <div className="h-3 bg-th-elevated rounded w-1/4" />
-              </div>
+          <div key={idx} className="animate-pulse rounded-2xl overflow-hidden bg-th-elevated relative" style={{ aspectRatio: '3/4' }}>
+            {/* Simulates gradient scrim area */}
+            <div className="absolute inset-x-0 bottom-0 p-4 space-y-2">
+              <div className="h-3 bg-th-border-sub/40 rounded w-1/3" />
+              <div className="h-5 bg-th-border-sub/50 rounded w-4/5" />
+              <div className="h-4 bg-th-border-sub/30 rounded w-3/5" />
+            </div>
+            {/* Top badges */}
+            <div className="absolute top-3 left-3 right-3 flex justify-between">
+              <div className="h-6 w-24 bg-th-border-sub/40 rounded-full" />
+              <div className="h-8 w-8 bg-th-border-sub/40 rounded-full" />
             </div>
           </div>
         ))}
