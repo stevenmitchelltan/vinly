@@ -113,11 +113,22 @@ async function gcFetch(endpoint, params = {}) {
   if (!GC_TOKEN || GC_TOKEN === 'PASTE_YOUR_TOKEN_HERE') return null;
   const url = new URL(`${GOATCOUNTER_URL}/api/v0/${endpoint}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${GC_TOKEN}` },
-  });
-  if (!res.ok) throw new Error(`GoatCounter API ${res.status}`);
-  return res.json();
+
+  for (let attempt = 0; attempt < 4; attempt++) {
+    try {
+      if (attempt > 0) await new Promise(r => setTimeout(r, 1000 * attempt));
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${GC_TOKEN}` },
+      });
+      if (res.status === 429) continue;
+      if (!res.ok) throw new Error(`GoatCounter API ${res.status}`);
+      return res.json();
+    } catch (e) {
+      // Preflight 429 surfaces as TypeError — retry
+      if (attempt === 3) throw e;
+    }
+  }
+  return null;
 }
 
 function getDateRange(daysBack) {
