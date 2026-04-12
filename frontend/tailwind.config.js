@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -35,6 +36,18 @@ export default {
           400: '#e5c590',
           500: '#d4a86a',
           600: '#b8894c',
+        },
+        th: {
+          bg: 'rgb(var(--th-bg) / <alpha-value>)',
+          surface: 'rgb(var(--th-surface) / <alpha-value>)',
+          elevated: 'rgb(var(--th-elevated) / <alpha-value>)',
+          border: 'rgb(var(--th-border) / <alpha-value>)',
+          'border-sub': 'rgb(var(--th-border-sub) / <alpha-value>)',
+          text: 'rgb(var(--th-text) / <alpha-value>)',
+          'text-sub': 'rgb(var(--th-text-sub) / <alpha-value>)',
+          'text-dim': 'rgb(var(--th-text-dim) / <alpha-value>)',
+          accent: 'rgb(var(--th-accent) / <alpha-value>)',
+          'accent-h': 'rgb(var(--th-accent-h) / <alpha-value>)',
         },
       },
       backgroundImage: {

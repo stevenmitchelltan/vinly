@@ -3,8 +3,36 @@
 @tailwind utilities;
 
 @layer base {
+  /* Light theme (default) */
+  :root {
+    --th-bg: 250 247 242;
+    --th-surface: 255 255 255;
+    --th-elevated: 240 235 227;
+    --th-border: 225 218 207;
+    --th-border-sub: 205 198 187;
+    --th-text: 28 25 23;
+    --th-text-sub: 87 83 78;
+    --th-text-dim: 146 140 132;
+    --th-accent: 171 47 47;
+    --th-accent-h: 141 41 41;
+  }
+
+  /* Dark theme */
+  .dark {
+    --th-bg: 12 10 9;
+    --th-surface: 28 25 23;
+    --th-elevated: 41 37 36;
+    --th-border: 41 37 36;
+    --th-border-sub: 68 64 60;
+    --th-text: 250 247 242;
+    --th-text-sub: 221 210 194;
+    --th-text-dim: 184 166 142;
+    --th-accent: 212 168 106;
+    --th-accent-h: 229 197 144;
+  }
+
   body {
-    @apply bg-stone-950 min-h-screen font-sans text-cream-100 antialiased;
+    @apply bg-th-bg min-h-screen font-sans text-th-text antialiased;
   }
 
   h1, h2, h3, h4 {
@@ -19,37 +47,36 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* Dark autofill */
+  /* Autofill */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px #1c1917 inset;
-    -webkit-text-fill-color: #faf7f2;
-    caret-color: #faf7f2;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(var(--th-elevated)) inset;
+    -webkit-text-fill-color: rgb(var(--th-text));
+    caret-color: rgb(var(--th-text));
   }
 
   input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: #44403c; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #57534e; }
+  /* Dark scrollbar */
+  .dark ::-webkit-scrollbar { width: 6px; height: 6px; }
+  .dark ::-webkit-scrollbar-track { background: transparent; }
+  .dark ::-webkit-scrollbar-thumb { background: #44403c; border-radius: 3px; }
+  .dark ::-webkit-scrollbar-thumb:hover { background: #57534e; }
 }
 
 @layer components {
   .wine-card {
-    @apply bg-stone-900 rounded-2xl overflow-hidden border border-stone-800
-           transition-all duration-300 hover:border-stone-700 hover:-translate-y-1
-           hover:shadow-2xl hover:shadow-black/30;
+    @apply bg-th-surface rounded-2xl overflow-hidden border border-th-border
+           transition-all duration-300 hover:border-th-border-sub hover:-translate-y-1 hover:shadow-xl;
   }
 
   .filter-button {
     @apply px-4 py-2.5 rounded-full transition-all duration-200 font-medium text-sm
            min-h-[44px] min-w-[44px]
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500/50;
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-th-accent/50;
   }
 
   .filter-button-active {
@@ -57,8 +84,8 @@
   }
 
   .filter-button-inactive {
-    @apply bg-stone-800/60 text-cream-300 border border-stone-700
-           hover:bg-stone-800 hover:text-cream-100 hover:border-stone-600;
+    @apply bg-th-elevated/60 text-th-text-sub border border-th-border-sub
+           hover:bg-th-elevated hover:text-th-text;
   }
 
   .btn-primary {
@@ -67,7 +94,7 @@
   }
 
   .btn-secondary {
-    @apply bg-transparent text-cream-200 border border-stone-700 px-6 py-2.5 rounded-lg
-           hover:bg-stone-800 hover:border-stone-600 transition-all duration-200 font-semibold;
+    @apply bg-transparent text-th-text-sub border border-th-border px-6 py-2.5 rounded-lg
+           hover:bg-th-elevated transition-all duration-200 font-semibold;
   }
 }

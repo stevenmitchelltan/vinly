@@ -9,7 +9,7 @@ function WineTypeFilter({ selectedType, onTypeChange }) {
 
   return (
     <div className="space-y-3">
-      <label className="block text-xs font-semibold uppercase tracking-widest text-cream-400">
+      <label className="block text-xs font-semibold uppercase tracking-widest text-th-text-dim">
         Type wijn
       </label>
       <div className="flex flex-wrap gap-2.5">

@@ -32,7 +32,7 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
   };
 
   if (loading) {
-    return <div className="text-center py-4 text-cream-400">Laden...</div>;
+    return <div className="text-center py-4 text-th-text-dim">Laden...</div>;
   }
 
   const getFaviconUrl = (name) => {
@@ -60,7 +60,7 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
     }
 
     return (
-      <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-stone-700 text-cream-300 text-xs font-bold">
+      <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-th-elevated text-th-text-sub text-xs font-bold">
         {(name || '').charAt(0).toUpperCase()}
       </span>
     );
@@ -68,7 +68,7 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
 
   return (
     <div className="space-y-3">
-      <label className="block text-xs font-semibold uppercase tracking-widest text-cream-400">
+      <label className="block text-xs font-semibold uppercase tracking-widest text-th-text-dim">
         Supermarkt
       </label>
       <div className="flex flex-wrap gap-2.5">
@@ -94,7 +94,7 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
           >
             <span className="inline-flex items-center whitespace-nowrap">
               {renderLogo(supermarket.name)}
-              <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-stone-700 text-cream-300 text-xs font-bold" style={{ display: 'none' }}>
+              <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-th-elevated text-th-text-sub text-xs font-bold" style={{ display: 'none' }}>
                 {(supermarket.name || '').charAt(0).toUpperCase()}
               </span>
               <span>{supermarket.name}</span>

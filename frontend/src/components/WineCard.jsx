@@ -495,37 +495,37 @@ function WineCard({ wine }) {
       <div className="p-6 space-y-3">
         {/* Supermarket badge */}
         <div className="flex items-center justify-between">
-          <span className="inline-block bg-stone-800 text-cream-300 px-4 py-1.5 rounded-full text-sm font-medium tracking-wide">
+          <span className="inline-block bg-th-elevated text-th-text-sub px-4 py-1.5 rounded-full text-sm font-medium tracking-wide">
             {wine.supermarket}
           </span>
           <span className="text-3xl">{getWineTypeEmoji(wine.wine_type)}</span>
         </div>
 
         {/* Wine name */}
-        <h3 className="font-bold text-2xl text-cream-100 leading-snug min-h-[3rem] flex items-center">
+        <h3 className="font-bold text-2xl text-th-text leading-snug min-h-[3rem] flex items-center">
           {wine.name}
         </h3>
 
         {/* Quote */}
         {wine.rating && (
-  <p className="text-sm font-medium text-cream-300 italic leading-relaxed border-l-2 border-gold-500 pl-3">
+  <p className="text-sm font-medium text-th-text-sub italic leading-relaxed border-l-2 border-th-accent pl-3">
     "{wine.rating}"
   </p>
         )}
 
         {/* Description */}
         {wine.description && (
-          <p className="text-sm text-cream-400 line-clamp-4 leading-loose">
+          <p className="text-sm text-th-text-dim line-clamp-4 leading-loose">
             {wine.description}
           </p>
         )}
 
         {/* Footer */}
-        <div className="pt-4 border-t border-stone-800 space-y-2">
-          <p className="text-xs text-cream-400 font-medium">
-            📸 van <span className="font-semibold text-gold-500">@{wine.influencer_source}</span>
+        <div className="pt-4 border-t border-th-border space-y-2">
+          <p className="text-xs text-th-text-dim font-medium">
+            📸 van <span className="font-semibold text-th-accent">@{wine.influencer_source}</span>
           </p>
-          <p className="text-xs text-stone-500">
+          <p className="text-xs text-th-text-dim">
             {formatDate(wine.date_found)}
           </p>
 
@@ -534,7 +534,7 @@ function WineCard({ wine }) {
             href={(wine.post_url || '').split('#')[0]}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs text-gold-500 hover:text-gold-400 font-semibold hover:gap-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500/50 rounded"
+            className="inline-flex items-center gap-1 text-xs text-th-accent hover:text-th-accent-h font-semibold hover:gap-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-th-accent/50 rounded"
           >
             Bekijk originele post
             <span className="text-base">→</span>
