@@ -376,12 +376,12 @@ function WineCard({ wine }) {
   }, [currentImageIndex, images.length]);
 
   return (
-    <div className="wine-card animate-fade-in">
+    <div className="wine-card">
       {/* Image Carousel - 4:5 aspect ratio (vertical) - Instagram style with pinch zoom */}
       <div className="p-3">
         <div
           ref={containerRef}
-          className="relative bg-gradient-to-br from-gray-50 to-stone-100 w-full group overflow-hidden rounded-xl"
+          className="relative bg-gradient-to-br from-stone-100 to-stone-50 w-full group overflow-hidden rounded-xl"
         style={{ 
           aspectRatio: '4/5', 
           touchAction: 'pan-y',
@@ -495,48 +495,48 @@ function WineCard({ wine }) {
       <div className="p-6 space-y-3">
         {/* Supermarket badge */}
         <div className="flex items-center justify-between">
-          <span className="inline-block bg-gray-100 text-gray-700 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+          <span className="inline-block bg-stone-800 text-cream-300 px-4 py-1.5 rounded-full text-sm font-medium tracking-wide">
             {wine.supermarket}
           </span>
           <span className="text-3xl">{getWineTypeEmoji(wine.wine_type)}</span>
         </div>
 
         {/* Wine name */}
-        <h3 className="font-bold text-2xl text-gray-900 leading-snug min-h-[3rem] flex items-center">
+        <h3 className="font-bold text-2xl text-cream-100 leading-snug min-h-[3rem] flex items-center">
           {wine.name}
         </h3>
 
         {/* Quote */}
         {wine.rating && (
-  <p className="text-sm font-medium text-gray-800 italic leading-relaxed border-l-2 border-burgundy-300 pl-3">
+  <p className="text-sm font-medium text-cream-300 italic leading-relaxed border-l-2 border-gold-500 pl-3">
     "{wine.rating}"
   </p>
         )}
 
         {/* Description */}
         {wine.description && (
-          <p className="text-sm text-gray-700 line-clamp-4 leading-loose font-inter">
+          <p className="text-sm text-cream-400 line-clamp-4 leading-loose">
             {wine.description}
           </p>
         )}
 
         {/* Footer */}
-        <div className="pt-4 border-t border-gray-100 space-y-2">
-          <p className="text-xs text-gray-600 font-medium">
-            📸 van <span className="font-semibold text-amber-700">@{wine.influencer_source}</span>
+        <div className="pt-4 border-t border-stone-800 space-y-2">
+          <p className="text-xs text-cream-400 font-medium">
+            📸 van <span className="font-semibold text-gold-500">@{wine.influencer_source}</span>
           </p>
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-stone-500">
             {formatDate(wine.date_found)}
           </p>
-          
+
           {/* Link to original post (strip any manual fragment suffix) */}
           <a
             href={(wine.post_url || '').split('#')[0]}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs text-burgundy-700 hover:text-burgundy-900 font-semibold hover:gap-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 rounded"
+            className="inline-flex items-center gap-1 text-xs text-gold-500 hover:text-gold-400 font-semibold hover:gap-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500/50 rounded"
           >
-            Bekijk originele post 
+            Bekijk originele post
             <span className="text-base">→</span>
           </a>
         </div>

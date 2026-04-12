@@ -1,20 +1,21 @@
 function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-gray-50 to-burgundy-50 border-t border-gray-200 mt-16">
+    <footer className="bg-stone-900 border-t border-stone-800 mt-16">
       <div className="container mx-auto px-4 py-10">
         <div className="text-center space-y-5">
-          <p className="text-gray-700 font-semibold text-lg">
-            🍷 Vinly - Wijn aanbevelingen van Nederlandse influencers
+          <p className="text-cream-200 font-semibold text-lg font-fraunces">
+            🍷 Vinly
           </p>
-          <p className="text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Data verzameld van TikTok wijn influencers. Deze app is niet officieel geaffilieerd met supermarkten.
+          <p className="text-sm text-cream-400 max-w-2xl mx-auto leading-relaxed">
+            Wijn aanbevelingen van Nederlandse influencers. Data verzameld van TikTok wijn influencers.
+            Deze app is niet officieel geaffilieerd met supermarkten.
           </p>
-          <p className="text-xs text-gray-500 bg-amber-50 border border-amber-200 rounded-lg py-2 px-4 inline-block">
-            ⚠️ Let op: Wijn aanbevelingen zijn gebaseerd op influencer meningen. Drink verantwoord.
+          <p className="text-xs text-stone-400 bg-stone-800/60 border border-stone-700 rounded-lg py-2 px-4 inline-block">
+            ⚠️ Wijn aanbevelingen zijn gebaseerd op influencer meningen. Drink verantwoord.
           </p>
-          <div className="pt-6 border-t border-gray-200">
-            <p className="text-xs text-gray-500 font-medium">
-              © 2025 Vinly - MIT License
+          <div className="pt-6 border-t border-stone-800">
+            <p className="text-xs text-stone-600 font-medium">
+              © 2025 Vinly
             </p>
           </div>
         </div>
@@ -24,4 +25,3 @@ function Footer() {
 }
 
 export default Footer;
-

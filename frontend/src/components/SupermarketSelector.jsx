@@ -5,7 +5,6 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
   const [supermarkets, setSupermarkets] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Map supermarket names to their website domains for favicon fetching
   const supermarketDomains = {
     'Albert Heijn': 'ah.nl',
     'Dirk': 'dirk.nl',
@@ -33,52 +32,49 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
   };
 
   if (loading) {
-    return <div className="text-center py-4">Laden...</div>;
+    return <div className="text-center py-4 text-cream-400">Laden...</div>;
   }
 
   const getFaviconUrl = (name) => {
     const domain = supermarketDomains[name];
     if (!domain) return null;
-    // Use Google's favicon service for reliable, high-quality icons
     return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
   };
 
-  const renderLogo = (name, showFavicon = true) => {
-    const letter = (name || '').charAt(0).toUpperCase();
-    const faviconUrl = showFavicon ? getFaviconUrl(name) : null;
-    
+  const renderLogo = (name) => {
+    const faviconUrl = getFaviconUrl(name);
+
     if (faviconUrl) {
       return (
-        <img 
-          src={faviconUrl} 
-          alt="" 
+        <img
+          src={faviconUrl}
+          alt=""
           aria-hidden
           className="mr-2 w-5 h-5 rounded-sm object-contain"
           onError={(e) => {
-            // Fallback to letter icon if favicon fails to load
             e.target.style.display = 'none';
             e.target.nextSibling.style.display = 'inline-flex';
           }}
         />
       );
     }
-    
+
     return (
-      <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-burgundy-100 text-burgundy-800 text-xs font-bold">
-        {letter}
+      <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-stone-700 text-cream-300 text-xs font-bold">
+        {(name || '').charAt(0).toUpperCase()}
       </span>
     );
   };
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-        🏪 <span>Kies je supermarkt</span>
-      </h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+    <div className="space-y-3">
+      <label className="block text-xs font-semibold uppercase tracking-widest text-cream-400">
+        Supermarkt
+      </label>
+      <div className="flex flex-wrap gap-2.5">
         <button
           onClick={() => onSupermarketChange(null)}
-          className={`filter-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 ${
+          className={`filter-button ${
             selectedSupermarket === null ? 'filter-button-active' : 'filter-button-inactive'
           }`}
           aria-label="Toon alle supermarkten"
@@ -89,7 +85,7 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
           <button
             key={supermarket.value}
             onClick={() => onSupermarketChange(supermarket.value)}
-            className={`filter-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-400 ${
+            className={`filter-button ${
               selectedSupermarket === supermarket.value
                 ? 'filter-button-active'
                 : 'filter-button-inactive'
@@ -98,7 +94,7 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
           >
             <span className="inline-flex items-center whitespace-nowrap">
               {renderLogo(supermarket.name)}
-              <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-burgundy-100 text-burgundy-800 text-xs font-bold" style={{ display: 'none' }}>
+              <span aria-hidden className="mr-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-stone-700 text-cream-300 text-xs font-bold" style={{ display: 'none' }}>
                 {(supermarket.name || '').charAt(0).toUpperCase()}
               </span>
               <span>{supermarket.name}</span>
@@ -111,4 +107,3 @@ function SupermarketSelector({ selectedSupermarket, onSupermarketChange }) {
 }
 
 export default SupermarketSelector;
-

@@ -64,67 +64,62 @@ function Home() {
   }, [wines, debouncedQuery]);
 
   return (
-    <div className="container mx-auto px-4 py-8 sm:py-12">
+    <div className="container mx-auto px-4 sm:px-6 pb-12">
       {error && (
-        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 text-red-800 p-4 animate-fade-in">
+        <div className="mb-6 rounded-xl border border-red-900/50 bg-red-950/50 text-red-300 p-4 animate-fade-in">
           {error}
         </div>
       )}
-      {/* Hero Section with Vinly Branding */}
-      <div className="text-center mb-10 sm:mb-14 pt-4 sm:pt-6 md:pt-8 animate-fade-in">
-        {/* Logo and Brand */}
-        <div className="flex items-center justify-center mb-6 sm:mb-8 animate-scale-in">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-burgundy-600 via-burgundy-700 to-burgundy-800 bg-clip-text text-transparent leading-tight drop-shadow-sm py-2">
-            Vinly
-          </h1>
-        </div>
-        
-        {/* Tagline */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 animate-slide-up">
+
+      {/* Hero */}
+      <div className="text-center pt-14 sm:pt-20 pb-10 sm:pb-14">
+        <h1 className="text-7xl sm:text-8xl md:text-9xl font-black text-cream-100 tracking-tight leading-none mb-5 animate-scale-in">
+          Vinly
+        </h1>
+        <p className="text-lg sm:text-xl text-cream-400 font-sans max-w-sm mx-auto animate-slide-up" style={{ animationDelay: '150ms' }}>
           Ontdek de beste supermarkt wijnen
-        </h2>
-        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2 leading-relaxed">
-          Hou je van goede wijn, maar heb je geen geld? Sta je urenlang wispelturig voor het schap? Dan ben je hier aan het juiste adres!
         </p>
+        <div className="mt-8 w-12 h-px bg-gold-500 mx-auto animate-fade-in" style={{ animationDelay: '350ms' }} />
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-2xl shadow-xl p-5 sm:p-8 mb-8 sm:mb-10 space-y-6 sm:space-y-8 border border-gray-100 animate-slide-up">
+      <div className="bg-stone-900/50 backdrop-blur-sm rounded-2xl border border-stone-800/80 p-5 sm:p-8 mb-10 space-y-6 animate-slide-up" style={{ animationDelay: '250ms' }}>
         <SupermarketSelector
           selectedSupermarket={selectedSupermarket}
           onSupermarketChange={setSelectedSupermarket}
         />
-        
-        <div className="border-t border-gray-200 pt-6 sm:pt-8">
-          <WineTypeFilter
-            selectedType={selectedType}
-            onTypeChange={setSelectedType}
-          />
-        </div>
+
+        <div className="border-t border-stone-800" />
+
+        <WineTypeFilter
+          selectedType={selectedType}
+          onTypeChange={setSelectedType}
+        />
+
+        <div className="border-t border-stone-800" />
 
         {/* Search */}
-        <div className="border-t border-gray-200 pt-6 sm:pt-8">
-          <div className="flex flex-col md:flex-row gap-4 md:items-center">
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Zoek op naam, omschrijving of supermarkt"
-              className="w-full md:flex-1 rounded-xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-burgundy-300"
-            />
-          </div>
+        <div>
+          <label className="block text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
+            Zoeken
+          </label>
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Zoek op naam, omschrijving of supermarkt..."
+            className="w-full rounded-xl bg-stone-800/60 border border-stone-700 px-5 py-3.5 text-cream-100 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:border-stone-600 transition-all"
+          />
         </div>
       </div>
 
       {/* Results count */}
       {!loading && (
-        <div className="mb-6 animate-fade-in">
-          <div className="flex items-center gap-2">
-            <div className="w-1 h-6 bg-gradient-to-b from-burgundy-600 to-burgundy-800 rounded-full"></div>
-            <p aria-live="polite" className="text-lg font-bold text-gray-800">
-              {displayedWines.length} {displayedWines.length === 1 ? 'wijn' : 'wijnen'} gevonden
-            </p>
-          </div>
+        <div className="mb-6 animate-fade-in" style={{ animationDelay: '400ms' }}>
+          <p aria-live="polite" className="text-sm text-cream-400">
+            <span className="text-cream-100 font-semibold">{displayedWines.length}</span>{' '}
+            {displayedWines.length === 1 ? 'wijn' : 'wijnen'} gevonden
+          </p>
         </div>
       )}
 
@@ -135,4 +130,3 @@ function Home() {
 }
 
 export default Home;
-
