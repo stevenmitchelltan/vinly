@@ -1,17 +1,10 @@
 # Wine Discovery Backend
 
-Backend for the Wine Discovery app. Scrapes TikTok, transcribes audio with Whisper, extracts supermarket wine recommendations with an LLM, and serves them via a FastAPI API.
+FastAPI backend that processes TikTok wine videos and serves the results. Runs in Docker via `docker-compose up`.
 
-## Highlights
+The primary way to add wines is through the **admin panel** at `localhost:5173/admin` — paste a TikTok URL and the full pipeline runs automatically. The CLI scripts below can also be used directly.
 
-- 🔎 TikTok discovery via oEmbed + `yt-dlp` audio download
-- 🎙️ Whisper ASR with audio preprocessing, lexicon-guided prompts, and selective two-pass
-- 🤖 GPT-4o-mini extraction with strict supermarket validation and improved rating/description fields
-- 📦 MongoDB storage for processed videos and wines
-- 🧪 ASR metrics and evaluation utilities
-- 🚀 FastAPI server powering the frontend
-
-## Architecture & Pipeline
+## Pipeline
 
 1) Discover and queue relevant videos
 - Script: `scripts/smart_scraper.py`
@@ -41,79 +34,33 @@ Backend for the Wine Discovery app. Scrapes TikTok, transcribes audio with Whisp
 - App: `app/main.py` (FastAPI)
 - Endpoint: `GET /api/wines` with sorting by `post_date` (fallback `date_found`)
 
-## Prerequisites
+## Running
 
-- Python 3.12+
-- MongoDB (Atlas or local)
-- `ffmpeg` installed and available (WinGet recommended on Windows)
-- OpenAI API key
-
-## Setup
-
-### 1) Create and activate a virtual environment
-
-PowerShell (Windows):
-```powershell
-cd backend
-py -3.12 -m venv venv
-.\venv\Scripts\Activate.ps1
-```
-
-Bash (macOS/Linux):
-```bash
-cd backend
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 2) Install dependencies
+The backend runs in Docker — see the root README. For local development without Docker:
 
 ```bash
+cd backend
 pip install -r requirements.txt
-```
-
-### 3) Environment variables
-
-Create `.env` in `backend/` (or configure your environment):
-
-- `MONGODB_URI` — MongoDB connection string
-- `OPENAI_API_KEY` — for Whisper + GPT-4o-mini
-- `CORS_ORIGINS` — optional, comma-separated list of allowed origins
-
-## Quickstart: End-to-End Pipeline
-
-Run from `backend/` with the virtual environment activated.
-
-### A) Process a single TikTok handle
-```powershell
-# 1) Discover supermarket videos and queue them for transcription
-python scripts\smart_scraper.py pepijn.wijn
-
-# 2) Download audio and transcribe with Whisper
-python scripts\transcribe_videos.py
-
-# 3) Extract wines from successful transcriptions
-python scripts\extract_wines.py pepijn.wijn
-```
-
-### B) Full clean rerun on all videos
-```powershell
-python scripts\clean_database.py
-python scripts\smart_scraper.py all
-python scripts\transcribe_videos.py
-python scripts\extract_wines.py
-```
-
-## Running the API
-
-```powershell
+cp .env.example .env  # fill in MONGODB_URI and OPENAI_API_KEY
 uvicorn app.main:app --reload --port 8000
 ```
 
-- API Docs: `http://localhost:8000/docs`
-- Health: `GET /health`
+## CLI Scripts
+
+Run inside the Docker container (`docker-compose exec backend bash`) or locally with the venv activated.
+
+```bash
+# Process a TikTok handle end-to-end
+python scripts/smart_scraper.py pepijn.wijn
+python scripts/transcribe_videos.py
+python scripts/extract_wines.py pepijn.wijn
+```
+
+## API
+
+- Docs: `http://localhost:8000/docs`
 - Wines: `GET /api/wines?supermarket={name}&type={wine_type}`
-- Status: `GET /api/status`
+- Health: `GET /health`
 
 ## Configuration
 
@@ -167,9 +114,5 @@ backend/
 ├── static/                 # wine images
 ├── temp/                   # downloaded videos/frames (gitignored)
 ├── requirements.txt
-└── Procfile
+└── Dockerfile
 ```
-
-## License
-
-MIT

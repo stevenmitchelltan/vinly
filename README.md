@@ -1,254 +1,90 @@
-# 🍷 Vinly - Dutch Supermarket Wine Discovery App
+# Vinly
 
-Automatically discover the best wines from Dutch supermarkets based on TikTok influencer recommendations.
+Wine recommendations from Dutch supermarkets, extracted from TikTok wine influencers using AI.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
-![React](https://img.shields.io/badge/react-18.2-blue.svg)
+**Live site:** [stevenmitchelltan.github.io/vinly](https://stevenmitchelltan.github.io/vinly/)
 
-## 🎯 What is Vinly?
+## How it works
 
-Vinly scrapes TikTok wine influencers, extracts wine recommendations using AI, and presents them in a beautiful searchable interface. Find the best supermarket wines without watching hundreds of videos!
+1. Run the backend locally via Docker
+2. Open the admin panel, paste a TikTok URL
+3. The backend downloads the video, transcribes the audio (Whisper), extracts wine data (GPT-4o-mini), uploads images to Cloudinary, and saves to MongoDB
+4. Run `scripts/deploy.ps1` to export wines to a static JSON file, build the frontend, and push to GitHub Pages
 
-## ✨ Features
-
-- 🎬 **Automated TikTok Scraping** - Gets all videos from wine influencers
-- 🤖 **AI Wine Extraction** - Uses GPT-4o-mini to extract wine data
-- 🏪 **7 Dutch Supermarkets** - Albert Heijn, Jumbo, LIDL, ALDI, HEMA, Dirk, Plus
-- 🎨 **Beautiful Frontend** - Modern React interface with filters
-- 🎛️ **Admin Panel** - Edit wines, manage images, add missed posts
-- 💰 **Cost Optimized** - Smart filtering saves on API costs (~$0.50/month)
-- 🚀 **Production Ready** - Built for Railway + GitHub Pages deployment
-
-## 🚀 Quick Start with Docker
+## Setup
 
 ### Prerequisites
-- Docker Desktop ([download here](https://www.docker.com/products/docker-desktop/))
-- OpenAI API key ([get here](https://platform.openai.com/api-keys))
 
-### Installation (3 Steps!)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Node.js](https://nodejs.org/) (for frontend dev)
+- [OpenAI API key](https://platform.openai.com/api-keys)
 
-**1. Clone the repository:**
+### 1. Environment
+
 ```bash
-git clone https://github.com/YOUR_USERNAME/vinly.git
-cd vinly
+cp backend/.env.example backend/.env
+# Edit backend/.env — add your OPENAI_API_KEY and CLOUDINARY credentials
 ```
 
-**2. Create `.env` file:**
-```bash
-# Copy the example
-cp .env.example .env
+### 2. Start the backend
 
-# Edit .env and add your OpenAI API key:
-# OPENAI_API_KEY=sk-proj-your-actual-key-here
-```
-
-**3. Start everything with Docker:**
-
-**Windows:**
-```bash
-docker-dev.bat
-```
-
-**Mac/Linux:**
-```bash
-chmod +x docker-dev.sh
-./docker-dev.sh
-```
-
-**Or manually:**
 ```bash
 docker-compose up --build
 ```
 
-**4. Access the app:**
-- **Frontend**: http://localhost
-- **Backend API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
-- **Admin Panel**: http://localhost:5173/admin (password: `admin`)
+This starts MongoDB and the FastAPI backend.
 
-**That's it!** 🎉 Docker handles all dependencies (Python, Node, MongoDB, FFmpeg, Chromium)
+### 3. Start the frontend (dev)
 
-### Why Docker?
-
-✅ **Zero dependency issues** - Everything packaged together  
-✅ **One command setup** - No manual installs  
-✅ **Works everywhere** - Same environment locally and in production  
-✅ **Includes everything** - FFmpeg, Chromium, MongoDB, all ready to go
-
-## 📖 Documentation
-
-**Getting Started:**
-- **[START_HERE.md](START_HERE.md)** - ⭐ Read this first! Quick 3-step setup
-- **[GETTING_STARTED.md](GETTING_STARTED.md)** - Detailed 5-minute guide
-
-**Deployment Options:**
-- **[docs/GITHUB_PAGES_DEPLOYMENT.md](docs/GITHUB_PAGES_DEPLOYMENT.md)** - 🌟 **Fully static, $0 hosting** (Recommended)
-- **[DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md)** - Docker deployment (local + Render)
-- **[DOCKER_QUICK_REFERENCE.md](DOCKER_QUICK_REFERENCE.md)** - Docker command cheatsheet
-
-**Configuration:**
-- **[backend/config/README.md](backend/config/README.md)** - Customize supermarkets and keywords
-- **[backend/docs/ADMIN_PANEL.md](backend/docs/ADMIN_PANEL.md)** - 🎛️ Admin panel guide for managing wines
-- **[SECURITY.md](SECURITY.md)** - Security best practices
-
-## 🍷 Usage
-
-### Admin Panel (New!)
-
-**Web Interface** for managing wines:
-```
-http://localhost:5173/admin
-```
-
-Features:
-- ✏️ Edit wine details (name, description, rating, images)
-- 🖼️ Add/remove/reorder images
-- ➕ Add missed TikTok posts
-- 🗑️ Delete incorrect wines
-
-See **[backend/docs/ADMIN_PANEL.md](backend/docs/ADMIN_PANEL.md)** for full guide.
-
-### Add Wines from TikTok
-
-**Run scripts inside Docker container:**
 ```bash
-# Access backend shell
-docker exec -it vinly-backend bash
-
-# Run the smart scraper
-python scripts/smart_scraper.py pepijn.wijn
+cd frontend
+npm install
+npm run dev
 ```
 
-This will:
-- ✅ Find ALL videos from the profile
-- ✅ Skip already-processed videos
-- ✅ Filter out non-wine content
-- ✅ Extract only recommended wines
-- ✅ Save to database
+### Access
 
-**Check Results:**
-```bash
-# Inside container
-python scripts/check_wines.py
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:5173 |
+| Admin panel | http://localhost:5173/admin |
+| Backend API | http://localhost:8000/docs |
+
+## Adding wines
+
+Open the admin panel at `localhost:5173/admin`, paste a TikTok URL, and the pipeline runs automatically.
+
+## Deploying
+
+```powershell
+.\scripts\deploy.ps1
 ```
 
-### Customize Keywords
+This exports MongoDB to `docs/wines.json`, builds the frontend into `docs/`, and pushes to GitHub. GitHub Pages serves the `docs/` folder.
 
-Edit YAML config files (no code changes needed!):
-- `backend/config/supermarkets.yaml` - Add supermarkets or aliases
-- `backend/config/wine_keywords.yaml` - Add wine terminology
-- `backend/config/scraping_settings.yaml` - Adjust settings
-
-## 🏗️ Architecture
-
-```
-TikTok Profile
-    ↓ [Playwright - Gets all video URLs]
-Video URLs (241 videos)
-    ↓ [TikTok oEmbed API - Gets descriptions]
-Video Descriptions
-    ↓ [Pre-filter - Removes non-supermarket content]
-Filtered Descriptions (150 wine videos)
-    ↓ [GPT-4o-mini - Extracts wine data]
-Wine Data (23 recommended wines)
-    ↓ [MongoDB - Stores wines]
-Database
-    ↓ [FastAPI - Serves data]
-React Frontend
-```
-
-## 💰 Cost Breakdown
-
-**Monthly Operating Costs:**
-- MongoDB Atlas: **$0** (free tier, 512MB)
-- OpenAI API: **~$5-10** (Whisper + GPT-4o-mini for 100 videos)
-- Render Backend: **$0** (free tier with sleep) or **$7** (always-on)
-- Local Development: **$0** (Docker runs locally)
-
-**Total: $5-17/month** depending on tier ✨
-
-## 📁 Project Structure
+## Project structure
 
 ```
 vinly/
-├── backend/          # FastAPI backend
-│   ├── app/          # Application code
-│   ├── config/       # YAML configurations
-│   └── scripts/      # Utility scripts
-│       ├── smart_scraper.py      # Main scraper
-│       ├── check_wines.py        # Check database
-│       ├── seed_tiktok_influencers.py
-│       └── tests/    # Test scripts
-├── frontend/         # React frontend
-│   └── src/          # React components
-├── docs/             # Documentation
-└── README.md         # This file
+├── backend/             # FastAPI app (runs in Docker)
+│   ├── app/             # API routes, services, scrapers
+│   ├── config/          # YAML configs (supermarkets, keywords, lexicon)
+│   └── scripts/         # CLI utilities and dev tools
+├── frontend/            # React 18 + Vite + Tailwind
+│   ├── src/components/  # WineCard, WineDetailModal, ImageCarousel, etc.
+│   ├── src/pages/       # Home, Admin, About
+│   └── src/services/    # API client
+├── docs/                # Vite build output (served by GitHub Pages)
+├── scripts/deploy.ps1   # One-command deploy
+└── docker-compose.yml   # MongoDB + backend
 ```
 
-## 🛠️ Tech Stack
+## Tech stack
 
-**Backend:**
-- FastAPI (Python web framework)
-- MongoDB with Motor (async database)
-- OpenAI GPT-4o-mini (wine extraction) + Whisper (transcription)
-- Playwright (TikTok scraping)
-- yt-dlp (video downloads)
-- FFmpeg (video processing)
-- APScheduler (automated jobs)
-- Docker (containerization)
+**Backend:** FastAPI, MongoDB (Motor), OpenAI Whisper + GPT-4o-mini, yt-dlp, Cloudinary, Docker
 
-**Frontend:**
-- React 18
-- Vite (build tool)
-- TailwindCSS (styling)
-- React Router (navigation)
-- nginx (production serving)
+**Frontend:** React 18, Vite, TailwindCSS, Embla Carousel
 
-**DevOps:**
-- Docker & Docker Compose
-- Render (deployment platform)
-- MongoDB Atlas (database hosting)
+## License
 
-## 🤝 Contributing
-
-Contributions are welcome! Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) first.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🔒 Security
-
-**Important:** This project uses sensitive credentials (MongoDB, OpenAI API keys).
-
-### Quick Security Checklist
-
-- ✅ `.env` files are gitignored
-- ✅ Use `.env.example` templates (never commit real `.env`)
-- ✅ Rotate credentials regularly
-- ✅ Set OpenAI spending limits ($10-20/month recommended)
-- ✅ Use MongoDB Network Access whitelist in production
-
-### ⚠️ Credentials Exposed During Development?
-
-If you shared credentials during setup (in chat, screenshots, etc.), **rotate them immediately**:
-
-1. **MongoDB:** Atlas → Database Access → Edit → Change Password
-2. **OpenAI:** platform.openai.com/api-keys → Revoke & Create New
-
-**See [SECURITY.md](SECURITY.md) for complete security guide and best practices.**
-
-## ⚠️ Disclaimer
-
-This app is not officially affiliated with any supermarket or TikTok. Wine recommendations are based on influencer opinions. Always drink responsibly.
-
-## 🙏 Acknowledgments
-
-- Dutch wine TikTok community
-- OpenAI for GPT-4o-mini
-- TikTok oEmbed API
-
----
-
-**Made with 🍷 for Dutch wine lovers**
+MIT
