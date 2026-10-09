@@ -7,8 +7,7 @@ function Footer() {
             🍷 Vinly
           </p>
           <p className="text-sm text-th-text-sub max-w-2xl mx-auto leading-relaxed">
-            Wijn aanbevelingen van Nederlandse influencers. Data verzameld van TikTok wijn influencers.
-            Deze app is niet officieel geaffilieerd met supermarkten.
+            Vinly verzamelt supermarktwijntips op één plek. Onafhankelijk van de genoemde supermarkten.
           </p>
           <div className="pt-6 border-t border-th-border">
             <p className="text-xs text-th-text-dim font-medium">

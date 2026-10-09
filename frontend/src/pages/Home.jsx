@@ -132,7 +132,7 @@ function Home() {
           Vinly
         </h1>
         <p className="text-base text-th-text-dim font-sans max-w-sm mx-auto animate-slide-up" style={{ animationDelay: '150ms' }}>
-          Ontdek de beste supermarkt wijnen
+          Vind de beste supermarktwijnen.
         </p>
       </div>
 
