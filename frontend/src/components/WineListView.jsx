@@ -1,3 +1,4 @@
+import BottlePhoto from './BottlePhoto';
 import { getWineTypeEmoji, formatDate } from '../utils/wine';
 import { getImageUrl } from '../utils/image';
 import { useFavorites } from '../context/FavoritesContext';
@@ -68,12 +69,14 @@ function ListRow({ wine, isFavorite, toggleFavorite, onWineClick }) {
       >
         {/* Thumbnail */}
         <div className="w-11 sm:w-14 flex-shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-stone-100 to-stone-50" style={{ aspectRatio: '4/5' }}>
-          {firstImage ? (
+          {firstImage === wine.bottle_image_url && firstImage ? (
+            <BottlePhoto src={firstImage} alt={wine.name} presentation={wine.bottle_image_presentation} layout="thumbnail" />
+          ) : firstImage ? (
             <img
               src={getImageUrl(firstImage)}
               alt={wine.name}
               loading="lazy"
-              className={`w-full h-full ${wine.image_fit === 'contain' ? 'object-contain bg-white' : 'object-cover'}`}
+              className="w-full h-full object-cover"
               onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
             />
           ) : (

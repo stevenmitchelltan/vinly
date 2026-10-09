@@ -1,0 +1,1165 @@
+{
+  "checked_at": "2026-10-09",
+  "wine_count": 61,
+  "product_photos": [
+    {
+      "wine_id": "6902b32c2abb5bc35f3fceec",
+      "wine_name": "Andrés Alonso Garnacha & Syrah",
+      "source_page": "https://raicesibericas.com/products/andres-alonso-garnacha-syrah",
+      "source_image": "https://raicesibericas.com/cdn/shop/files/ANDRES-ALONSO_GARNACHA_sinfondo_GoldMundusVIni.png?v=1751019222",
+      "asset": "images/bottles/6902b32c2abb5bc35f3fceec.png",
+      "sha256": "cb75a1fa0b9d76fa4e761e0b8a8af5be2cacb45106588554b9b303e5e8f973eb",
+      "dimensions": [
+        3648,
+        5428
+      ],
+      "display_bounds": [
+        1200,
+        704,
+        1248,
+        4294
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016ba17e0bd0235bd82ae5",
+      "wine_name": "Chardonnay Brut",
+      "source_page": "https://dutchshopper.com/products/patriarche-chardonnay-brut",
+      "source_image": "https://dutchshopper.com/cdn/shop/files/546590.png?v=1791184302",
+      "asset": "images/bottles/69016ba17e0bd0235bd82ae5.png",
+      "sha256": "aa451185b4b815646d79426d542505078a81b95cd6082c0094d7cfabb53b3d01",
+      "dimensions": [
+        1600,
+        2400
+      ],
+      "display_bounds": [
+        508,
+        90,
+        589,
+        2249
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69c91c72d49d2ec48023febe",
+      "wine_name": "Chateau de l'Horte",
+      "source_page": "https://dutchshopper.com/products/chateau-de-lhorte-syrah-grenache",
+      "source_image": "https://dutchshopper.com/cdn/shop/files/155392.png?v=1791184522",
+      "asset": "images/bottles/69c91c72d49d2ec48023febe.png",
+      "sha256": "74969bd771fe8eaef2131d7675355af98804c9573649e236bc527bcc7373d5be",
+      "dimensions": [
+        1799,
+        6203
+      ],
+      "display_bounds": [
+        104,
+        103,
+        1591,
+        5996
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016ba37e0bd0235bd82ae6",
+      "wine_name": "Grüner Veltliner",
+      "source_page": "https://dutchshopper.com/products/fritz-frieda-dac-gruner-veltliner",
+      "source_image": "https://dutchshopper.com/cdn/shop/files/381052.png?v=1791184330",
+      "asset": "images/bottles/69016ba37e0bd0235bd82ae6.png",
+      "sha256": "c72891e9e48f5306090dabce8f28bc972c0f89a96ea18e5440f0c8aad7314e19",
+      "dimensions": [
+        600,
+        600
+      ],
+      "display_bounds": [
+        236,
+        23,
+        126,
+        555
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b767e0bd0235bd82ad5",
+      "wine_name": "Mas du Petit",
+      "source_page": "https://dutchshopper.com/products/mas-du-petit-azegat-rouge",
+      "source_image": "https://dutchshopper.com/cdn/shop/files/413593.png?v=1791184363",
+      "asset": "images/bottles/69016b767e0bd0235bd82ad5.png",
+      "sha256": "78a939eddfde3406275e5a432756808016f16035267aec13e0e93f7d1f89b4b1",
+      "dimensions": [
+        1000,
+        1000
+      ],
+      "display_bounds": [
+        392,
+        81,
+        215,
+        874
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b737e0bd0235bd82ad4",
+      "wine_name": "Danie de Wet Chardonnay",
+      "source_page": "https://dutchshopper.com/products/danie-de-wet-chardonnay-matured-on-the-lees-1",
+      "source_image": "https://dutchshopper.com/cdn/shop/files/325501.png?v=1791184446",
+      "asset": "images/bottles/69016b737e0bd0235bd82ad4.png",
+      "sha256": "0e5c4f3b23c4c30096858fc193c27f6680447425357294c32cd0ec60cf78c974",
+      "dimensions": [
+        1000,
+        1000
+      ],
+      "display_bounds": [
+        400,
+        118,
+        201,
+        751
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "6902a6a22abb5bc35f3fceea",
+      "wine_name": "Baron de Vaillantcourt Chardonnay",
+      "source_page": "https://www.degrotehamersma.nl/wijn/wit/172288/baron-de-vaillantcourt-chardonnay-reserve/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2026/07/Baron-de-Vaillantcourt-Chardonnay-Reserve-2026.png",
+      "asset": "images/bottles/6902a6a22abb5bc35f3fceea.png",
+      "sha256": "29710fb5f793fd31103adb8017fb7e0a054ae76272149bc5e68aac600d34170d",
+      "dimensions": [
+        288,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        287,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bc87e0bd0235bd82af2",
+      "wine_name": "Montagnan Chardonnay",
+      "source_page": "https://www.degrotehamersma.nl/wijn/wit/174427/montaignan-chardonnay/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2025/04/Montaignan-Chardonnay-2026.png",
+      "asset": "images/bottles/69016bc87e0bd0235bd82af2.png",
+      "sha256": "19da671a000f0578a4adc33779a4dfef883d04a286a383d494aaac5ca5fbaa6f",
+      "dimensions": [
+        275,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        275,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bc67e0bd0235bd82af1",
+      "wine_name": "Biologische Prosecco",
+      "source_page": "https://www.degrotehamersma.nl/wijn/wit/175244/allini-organic-prosecco-bio-extra-dry/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2024/10/Allini-Organic-Prosecco-Bio-extra-dry.png",
+      "asset": "images/bottles/69016bc67e0bd0235bd82af1.png",
+      "sha256": "ce74ed5e55988150d5d7f6fbe3a0345c4fef3cfbdcfb405dfd8155ff3bf57c61",
+      "dimensions": [
+        347,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        347,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "d117e498593e4f898407a245",
+      "wine_name": "Roc de l’Abbaye Pinot Noir Rosé 2024",
+      "source_page": "https://www.sligro.nl/p.198991.html/roc-de-l-abbaye-pinot-noir-rose-fles-75-cl.html",
+      "source_image": "https://www.sligro.nl/image-service/_jcr_content.product.03285641119169.image/1/large.jpeg",
+      "asset": "images/bottles/d117e498593e4f898407a245.jpg",
+      "sha256": "77e6074284f56315c3189b54790e24cbdbbf3063d59bcdafdfffa2530999a39e",
+      "dimensions": [
+        1280,
+        1279
+      ],
+      "display_bounds": [
+        484,
+        59,
+        316,
+        1163
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "690241efb6671ab66c41f025",
+      "wine_name": "Val de Vid Verdejo",
+      "source_page": "https://www.sligro.nl/p.654406.html/val-de-vid-verdejo-fles-75-cl.html",
+      "source_image": "https://www.sligro.nl/image-service/_jcr_content.product.08437003292286.image/1/large.jpeg",
+      "asset": "images/bottles/690241efb6671ab66c41f025.jpg",
+      "sha256": "fcc18672d65f3d75ed26ed8074924f90807f6f967670fb94bce497e92c8ee27c",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "display_bounds": [
+        506,
+        56,
+        268,
+        1166
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016ba07e0bd0235bd82ae4",
+      "wine_name": "Nik Weis Riesling",
+      "source_page": "https://www.sligro.nl/p.813937.html/nik-weis-riesling-trocken-fles-75-cl.html",
+      "source_image": "https://www.sligro.nl/image-service/_jcr_content.product.04013231000165.image/1/large.jpeg",
+      "asset": "images/bottles/69016ba07e0bd0235bd82ae4.jpg",
+      "sha256": "c2f1ff1072f67c5ac15875440c2949bfeae7a3d7421edc895c8ee32654a7f5d1",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "display_bounds": [
+        511,
+        29,
+        258,
+        1220
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b897e0bd0235bd82adc",
+      "wine_name": "Primitivo van Surani",
+      "source_page": "https://www.sligro.nl/p.451442.html/surani-costarossa-primitivo-di-manduria-fles-75-cl.html",
+      "source_image": "https://www.sligro.nl/image-service/_jcr_content.product.08007880321401.image/1/large.jpeg",
+      "asset": "images/bottles/69016b897e0bd0235bd82adc.jpg",
+      "sha256": "62a56f1ed55549c7083da61d18f88e23da479ed0df5fb957577d6e7ceb88a73b",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "display_bounds": [
+        501,
+        53,
+        278,
+        1183
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b907e0bd0235bd82adf",
+      "wine_name": "Formez Rouge",
+      "source_page": "https://www.hema.nl/eten-drinken/wijn/rode-wijn/les-animals-fourmi-rouge-0.750l-17360700.html",
+      "source_image": "https://static.hema.nl/dw/image/v2/BBRK_PRD/on/demandware.static/-/Sites-HEMA-master-catalog/default/dw80e8b34b/product/17360700_01_001.jpg?sw=600&sfrm=png&bgcolor=FFFFFF",
+      "asset": "images/bottles/69016b907e0bd0235bd82adf.jpg",
+      "sha256": "83289b05be1687cbadb8ff25c5d10927ce8a5055170fa2228c44deadf7710f8b",
+      "dimensions": [
+        600,
+        750
+      ],
+      "display_bounds": [
+        229,
+        51,
+        150,
+        644
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b927e0bd0235bd82ae0",
+      "wine_name": "Mas Coustan",
+      "source_page": "https://www.hema.nl/eten-drinken/wijn/rode-wijn/mas-coustan---075-l-17360522.html",
+      "source_image": "https://static.hema.nl/dw/image/v2/BBRK_PRD/on/demandware.static/-/Sites-HEMA-master-catalog/default/dw51a0067d/product/17360522_01_001.jpg?sw=600&sfrm=png&bgcolor=FFFFFF",
+      "asset": "images/bottles/69016b927e0bd0235bd82ae0.jpg",
+      "sha256": "a70a8c38b627f007f4d95cc2ca9114a57cf320358670ac2f5d7822554f07662d",
+      "dimensions": [
+        600,
+        750
+      ],
+      "display_bounds": [
+        211,
+        58,
+        234,
+        639
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bb67e0bd0235bd82aec",
+      "wine_name": "Ours Blanc Luberon 2024",
+      "source_page": "https://www.hema.nl/eten-drinken/wijn/witte-wijn/les-animals-ours-blanc-0.75l-17350700.html",
+      "source_image": "https://static.hema.nl/dw/image/v2/BBRK_PRD/on/demandware.static/-/Sites-HEMA-master-catalog/default/dw906bdbc1/product/17350700_01_001.jpg?sw=600&sfrm=png&bgcolor=FFFFFF",
+      "asset": "images/bottles/69016bb67e0bd0235bd82aec.jpg",
+      "sha256": "0924b3605208ed830911ecaf38c058d051bae7a01404a5d133706e48d8555dfc",
+      "dimensions": [
+        600,
+        750
+      ],
+      "display_bounds": [
+        230,
+        55,
+        157,
+        642
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "2ce25a5968f64bac899d4215",
+      "wine_name": "Côtes de Provence Rosé",
+      "source_page": "https://www.lidl.co.uk/p/cotes-de-provence-rose/p10002723",
+      "source_image": "https://imgproxy-retcat.assets.schwarz/0lrJWJdhy52gd_f2dzXXK4zNRLGFbBC0vWJIuFCuT6w/sm:0/exar:1:ce/w:1500/h:1125/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvdWsvMS8yMzJFQkVGMDAxMzhGMUFDRjU0RjcxODI/yREEwMDMyM0VGREVDQUE3RTVGRTEwQzU3QjZEMEVGODJGNEFCQkIxLmpwZw.jpg",
+      "asset": "images/bottles/2ce25a5968f64bac899d4215.jpg",
+      "sha256": "b1372f03040cf4f03f544b7b8ba0d6312de413ff98053251b2d3897fada5d297",
+      "dimensions": [
+        1500,
+        1125
+      ],
+      "display_bounds": [
+        617,
+        73,
+        264,
+        981
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "6935e00cb9d7bc717ee1e669",
+      "wine_name": "Pomerol Chateau Les Vieux Ormes",
+      "source_page": "https://www.degrotehamersma.nl/wijn/rood/195635/chateau-les-vieux-ormes/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2024/10/Chateau-Les-Vieux-Ormes.png",
+      "asset": "images/bottles/6935e00cb9d7bc717ee1e669.png",
+      "sha256": "96d094188146626ecc12f7c56d9edd47055f064b1073e1254c41f12992e7a4bf",
+      "dimensions": [
+        245,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        245,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "690f5af87e04e829c4000d0e",
+      "wine_name": "Comte de Saint Aignan Touraine Sauvignon Blanc",
+      "source_page": "https://www.degrotehamersma.nl/wijn/wit/172705/comte-de-saint-aignan-sauvignon-blanc/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2023/10/2b87a-325520_02-293x1024.jpg",
+      "asset": "images/bottles/690f5af87e04e829c4000d0e.jpg",
+      "sha256": "82bf08d94441ad3af9c2da78adf4338a8abfc5fcc0e3875aaaa268f561428326",
+      "dimensions": [
+        293,
+        1024
+      ],
+      "display_bounds": [
+        13,
+        13,
+        267,
+        1001
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "6902451db6671ab66c41f02a",
+      "wine_name": "Sauvignon Blanc bag-in-box",
+      "source_page": "https://www.degrotehamersma.nl/wijn/wit/239455/aldi-sauvignon-blanc-bib-3l/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2026/03/Aldi-Sauvignon-Blanc-BiB-3L-2026.png",
+      "asset": "images/bottles/6902451db6671ab66c41f02a.png",
+      "sha256": "e1041697baf4e0fa36c1174c7d32f4780c60480f9fefa22b0509fd9cd3b60951",
+      "dimensions": [
+        779,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        779,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69023dfe353dfba3d7c23358",
+      "wine_name": "Les Richoises Var",
+      "source_page": "https://www.degrotehamersma.nl/wijn/rose/258210/les-richoises-les-richoises/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2025/04/Les-Richoises-Les-Richoises.png",
+      "asset": "images/bottles/69023dfe353dfba3d7c23358.png",
+      "sha256": "d98dac3054f8235335123ff8db74e2873152881a055759774e92312de17b0251",
+      "dimensions": [
+        242,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        242,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bd07e0bd0235bd82af4",
+      "wine_name": "Finca del Tuerto Parcella 11",
+      "source_page": "https://www.aldi.nl/product/finca-del-tuerto-parcela-11-1223509.html",
+      "source_image": "https://s7g10.scene7.com/is/image/aldinord/product_1223509_main_cms_5_nl_nl_finca_del_tuerto_parcela_11_cw01_2024",
+      "asset": "images/bottles/69016bd07e0bd0235bd82af4.jpg",
+      "sha256": "97890a905c0d0c7310b29c6bac970e7916e389a8b192ead46c838c81e354f6de",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "display_bounds": [
+        405,
+        0,
+        471,
+        1280
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bc17e0bd0235bd82aef",
+      "wine_name": "Côte du Rhône",
+      "source_page": "https://www.degrotehamersma.nl/wijn/rood/257452/cotes-du-rhone-3/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2025/03/Cotes-du-Rhone.png",
+      "asset": "images/bottles/69016bc17e0bd0235bd82aef.png",
+      "sha256": "1708f42ef614f0c010abbe633e5b805e8e994749a1d82b12b293f472b97c9602",
+      "dimensions": [
+        261,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        261,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b7b7e0bd0235bd82ad7",
+      "wine_name": "Adega de Pegões",
+      "source_page": "https://www.aldi.nl/product/1218786.html",
+      "source_image": "https://s7g10.scene7.com/is/image/aldinord/product_1218786_main_cms_4_nl_nl_adega_de_pegoes_wit_cw01_2024",
+      "asset": "images/bottles/69016b7b7e0bd0235bd82ad7.jpg",
+      "sha256": "5079b6ff99fdea77b4c850440cff8b9e01e6f9dbd0d7a99b0e6f4f8e6b731361",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "display_bounds": [
+        441,
+        76,
+        398,
+        1127
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b7f7e0bd0235bd82ad9",
+      "wine_name": "Favoritos Cabernet Sauvignon",
+      "source_page": "https://www.degrotehamersma.nl/wijn/rood/174335/favoritos-cabernet-sauvignon-reserva/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2023/12/Untitled-6-1.png",
+      "asset": "images/bottles/69016b7f7e0bd0235bd82ad9.png",
+      "sha256": "903d778188ac7cdbc1a08ff19e17f87372018640fa3d05e84c45a0bc86484836",
+      "dimensions": [
+        275,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        275,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bb77e0bd0235bd82aed",
+      "wine_name": "Aremondi Montepulciano d’Abruzzo",
+      "source_page": "https://www.degrotehamersma.nl/wijn/rood/180030/aremondi/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2023/10/45148_2020_aremondi__rood.png",
+      "asset": "images/bottles/69016bb77e0bd0235bd82aed.png",
+      "sha256": "4225fcae9c2f30c99e27c168f807bfb1d2c1af3422cef33fe7d3237653f8663e",
+      "dimensions": [
+        112,
+        484
+      ],
+      "display_bounds": [
+        0,
+        0,
+        112,
+        484
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b7d7e0bd0235bd82ad8",
+      "wine_name": "Rioja Rivallana Crianza",
+      "source_page": "https://www.aldi.nl/product/rioja-rivallana-crianza-1214124.html",
+      "source_image": "https://s7g10.scene7.com/is/image/aldinord/product_1214124_main_cms_7_nl_nl_rioja_rivallana_crianza_cw01_2024",
+      "asset": "images/bottles/69016b7d7e0bd0235bd82ad8.jpg",
+      "sha256": "b829be761b6a4377a000053b9185f7a99bbf5ec4e77f078d7b3d67959de0a1ca",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "display_bounds": [
+        406,
+        40,
+        386,
+        1195
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bbc7e0bd0235bd82aee",
+      "wine_name": "Favoritos Chardonnay",
+      "source_page": "https://www.degrotehamersma.nl/wijn/wit/174347/favoritos-chardonnay-viognier-classic/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2023/12/Untitled-5-1.png",
+      "asset": "images/bottles/69016bbc7e0bd0235bd82aee.png",
+      "sha256": "87a94122f40ca0ac442ae3b2f9342e31edfa26297caf93589e682c21eadfaef1",
+      "dimensions": [
+        267,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        267,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69024343b6671ab66c41f027",
+      "wine_name": "Château Lamothe Guignard – Sauternes 2021",
+      "source_page": "https://jean-merlaut.com/catalogue-des-vins/3271-chateau-lamothe-guignard-2021.html",
+      "source_image": "https://jean-merlaut.com/5081-large_default/chateau-lamothe-guignard-2021.jpg",
+      "asset": "images/bottles/69024343b6671ab66c41f027.jpg",
+      "sha256": "ab8e7ce53cd649b1adc97bac90fa0b9fb1833571372bb496effd526d69dc8a5e",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        304,
+        18,
+        192,
+        769
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bab7e0bd0235bd82ae9",
+      "wine_name": "Grüner Veltliner",
+      "source_page": "https://www.hema.nl/eten-drinken/wijn/witte-wijn/domane-wachau-gruner-veltliner---075-l-17370958.html",
+      "source_image": "https://static.hema.nl/dw/image/v2/BBRK_PRD/on/demandware.static/-/Sites-HEMA-master-catalog/default/dwba398a13/product/17370958_01_001.jpg?sw=600&sfrm=png&bgcolor=FFFFFF",
+      "asset": "images/bottles/69016bab7e0bd0235bd82ae9.jpg",
+      "sha256": "13f44cb8ae9a02084164ddcaab9a425598aad03dd90d5f4fccefaa34bf853e83",
+      "dimensions": [
+        600,
+        750
+      ],
+      "display_bounds": [
+        225,
+        53,
+        199,
+        647
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016ba77e0bd0235bd82ae8",
+      "wine_name": "Beaujolais Morgon 2024",
+      "source_page": "https://winnicalidla.pl/produkt/morgon-collin-bourisset",
+      "source_image": "https://winnicalidla.pl/media/catalog/product/cache/4ad0abe33c47a6fb9ba07c9720eff305/c/t/ctscac6372vrvq51qqokknqiwuoq0wfg.png",
+      "asset": "images/bottles/69016ba77e0bd0235bd82ae8.png",
+      "sha256": "424e353181b26c006debb9121c0eda66a5b68d0512846378f4d417c040d7923f",
+      "dimensions": [
+        200,
+        300
+      ],
+      "display_bounds": [
+        60,
+        0,
+        80,
+        300
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bb37e0bd0235bd82aeb",
+      "wine_name": "Sauvignon Blanc uit Nieuw-Zeeland",
+      "source_page": "https://www.lidl.co.uk/p/new-zealand-sauvignon-blanc-marlborough/p10000261",
+      "source_image": "https://imgproxy-retcat.assets.schwarz/8KBhKvLjoH-56YhF30fmjL_yJZ-LTLzU_OPDbJGNUQc/sm:0/exar:1:ce/w:1500/h:1125/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvdWsvMS9GNkMzMjZDQzYxNEQ3OUY0QzM0MDJEMTV/GQkUxMkZDNzk2MDg5NjZEQzJDQTI3RjhBMkMzNTE2MEFDRUMyNUY3LmpwZw.jpg",
+      "asset": "images/bottles/69016bb37e0bd0235bd82aeb.webp",
+      "sha256": "f884326b5caf34a0a5702431b26a9c2a54510151988ec31e93eda19f37920043",
+      "dimensions": [
+        1500,
+        1125
+      ],
+      "display_bounds": [
+        616,
+        61,
+        268,
+        1004
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "1b541051408d4e15997ba1db",
+      "wine_name": "Vila Nova Vinho Verde 2025",
+      "source_page": "https://www.degrotehamersma.nl/wijn/wit/172782/vila-nova/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2024/12/Vila-Nova-2026.png",
+      "asset": "images/bottles/1b541051408d4e15997ba1db.png",
+      "sha256": "278ad9b7e74c4112e890ec5eaded03cd0a03df973862deb31623dbb0726576dd",
+      "dimensions": [
+        238,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        238,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "690f5a097e04e829c4000d0d",
+      "wine_name": "Le Bijou",
+      "source_page": "https://www.degrotehamersma.nl/wijn/rose/172477/le-bijou-sophie-valrose/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2024/12/Le-Bijou-Sophie-Valrose-2026.png",
+      "asset": "images/bottles/690f5a097e04e829c4000d0d.png",
+      "sha256": "f54e6f9c63ab997aed57edfdd353d42c1db4b3e832d5d3bcdb2d0e62139349b2",
+      "dimensions": [
+        229,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        229,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b947e0bd0235bd82ae1",
+      "wine_name": "Nova's Carbonaire, Grand Reserve",
+      "source_page": "https://www.degrotehamersma.nl/wijn/rood/172727/novas-carmenere-gran-reserva/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2025/10/Novas-Carmenere-Gran-Reserva-2026.png",
+      "asset": "images/bottles/69016b947e0bd0235bd82ae1.png",
+      "sha256": "6ac9b7946a8f9112f7a95eafd720ec0c85bed92d2de0facee37ed1f4a34e14f8",
+      "dimensions": [
+        255,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        0,
+        255,
+        1000
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bc37e0bd0235bd82af0",
+      "wine_name": "19 Crimes",
+      "source_page": "https://www.degrotehamersma.nl/wijn/rood/231114/19-crimes-red-wine-2/",
+      "source_image": "https://www.degrotehamersma.nl/wp-content/uploads/2025/09/19-Crimes-Red-Wine-2026.png",
+      "asset": "images/bottles/69016bc37e0bd0235bd82af0.png",
+      "sha256": "910677a6af97f5483dfc985ce80d3a9a101c50e5e17d39b5652d6364571bb636",
+      "dimensions": [
+        240,
+        1000
+      ],
+      "display_bounds": [
+        0,
+        1,
+        239,
+        998
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "36f943d307b94d96b572b85f",
+      "wine_name": "Fantini Pecorino",
+      "source_page": "https://www.ah.nl/producten/product/wi419830/fantini-pecorino",
+      "source_image": "https://static.ah.nl/dam/product/AHI_434d50363437313536?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/36f943d307b94d96b572b85f.webp",
+      "sha256": "594fc307a8ab5a2941ad8276e5ffb72dd81d2333d4f90c9ecec8c90cac9aa0a3",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        300,
+        31,
+        200,
+        738
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "96c79d1e53914530b11f4754",
+      "wine_name": "Undurraga Sibaris Gran Reserva Cabernet Sauvignon 2024",
+      "source_page": "https://www.ah.nl/producten/product/wi362408/sibaris-sibaris-cabernet-sauvignon-gran-reserva",
+      "source_image": "https://static.ah.nl/dam/product/AHI_4354523130323037373235?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/96c79d1e53914530b11f4754.webp",
+      "sha256": "4906fabb41d96e15f00aceff3d7138d5fd4cb2cef001dd4281aa81b5068e6961",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        305,
+        31,
+        190,
+        738
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "7509c7073a3d40129af6e183",
+      "wine_name": "E. Guigal Côtes du Rhône Blanc",
+      "source_page": "https://www.ah.nl/producten/product/wi234670/e-guigal-co%CC%82tes-du-rho%CC%82ne-blanc",
+      "source_image": "https://static.ah.nl/dam/product/AHI_434d50313739313239?revLabel=3&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/7509c7073a3d40129af6e183.webp",
+      "sha256": "fe194837217f622c5c6b3e6172d5286cd7a5c9662ac40da97651d59dcfa81dcc",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        301,
+        32,
+        198,
+        736
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "60d16c47facd45b9933d78ab",
+      "wine_name": "Château Tapie Languedoc Rouge",
+      "source_page": "https://www.ah.nl/producten/product/wi58640/chateau-tapie-languedoc-biologische-wijn",
+      "source_image": "https://static.ah.nl/dam/product/AHI_4354523130313538303836?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/60d16c47facd45b9933d78ab.webp",
+      "sha256": "23f3fdee323e19b22b9e31bb04ba3c8ae9ede884c407c032dc0ced4ab1884345",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        307,
+        32,
+        186,
+        737
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "693aeb43d1eb6cca7061e5f3",
+      "wine_name": "Chateau Camplong",
+      "source_page": "https://www.ah.nl/producten/product/wi135315/chateau-camplong-camplong-corbieres",
+      "source_image": "https://static.ah.nl/dam/product/AHI_4354523130313839303832?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/693aeb43d1eb6cca7061e5f3.webp",
+      "sha256": "c2e2c2feff95d90b35ca4a4a3e5fe9bd8a7cd7d3fc34ca31772f09efd61f60eb",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        307,
+        31,
+        186,
+        738
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "690f591f7e04e829c4000d0c",
+      "wine_name": "Domaine Tapie Rosé",
+      "source_page": "https://www.ah.nl/producten/product/wi479064/domaine-tapie-rose%CC%81-bio-dynamisch",
+      "source_image": "https://static.ah.nl/dam/product/AHI_4354523130313230393432?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/690f591f7e04e829c4000d0c.webp",
+      "sha256": "f8431efbd5a42a78c23e3a2f56b697b132ae44fe7ec2e2bb90acef78bea57341",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        307,
+        32,
+        186,
+        737
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69c92589d49d2ec48023febf",
+      "wine_name": "Saint Roche 2025",
+      "source_page": "https://www.ah.nl/producten/product/wi121086/saint-roche-rose-organic-wine",
+      "source_image": "https://static.ah.nl/dam/product/AHI_434d50313433303037?revLabel=4&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/69c92589d49d2ec48023febf.webp",
+      "sha256": "043b5ec78b25062d370e9d73d4533e398eda0bbe6e685225cfa4857a756f3edf",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        307,
+        31,
+        186,
+        738
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016ba67e0bd0235bd82ae7",
+      "wine_name": "Penfolds Koonunga hill chardonnay",
+      "source_page": "https://www.ah.nl/producten/product/wi93724/penfolds-koonunga-hill-chardonnay",
+      "source_image": "https://static.ah.nl/dam/product/AHI_43545239373834363636?revLabel=3&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/69016ba67e0bd0235bd82ae7.webp",
+      "sha256": "bb1699d072c4af6b88956d7a888ddd97399178d404b1129cc79fdc4923bcfb34",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        303,
+        33,
+        194,
+        735
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "690241b1b6671ab66c41f024",
+      "wine_name": "Château Coulon",
+      "source_page": "https://www.ah.nl/producten/product/wi104062/chateau-coulon-rouge-organic-wine",
+      "source_image": "https://static.ah.nl/dam/product/AHI_434d50303237333530?revLabel=6&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/690241b1b6671ab66c41f024.webp",
+      "sha256": "fda4a1508084983bfc79b361352edc5206f7278b6d85d29548357e9f69226c1d",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        315,
+        32,
+        170,
+        736
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bcb7e0bd0235bd82af3",
+      "wine_name": "Albali Verdejo",
+      "source_page": "https://www.ah.nl/producten/product/wi441025/vina-albali-organic-verdejo-wit-wijntap",
+      "source_image": "https://static.ah.nl/dam/product/AHI_4354523130313835323136?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/69016bcb7e0bd0235bd82af3.webp",
+      "sha256": "4dcab59e453ac387bd934ac3f91b80055e3c4da29b67e08ac0f590c1051c5b93",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        110,
+        31,
+        579,
+        738
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b997e0bd0235bd82ae3",
+      "wine_name": "Divino Nordheim Silvaner",
+      "source_page": "https://www.ah.nl/producten/product/wi371132/divino-nordheim-silvaner-trocken",
+      "source_image": "https://static.ah.nl/dam/product/AHI_434d50323134373133?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/69016b997e0bd0235bd82ae3.webp",
+      "sha256": "e0f8dc10a0281522d7a3a69b8be3b8a1f1fa82f09d5643dee574feaed889acf5",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        163,
+        31,
+        474,
+        738
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016bb17e0bd0235bd82aea",
+      "wine_name": "Côtes du Rhône E. Guigal ",
+      "source_page": "https://www.ah.nl/producten/product/wi69193/e-guigal-co%CC%82tes-du-rho%CC%82ne-rouge",
+      "source_image": "https://static.ah.nl/dam/product/AHI_6863732d4b45645951533238334e69534b7246523277?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/69016bb17e0bd0235bd82aea.webp",
+      "sha256": "156803ee591b365618026c78d647bc3c835215e13d664604855a02a7b97f3b5c",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        298,
+        31,
+        204,
+        738
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b857e0bd0235bd82ada",
+      "wine_name": "Marqués de Vitoria Rioja crianza",
+      "source_page": "https://www.ah.nl/producten/product/wi553710/marque%CC%81s-de-vitoria-rioja-crianza",
+      "source_image": "https://static.ah.nl/dam/product/AHI_4354523130313934313233?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/69016b857e0bd0235bd82ada.webp",
+      "sha256": "7942dc7c3cc523b8ee577389ddc53befd871948589d85e25ce45ed88354dd5f9",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        307,
+        31,
+        186,
+        738
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b8b7e0bd0235bd82add",
+      "wine_name": "Côtes du Rhône",
+      "source_page": "https://www.jumbo.com/producten/jumbo-cotes-du-rhone-villages-750ml-590956FLS",
+      "source_image": "https://www.jumbo.com/dam-images/fit-in/360x360/Products/12082026_1786557677224_1786557685784_8718452711963_1.png",
+      "asset": "images/bottles/69016b8b7e0bd0235bd82add.avif",
+      "sha256": "d0799ff59236e67d28e57706a83a6e59581de447e503981aa1113edebe13478e",
+      "dimensions": [
+        360,
+        360
+      ],
+      "display_bounds": [
+        132,
+        0,
+        96,
+        360
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b987e0bd0235bd82ae2",
+      "wine_name": "Sankt Anna Spätburgunder",
+      "source_page": "https://www.jumbo.com/producten/sankt-anna-spatburgunder-750ml-158226FLS",
+      "source_image": "https://www.jumbo.com/dam-images/fit-in/360x360/Products/09082023_1691590661432_1691590665559_4026371930339_1.png",
+      "asset": "images/bottles/69016b987e0bd0235bd82ae2.avif",
+      "sha256": "3bb8548df8c7fbbef02cd606fd0960263414253cc6a6d03ab69b5339e89ac8e4",
+      "dimensions": [
+        360,
+        360
+      ],
+      "display_bounds": [
+        132,
+        0,
+        96,
+        360
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "6942eb834ffed09443ba7d19",
+      "wine_name": "TerraPura Carménère",
+      "source_page": "https://www.jumbo.com/producten/terrapura-single-vineyard-carmenere-750-ml-208334FLS",
+      "source_image": "https://www.jumbo.com/dam-images/fit-in/360x360/Products/06062025_1749220367964_1749220371722_7804616090539_1.png",
+      "asset": "images/bottles/6942eb834ffed09443ba7d19.avif",
+      "sha256": "6c37e432c549c97b2ec7a9fbccbfc4105a0f86d8d8867f7cefd1050a18299a74",
+      "dimensions": [
+        360,
+        360
+      ],
+      "display_bounds": [
+        133,
+        0,
+        93,
+        360
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b877e0bd0235bd82adb",
+      "wine_name": "Mount Fishtail, Sauvignon Blanc",
+      "source_page": "https://www.jumbo.com/producten/mount-fishtail-sauvignon-blanc-750-ml-383979FLS",
+      "source_image": "https://www.jumbo.com/dam-images/fit-in/360x360/Products/26112025_1764137359277_1764137363740_383979_FLS_09421904809307_C1N1.png",
+      "asset": "images/bottles/69016b877e0bd0235bd82adb.avif",
+      "sha256": "24ae27b429d92af1c8b8ceb339f74de45a928b4be77473c7407db5e994a93f6d",
+      "dimensions": [
+        360,
+        360
+      ],
+      "display_bounds": [
+        137,
+        0,
+        86,
+        360
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "69016b8f7e0bd0235bd82ade",
+      "wine_name": "Pinot Grigio uit Trentino",
+      "source_page": "https://www.ah.nl/producten/product/wi440882/mastri-vernacoli-pinot-grigio",
+      "source_image": "https://static.ah.nl/dam/product/AHI_6536625636746e3752732d5037635a6d4d6b55646341?revLabel=1&rendition=800x800_WEBP&fileType=binary",
+      "asset": "images/bottles/69016b8f7e0bd0235bd82ade.webp",
+      "sha256": "331d28f7c237e9b746722f1c4900f0e5bc4cb65f685aa2bac70a4d62e6ad13f8",
+      "dimensions": [
+        800,
+        800
+      ],
+      "display_bounds": [
+        309,
+        31,
+        167,
+        729
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "690243d2b6671ab66c41f028",
+      "wine_name": "Marqués de Montañana Garnacha",
+      "source_page": "https://www.jumbo.com/producten/marques-de-montanana-garnacha-750-ml-60296FLS",
+      "source_image": "https://www.jumbo.com/dam-images/fit-in/360x360/Products/09082023_1691586201256_1691586205209_8437003286377_1.png",
+      "asset": "images/bottles/690243d2b6671ab66c41f028.avif",
+      "sha256": "c8e8e0e60c5ed55dfd82aad837c30d53e0f11538cd91a5c0744f16f8535e557c",
+      "dimensions": [
+        360,
+        360
+      ],
+      "display_bounds": [
+        132,
+        0,
+        96,
+        360
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "4d14c71da450b2601714d5db",
+      "wine_name": "Adeus D.O. Ribeiro Treixadura & Torrontés",
+      "source_page": "https://www.linda.nl/eten-recept/wil-je-weten/pepijn-wijn-rose-tips/",
+      "source_image": "https://www.linda.nl/lindanl-assets/uploads/2026/03/20142244/341509-300x300.webp",
+      "asset": "images/bottles/4d14c71da450b2601714d5db.webp",
+      "sha256": "68552ea9767e4b744460f3de5c029bfb6acd38291da64caf1209d865bffae06d",
+      "dimensions": [
+        300,
+        300
+      ],
+      "display_bounds": [
+        112,
+        12,
+        74,
+        276
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "eafa42b0c1ed30e4b7786752",
+      "wine_name": "Piccini Appassite Solco 2022",
+      "source_page": "https://www.linda.nl/eten-recept/wil-je-weten/pepijn-wijn-rose-tips/",
+      "source_image": "https://www.linda.nl/lindanl-assets/uploads/2026/03/20142501/46601_2020_piccini_appassite-solco_rood-78x300.png",
+      "asset": "images/bottles/eafa42b0c1ed30e4b7786752.png",
+      "sha256": "58ec139e3e2f0dd1c55453ba2e54a3bec2401ded882aba6722cfb9d31ba00f38",
+      "dimensions": [
+        78,
+        300
+      ],
+      "display_bounds": [
+        0,
+        0,
+        78,
+        300
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "e569e7da172ef2ca26430b54",
+      "wine_name": "Krone Borealis Vintage Cuvée Brut 2024",
+      "source_page": "https://www.rtl.nl/wonen/koken-en-eten/artikel/5544754/dit-zijn-de-beste-supermarkt-wijnen-voor-tijdens-de-kerst",
+      "source_image": "https://static.ah.nl/dam/product/AHI_4354523130313835363033?fileType=binary&rendition=400x400_WEBP&revLabel=1",
+      "asset": "images/bottles/e569e7da172ef2ca26430b54.webp",
+      "sha256": "5ed9e7893ee308d5d1227216a12af44a13ea5599aa41c40bd708dbc102f49eda",
+      "dimensions": [
+        400,
+        400
+      ],
+      "display_bounds": [
+        143,
+        16,
+        113,
+        368
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "d166437f7368b0a9267f0db8",
+      "wine_name": "Protos Roble 2023",
+      "source_page": "https://www.rtl.nl/wonen/koken-en-eten/artikel/5544754/dit-zijn-de-beste-supermarkt-wijnen-voor-tijdens-de-kerst",
+      "source_image": "https://static.ah.nl/dam/product/AHI_434d50313639303633?fileType=binary&rendition=400x400_WEBP&revLabel=1",
+      "asset": "images/bottles/d166437f7368b0a9267f0db8.webp",
+      "sha256": "b6d706d0b41a34f28b95e255557989738693d4dccf00b584f8dccbe07f5abf70",
+      "dimensions": [
+        400,
+        400
+      ],
+      "display_bounds": [
+        153,
+        15,
+        94,
+        370
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "aea5b7584c0bf918118e5caf",
+      "wine_name": "Viña Salceda Rueda Verdejo",
+      "source_page": "https://www.linda.nl/lifestyle/wijnen-onder-10-euro-tips-supermarkt-pepijn-wijn/",
+      "source_image": "https://www.linda.nl/lindanl-assets/uploads/2025/08/06081945/verdejo-1024x768.webp",
+      "asset": "images/bottles/aea5b7584c0bf918118e5caf.webp",
+      "sha256": "01fceabebf3c4181c64f60dfc821b239d879e310eaf957407764271403f1922a",
+      "dimensions": [
+        1024,
+        768
+      ],
+      "display_bounds": [
+        415,
+        54,
+        197,
+        666
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    },
+    {
+      "wine_id": "d853c760d26af3e1375969d4",
+      "wine_name": "Rosé de l’Horte",
+      "source_page": "https://www.linda.nl/lifestyle/wijnen-onder-10-euro-tips-supermarkt-pepijn-wijn/",
+      "source_image": "https://www.linda.nl/lindanl-assets/uploads/2025/08/06082132/lhorte-1024x768.webp",
+      "asset": "images/bottles/d853c760d26af3e1375969d4.webp",
+      "sha256": "ee7672d35b5bb69c5dea66b0e965d79eece3528b3b242334e0ab57838d5e0d31",
+      "dimensions": [
+        1024,
+        768
+      ],
+      "display_bounds": [
+        432,
+        33,
+        160,
+        697
+      ],
+      "notes": "Wine and cuvée checked against existing source labels. Packshots may show another vintage or updated packaging; source photographs are preserved unchanged."
+    }
+  ]
+}

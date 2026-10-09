@@ -1,9 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { getImageUrl, isCloudinary, buildCloudinarySrcSet } from '../utils/image';
+import BottlePhoto from './BottlePhoto';
 import { getWineTypeEmoji } from '../utils/wine';
 
-function ImageCarousel({ images = [], wineName = '', wineType = '', imageFit = 'cover', overlay = false, hideIndicators = false, counterPill = false }) {
+function ImageCarousel({ images = [], wineName = '', wineType = '', bottleImage = '', bottlePresentation, bottleLayout = 'detail', overlay = false, hideIndicators = false, counterPill = false }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, dragFree: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [errorIndices, setErrorIndices] = useState(new Set());
@@ -73,6 +74,14 @@ function ImageCarousel({ images = [], wineName = '', wineType = '', imageFit = '
               <div key={idx} className="flex-[0_0_100%] min-w-0 h-full flex items-center justify-center">
                 {errorIndices.has(idx) ? (
                   <span className="text-6xl">{getWineTypeEmoji(wineType)}</span>
+                ) : img === bottleImage ? (
+                  <BottlePhoto
+                    src={img}
+                    alt={`${wineName} - flesfoto`}
+                    presentation={bottlePresentation}
+                    layout={bottleLayout}
+                    onError={() => setErrorIndices(prev => new Set(prev).add(idx))}
+                  />
                 ) : (
                   <img
                     src={url}
@@ -83,7 +92,7 @@ function ImageCarousel({ images = [], wineName = '', wineType = '', imageFit = '
                     height={1000}
                     srcSet={isCloudinary(url) ? buildCloudinarySrcSet(url) : undefined}
                     sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                    className={`w-full h-full pointer-events-none ${imageFit === 'contain' ? 'object-contain bg-white p-4' : 'object-cover'}`}
+                    className="w-full h-full pointer-events-none object-cover"
                     draggable="false"
                     onError={() => setErrorIndices(prev => new Set(prev).add(idx))}
                   />

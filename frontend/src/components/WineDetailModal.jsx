@@ -104,7 +104,7 @@ function WineDetailModal({ wine, onClose }) {
       <div className="md:hidden absolute inset-0 bg-black">
         {/* Full-screen image */}
         <div className="absolute inset-0">
-          <ImageCarousel images={images} wineName={wine.name} wineType={wine.wine_type} imageFit={wine.image_fit} overlay counterPill hideIndicators />
+          <ImageCarousel images={images} wineName={wine.name} wineType={wine.wine_type} bottleImage={wine.bottle_image_url} bottlePresentation={wine.bottle_image_presentation} bottleLayout="mobile" overlay counterPill hideIndicators />
         </div>
 
         {/* Close button on image */}
@@ -220,7 +220,7 @@ function WineDetailModal({ wine, onClose }) {
           <div className="flex flex-row max-h-[90vh]">
             {/* Image — left */}
             <div className="relative w-[45%] flex-shrink-0 overflow-hidden">
-              <ImageCarousel images={images} wineName={wine.name} wineType={wine.wine_type} imageFit={wine.image_fit} overlay />
+              <ImageCarousel images={images} wineName={wine.name} wineType={wine.wine_type} bottleImage={wine.bottle_image_url} bottlePresentation={wine.bottle_image_presentation} overlay />
             </div>
 
             {/* Content — right */}

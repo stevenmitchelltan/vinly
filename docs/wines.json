@@ -8,14 +8,26 @@
     "rating": "Prima, hartstikke prima",
     "description": "Kruidige rode wijn met gestoofd fruit, voldoende frisheid en meerdere smaken die niet meteen wegzakken.",
     "image_urls": [
+      "images/bottles/60d16c47facd45b9933d78ab.webp",
       "images/tiktok/7680953568865652000-1.jpg"
     ],
-    "image_fit": "contain",
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7680953568865652000",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2026-09-02T15:02:47+00:00",
     "source_type": "tiktok",
-    "added_at": "2026-10-09T11:33:12.099636+00:00"
+    "added_at": "2026-10-09T11:33:12.099636+00:00",
+    "bottle_image_url": "images/bottles/60d16c47facd45b9933d78ab.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi58640/chateau-tapie-languedoc-biologische-wijn",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        307,
+        32,
+        186,
+        737
+      ]
+    }
   },
   {
     "id": "96c79d1e53914530b11f4754",
@@ -26,14 +38,26 @@
     "rating": "Flinke beuker",
     "description": "Krachtige Chileense rode wijn met veel rijp fruit en goede structuur; Pepijn bewaart deze liever voor later in het jaar.",
     "image_urls": [
+      "images/bottles/96c79d1e53914530b11f4754.webp",
       "images/tiktok/7680953568865652000-2.jpg"
     ],
-    "image_fit": "contain",
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7680953568865652000",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2026-09-02T15:02:47+00:00",
     "source_type": "tiktok",
-    "added_at": "2026-10-09T11:33:12.099636+00:00"
+    "added_at": "2026-10-09T11:33:12.099636+00:00",
+    "bottle_image_url": "images/bottles/96c79d1e53914530b11f4754.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi362408/sibaris-sibaris-cabernet-sauvignon-gran-reserva",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        305,
+        31,
+        190,
+        738
+      ]
+    }
   },
   {
     "id": "2ce25a5968f64bac899d4215",
@@ -44,14 +68,26 @@
     "rating": "Prima supermarktrosé",
     "description": "Winnaar van Pepijns Lidl-rosétest: het fruit is goed verwerkt en de wijn steekt boven de andere geteste rosés uit.",
     "image_urls": [
+      "images/bottles/2ce25a5968f64bac899d4215.jpg",
       "images/tiktok/7665385153169984801-3.jpg"
     ],
-    "image_fit": "contain",
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7665385153169984801",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2026-07-22T16:09:22+00:00",
     "source_type": "tiktok",
-    "added_at": "2026-10-09T11:33:12.099636+00:00"
+    "added_at": "2026-10-09T11:33:12.099636+00:00",
+    "bottle_image_url": "images/bottles/2ce25a5968f64bac899d4215.jpg",
+    "bottle_image_source": "https://www.lidl.co.uk/p/cotes-de-provence-rose/p10002723",
+    "bottle_image_presentation": {
+      "width": 1500,
+      "height": 1125,
+      "bounds": [
+        617,
+        73,
+        264,
+        981
+      ]
+    }
   },
   {
     "id": "1b541051408d4e15997ba1db",
@@ -62,14 +98,26 @@
     "rating": "De topper blijft deze",
     "description": "Frisse Portugese witte wijn met genoeg fruit tegenover de zuren en een klein, verfrissend bubbeltje.",
     "image_urls": [
+      "images/bottles/1b541051408d4e15997ba1db.png",
       "images/tiktok/7652801869835717920-4.jpg"
     ],
-    "image_fit": "contain",
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7652801869835717920",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2026-06-18T18:19:49+00:00",
     "source_type": "tiktok",
-    "added_at": "2026-10-09T11:33:12.099636+00:00"
+    "added_at": "2026-10-09T11:33:12.099636+00:00",
+    "bottle_image_url": "images/bottles/1b541051408d4e15997ba1db.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/wit/172782/vila-nova/",
+    "bottle_image_presentation": {
+      "width": 238,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        238,
+        1000
+      ]
+    }
   },
   {
     "id": "36f943d307b94d96b572b85f",
@@ -80,14 +128,26 @@
     "rating": "Ook een goede supermarktvariant",
     "description": "Positief beoordeeld alternatief in de zomerse wittewijntest, met iets meer body, prettige zuren en een ziltige indruk.",
     "image_urls": [
+      "images/bottles/36f943d307b94d96b572b85f.webp",
       "images/tiktok/7652801869835717920-5.jpg"
     ],
-    "image_fit": "contain",
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7652801869835717920",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2026-06-18T18:19:49+00:00",
     "source_type": "tiktok",
-    "added_at": "2026-10-09T11:33:12.099636+00:00"
+    "added_at": "2026-10-09T11:33:12.099636+00:00",
+    "bottle_image_url": "images/bottles/36f943d307b94d96b572b85f.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi419830/fantini-pecorino",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        300,
+        31,
+        200,
+        738
+      ]
+    }
   },
   {
     "id": "d117e498593e4f898407a245",
@@ -98,14 +158,26 @@
     "rating": "Dit is mijn parel",
     "description": "Sappige rosé uit de Loire met rijpe aardbeien en frambozen, fijne frisheid en zonder harde zuren.",
     "image_urls": [
+      "images/bottles/d117e498593e4f898407a245.jpg",
       "images/tiktok/7634434152477019425-6.jpg"
     ],
-    "image_fit": "contain",
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7634434152477019425",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2026-04-30T06:23:50+00:00",
     "source_type": "tiktok",
-    "added_at": "2026-10-09T11:33:12.099636+00:00"
+    "added_at": "2026-10-09T11:33:12.099636+00:00",
+    "bottle_image_url": "images/bottles/d117e498593e4f898407a245.jpg",
+    "bottle_image_source": "https://www.sligro.nl/p.198991.html/roc-de-l-abbaye-pinot-noir-rose-fles-75-cl.html",
+    "bottle_image_presentation": {
+      "width": 1280,
+      "height": 1279,
+      "bounds": [
+        484,
+        59,
+        316,
+        1163
+      ]
+    }
   },
   {
     "id": "7509c7073a3d40129af6e183",
@@ -116,14 +188,26 @@
     "rating": "Een hele leuke wijn",
     "description": "Fruitige en bloemige witte Rhôneblend met wat vettigheid door rijping op de gist, zonder uitgesproken houttoon.",
     "image_urls": [
+      "images/bottles/7509c7073a3d40129af6e183.webp",
       "images/tiktok/7631965473051118880-7.jpg"
     ],
-    "image_fit": "contain",
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7631965473051118880",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2026-04-23T14:43:59+00:00",
     "source_type": "tiktok",
-    "added_at": "2026-10-09T11:33:12.099636+00:00"
+    "added_at": "2026-10-09T11:33:12.099636+00:00",
+    "bottle_image_url": "images/bottles/7509c7073a3d40129af6e183.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi234670/e-guigal-co%CC%82tes-du-rho%CC%82ne-blanc",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        301,
+        32,
+        198,
+        736
+      ]
+    }
   },
   {
     "id": "69c92589d49d2ec48023febf",
@@ -134,12 +218,25 @@
     "rating": "Deze smaak blijft lang hangen, toppertje!",
     "description": "Deze heeft frambozen en is een beetje bloemig. ",
     "image_urls": [
+      "images/bottles/69c92589d49d2ec48023febf.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1774791309/72b441e2-7c02-4729-90c5-5638afa71f7e.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1774791223/46297a9a-7927-4632-b713-624bd797a324.png"
     ],
     "post_url": "https://www.instagram.com/p/DV_cPg2Agga/",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2026-03-29T13:13:45.039000"
+    "date_found": "2026-03-29T13:13:45.039000",
+    "bottle_image_url": "images/bottles/69c92589d49d2ec48023febf.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi121086/saint-roche-rose-organic-wine",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        307,
+        31,
+        186,
+        738
+      ]
+    }
   },
   {
     "id": "69c91c72d49d2ec48023febe",
@@ -150,13 +247,26 @@
     "rating": "Deze klapt dubbel en dwars over die eerste heen",
     "description": "Het heeft bijna iets rokers, het heeft kersen, het heeft zeker hout gehad, dat is in ieder geval te ruiken",
     "image_urls": [
+      "images/bottles/69c91c72d49d2ec48023febe.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1774787691/vinly/wines/a2cd6601dfc827ac_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1774787695/vinly/wines/a2cd6601dfc827ac_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1774787697/vinly/wines/a2cd6601dfc827ac_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7600130996087950624",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2026-03-29T12:34:58.908000"
+    "date_found": "2026-03-29T12:34:58.908000",
+    "bottle_image_url": "images/bottles/69c91c72d49d2ec48023febe.png",
+    "bottle_image_source": "https://dutchshopper.com/products/chateau-de-lhorte-syrah-grenache",
+    "bottle_image_presentation": {
+      "width": 1799,
+      "height": 6203,
+      "bounds": [
+        104,
+        103,
+        1591,
+        5996
+      ]
+    }
   },
   {
     "id": "4d14c71da450b2601714d5db",
@@ -167,7 +277,7 @@
     "rating": "Een witte wijnparel",
     "description": "Ronde, aromatische witte wijn met rijp fruit, zonder houtrijping. Pepijn tipt hem voor liefhebbers van een vollere stijl.",
     "image_urls": [
-      "https://www.linda.nl/lindanl-assets/uploads/2026/03/20142244/341509-300x300.webp"
+      "images/bottles/4d14c71da450b2601714d5db.webp"
     ],
     "post_url": "https://www.linda.nl/eten-recept/wil-je-weten/pepijn-wijn-rose-tips/",
     "influencer_source": "pepijn.wijn",
@@ -175,7 +285,19 @@
     "source_type": "article",
     "source_publisher": "LINDA.",
     "source_published_at": "2026-03-21",
-    "added_at": "2026-10-09"
+    "added_at": "2026-10-09",
+    "bottle_image_url": "images/bottles/4d14c71da450b2601714d5db.webp",
+    "bottle_image_source": "https://www.linda.nl/eten-recept/wil-je-weten/pepijn-wijn-rose-tips/",
+    "bottle_image_presentation": {
+      "width": 300,
+      "height": 300,
+      "bounds": [
+        112,
+        12,
+        74,
+        276
+      ]
+    }
   },
   {
     "id": "eafa42b0c1ed30e4b7786752",
@@ -186,7 +308,7 @@
     "rating": "Perfect als afsluiter van de avond",
     "description": "Volle rode wijn van licht ingedroogde druiven, met rijpe kersen, bramen, chocolade en vijgen.",
     "image_urls": [
-      "https://www.linda.nl/lindanl-assets/uploads/2026/03/20142501/46601_2020_piccini_appassite-solco_rood-78x300.png"
+      "images/bottles/eafa42b0c1ed30e4b7786752.png"
     ],
     "post_url": "https://www.linda.nl/eten-recept/wil-je-weten/pepijn-wijn-rose-tips/",
     "influencer_source": "pepijn.wijn",
@@ -195,7 +317,18 @@
     "source_publisher": "LINDA.",
     "source_published_at": "2026-03-21",
     "added_at": "2026-10-09",
-    "image_fit": "contain"
+    "bottle_image_url": "images/bottles/eafa42b0c1ed30e4b7786752.png",
+    "bottle_image_source": "https://www.linda.nl/eten-recept/wil-je-weten/pepijn-wijn-rose-tips/",
+    "bottle_image_presentation": {
+      "width": 78,
+      "height": 300,
+      "bounds": [
+        0,
+        0,
+        78,
+        300
+      ]
+    }
   },
   {
     "id": "6942eb834ffed09443ba7d19",
@@ -206,13 +339,26 @@
     "rating": "Een goede stevige rode wijn",
     "description": "Gewoon genoeg fruitconcentratie, maar het wordt niet slobberig. Dit is echt nog wat groenigs en heeft ook nog wat peperigs. Hij blijft gewoon een paar seconden in je mond hangen.",
     "image_urls": [
+      "images/bottles/6942eb834ffed09443ba7d19.avif",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1765993344/vinly/wines/17dfb89624010e0f_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1765993343/vinly/wines/17dfb89624010e0f_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1765993347/vinly/wines/17dfb89624010e0f_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7584857309122186528",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-12-17T17:42:27.625000"
+    "date_found": "2025-12-17T17:42:27.625000",
+    "bottle_image_url": "images/bottles/6942eb834ffed09443ba7d19.avif",
+    "bottle_image_source": "https://www.jumbo.com/producten/terrapura-single-vineyard-carmenere-750-ml-208334FLS",
+    "bottle_image_presentation": {
+      "width": 360,
+      "height": 360,
+      "bounds": [
+        133,
+        0,
+        93,
+        360
+      ]
+    }
   },
   {
     "id": "e569e7da172ef2ca26430b54",
@@ -223,7 +369,7 @@
     "rating": "Eén van de betere supermarkt-bubbels",
     "description": "Zuid-Afrikaanse Cap Classique van Pinot Noir en Chardonnay: fris citrusfruit, fijne bubbels en een subtiel amandelaccent.",
     "image_urls": [
-      "https://static.ah.nl/dam/product/AHI_4354523130313835363033?fileType=binary&rendition=400x400_WEBP&revLabel=1"
+      "images/bottles/e569e7da172ef2ca26430b54.webp"
     ],
     "post_url": "https://www.rtl.nl/wonen/koken-en-eten/artikel/5544754/dit-zijn-de-beste-supermarkt-wijnen-voor-tijdens-de-kerst",
     "influencer_source": "pepijn.wijn",
@@ -231,7 +377,19 @@
     "source_type": "article",
     "source_publisher": "RTL",
     "source_published_at": "2025-12-17",
-    "added_at": "2026-10-09"
+    "added_at": "2026-10-09",
+    "bottle_image_url": "images/bottles/e569e7da172ef2ca26430b54.webp",
+    "bottle_image_source": "https://www.rtl.nl/wonen/koken-en-eten/artikel/5544754/dit-zijn-de-beste-supermarkt-wijnen-voor-tijdens-de-kerst",
+    "bottle_image_presentation": {
+      "width": 400,
+      "height": 400,
+      "bounds": [
+        143,
+        16,
+        113,
+        368
+      ]
+    }
   },
   {
     "id": "d166437f7368b0a9267f0db8",
@@ -242,7 +400,7 @@
     "rating": "Even een half uurtje karafferen doet wonderen",
     "description": "Stevige Ribera del Duero met rijp fruit, vanille, rook en tabak. Pepijn raadt hem aan bij vleesgerechten.",
     "image_urls": [
-      "https://static.ah.nl/dam/product/AHI_434d50313639303633?fileType=binary&rendition=400x400_WEBP&revLabel=1"
+      "images/bottles/d166437f7368b0a9267f0db8.webp"
     ],
     "post_url": "https://www.rtl.nl/wonen/koken-en-eten/artikel/5544754/dit-zijn-de-beste-supermarkt-wijnen-voor-tijdens-de-kerst",
     "influencer_source": "pepijn.wijn",
@@ -250,7 +408,19 @@
     "source_type": "article",
     "source_publisher": "RTL",
     "source_published_at": "2025-12-17",
-    "added_at": "2026-10-09"
+    "added_at": "2026-10-09",
+    "bottle_image_url": "images/bottles/d166437f7368b0a9267f0db8.webp",
+    "bottle_image_source": "https://www.rtl.nl/wonen/koken-en-eten/artikel/5544754/dit-zijn-de-beste-supermarkt-wijnen-voor-tijdens-de-kerst",
+    "bottle_image_presentation": {
+      "width": 400,
+      "height": 400,
+      "bounds": [
+        153,
+        15,
+        94,
+        370
+      ]
+    }
   },
   {
     "id": "693aeb43d1eb6cca7061e5f3",
@@ -261,12 +431,25 @@
     "rating": "Een uitstekende supermarkt wijn",
     "description": "Volle bak fruit in je mond, met kruidigheid en goed geïntegreerde tannines, voor 6 euro.",
     "image_urls": [
+      "images/bottles/693aeb43d1eb6cca7061e5f3.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1765469174/chateau_camplong_eyyv9z.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1765468989/vinly/wines/cdbf71bc339caf46_0.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7582135614661872928",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-12-11T16:03:15.687000"
+    "date_found": "2025-12-11T16:03:15.687000",
+    "bottle_image_url": "images/bottles/693aeb43d1eb6cca7061e5f3.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi135315/chateau-camplong-camplong-corbieres",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        307,
+        31,
+        186,
+        738
+      ]
+    }
   },
   {
     "id": "6935e00cb9d7bc717ee1e669",
@@ -277,12 +460,25 @@
     "rating": "Lekker klassiek",
     "description": "Deze Pomerol uit de Bordeaux vind ik het best. Donker rood fruit. Hij is best wel clean gemaakt. Deze wijn kun je goed combineren met een vettig stuk vlees.",
     "image_urls": [
+      "images/bottles/6935e00cb9d7bc717ee1e669.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1765138838/pomerol_emyzej.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1765138437/vinly/wines/7d7e57a1c9f58ca9_2.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7577340180328238369",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-12-07T20:14:04.849000"
+    "date_found": "2025-12-07T20:14:04.849000",
+    "bottle_image_url": "images/bottles/6935e00cb9d7bc717ee1e669.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/rood/195635/chateau-les-vieux-ormes/",
+    "bottle_image_presentation": {
+      "width": 245,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        245,
+        1000
+      ]
+    }
   },
   {
     "id": "690f5af87e04e829c4000d0e",
@@ -293,11 +489,24 @@
     "rating": "Best voor het laatst bewaard",
     "description": "Ruikt naar wit fruit zoals meloen, peer en appel, en je blijft hem langer proeven.",
     "image_urls": [
+      "images/bottles/690f5af87e04e829c4000d0e.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1762614194/Screenshot_2025-11-08_160233_kghusu.png"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7569271872303467809",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-11-08T15:00:08.074000"
+    "date_found": "2025-11-08T15:00:08.074000",
+    "bottle_image_url": "images/bottles/690f5af87e04e829c4000d0e.jpg",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/wit/172705/comte-de-saint-aignan-sauvignon-blanc/",
+    "bottle_image_presentation": {
+      "width": 293,
+      "height": 1024,
+      "bounds": [
+        13,
+        13,
+        267,
+        1001
+      ]
+    }
   },
   {
     "id": "690f5a097e04e829c4000d0d",
@@ -308,12 +517,25 @@
     "rating": "Een beetje snoepig fruit",
     "description": "Deze heeft de zuren goed geintegreerd.",
     "image_urls": [
+      "images/bottles/690f5a097e04e829c4000d0d.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1762613856/bijou_1_cvray5.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1762613533/vinly/wines/ec67451f79b5f86d_4.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7486158226782752022#2",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-11-08T14:56:09.938000"
+    "date_found": "2025-11-08T14:56:09.938000",
+    "bottle_image_url": "images/bottles/690f5a097e04e829c4000d0d.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/rose/172477/le-bijou-sophie-valrose/",
+    "bottle_image_presentation": {
+      "width": 229,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        229,
+        1000
+      ]
+    }
   },
   {
     "id": "690f591f7e04e829c4000d0c",
@@ -324,12 +546,25 @@
     "rating": "Gewoon weer een goede supermarktlijn",
     "description": "Licht, best wel zacht, nog best wel wat frisse zuren, fruit is prima, oké, goede supermarktlijn.",
     "image_urls": [
+      "images/bottles/690f591f7e04e829c4000d0c.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1762613741/tapie_hmll9y.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1762613534/vinly/wines/ec67451f79b5f86d_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7486158226782752022",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-11-08T14:52:15.367000"
+    "date_found": "2025-11-08T14:52:15.367000",
+    "bottle_image_url": "images/bottles/690f591f7e04e829c4000d0c.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi479064/domaine-tapie-rose%CC%81-bio-dynamisch",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        307,
+        32,
+        186,
+        737
+      ]
+    }
   },
   {
     "id": "6902b32c2abb5bc35f3fceec",
@@ -340,6 +575,7 @@
     "rating": "Super fruitig en vol",
     "description": "Krachtige rode wijn met cranberry aroma's, heel veel fruitigheid voor een supermarkt wijn",
     "image_urls": [
+      "images/bottles/6902b32c2abb5bc35f3fceec.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710752/vinly/wines/69016b767e0bd0235bd82ad5_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710754/vinly/wines/69016b767e0bd0235bd82ad5_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710755/vinly/wines/69016b767e0bd0235bd82ad5_2.jpg",
@@ -348,7 +584,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7330196235531472160#2",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-30T00:37:00.403000"
+    "date_found": "2025-10-30T00:37:00.403000",
+    "bottle_image_url": "images/bottles/6902b32c2abb5bc35f3fceec.png",
+    "bottle_image_source": "https://raicesibericas.com/products/andres-alonso-garnacha-syrah",
+    "bottle_image_presentation": {
+      "width": 3648,
+      "height": 5428,
+      "bounds": [
+        1200,
+        704,
+        1248,
+        4294
+      ]
+    }
   },
   {
     "id": "6902a6a22abb5bc35f3fceea",
@@ -359,12 +607,25 @@
     "rating": "Als jou houdt van houtgerijpte Chardonnay",
     "description": "Veel hout, hij is wat zachter, voller en romiger.",
     "image_urls": [
+      "images/bottles/6902a6a22abb5bc35f3fceea.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761715091/vinly/wines/69016bbc7e0bd0235bd82aee_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761715115/vinly/wines/69016bbc7e0bd0235bd82aee_4.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7322458881924320545#2",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T23:43:30.617000"
+    "date_found": "2025-10-29T23:43:30.617000",
+    "bottle_image_url": "images/bottles/6902a6a22abb5bc35f3fceea.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/wit/172288/baron-de-vaillantcourt-chardonnay-reserve/",
+    "bottle_image_presentation": {
+      "width": 288,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        287,
+        1000
+      ]
+    }
   },
   {
     "id": "6902451db6671ab66c41f02a",
@@ -375,6 +636,7 @@
     "rating": "Verfrissend drankje voor de lowlands hitte",
     "description": "Lichte, frisse, droge wijn met een beetje citrus en appel, perfect voor warme dagen.",
     "image_urls": [
+      "images/bottles/6902451db6671ab66c41f02a.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756436/vinly/wines/de466627d78306d7_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756438/vinly/wines/de466627d78306d7_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756439/vinly/wines/de466627d78306d7_2.jpg",
@@ -384,7 +646,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7537973272873291030",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T16:47:25.701000"
+    "date_found": "2025-10-29T16:47:25.701000",
+    "bottle_image_url": "images/bottles/6902451db6671ab66c41f02a.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/wit/239455/aldi-sauvignon-blanc-bib-3l/",
+    "bottle_image_presentation": {
+      "width": 779,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        779,
+        1000
+      ]
+    }
   },
   {
     "id": "690243d2b6671ab66c41f028",
@@ -395,13 +669,26 @@
     "rating": "Oer-degelijke wijn",
     "description": "Die tanninen zijn wel echt aan de hoge kant, maar het fruit kan er tegenop beuken. Voor die zeven euro heb je gewoon een oer-degelijke wijn.",
     "image_urls": [
+      "images/bottles/690243d2b6671ab66c41f028.avif",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756106/vinly/wines/fd653d3b27e6daa4_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756109/vinly/wines/fd653d3b27e6daa4_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761756113/vinly/wines/fd653d3b27e6daa4_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7553730201126014241",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T16:41:54.536000"
+    "date_found": "2025-10-29T16:41:54.536000",
+    "bottle_image_url": "images/bottles/690243d2b6671ab66c41f028.avif",
+    "bottle_image_source": "https://www.jumbo.com/producten/marques-de-montanana-garnacha-750-ml-60296FLS",
+    "bottle_image_presentation": {
+      "width": 360,
+      "height": 360,
+      "bounds": [
+        132,
+        0,
+        96,
+        360
+      ]
+    }
   },
   {
     "id": "69024343b6671ab66c41f027",
@@ -412,6 +699,7 @@
     "rating": "Heerlijk zoet en top",
     "description": "Een sauterre uit Bordeaux, perfect bij dessert, met een rijke zoetheid door de botrytis.",
     "image_urls": [
+      "images/bottles/69024343b6671ab66c41f027.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761755964/vinly/wines/1e242e4881116e22_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761755965/vinly/wines/1e242e4881116e22_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761755967/vinly/wines/1e242e4881116e22_2.jpg",
@@ -421,7 +709,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7555817774409436448",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T16:39:31.792000"
+    "date_found": "2025-10-29T16:39:31.792000",
+    "bottle_image_url": "images/bottles/69024343b6671ab66c41f027.jpg",
+    "bottle_image_source": "https://jean-merlaut.com/catalogue-des-vins/3271-chateau-lamothe-guignard-2021.html",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        304,
+        18,
+        192,
+        769
+      ]
+    }
   },
   {
     "id": "690241efb6671ab66c41f025",
@@ -432,11 +732,24 @@
     "rating": "Prima voor als er mensen komen",
     "description": "Gewoon een lekkere, simpele Verdejo, altijd een goede keuze voor gasten.",
     "image_urls": [
+      "images/bottles/690241efb6671ab66c41f025.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761785121/Val_de_Vid_Verdejo_jjxa7j.png"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7565637065161854240",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T16:33:51.265000"
+    "date_found": "2025-10-29T16:33:51.265000",
+    "bottle_image_url": "images/bottles/690241efb6671ab66c41f025.jpg",
+    "bottle_image_source": "https://www.sligro.nl/p.654406.html/val-de-vid-verdejo-fles-75-cl.html",
+    "bottle_image_presentation": {
+      "width": 1280,
+      "height": 1280,
+      "bounds": [
+        506,
+        56,
+        268,
+        1166
+      ]
+    }
   },
   {
     "id": "690241b1b6671ab66c41f024",
@@ -447,12 +760,25 @@
     "rating": "Ben je bij de Albert Heijn? Ga voor deze rode wijn!",
     "description": "Het heeft ook nog structuur en het fruit blijft wat langer hangen.",
     "image_urls": [
+      "images/bottles/690241b1b6671ab66c41f024.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761755568/vinly/wines/c1c99095488e3e10_5.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761755561/vinly/wines/c1c99095488e3e10_0.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7566649229100289313",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T16:32:49.859000"
+    "date_found": "2025-10-29T16:32:49.859000",
+    "bottle_image_url": "images/bottles/690241b1b6671ab66c41f024.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi104062/chateau-coulon-rouge-organic-wine",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        315,
+        32,
+        170,
+        736
+      ]
+    }
   },
   {
     "id": "69023dfe353dfba3d7c23358",
@@ -463,12 +789,25 @@
     "rating": "Goed slobber roséetje",
     "description": "Hij drinkt goed door, vooral framboos moet ik zeggen, voor zijn prijs.",
     "image_urls": [
+      "images/bottles/69023dfe353dfba3d7c23358.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761754118/vinly/wines/8ae3f29f6b950723_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761754119/vinly/wines/8ae3f29f6b950723_1.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7353670393489657120",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-29T16:17:02.444000"
+    "date_found": "2025-10-29T16:17:02.444000",
+    "bottle_image_url": "images/bottles/69023dfe353dfba3d7c23358.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/rose/258210/les-richoises-les-richoises/",
+    "bottle_image_presentation": {
+      "width": 242,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        242,
+        1000
+      ]
+    }
   },
   {
     "id": "69016b927e0bd0235bd82ae0",
@@ -479,6 +818,7 @@
     "rating": "Mega, hij is 6 euro. Al was ie 8, ze krijgen het van me!",
     "description": "Deze wijn heeft donkerder rood fruit en kruidigheid, perfect bij goed gekruide lamsrack. Het is een Zuid-Franse mix van Carignan, Grenache, Syrah en Mourvèdre.",
     "image_urls": [
+      "images/bottles/69016b927e0bd0235bd82ae0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700951/vinly/wines/69016b927e0bd0235bd82ae0_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700952/vinly/wines/69016b927e0bd0235bd82ae0_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700953/vinly/wines/69016b927e0bd0235bd82ae0_2.jpg",
@@ -487,7 +827,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7564708325217111329",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-24T08:52:29"
+    "date_found": "2025-10-24T08:52:29",
+    "bottle_image_url": "images/bottles/69016b927e0bd0235bd82ae0.jpg",
+    "bottle_image_source": "https://www.hema.nl/eten-drinken/wijn/rode-wijn/mas-coustan---075-l-17360522.html",
+    "bottle_image_presentation": {
+      "width": 600,
+      "height": 750,
+      "bounds": [
+        211,
+        58,
+        234,
+        639
+      ]
+    }
   },
   {
     "id": "69016ba77e0bd0235bd82ae8",
@@ -498,6 +850,7 @@
     "rating": "Voor deze val ik wel te paaien",
     "description": "Ruikt naar rozen en viooltjes, heel herfstig met meer fruit, perfect voor een zonnige dag. Kun je ook top koelen.",
     "image_urls": [
+      "images/bottles/69016ba77e0bd0235bd82ae8.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701031/vinly/wines/69016ba77e0bd0235bd82ae8_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701035/vinly/wines/69016ba77e0bd0235bd82ae8_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701036/vinly/wines/69016ba77e0bd0235bd82ae8_3.jpg",
@@ -505,7 +858,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7556217972960840992",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-10-01T11:45:28"
+    "date_found": "2025-10-01T11:45:28",
+    "bottle_image_url": "images/bottles/69016ba77e0bd0235bd82ae8.png",
+    "bottle_image_source": "https://winnicalidla.pl/produkt/morgon-collin-bourisset",
+    "bottle_image_presentation": {
+      "width": 200,
+      "height": 300,
+      "bounds": [
+        60,
+        0,
+        80,
+        300
+      ]
+    }
   },
   {
     "id": "aea5b7584c0bf918118e5caf",
@@ -516,7 +881,7 @@
     "rating": "Ik ben om",
     "description": "Spaanse Verdejo met tropisch fruit, een volle smaak en frisse zuren. Pepijn tipt hem als zomerse witte wijn.",
     "image_urls": [
-      "https://www.linda.nl/lindanl-assets/uploads/2025/08/06081945/verdejo-1024x768.webp"
+      "images/bottles/aea5b7584c0bf918118e5caf.webp"
     ],
     "post_url": "https://www.linda.nl/lifestyle/wijnen-onder-10-euro-tips-supermarkt-pepijn-wijn/",
     "influencer_source": "pepijn.wijn",
@@ -524,7 +889,19 @@
     "source_type": "article",
     "source_publisher": "LINDA.",
     "source_published_at": "2025-08-09",
-    "added_at": "2026-10-09"
+    "added_at": "2026-10-09",
+    "bottle_image_url": "images/bottles/aea5b7584c0bf918118e5caf.webp",
+    "bottle_image_source": "https://www.linda.nl/lifestyle/wijnen-onder-10-euro-tips-supermarkt-pepijn-wijn/",
+    "bottle_image_presentation": {
+      "width": 1024,
+      "height": 768,
+      "bounds": [
+        415,
+        54,
+        197,
+        666
+      ]
+    }
   },
   {
     "id": "d853c760d26af3e1375969d4",
@@ -535,7 +912,7 @@
     "rating": "Dit is echt een winnaar",
     "description": "Biologisch gemaakte Zuid-Franse rosé die Pepijn aanbeveelt als betaalbare, toegankelijke keuze om te delen.",
     "image_urls": [
-      "https://www.linda.nl/lindanl-assets/uploads/2025/08/06082132/lhorte-1024x768.webp"
+      "images/bottles/d853c760d26af3e1375969d4.webp"
     ],
     "post_url": "https://www.linda.nl/lifestyle/wijnen-onder-10-euro-tips-supermarkt-pepijn-wijn/",
     "influencer_source": "pepijn.wijn",
@@ -543,7 +920,19 @@
     "source_type": "article",
     "source_publisher": "LINDA.",
     "source_published_at": "2025-08-09",
-    "added_at": "2026-10-09"
+    "added_at": "2026-10-09",
+    "bottle_image_url": "images/bottles/d853c760d26af3e1375969d4.webp",
+    "bottle_image_source": "https://www.linda.nl/lifestyle/wijnen-onder-10-euro-tips-supermarkt-pepijn-wijn/",
+    "bottle_image_presentation": {
+      "width": 1024,
+      "height": 768,
+      "bounds": [
+        432,
+        33,
+        160,
+        697
+      ]
+    }
   },
   {
     "id": "69016b8f7e0bd0235bd82ade",
@@ -554,13 +943,26 @@
     "rating": "Duidelijk winnaartje hoor",
     "description": "Deze heeft een beetje meloen, een beetje appel, minder snoeprug, en het smaak blijft langer hangen.",
     "image_urls": [
+      "images/bottles/69016b8f7e0bd0235bd82ade.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711062/vinly/wines/69016b8f7e0bd0235bd82ade_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711064/vinly/wines/69016b8f7e0bd0235bd82ade_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711068/vinly/wines/69016b8f7e0bd0235bd82ade_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7530169584389754134",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-07-23T07:03:59"
+    "date_found": "2025-07-23T07:03:59",
+    "bottle_image_url": "images/bottles/69016b8f7e0bd0235bd82ade.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi440882/mastri-vernacoli-pinot-grigio",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        309,
+        31,
+        167,
+        729
+      ]
+    }
   },
   {
     "id": "69016bc87e0bd0235bd82af2",
@@ -571,12 +973,25 @@
     "rating": "Beste Jumbo chardonnay tot nu toe",
     "description": "Typische Zuid-Franse chardonnay en voor dat geldt onder 10 euro.",
     "image_urls": [
+      "images/bottles/69016bc87e0bd0235bd82af2.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716531/vinly/wines/69016bc87e0bd0235bd82af2_5.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716477/vinly/wines/69016bc87e0bd0235bd82af2_0.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7519791763133959457",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-06-25T07:52:56"
+    "date_found": "2025-06-25T07:52:56",
+    "bottle_image_url": "images/bottles/69016bc87e0bd0235bd82af2.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/wit/174427/montaignan-chardonnay/",
+    "bottle_image_presentation": {
+      "width": 275,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        275,
+        1000
+      ]
+    }
   },
   {
     "id": "69016bb17e0bd0235bd82aea",
@@ -587,6 +1002,7 @@
     "rating": "Gemaakt door een wereldberomede wijnfamilie",
     "description": "Je ruikt wat fruit zoals bramen, blauwe bessen, beetje kersen, verder heb je nog leer, beetje peper, een volle krachtige rode wijn.",
     "image_urls": [
+      "images/bottles/69016bb17e0bd0235bd82aea.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701052/vinly/wines/69016bb17e0bd0235bd82aea_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701054/vinly/wines/69016bb17e0bd0235bd82aea_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701055/vinly/wines/69016bb17e0bd0235bd82aea_2.jpg",
@@ -596,7 +1012,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7515696470721400087",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-06-14T07:00:57"
+    "date_found": "2025-06-14T07:00:57",
+    "bottle_image_url": "images/bottles/69016bb17e0bd0235bd82aea.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi69193/e-guigal-co%CC%82tes-du-rho%CC%82ne-rouge",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        298,
+        31,
+        204,
+        738
+      ]
+    }
   },
   {
     "id": "69016ba67e0bd0235bd82ae7",
@@ -607,12 +1035,25 @@
     "rating": "Veruit de beste tot nu toe",
     "description": "Vol, houtgrijpt met balans tussen fruit en houtsmaken, ideaal voor Chardonnay liefhebbers",
     "image_urls": [
+      "images/bottles/69016ba67e0bd0235bd82ae7.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761712743/vinly/wines/69016ba67e0bd0235bd82ae7_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761712746/vinly/wines/69016ba67e0bd0235bd82ae7_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7511996540433550614",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-06-04T07:43:20"
+    "date_found": "2025-06-04T07:43:20",
+    "bottle_image_url": "images/bottles/69016ba67e0bd0235bd82ae7.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi93724/penfolds-koonunga-hill-chardonnay",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        303,
+        33,
+        194,
+        735
+      ]
+    }
   },
   {
     "id": "69016bd07e0bd0235bd82af4",
@@ -623,6 +1064,7 @@
     "rating": "Deze kun je prima pakken",
     "description": "Tannine en zuren zitten er beter in, prima voor wie houdt van een vollere, zwaardere rode wijn. Een goede wijn, maar je hoeft er niet voor om te fietsen.",
     "image_urls": [
+      "images/bottles/69016bd07e0bd0235bd82af4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/finca-del-tuerto-parcella_kmmtif.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716891/vinly/wines/69016bd07e0bd0235bd82af4_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716893/vinly/wines/69016bd07e0bd0235bd82af4_2.jpg",
@@ -632,7 +1074,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7509395079635684630",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-05-28T07:28:20"
+    "date_found": "2025-05-28T07:28:20",
+    "bottle_image_url": "images/bottles/69016bd07e0bd0235bd82af4.jpg",
+    "bottle_image_source": "https://www.aldi.nl/product/finca-del-tuerto-parcela-11-1223509.html",
+    "bottle_image_presentation": {
+      "width": 1280,
+      "height": 1280,
+      "bounds": [
+        405,
+        0,
+        471,
+        1280
+      ]
+    }
   },
   {
     "id": "69016ba07e0bd0235bd82ae4",
@@ -643,13 +1097,26 @@
     "rating": "Echt een mega goede deal",
     "description": "Super fris met veel fruit, minerale tonen en een lichte stijl, perfect om koel te drinken",
     "image_urls": [
+      "images/bottles/69016ba07e0bd0235bd82ae4.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700991/vinly/wines/69016ba07e0bd0235bd82ae4_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700994/vinly/wines/69016ba07e0bd0235bd82ae4_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700995/vinly/wines/69016ba07e0bd0235bd82ae4_3.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7506794190043368726",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-05-21T07:15:31"
+    "date_found": "2025-05-21T07:15:31",
+    "bottle_image_url": "images/bottles/69016ba07e0bd0235bd82ae4.jpg",
+    "bottle_image_source": "https://www.sligro.nl/p.813937.html/nik-weis-riesling-trocken-fles-75-cl.html",
+    "bottle_image_presentation": {
+      "width": 1280,
+      "height": 1280,
+      "bounds": [
+        511,
+        29,
+        258,
+        1220
+      ]
+    }
   },
   {
     "id": "69016bb67e0bd0235bd82aec",
@@ -660,13 +1127,26 @@
     "rating": "Hiermee zit je top voor 21-diners",
     "description": "Licht, droog en hartstikke fris, met classic citroen en limoen, perfect voor in de zon.",
     "image_urls": [
+      "images/bottles/69016bb67e0bd0235bd82aec.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761714727/vinly/wines/69016bb67e0bd0235bd82aec_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761714729/vinly/wines/69016bb67e0bd0235bd82aec_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761714751/vinly/wines/69016bb67e0bd0235bd82aec_3.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7499006170577816854",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-04-30T07:34:05"
+    "date_found": "2025-04-30T07:34:05",
+    "bottle_image_url": "images/bottles/69016bb67e0bd0235bd82aec.jpg",
+    "bottle_image_source": "https://www.hema.nl/eten-drinken/wijn/witte-wijn/les-animals-ours-blanc-0.75l-17350700.html",
+    "bottle_image_presentation": {
+      "width": 600,
+      "height": 750,
+      "bounds": [
+        230,
+        55,
+        157,
+        642
+      ]
+    }
   },
   {
     "id": "69016bc17e0bd0235bd82aef",
@@ -677,12 +1157,25 @@
     "rating": "Als ik een wijn moet halen bij de Lidl is dit hem.",
     "description": "Neus is goed, peperachtig. Deze wijn is prima voor de prijs en een goede keuze bij de Lidl.",
     "image_urls": [
+      "images/bottles/69016bc17e0bd0235bd82aef.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761783562/cotesdurhonelidl_vvqcsv.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761783628/cotesdurhone2_gowwlr.png"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7496414808984554774",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-04-23T07:58:11"
+    "date_found": "2025-04-23T07:58:11",
+    "bottle_image_url": "images/bottles/69016bc17e0bd0235bd82aef.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/rood/257452/cotes-du-rhone-3/",
+    "bottle_image_presentation": {
+      "width": 261,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        261,
+        1000
+      ]
+    }
   },
   {
     "id": "69016ba37e0bd0235bd82ae6",
@@ -693,6 +1186,7 @@
     "rating": "Eindelijk weer eens een keer lekker",
     "description": "Dit is zo'n Grüner Veltliner die gewoon voor zijn prijs echt goed is, perfect als borrelwijn of bij Aziatische gerechten.",
     "image_urls": [
+      "images/bottles/69016ba37e0bd0235bd82ae6.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701011/vinly/wines/69016ba37e0bd0235bd82ae6_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701012/vinly/wines/69016ba37e0bd0235bd82ae6_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701014/vinly/wines/69016ba37e0bd0235bd82ae6_2.jpg",
@@ -701,7 +1195,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7478246611328568598",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-03-05T08:56:19"
+    "date_found": "2025-03-05T08:56:19",
+    "bottle_image_url": "images/bottles/69016ba37e0bd0235bd82ae6.png",
+    "bottle_image_source": "https://dutchshopper.com/products/fritz-frieda-dac-gruner-veltliner",
+    "bottle_image_presentation": {
+      "width": 600,
+      "height": 600,
+      "bounds": [
+        236,
+        23,
+        126,
+        555
+      ]
+    }
   },
   {
     "id": "69016b877e0bd0235bd82adb",
@@ -712,6 +1218,7 @@
     "rating": "Goeie supermarktwijn",
     "description": "Heeft veel aroma-intensiteit en is fruit gedreven, bijna overdadig clean",
     "image_urls": [
+      "images/bottles/69016b877e0bd0235bd82adb.avif",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710963/vinly/wines/69016b877e0bd0235bd82adb_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710961/vinly/wines/69016b877e0bd0235bd82adb_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710966/vinly/wines/69016b877e0bd0235bd82adb_3.jpg",
@@ -720,7 +1227,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7470506050861534466",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-02-12T12:18:56"
+    "date_found": "2025-02-12T12:18:56",
+    "bottle_image_url": "images/bottles/69016b877e0bd0235bd82adb.avif",
+    "bottle_image_source": "https://www.jumbo.com/producten/mount-fishtail-sauvignon-blanc-750-ml-383979FLS",
+    "bottle_image_presentation": {
+      "width": 360,
+      "height": 360,
+      "bounds": [
+        137,
+        0,
+        86,
+        360
+      ]
+    }
   },
   {
     "id": "69016b7b7e0bd0235bd82ad7",
@@ -731,6 +1250,7 @@
     "rating": "Volle, zachte, houtgrijpte wijn",
     "description": "Als je op zoek bent naar een volle, zachte, houtgrijpte wijn voor een laag prijs, dan doet deze het echt heel goed.",
     "image_urls": [
+      "images/bottles/69016b7b7e0bd0235bd82ad7.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710831/vinly/wines/69016b7b7e0bd0235bd82ad7_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710826/vinly/wines/69016b7b7e0bd0235bd82ad7_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710828/vinly/wines/69016b7b7e0bd0235bd82ad7_1.jpg",
@@ -740,7 +1260,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7467863932326219030",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-02-05T09:26:15"
+    "date_found": "2025-02-05T09:26:15",
+    "bottle_image_url": "images/bottles/69016b7b7e0bd0235bd82ad7.jpg",
+    "bottle_image_source": "https://www.aldi.nl/product/1218786.html",
+    "bottle_image_presentation": {
+      "width": 1280,
+      "height": 1280,
+      "bounds": [
+        441,
+        76,
+        398,
+        1127
+      ]
+    }
   },
   {
     "id": "69016b907e0bd0235bd82adf",
@@ -751,6 +1283,7 @@
     "rating": "Echt top voor grote groepen",
     "description": "Veel rood fruit, beetje peper, tijm, rozemarijn; perfect voor een winterbarbecuetje. Gemaakt door de wereldberoemde familie Perrin.",
     "image_urls": [
+      "images/bottles/69016b907e0bd0235bd82adf.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711091/vinly/wines/69016b907e0bd0235bd82adf_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711092/vinly/wines/69016b907e0bd0235bd82adf_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711094/vinly/wines/69016b907e0bd0235bd82adf_2.jpg",
@@ -758,7 +1291,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7462755756278942998",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-01-22T15:03:52"
+    "date_found": "2025-01-22T15:03:52",
+    "bottle_image_url": "images/bottles/69016b907e0bd0235bd82adf.jpg",
+    "bottle_image_source": "https://www.hema.nl/eten-drinken/wijn/rode-wijn/les-animals-fourmi-rouge-0.750l-17360700.html",
+    "bottle_image_presentation": {
+      "width": 600,
+      "height": 750,
+      "bounds": [
+        229,
+        51,
+        150,
+        644
+      ]
+    }
   },
   {
     "id": "69016b897e0bd0235bd82adc",
@@ -769,13 +1314,26 @@
     "rating": "Deze zou ik zeker halen",
     "description": "Een iets zwaardere rode wijn. Kers, cederhout, boomschorsachtig, met intenser fruit en minder suiker.",
     "image_urls": [
+      "images/bottles/69016b897e0bd0235bd82adc.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710996/vinly/wines/69016b897e0bd0235bd82adc_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711000/vinly/wines/69016b897e0bd0235bd82adc_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711004/vinly/wines/69016b897e0bd0235bd82adc_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7460160381558803734",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2025-01-15T15:12:29"
+    "date_found": "2025-01-15T15:12:29",
+    "bottle_image_url": "images/bottles/69016b897e0bd0235bd82adc.jpg",
+    "bottle_image_source": "https://www.sligro.nl/p.451442.html/surani-costarossa-primitivo-di-manduria-fles-75-cl.html",
+    "bottle_image_presentation": {
+      "width": 1280,
+      "height": 1280,
+      "bounds": [
+        501,
+        53,
+        278,
+        1183
+      ]
+    }
   },
   {
     "id": "69016bab7e0bd0235bd82ae9",
@@ -786,12 +1344,25 @@
     "rating": "Deze is top voor 8 euro",
     "description": "Fris met veel smaken zoals citrus, perzik en een beetje honing, perfect voor bij kerstgerechten.",
     "image_urls": [
+      "images/bottles/69016bab7e0bd0235bd82ae9.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701046/vinly/wines/69016bab7e0bd0235bd82ae9_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701043/vinly/wines/69016bab7e0bd0235bd82ae9_1.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7451166439492406550",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-12-22T09:31:25"
+    "date_found": "2024-12-22T09:31:25",
+    "bottle_image_url": "images/bottles/69016bab7e0bd0235bd82ae9.jpg",
+    "bottle_image_source": "https://www.hema.nl/eten-drinken/wijn/witte-wijn/domane-wachau-gruner-veltliner---075-l-17370958.html",
+    "bottle_image_presentation": {
+      "width": 600,
+      "height": 750,
+      "bounds": [
+        225,
+        53,
+        199,
+        647
+      ]
+    }
   },
   {
     "id": "69016ba17e0bd0235bd82ae5",
@@ -802,12 +1373,25 @@
     "rating": "Deze is echt stukken beter",
     "description": "Die smaak blijft wat langer hangen en die bubbel is iets fijner.",
     "image_urls": [
+      "images/bottles/69016ba17e0bd0235bd82ae5.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701002/vinly/wines/69016ba17e0bd0235bd82ae5_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701008/vinly/wines/69016ba17e0bd0235bd82ae5_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7447858111169285398",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-12-13T11:33:24"
+    "date_found": "2024-12-13T11:33:24",
+    "bottle_image_url": "images/bottles/69016ba17e0bd0235bd82ae5.png",
+    "bottle_image_source": "https://dutchshopper.com/products/patriarche-chardonnay-brut",
+    "bottle_image_presentation": {
+      "width": 1600,
+      "height": 2400,
+      "bounds": [
+        508,
+        90,
+        589,
+        2249
+      ]
+    }
   },
   {
     "id": "69016bc67e0bd0235bd82af1",
@@ -818,13 +1402,26 @@
     "rating": "Deze is overduidelijk het beste",
     "description": "Honingtintje, citrus fruit met een notarige amandelachtige tint, maakt het spannender.",
     "image_urls": [
+      "images/bottles/69016bc67e0bd0235bd82af1.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716319/vinly/wines/69016bc67e0bd0235bd82af1_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716341/vinly/wines/69016bc67e0bd0235bd82af1_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761716348/vinly/wines/69016bc67e0bd0235bd82af1_5.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7444910232519658774",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-12-05T12:54:07"
+    "date_found": "2024-12-05T12:54:07",
+    "bottle_image_url": "images/bottles/69016bc67e0bd0235bd82af1.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/wit/175244/allini-organic-prosecco-bio-extra-dry/",
+    "bottle_image_presentation": {
+      "width": 347,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        347,
+        1000
+      ]
+    }
   },
   {
     "id": "69016b7f7e0bd0235bd82ad9",
@@ -835,6 +1432,7 @@
     "rating": "Deze rode supermarkt wijn voor maar zes euro is top",
     "description": "Je ruikt best snel dat het uit zo'n warm land komt, met zwoele fruitachtige tonen en een relaxte structuur, perfect voor kerst.",
     "image_urls": [
+      "images/bottles/69016b7f7e0bd0235bd82ad9.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700882/vinly/wines/69016b7f7e0bd0235bd82ad9_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700884/vinly/wines/69016b7f7e0bd0235bd82ad9_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700887/vinly/wines/69016b7f7e0bd0235bd82ad9_4.jpg",
@@ -842,7 +1440,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7441950038806367521",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-11-27T13:27:09"
+    "date_found": "2024-11-27T13:27:09",
+    "bottle_image_url": "images/bottles/69016b7f7e0bd0235bd82ad9.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/rood/174335/favoritos-cabernet-sauvignon-reserva/",
+    "bottle_image_presentation": {
+      "width": 275,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        275,
+        1000
+      ]
+    }
   },
   {
     "id": "69016b947e0bd0235bd82ae1",
@@ -853,6 +1463,7 @@
     "rating": "Hier heb je echt een goeie deal",
     "description": "Beter in balans met fruitige smaken van kersen en bramen, en zachte tanninen.",
     "image_urls": [
+      "images/bottles/69016b947e0bd0235bd82ae1.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700964/vinly/wines/69016b947e0bd0235bd82ae1_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700963/vinly/wines/69016b947e0bd0235bd82ae1_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700965/vinly/wines/69016b947e0bd0235bd82ae1_4.jpg",
@@ -860,7 +1471,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7436734661948181793",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-11-13T12:08:49"
+    "date_found": "2024-11-13T12:08:49",
+    "bottle_image_url": "images/bottles/69016b947e0bd0235bd82ae1.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/rood/172727/novas-carmenere-gran-reserva/",
+    "bottle_image_presentation": {
+      "width": 255,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        255,
+        1000
+      ]
+    }
   },
   {
     "id": "69016bb77e0bd0235bd82aed",
@@ -871,12 +1494,25 @@
     "rating": "Echt wel een goede wijn",
     "description": "Kruidiger dan de eerste, met een beetje hete peper idee en beter in balans voor onder de vier euro.",
     "image_urls": [
+      "images/bottles/69016bb77e0bd0235bd82aed.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701087/vinly/wines/69016bb77e0bd0235bd82aed_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701091/vinly/wines/69016bb77e0bd0235bd82aed_4.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7424439708698086688",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-10-11T08:58:06"
+    "date_found": "2024-10-11T08:58:06",
+    "bottle_image_url": "images/bottles/69016bb77e0bd0235bd82aed.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/rood/180030/aremondi/",
+    "bottle_image_presentation": {
+      "width": 112,
+      "height": 484,
+      "bounds": [
+        0,
+        0,
+        112,
+        484
+      ]
+    }
   },
   {
     "id": "69016bc37e0bd0235bd82af0",
@@ -887,6 +1523,7 @@
     "rating": "Deze kun je gewoon blijven halen",
     "description": "Helemaal prima, een goede supermarkt wijn met een aangename smaak.",
     "image_urls": [
+      "images/bottles/69016bc37e0bd0235bd82af0.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701119/vinly/wines/69016bc37e0bd0235bd82af0_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701121/vinly/wines/69016bc37e0bd0235bd82af0_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701124/vinly/wines/69016bc37e0bd0235bd82af0_4.jpg",
@@ -894,7 +1531,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7415906751825939745",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-09-18T09:05:52"
+    "date_found": "2024-09-18T09:05:52",
+    "bottle_image_url": "images/bottles/69016bc37e0bd0235bd82af0.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/rood/231114/19-crimes-red-wine-2/",
+    "bottle_image_presentation": {
+      "width": 240,
+      "height": 1000,
+      "bounds": [
+        0,
+        1,
+        239,
+        998
+      ]
+    }
   },
   {
     "id": "69016bb37e0bd0235bd82aeb",
@@ -905,12 +1554,25 @@
     "rating": "Keurig hoor Lidl, echt helemaal keurig",
     "description": "Grapefruit. Goed fruitig in de mond, echt best wel veel smaak nog. Iets jongere wijn. ",
     "image_urls": [
+      "images/bottles/69016bb37e0bd0235bd82aeb.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761714407/vinly/wines/69016bb37e0bd0235bd82aeb_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761714405/vinly/wines/69016bb37e0bd0235bd82aeb_2.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7409280940490493216",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-08-31T12:34:19"
+    "date_found": "2024-08-31T12:34:19",
+    "bottle_image_url": "images/bottles/69016bb37e0bd0235bd82aeb.webp",
+    "bottle_image_source": "https://www.lidl.co.uk/p/new-zealand-sauvignon-blanc-marlborough/p10000261",
+    "bottle_image_presentation": {
+      "width": 1500,
+      "height": 1125,
+      "bounds": [
+        616,
+        61,
+        268,
+        1004
+      ]
+    }
   },
   {
     "id": "69016bcb7e0bd0235bd82af3",
@@ -921,6 +1583,7 @@
     "rating": "Eén van de betere uit de doos",
     "description": "Een frisse, witte wijn met citrusfruit en een beetje meloen, perfect voor bij de tent.",
     "image_urls": [
+      "images/bottles/69016bcb7e0bd0235bd82af3.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701148/vinly/wines/69016bcb7e0bd0235bd82af3_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701149/vinly/wines/69016bcb7e0bd0235bd82af3_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761701151/vinly/wines/69016bcb7e0bd0235bd82af3_2.jpg",
@@ -930,7 +1593,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7400311284526222624",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-08-07T08:27:26"
+    "date_found": "2024-08-07T08:27:26",
+    "bottle_image_url": "images/bottles/69016bcb7e0bd0235bd82af3.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi441025/vina-albali-organic-verdejo-wit-wijntap",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        110,
+        31,
+        579,
+        738
+      ]
+    }
   },
   {
     "id": "69016b8b7e0bd0235bd82add",
@@ -941,12 +1616,25 @@
     "rating": "Een wereld van verschil",
     "description": "Het ruikt echt net alsof je in een gloednieuwe auto achterin zit, met kruiden en een beetje peperig.",
     "image_urls": [
+      "images/bottles/69016b8b7e0bd0235bd82add.avif",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711025/vinly/wines/69016b8b7e0bd0235bd82add_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711029/vinly/wines/69016b8b7e0bd0235bd82add_2.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7389926738257644832",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-07-10T08:50:13"
+    "date_found": "2024-07-10T08:50:13",
+    "bottle_image_url": "images/bottles/69016b8b7e0bd0235bd82add.avif",
+    "bottle_image_source": "https://www.jumbo.com/producten/jumbo-cotes-du-rhone-villages-750ml-590956FLS",
+    "bottle_image_presentation": {
+      "width": 360,
+      "height": 360,
+      "bounds": [
+        132,
+        0,
+        96,
+        360
+      ]
+    }
   },
   {
     "id": "69016b737e0bd0235bd82ad4",
@@ -957,6 +1645,7 @@
     "rating": "Frisse stijl chardonnay, top",
     "description": "Heeft geen hout gehad. Deze chardonnay heeft frisse tonen van limoen en groene appel, met een hint van passievrucht.",
     "image_urls": [
+      "images/bottles/69016b737e0bd0235bd82ad4.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700831/vinly/wines/69016b737e0bd0235bd82ad4_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700833/vinly/wines/69016b737e0bd0235bd82ad4_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700835/vinly/wines/69016b737e0bd0235bd82ad4_2.jpg",
@@ -966,7 +1655,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7371845219299380513",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-05-22T15:24:37"
+    "date_found": "2024-05-22T15:24:37",
+    "bottle_image_url": "images/bottles/69016b737e0bd0235bd82ad4.png",
+    "bottle_image_source": "https://dutchshopper.com/products/danie-de-wet-chardonnay-matured-on-the-lees-1",
+    "bottle_image_presentation": {
+      "width": 1000,
+      "height": 1000,
+      "bounds": [
+        400,
+        118,
+        201,
+        751
+      ]
+    }
   },
   {
     "id": "69016b987e0bd0235bd82ae2",
@@ -977,6 +1678,7 @@
     "rating": "Drinkt heel erg makkelijk weg",
     "description": "Lekker als gekoelde rode wijn (half uurtje in de ijskast). Licht en elegand. Nauwelijks tannine, heel klein beetje zuur, drinkt gewoon heel erg makkelijk weg.",
     "image_urls": [
+      "images/bottles/69016b987e0bd0235bd82ae2.avif",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700974/vinly/wines/69016b987e0bd0235bd82ae2_3.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700971/vinly/wines/69016b987e0bd0235bd82ae2_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761700973/vinly/wines/69016b987e0bd0235bd82ae2_2.jpg",
@@ -984,7 +1686,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7366627118324796704",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-05-08T13:55:43"
+    "date_found": "2024-05-08T13:55:43",
+    "bottle_image_url": "images/bottles/69016b987e0bd0235bd82ae2.avif",
+    "bottle_image_source": "https://www.jumbo.com/producten/sankt-anna-spatburgunder-750ml-158226FLS",
+    "bottle_image_presentation": {
+      "width": 360,
+      "height": 360,
+      "bounds": [
+        132,
+        0,
+        96,
+        360
+      ]
+    }
   },
   {
     "id": "69016b997e0bd0235bd82ae3",
@@ -995,6 +1709,7 @@
     "rating": "Echt goed voor zijn prijs",
     "description": "Geschonken uit de balzak van een geit. Fris, knisperend, met veel citrusfruit en groene appel, bijna een beetje koolzuur op de tong.",
     "image_urls": [
+      "images/bottles/69016b997e0bd0235bd82ae3.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711665/vinly/wines/69016b997e0bd0235bd82ae3_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711668/vinly/wines/69016b997e0bd0235bd82ae3_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761711670/vinly/wines/69016b997e0bd0235bd82ae3_2.jpg",
@@ -1003,7 +1718,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7345887275563240736",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-03-13T16:34:32"
+    "date_found": "2024-03-13T16:34:32",
+    "bottle_image_url": "images/bottles/69016b997e0bd0235bd82ae3.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi371132/divino-nordheim-silvaner-trocken",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        163,
+        31,
+        474,
+        738
+      ]
+    }
   },
   {
     "id": "69016b7d7e0bd0235bd82ad8",
@@ -1014,6 +1741,7 @@
     "rating": "Prima voor een supermarkt wijn",
     "description": "Het is vooral echt dat rode fruit dat je proeft, hij is echt goed droog en perfect als eetwijn.",
     "image_urls": [
+      "images/bottles/69016b7d7e0bd0235bd82ad8.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710859/vinly/wines/69016b7d7e0bd0235bd82ad8_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710861/vinly/wines/69016b7d7e0bd0235bd82ad8_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710863/vinly/wines/69016b7d7e0bd0235bd82ad8_2.jpg",
@@ -1023,7 +1751,19 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7340603717110074656",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-02-28T10:51:43"
+    "date_found": "2024-02-28T10:51:43",
+    "bottle_image_url": "images/bottles/69016b7d7e0bd0235bd82ad8.jpg",
+    "bottle_image_source": "https://www.aldi.nl/product/rioja-rivallana-crianza-1214124.html",
+    "bottle_image_presentation": {
+      "width": 1280,
+      "height": 1280,
+      "bounds": [
+        406,
+        40,
+        386,
+        1195
+      ]
+    }
   },
   {
     "id": "69016b767e0bd0235bd82ad5",
@@ -1034,12 +1774,25 @@
     "rating": "Ik zou 'm zo pakken!",
     "description": "Biowijn, gemaakt van Syrah en Grenache. Ruikt naar bloemetjes, viooltjes of rozen. Die Plus is lekker bezig.",
     "image_urls": [
+      "images/bottles/69016b767e0bd0235bd82ad5.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761784813/Mas_du_Petit_Azegat_Rouge_bpxycq.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710754/vinly/wines/69016b767e0bd0235bd82ad5_1.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7330196235531472160",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-01-31T09:45:18"
+    "date_found": "2024-01-31T09:45:18",
+    "bottle_image_url": "images/bottles/69016b767e0bd0235bd82ad5.png",
+    "bottle_image_source": "https://dutchshopper.com/products/mas-du-petit-azegat-rouge",
+    "bottle_image_presentation": {
+      "width": 1000,
+      "height": 1000,
+      "bounds": [
+        392,
+        81,
+        215,
+        874
+      ]
+    }
   },
   {
     "id": "69016bbc7e0bd0235bd82aee",
@@ -1050,12 +1803,25 @@
     "rating": "Best wel goed voor 5 euro!",
     "description": "Een wat frissere stijl Chardonnay, gemixt met Viognier, maar voor deze prijs kwaliteit helemaal prima. Je proeft rijper fruit zoals ananas, mango en perzik.",
     "image_urls": [
+      "images/bottles/69016bbc7e0bd0235bd82aee.png",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761715089/vinly/wines/69016bbc7e0bd0235bd82aee_2.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761715084/vinly/wines/69016bbc7e0bd0235bd82aee_0.jpg"
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7322458881924320545",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2024-01-10T13:20:21"
+    "date_found": "2024-01-10T13:20:21",
+    "bottle_image_url": "images/bottles/69016bbc7e0bd0235bd82aee.png",
+    "bottle_image_source": "https://www.degrotehamersma.nl/wijn/wit/174347/favoritos-chardonnay-viognier-classic/",
+    "bottle_image_presentation": {
+      "width": 267,
+      "height": 1000,
+      "bounds": [
+        0,
+        0,
+        267,
+        1000
+      ]
+    }
   },
   {
     "id": "69016b857e0bd0235bd82ada",
@@ -1066,6 +1832,7 @@
     "rating": "Het is wel honderd procent spannender",
     "description": "Bijna een soort geroosterd hout met bramen, echt wat meer het idee dat je wijn drinkt",
     "image_urls": [
+      "images/bottles/69016b857e0bd0235bd82ada.webp",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710925/vinly/wines/69016b857e0bd0235bd82ada_1.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710922/vinly/wines/69016b857e0bd0235bd82ada_0.jpg",
       "https://res.cloudinary.com/duimalhdk/image/upload/v1761710926/vinly/wines/69016b857e0bd0235bd82ada_2.jpg",
@@ -1073,6 +1840,18 @@
     ],
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7312136826779700512",
     "influencer_source": "pepijn.wijn_tiktok",
-    "date_found": "2023-12-13T17:45:30"
+    "date_found": "2023-12-13T17:45:30",
+    "bottle_image_url": "images/bottles/69016b857e0bd0235bd82ada.webp",
+    "bottle_image_source": "https://www.ah.nl/producten/product/wi553710/marque%CC%81s-de-vitoria-rioja-crianza",
+    "bottle_image_presentation": {
+      "width": 800,
+      "height": 800,
+      "bounds": [
+        307,
+        31,
+        186,
+        738
+      ]
+    }
   }
 ]

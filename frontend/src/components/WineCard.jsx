@@ -26,7 +26,7 @@ function WineCard({ wine, onClick }) {
       {/* Image layer — scales on hover */}
       {hasImages ? (
         <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105">
-          <ImageCarousel images={images} wineName={wine.name} wineType={wine.wine_type} imageFit={wine.image_fit} overlay hideIndicators />
+          <ImageCarousel images={images} wineName={wine.name} wineType={wine.wine_type} bottleImage={wine.bottle_image_url} bottlePresentation={wine.bottle_image_presentation} bottleLayout="card" overlay hideIndicators />
         </div>
       ) : (
         <div className="absolute inset-0 bg-th-elevated flex items-center justify-center">
