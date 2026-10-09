@@ -10,6 +10,7 @@ import os
 import json
 import uuid
 import hashlib
+import subprocess
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -58,7 +59,12 @@ def process_url(tiktok_url: str) -> int:
     # 1. Fetch metadata
     print("Fetching video metadata...")
     scraper = TikTokOEmbedScraper()
-    video_data = scraper.get_video_data(tiktok_url)
+    video_id = tiktok_url.rsplit("/", 1)[-1]
+    if not video_id.isdigit():
+        raise ValueError("Expected a full TikTok video URL")
+    local_dir = os.getenv("TIKTOK_MEDIA_DIR")
+    metadata_path = Path(local_dir) / f"{video_id}.json" if local_dir else None
+    video_data = json.loads(metadata_path.read_text(encoding="utf-8")) if metadata_path else scraper.get_video_data(tiktok_url)
     if not video_data:
         print("Failed to fetch TikTok video data")
         return 0
@@ -72,14 +78,24 @@ def process_url(tiktok_url: str) -> int:
     print("\nDownloading video...")
     downloader = TikTokVideoDownloader()
 
-    audio_result = downloader.download_video_audio(tiktok_url)
+    if local_dir:
+        video_path = str(Path(local_dir) / f"{video_id}.mp4")
+        audio_path = str(Path(local_dir) / f"{video_id}.mp3")
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", video_path,
+                        "-vn", "-ac", "1", "-ar", "16000", audio_path], check=True)
+        timestamp = video_data.get("timestamp")
+        post_date = datetime.fromtimestamp(timestamp, tz=timezone.utc) if timestamp else None
+        audio_result = (audio_path, post_date)
+    else:
+        audio_result = downloader.download_video_audio(tiktok_url)
     if not audio_result:
         print("Failed to download audio")
         return 0
     audio_path, post_date = audio_result
     print(f"Downloaded audio: {audio_path}")
 
-    video_path = downloader.download_full_video(tiktok_url)
+    if not local_dir:
+        video_path = downloader.download_full_video(tiktok_url)
     if not video_path:
         print("Failed to download video")
         return 0
