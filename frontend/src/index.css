@@ -7,6 +7,7 @@
   :root {
     --th-bg: 250 247 242;
     --th-surface: 255 255 255;
+    --th-photo: 255 255 255;
     --th-elevated: 240 235 227;
     --th-border: 225 218 207;
     --th-border-sub: 205 198 187;
@@ -21,6 +22,7 @@
   .dark {
     --th-bg: 12 10 9;
     --th-surface: 28 25 23;
+    --th-photo: 222 218 211;
     --th-elevated: 41 37 36;
     --th-border: 41 37 36;
     --th-border-sub: 68 64 60;

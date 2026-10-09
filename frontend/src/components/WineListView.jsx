@@ -68,7 +68,7 @@ function ListRow({ wine, isFavorite, toggleFavorite, onWineClick }) {
         className="flex items-center gap-3 sm:gap-4 bg-th-surface rounded-xl border border-th-border p-3 hover:border-th-border-sub hover:shadow-md transition-all cursor-pointer group"
       >
         {/* Thumbnail */}
-        <div className="w-11 sm:w-14 flex-shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-stone-100 to-stone-50" style={{ aspectRatio: '4/5' }}>
+        <div className="w-11 sm:w-14 flex-shrink-0 rounded-lg overflow-hidden bg-th-photo isolate" style={{ aspectRatio: '4/5' }}>
           {firstImage === wine.bottle_image_url && firstImage ? (
             <BottlePhoto src={firstImage} alt={wine.name} presentation={wine.bottle_image_presentation} layout="thumbnail" />
           ) : firstImage ? (

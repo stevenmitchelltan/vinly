@@ -40,6 +40,7 @@ export default {
         th: {
           bg: 'rgb(var(--th-bg) / <alpha-value>)',
           surface: 'rgb(var(--th-surface) / <alpha-value>)',
+          photo: 'rgb(var(--th-photo) / <alpha-value>)',
           elevated: 'rgb(var(--th-elevated) / <alpha-value>)',
           border: 'rgb(var(--th-border) / <alpha-value>)',
           'border-sub': 'rgb(var(--th-border-sub) / <alpha-value>)',

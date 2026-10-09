@@ -2,10 +2,11 @@ import { useId } from 'react';
 import { getImageUrl } from '../utils/image';
 
 // Frame the original packshot without changing the photograph or clipping the bottle.
+// In dark mode, white pixels blend into the isolated photo surface behind this image.
 function BottlePhoto({ src, alt, presentation, layout = 'detail', onError }) {
   const clipId = useId().replace(/:/g, '');
   if (!presentation) {
-    return <img src={getImageUrl(src)} alt={alt} className="w-full h-full object-contain bg-white" onError={onError} />;
+    return <img src={getImageUrl(src)} alt={alt} className="w-full h-full object-contain bg-white dark:mix-blend-multiply" onError={onError} />;
   }
 
   const { width, height, bounds } = presentation;
@@ -24,7 +25,7 @@ function BottlePhoto({ src, alt, presentation, layout = 'detail', onError }) {
     <svg
       role="img"
       aria-label={alt}
-      className="w-full h-full bg-white pointer-events-none"
+      className="w-full h-full bg-white pointer-events-none dark:mix-blend-multiply"
       style={{ padding: padding[layout] || padding.detail }}
       viewBox={`${x - margin} ${y - margin} ${w + margin * 2} ${h + margin * 2}`}
       preserveAspectRatio="xMidYMid meet"

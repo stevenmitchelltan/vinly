@@ -60,7 +60,7 @@ function ImageCarousel({ images = [], wineName = '', wineType = '', bottleImage 
 
   return (
     <div className={catalogueIndicators ? 'relative w-full' : 'relative w-full h-full'}>
-      <div className={catalogueIndicators ? 'relative aspect-square rounded-lg overflow-hidden bg-white' : 'contents'}>
+      <div className={catalogueIndicators ? 'relative aspect-square rounded-lg overflow-hidden bg-th-photo' : 'contents'}>
         <div
           ref={emblaRef}
           className={containerClass}
@@ -73,7 +73,7 @@ function ImageCarousel({ images = [], wineName = '', wineType = '', bottleImage 
             {images.map((img, idx) => {
               const url = getImageUrl(img);
               return (
-                <div key={idx} className="flex-[0_0_100%] min-w-0 h-full flex items-center justify-center">
+                <div key={idx} className={`flex-[0_0_100%] min-w-0 h-full flex items-center justify-center ${img === bottleImage ? 'bg-th-photo isolate' : ''}`}>
                   {errorIndices.has(idx) ? (
                     <span className="text-6xl">{getWineTypeEmoji(wineType)}</span>
                   ) : img === bottleImage ? (
