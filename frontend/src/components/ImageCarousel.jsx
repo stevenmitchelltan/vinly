@@ -3,7 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { getImageUrl, isCloudinary, buildCloudinarySrcSet } from '../utils/image';
 import { getWineTypeEmoji } from '../utils/wine';
 
-function ImageCarousel({ images = [], wineName = '', wineType = '', overlay = false, hideIndicators = false, counterPill = false }) {
+function ImageCarousel({ images = [], wineName = '', wineType = '', imageFit = 'cover', overlay = false, hideIndicators = false, counterPill = false }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, dragFree: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [errorIndices, setErrorIndices] = useState(new Set());
@@ -83,7 +83,7 @@ function ImageCarousel({ images = [], wineName = '', wineType = '', overlay = fa
                     height={1000}
                     srcSet={isCloudinary(url) ? buildCloudinarySrcSet(url) : undefined}
                     sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                    className="w-full h-full object-cover pointer-events-none"
+                    className={`w-full h-full pointer-events-none ${imageFit === 'contain' ? 'object-contain bg-white p-4' : 'object-cover'}`}
                     draggable="false"
                     onError={() => setErrorIndices(prev => new Set(prev).add(idx))}
                   />

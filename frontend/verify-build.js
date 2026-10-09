@@ -41,6 +41,9 @@ try {
     const pathMatch = asset.match(/["']([^"']+)["']/);
     if (pathMatch) {
       const path = pathMatch[1];
+
+      // External scripts (such as GoatCounter) do not use the Pages base path.
+      if (/^(https?:)?\/\//.test(path)) continue;
       
       // Check if it starts with /vinly/
       if (!path.startsWith('/vinly/')) {
@@ -74,4 +77,3 @@ try {
   }
   process.exit(1);
 }
-

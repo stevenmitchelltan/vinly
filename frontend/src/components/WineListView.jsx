@@ -73,7 +73,7 @@ function ListRow({ wine, isFavorite, toggleFavorite, onWineClick }) {
               src={getImageUrl(firstImage)}
               alt={wine.name}
               loading="lazy"
-              className="w-full h-full object-cover"
+              className={`w-full h-full ${wine.image_fit === 'contain' ? 'object-contain bg-white' : 'object-cover'}`}
               onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
             />
           ) : (

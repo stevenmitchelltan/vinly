@@ -33,6 +33,45 @@
     "date_found": "2026-03-29T12:34:58.908000"
   },
   {
+    "id": "4d14c71da450b2601714d5db",
+    "name": "Adeus D.O. Ribeiro Treixadura & Torrontés",
+    "supermarket": "Plus",
+    "wine_type": "white",
+    "price": null,
+    "rating": "Een witte wijnparel",
+    "description": "Ronde, aromatische witte wijn met rijp fruit, zonder houtrijping. Pepijn tipt hem voor liefhebbers van een vollere stijl.",
+    "image_urls": [
+      "https://www.linda.nl/lindanl-assets/uploads/2026/03/20142244/341509-300x300.webp"
+    ],
+    "post_url": "https://www.linda.nl/eten-recept/wil-je-weten/pepijn-wijn-rose-tips/",
+    "influencer_source": "pepijn.wijn",
+    "date_found": "2026-03-21T00:00:00",
+    "source_type": "article",
+    "source_publisher": "LINDA.",
+    "source_published_at": "2026-03-21",
+    "added_at": "2026-10-09"
+  },
+  {
+    "id": "eafa42b0c1ed30e4b7786752",
+    "name": "Piccini Appassite Solco 2022",
+    "supermarket": "Gall & Gall",
+    "wine_type": "red",
+    "price": null,
+    "rating": "Perfect als afsluiter van de avond",
+    "description": "Volle rode wijn van licht ingedroogde druiven, met rijpe kersen, bramen, chocolade en vijgen.",
+    "image_urls": [
+      "https://www.linda.nl/lindanl-assets/uploads/2026/03/20142501/46601_2020_piccini_appassite-solco_rood-78x300.png"
+    ],
+    "post_url": "https://www.linda.nl/eten-recept/wil-je-weten/pepijn-wijn-rose-tips/",
+    "influencer_source": "pepijn.wijn",
+    "date_found": "2026-03-21T00:00:00",
+    "source_type": "article",
+    "source_publisher": "LINDA.",
+    "source_published_at": "2026-03-21",
+    "added_at": "2026-10-09",
+    "image_fit": "contain"
+  },
+  {
     "id": "6942eb834ffed09443ba7d19",
     "name": "TerraPura Carménère",
     "supermarket": "Jumbo",
@@ -48,6 +87,44 @@
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7584857309122186528",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2025-12-17T17:42:27.625000"
+  },
+  {
+    "id": "e569e7da172ef2ca26430b54",
+    "name": "Krone Borealis Vintage Cuvée Brut 2024",
+    "supermarket": "Albert Heijn",
+    "wine_type": "sparkling",
+    "price": null,
+    "rating": "Eén van de betere supermarkt-bubbels",
+    "description": "Zuid-Afrikaanse Cap Classique van Pinot Noir en Chardonnay: fris citrusfruit, fijne bubbels en een subtiel amandelaccent.",
+    "image_urls": [
+      "https://static.ah.nl/dam/product/AHI_4354523130313835363033?fileType=binary&rendition=400x400_WEBP&revLabel=1"
+    ],
+    "post_url": "https://www.rtl.nl/wonen/koken-en-eten/artikel/5544754/dit-zijn-de-beste-supermarkt-wijnen-voor-tijdens-de-kerst",
+    "influencer_source": "pepijn.wijn",
+    "date_found": "2025-12-17T00:00:00",
+    "source_type": "article",
+    "source_publisher": "RTL",
+    "source_published_at": "2025-12-17",
+    "added_at": "2026-10-09"
+  },
+  {
+    "id": "d166437f7368b0a9267f0db8",
+    "name": "Protos Roble 2023",
+    "supermarket": "Albert Heijn",
+    "wine_type": "red",
+    "price": null,
+    "rating": "Even een half uurtje karafferen doet wonderen",
+    "description": "Stevige Ribera del Duero met rijp fruit, vanille, rook en tabak. Pepijn raadt hem aan bij vleesgerechten.",
+    "image_urls": [
+      "https://static.ah.nl/dam/product/AHI_434d50313639303633?fileType=binary&rendition=400x400_WEBP&revLabel=1"
+    ],
+    "post_url": "https://www.rtl.nl/wonen/koken-en-eten/artikel/5544754/dit-zijn-de-beste-supermarkt-wijnen-voor-tijdens-de-kerst",
+    "influencer_source": "pepijn.wijn",
+    "date_found": "2025-12-17T00:00:00",
+    "source_type": "article",
+    "source_publisher": "RTL",
+    "source_published_at": "2025-12-17",
+    "added_at": "2026-10-09"
   },
   {
     "id": "693aeb43d1eb6cca7061e5f3",
@@ -303,6 +380,44 @@
     "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7556217972960840992",
     "influencer_source": "pepijn.wijn_tiktok",
     "date_found": "2025-10-01T11:45:28"
+  },
+  {
+    "id": "aea5b7584c0bf918118e5caf",
+    "name": "Viña Salceda Rueda Verdejo",
+    "supermarket": "Gall & Gall",
+    "wine_type": "white",
+    "price": null,
+    "rating": "Ik ben om",
+    "description": "Spaanse Verdejo met tropisch fruit, een volle smaak en frisse zuren. Pepijn tipt hem als zomerse witte wijn.",
+    "image_urls": [
+      "https://www.linda.nl/lindanl-assets/uploads/2025/08/06081945/verdejo-1024x768.webp"
+    ],
+    "post_url": "https://www.linda.nl/lifestyle/wijnen-onder-10-euro-tips-supermarkt-pepijn-wijn/",
+    "influencer_source": "pepijn.wijn",
+    "date_found": "2025-08-09T00:00:00",
+    "source_type": "article",
+    "source_publisher": "LINDA.",
+    "source_published_at": "2025-08-09",
+    "added_at": "2026-10-09"
+  },
+  {
+    "id": "d853c760d26af3e1375969d4",
+    "name": "Rosé de l’Horte",
+    "supermarket": "Plus",
+    "wine_type": "rose",
+    "price": null,
+    "rating": "Dit is echt een winnaar",
+    "description": "Biologisch gemaakte Zuid-Franse rosé die Pepijn aanbeveelt als betaalbare, toegankelijke keuze om te delen.",
+    "image_urls": [
+      "https://www.linda.nl/lindanl-assets/uploads/2025/08/06082132/lhorte-1024x768.webp"
+    ],
+    "post_url": "https://www.linda.nl/lifestyle/wijnen-onder-10-euro-tips-supermarkt-pepijn-wijn/",
+    "influencer_source": "pepijn.wijn",
+    "date_found": "2025-08-09T00:00:00",
+    "source_type": "article",
+    "source_publisher": "LINDA.",
+    "source_published_at": "2025-08-09",
+    "added_at": "2026-10-09"
   },
   {
     "id": "69016b8f7e0bd0235bd82ade",
