@@ -49,7 +49,8 @@ def process_url(tiktok_url: str) -> int:
     wines = load_wines()
 
     # Duplicate check
-    existing_urls = {w.get("post_url") for w in wines}
+    tiktok_url = tiktok_url.split("?")[0].split("#")[0].rstrip("/")
+    existing_urls = {(w.get("post_url") or "").split("?")[0].split("#")[0].rstrip("/") for w in wines}
     if tiktok_url in existing_urls:
         print("Already in wines.json, skipping.")
         return 0
@@ -62,8 +63,8 @@ def process_url(tiktok_url: str) -> int:
         print("Failed to fetch TikTok video data")
         return 0
 
-    caption = video_data.get("caption", "")
-    author = video_data.get("author_name", "unknown")
+    caption = video_data.get("title") or video_data.get("caption", "")
+    author = video_data.get("author_unique_id") or video_data.get("author_name", "unknown")
     print(f"Video by @{author}")
     print(f"  Caption: {caption[:100]}...")
 
@@ -99,6 +100,18 @@ def process_url(tiktok_url: str) -> int:
     # 4. Extract wines
     print("\nExtracting wine data...")
     extracted = extract_wines_from_caption_and_transcription(caption, transcription_text)
+    audit_dir = Path("temp/import-audit")
+    audit_dir.mkdir(parents=True, exist_ok=True)
+    audit = {
+        "post_url": tiktok_url,
+        "caption": caption,
+        "post_date": post_date.isoformat() if post_date else None,
+        "transcription": transcription_text,
+        "extracted": extracted,
+    }
+    (audit_dir / f"{tiktok_url.rsplit('/', 1)[-1]}.json").write_text(
+        json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     if not extracted:
         print("No wines found in this video")
         return 0
@@ -160,7 +173,9 @@ def process_url(tiktok_url: str) -> int:
             "image_urls": image_urls,
             "post_url": tiktok_url,
             "influencer_source": f"{author}_tiktok",
-            "date_found": datetime.now(timezone.utc).isoformat(),
+            "date_found": (post_date or datetime.now(timezone.utc)).isoformat(),
+            "source_type": "tiktok",
+            "added_at": datetime.now(timezone.utc).isoformat(),
         }
 
         wines.append(wine_entry)
@@ -181,8 +196,8 @@ def main():
         print("Usage: python scripts/ci_add_wine.py <tiktok_url>")
         sys.exit(1)
 
-    tiktok_url = sys.argv[1]
-    wines_added = process_url(tiktok_url)
+    urls = list(dict.fromkeys(url for arg in sys.argv[1:] for url in arg.split()))
+    wines_added = sum(process_url(url) for url in urls)
 
     print(f"\n{'='*70}")
     print(f"  Result: {wines_added} wine(s) added")
