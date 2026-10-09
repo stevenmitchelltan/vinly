@@ -47,10 +47,15 @@ supermarkets:
       - "sligro wijn"
       - "#sligro"
 
+  - name: "Gall & Gall"
+    aliases:
+      - "gall & gall"
+      - "gall en gall"
+      - "gall and gall"
+
 # General supermarket keywords
 general_keywords:
   - "supermarkt"
   - "supermarkten"
   - "#supermarktwijn"
   - "#supermarkt"
-
