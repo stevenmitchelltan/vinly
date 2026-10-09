@@ -37,7 +37,7 @@ function WineCard({ wine, onClick }) {
         <div className="absolute top-3 right-3 z-10">
           <button
             onClick={(e) => { e.stopPropagation(); toggleFavorite(wine.id); }}
-            className="flex items-center justify-center w-11 h-11 rounded-full border border-stone-200/80 bg-white/90 text-stone-500 hover:text-burgundy-700 hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-700/50"
+            className="flex items-center justify-center w-11 h-11 rounded-full bg-transparent text-stone-500 hover:text-burgundy-700 hover:bg-stone-100/90 transition-colors focus-visible:bg-stone-100/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-700/50"
             aria-pressed={favorited}
             aria-label={favorited ? 'Verwijder uit favorieten' : 'Voeg toe aan favorieten'}
           >
