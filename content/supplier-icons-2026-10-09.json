@@ -1,0 +1,68 @@
+{
+  "retrieved_on": "2026-10-09",
+  "suppliers": [
+    {
+      "name": "Albert Heijn",
+      "site": "https://www.ah.nl/",
+      "source_image": "https://static.ah.nl/ah-static/favicon/favicon-64x64.png",
+      "local_asset": "images/suppliers/albert-heijn.png",
+      "sha256": "f7045ee17319cff095d44b2575906b8765533457b062d5d4f2c8b3c8a0983f78"
+    },
+    {
+      "name": "ALDI",
+      "site": "https://www.aldi.nl/",
+      "source_image": "https://www.aldi.nl/favicon.ico",
+      "local_asset": "images/suppliers/aldi.ico",
+      "sha256": "aeb9a4c7c5fcf4590ddacf9fb03a6161742cb7f5b688d444d2ddbb6baf453183"
+    },
+    {
+      "name": "Dirk",
+      "site": "https://www.dirk.nl/",
+      "source_image": "https://www.dirk.nl/favicon.ico",
+      "local_asset": "images/suppliers/dirk.ico",
+      "sha256": "055fbdb45c5d4c15a7f157f136fa6ba528aca28054f31f63e2696356112c3e8c"
+    },
+    {
+      "name": "Gall & Gall",
+      "site": "https://www.gall.nl/",
+      "source_image": "https://www.gall.nl/on/demandware.static/Sites-gall-nl-Site/-/nl_NL/v1791516759027/images/favicons/main/icon.svg",
+      "local_asset": "images/suppliers/gall-en-gall.svg",
+      "sha256": "599e80ca11db56933406094788ad56b09fa326f2c365746e6b4b0aee2379f392"
+    },
+    {
+      "name": "HEMA",
+      "site": "https://www.hema.nl/",
+      "source_image": "https://static.hema.nl/on/demandware.static/Sites-HemaNL-Site/-/default/dw84d86b0b/favicon/favicon.svg",
+      "local_asset": "images/suppliers/hema.svg",
+      "sha256": "72f0a265365080f0df0175c3f3726fae95a8687dd9337c0c4be84b8ad25aa328"
+    },
+    {
+      "name": "Jumbo",
+      "site": "https://www.jumbo.com/",
+      "source_image": "https://www.jumbo.com/favicon-32x32.png?v=3",
+      "local_asset": "images/suppliers/jumbo.png",
+      "sha256": "f187d3eead82a74eb8dc37c962326c50347bab45718434d591070420cde52b48"
+    },
+    {
+      "name": "LIDL",
+      "site": "https://www.lidl.nl/",
+      "source_image": "https://www.lidl.nl/cdn/assets/logos/1.0.1/lidl-logo-shop-cdn.svg",
+      "local_asset": "images/suppliers/lidl.svg",
+      "sha256": "d49ff220dd6b17ca8660ed574b5664cc1cc7fec1ca0751057659dc10f3f30d54"
+    },
+    {
+      "name": "Plus",
+      "site": "https://www.plus.nl/",
+      "source_image": "https://www.plus.nl/favicon.ico?kG7Ret+bW1+bctW8SnbWww",
+      "local_asset": "images/suppliers/plus.ico",
+      "sha256": "28e3d788e250fa80ef42d28a572ee4069d4feb61a70324e3b0617cbd9037a8ef"
+    },
+    {
+      "name": "Sligro",
+      "site": "https://www.sligro.nl/",
+      "source_image": "https://www.sligro.nl/etc.clientlibs/sligro/clientlibs/sligrov2.app/resources/logo-1.0.9/icon-192x192.png",
+      "local_asset": "images/suppliers/sligro.png",
+      "sha256": "3f7334f625e8335585755c6532ce7d11cd504165705e6b4f1b65d0b3a9afba94"
+    }
+  ]
+}

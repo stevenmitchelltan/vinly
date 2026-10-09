@@ -1,67 +1,44 @@
-// Simplified brand-colored icons for Dutch supermarkets
-// Each renders as a colored letter/badge at w-5 h-5 by default
+import { useState } from 'react';
+import { getImageUrl } from '../../utils/image';
 
-function IconBase({ children, bg, text, className = '' }) {
+// Official website favicons, stored locally so supplier sites are never needed at runtime.
+const supplierFavicons = {
+  'Albert Heijn': 'albert-heijn.png',
+  'Dirk': 'dirk.ico',
+  'HEMA': 'hema.svg',
+  'LIDL': 'lidl.svg',
+  'Jumbo': 'jumbo.png',
+  'ALDI': 'aldi.ico',
+  'Plus': 'plus.ico',
+  'Sligro': 'sligro.png',
+  'Gall & Gall': 'gall-en-gall.svg',
+};
+
+function SupplierFavicon({ name }) {
+  const [failed, setFailed] = useState(false);
+  const filename = supplierFavicons[name];
+
+  if (!filename || failed) return (name || '?').charAt(0).toUpperCase();
+
   return (
-    <span
-      className={`inline-flex items-center justify-center w-5 h-5 rounded-sm text-[10px] font-bold leading-none flex-shrink-0 ${className}`}
-      style={{ backgroundColor: bg, color: text }}
-      aria-hidden
-    >
-      {children}
-    </span>
+    <img
+      src={getImageUrl(`images/suppliers/${filename}`)}
+      alt=""
+      width="20"
+      height="20"
+      className="w-full h-full object-contain"
+      onError={() => setFailed(true)}
+    />
   );
 }
 
-function AHIcon({ className }) {
-  return <IconBase bg="#00a0e2" text="#fff" className={className}>AH</IconBase>;
-}
-
-function DirkIcon({ className }) {
-  return <IconBase bg="#e30613" text="#fff" className={className}>D</IconBase>;
-}
-
-function HemaIcon({ className }) {
-  return <IconBase bg="#e30613" text="#fff" className={className}>H</IconBase>;
-}
-
-function LidlIcon({ className }) {
-  return <IconBase bg="#0050aa" text="#ffe500" className={className}>L</IconBase>;
-}
-
-function JumboIcon({ className }) {
-  return <IconBase bg="#ffc600" text="#000" className={className}>J</IconBase>;
-}
-
-function AldiIcon({ className }) {
-  return <IconBase bg="#00529b" text="#fff" className={className}>A</IconBase>;
-}
-
-function PlusIcon({ className }) {
-  return <IconBase bg="#009a3b" text="#fff" className={className}>+</IconBase>;
-}
-
-function SligroIcon({ className }) {
-  return <IconBase bg="#003366" text="#fff" className={className}>S</IconBase>;
-}
-
-export const supermarketIcons = {
-  'Albert Heijn': AHIcon,
-  'Dirk': DirkIcon,
-  'HEMA': HemaIcon,
-  'LIDL': LidlIcon,
-  'Jumbo': JumboIcon,
-  'ALDI': AldiIcon,
-  'Plus': PlusIcon,
-  'Sligro': SligroIcon,
-};
-
-export function SupermarketIcon({ name, className }) {
-  const Icon = supermarketIcons[name];
-  if (Icon) return <Icon className={className} />;
+export function SupermarketIcon({ name, className = '' }) {
   return (
-    <span className={`inline-flex items-center justify-center w-5 h-5 rounded-sm bg-th-elevated text-th-text-sub text-[10px] font-bold flex-shrink-0 ${className || ''}`} aria-hidden>
-      {(name || '?').charAt(0).toUpperCase()}
+    <span
+      className={`inline-flex items-center justify-center w-5 h-5 rounded-sm overflow-hidden bg-th-elevated text-th-text-sub text-[10px] font-bold leading-none flex-shrink-0 ${className}`}
+      aria-hidden="true"
+    >
+      <SupplierFavicon key={name} name={name} />
     </span>
   );
 }
