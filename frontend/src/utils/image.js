@@ -3,6 +3,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000
 export function getImageUrl(imageUrl) {
   if (!imageUrl) return null;
   if (imageUrl.startsWith('http')) return imageUrl;
+  if (imageUrl.startsWith('images/')) return `${import.meta.env.BASE_URL}${imageUrl}`;
   return `${API_BASE_URL}${imageUrl}`;
 }
 

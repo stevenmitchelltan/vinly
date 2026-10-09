@@ -1,0 +1,206 @@
+{
+  "reviewed_at": "2026-10-09T11:33:12.099636+00:00",
+  "profile": "https://www.tiktok.com/@pepijn.wijn",
+  "newer_posts_discovered": 106,
+  "candidate_videos_reviewed": 24,
+  "wines_added": 7,
+  "verification": "Downloaded public TikTok videos, transcribed spoken Dutch, reviewed full transcripts and visible labels. Retailer pages used only to resolve product spelling; recommendations come from TikTok. Prices omitted. No named retailer was inferred.",
+  "image_storage": "Video frames stored with the site because Cloudinary rejected signed uploads.",
+  "added": [
+    {
+      "name": "Château Tapie Languedoc Rouge",
+      "id": "60d16c47facd45b9933d78ab",
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7680953568865652000",
+      "identity_reference": "https://ortola.fr/nos-vins/",
+      "image_frame_seconds": 20
+    },
+    {
+      "name": "Undurraga Sibaris Gran Reserva Cabernet Sauvignon 2024",
+      "id": "96c79d1e53914530b11f4754",
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7680953568865652000",
+      "identity_reference": "https://www.ah.nl/producten/product/wi362408/sibaris-sibaris-cabernet-sauvignon-gran-reserva",
+      "image_frame_seconds": 34
+    },
+    {
+      "name": "Côtes de Provence Rosé",
+      "id": "2ce25a5968f64bac899d4215",
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7665385153169984801",
+      "identity_reference": null,
+      "image_frame_seconds": 27
+    },
+    {
+      "name": "Vila Nova Vinho Verde 2025",
+      "id": "1b541051408d4e15997ba1db",
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7652801869835717920",
+      "identity_reference": "https://www.ah.nl/producten/product/wi440877/vila-nova-vinho-verde",
+      "image_frame_seconds": 25
+    },
+    {
+      "name": "Fantini Pecorino",
+      "id": "36f943d307b94d96b572b85f",
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7652801869835717920",
+      "identity_reference": "https://www.ah.nl/producten/product/wi419830/fantini-pecorino",
+      "image_frame_seconds": 85
+    },
+    {
+      "name": "Roc de l’Abbaye Pinot Noir Rosé 2024",
+      "id": "d117e498593e4f898407a245",
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7634434152477019425",
+      "identity_reference": "https://www.sligro.nl/merken/b.roc-de-l-abbaye.html",
+      "image_frame_seconds": 20
+    },
+    {
+      "name": "E. Guigal Côtes du Rhône Blanc",
+      "id": "7509c7073a3d40129af6e183",
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7631965473051118880",
+      "identity_reference": "https://www.guigal.com/tous-les-vins/",
+      "image_frame_seconds": 25
+    }
+  ],
+  "review": [
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7694354412768103712",
+      "post_date": "2026-10-08T17:44:55+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7685405987330657569",
+      "post_date": "2026-09-14T15:00:27+00:00",
+      "status": "excluded",
+      "reason": "No named supported retailer in the transcript; rejected inferred retailer assignments."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7685375739775946016",
+      "post_date": "2026-09-14T13:03:04+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7680953568865652000",
+      "post_date": "2026-09-02T15:02:47+00:00",
+      "status": "added",
+      "reason": "Wine identity, positive verdict and retailer verified against transcript and visible bottle label."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7679860176668708129",
+      "post_date": "2026-08-30T16:19:52+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7675779777021725984",
+      "post_date": "2026-08-19T16:25:49+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7669832704728354080",
+      "post_date": "2026-08-03T15:48:10+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7665385153169984801",
+      "post_date": "2026-07-22T16:09:22+00:00",
+      "status": "added",
+      "reason": "Wine identity, positive verdict and retailer verified against transcript and visible bottle label."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7664953801366916385",
+      "post_date": "2026-07-21T12:15:31+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7664704502301199648",
+      "post_date": "2026-07-20T20:08:07+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7655000708000927009",
+      "post_date": "2026-06-24T16:32:26+00:00",
+      "status": "excluded",
+      "reason": "No named supported retailer in the transcript; rejected inferred retailer assignments."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7652801869835717920",
+      "post_date": "2026-06-18T18:19:49+00:00",
+      "status": "added",
+      "reason": "Wine identity, positive verdict and retailer verified against transcript and visible bottle label."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7650445529565908257",
+      "post_date": "2026-06-12T09:56:04+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7647549588311772448",
+      "post_date": "2026-06-04T14:38:18+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7647447649305578784",
+      "post_date": "2026-06-04T08:02:48+00:00",
+      "status": "duplicate",
+      "reason": "Andrés Alonso Garnacha & Syrah, already listed at Plus"
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7642635075422588193",
+      "post_date": "2026-05-22T08:47:30+00:00",
+      "status": "duplicate",
+      "reason": "Ours Blanc Luberon, already listed at HEMA"
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7634434152477019425",
+      "post_date": "2026-04-30T06:23:50+00:00",
+      "status": "added",
+      "reason": "Wine identity, positive verdict and retailer verified against transcript and visible bottle label."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7631965473051118880",
+      "post_date": "2026-04-23T14:43:59+00:00",
+      "status": "added",
+      "reason": "Wine identity, positive verdict and retailer verified against transcript and visible bottle label."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7631547940674260256",
+      "post_date": "2026-04-22T11:43:45+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7619413353898839329",
+      "post_date": "2026-03-20T18:55:20+00:00",
+      "status": "excluded",
+      "reason": "No named supported retailer in the transcript; rejected inferred retailer assignments."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7613792572095466785",
+      "post_date": "2026-03-05T15:24:07+00:00",
+      "status": "duplicate",
+      "reason": "Le Bijou and Domaine Tapie rosés, already listed at Albert Heijn; the extracted Wijntje was explicitly rejected"
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7610909330413538592",
+      "post_date": "2026-02-25T20:55:35+00:00",
+      "status": "excluded",
+      "reason": "No named supported retailer in the transcript; rejected inferred retailer assignments."
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7607807575890857248",
+      "post_date": "2026-02-17T12:19:11+00:00",
+      "status": "duplicate",
+      "reason": "Grüner Veltliner, already listed at HEMA"
+    },
+    {
+      "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7600796543691672864",
+      "post_date": "2026-01-29T14:52:54+00:00",
+      "status": "excluded",
+      "reason": "Outside the catalogue scope: no qualifying supermarket wine recommendation."
+    }
+  ]
+}

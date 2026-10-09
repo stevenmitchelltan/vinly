@@ -1,5 +1,131 @@
 [
   {
+    "id": "60d16c47facd45b9933d78ab",
+    "name": "Château Tapie Languedoc Rouge",
+    "supermarket": "Albert Heijn",
+    "wine_type": "red",
+    "price": null,
+    "rating": "Prima, hartstikke prima",
+    "description": "Kruidige rode wijn met gestoofd fruit, voldoende frisheid en meerdere smaken die niet meteen wegzakken.",
+    "image_urls": [
+      "images/tiktok/7680953568865652000-1.jpg"
+    ],
+    "image_fit": "contain",
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7680953568865652000",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2026-09-02T15:02:47+00:00",
+    "source_type": "tiktok",
+    "added_at": "2026-10-09T11:33:12.099636+00:00"
+  },
+  {
+    "id": "96c79d1e53914530b11f4754",
+    "name": "Undurraga Sibaris Gran Reserva Cabernet Sauvignon 2024",
+    "supermarket": "Albert Heijn",
+    "wine_type": "red",
+    "price": null,
+    "rating": "Flinke beuker",
+    "description": "Krachtige Chileense rode wijn met veel rijp fruit en goede structuur; Pepijn bewaart deze liever voor later in het jaar.",
+    "image_urls": [
+      "images/tiktok/7680953568865652000-2.jpg"
+    ],
+    "image_fit": "contain",
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7680953568865652000",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2026-09-02T15:02:47+00:00",
+    "source_type": "tiktok",
+    "added_at": "2026-10-09T11:33:12.099636+00:00"
+  },
+  {
+    "id": "2ce25a5968f64bac899d4215",
+    "name": "Côtes de Provence Rosé",
+    "supermarket": "LIDL",
+    "wine_type": "rose",
+    "price": null,
+    "rating": "Prima supermarktrosé",
+    "description": "Winnaar van Pepijns Lidl-rosétest: het fruit is goed verwerkt en de wijn steekt boven de andere geteste rosés uit.",
+    "image_urls": [
+      "images/tiktok/7665385153169984801-3.jpg"
+    ],
+    "image_fit": "contain",
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7665385153169984801",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2026-07-22T16:09:22+00:00",
+    "source_type": "tiktok",
+    "added_at": "2026-10-09T11:33:12.099636+00:00"
+  },
+  {
+    "id": "1b541051408d4e15997ba1db",
+    "name": "Vila Nova Vinho Verde 2025",
+    "supermarket": "Albert Heijn",
+    "wine_type": "white",
+    "price": null,
+    "rating": "De topper blijft deze",
+    "description": "Frisse Portugese witte wijn met genoeg fruit tegenover de zuren en een klein, verfrissend bubbeltje.",
+    "image_urls": [
+      "images/tiktok/7652801869835717920-4.jpg"
+    ],
+    "image_fit": "contain",
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7652801869835717920",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2026-06-18T18:19:49+00:00",
+    "source_type": "tiktok",
+    "added_at": "2026-10-09T11:33:12.099636+00:00"
+  },
+  {
+    "id": "36f943d307b94d96b572b85f",
+    "name": "Fantini Pecorino",
+    "supermarket": "Albert Heijn",
+    "wine_type": "white",
+    "price": null,
+    "rating": "Ook een goede supermarktvariant",
+    "description": "Positief beoordeeld alternatief in de zomerse wittewijntest, met iets meer body, prettige zuren en een ziltige indruk.",
+    "image_urls": [
+      "images/tiktok/7652801869835717920-5.jpg"
+    ],
+    "image_fit": "contain",
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7652801869835717920",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2026-06-18T18:19:49+00:00",
+    "source_type": "tiktok",
+    "added_at": "2026-10-09T11:33:12.099636+00:00"
+  },
+  {
+    "id": "d117e498593e4f898407a245",
+    "name": "Roc de l’Abbaye Pinot Noir Rosé 2024",
+    "supermarket": "Sligro",
+    "wine_type": "rose",
+    "price": null,
+    "rating": "Dit is mijn parel",
+    "description": "Sappige rosé uit de Loire met rijpe aardbeien en frambozen, fijne frisheid en zonder harde zuren.",
+    "image_urls": [
+      "images/tiktok/7634434152477019425-6.jpg"
+    ],
+    "image_fit": "contain",
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7634434152477019425",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2026-04-30T06:23:50+00:00",
+    "source_type": "tiktok",
+    "added_at": "2026-10-09T11:33:12.099636+00:00"
+  },
+  {
+    "id": "7509c7073a3d40129af6e183",
+    "name": "E. Guigal Côtes du Rhône Blanc",
+    "supermarket": "Albert Heijn",
+    "wine_type": "white",
+    "price": null,
+    "rating": "Een hele leuke wijn",
+    "description": "Fruitige en bloemige witte Rhôneblend met wat vettigheid door rijping op de gist, zonder uitgesproken houttoon.",
+    "image_urls": [
+      "images/tiktok/7631965473051118880-7.jpg"
+    ],
+    "image_fit": "contain",
+    "post_url": "https://www.tiktok.com/@pepijn.wijn/video/7631965473051118880",
+    "influencer_source": "pepijn.wijn_tiktok",
+    "date_found": "2026-04-23T14:43:59+00:00",
+    "source_type": "tiktok",
+    "added_at": "2026-10-09T11:33:12.099636+00:00"
+  },
+  {
     "id": "69c92589d49d2ec48023febf",
     "name": "Saint Roche 2025",
     "supermarket": "Albert Heijn",
