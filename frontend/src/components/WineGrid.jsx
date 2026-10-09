@@ -7,7 +7,7 @@ function AnimatedCard({ children }) {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-500 ease-out ${
+      className={`h-full transition-all duration-500 ease-out ${
         isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
     >
@@ -21,17 +21,18 @@ function WineGrid({ wines, loading, onWineClick }) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {Array.from({ length: 12 }).map((_, idx) => (
-          <div key={idx} className="animate-pulse rounded-2xl overflow-hidden bg-th-elevated relative" style={{ aspectRatio: '3/4' }}>
-            {/* Simulates gradient scrim area */}
-            <div className="absolute inset-x-0 bottom-0 p-4 space-y-2">
-              <div className="h-3 bg-th-border-sub/40 rounded w-1/3" />
-              <div className="h-5 bg-th-border-sub/50 rounded w-4/5" />
-              <div className="h-4 bg-th-border-sub/30 rounded w-3/5" />
+          <div key={idx} className="animate-pulse rounded-2xl overflow-hidden bg-th-surface border border-th-border">
+            <div className="aspect-[6/5] bg-th-elevated relative">
+              <div className="absolute top-3 right-3 h-11 w-11 rounded-full bg-th-border-sub/30" />
             </div>
-            {/* Top badges */}
-            <div className="absolute top-3 left-3 right-3 flex justify-between">
-              <div className="h-6 w-24 bg-th-border-sub/40 rounded-full" />
-              <div className="h-8 w-8 bg-th-border-sub/40 rounded-full" />
+            <div className="p-4 sm:p-5 space-y-3">
+              <div className="h-3 bg-th-border-sub/30 rounded w-1/3" />
+              <div className="h-5 bg-th-border-sub/40 rounded w-4/5" />
+              <div className="h-5 bg-th-border-sub/40 rounded w-3/5" />
+              <div className="h-4 bg-th-border-sub/30 rounded w-2/3" />
+              <div className="pt-3">
+                <div className="h-3 bg-th-border-sub/20 rounded w-3/5" />
+              </div>
             </div>
           </div>
         ))}

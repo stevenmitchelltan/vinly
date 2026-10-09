@@ -12,7 +12,13 @@ function BottlePhoto({ src, alt, presentation, layout = 'detail', onError }) {
   const [x, y, w, h] = bounds;
   const margin = h * 0.025;
 
-  const padding = { card: '2.75rem 0.75rem 7.5rem', mobile: '3.5rem 0.75rem 35dvh', thumbnail: '0.15rem', detail: '0.75rem' };
+  const padding = {
+    card: '2.75rem 0.75rem 7.5rem',
+    catalogue: '1.25rem 3.5rem',
+    mobile: '3.5rem 0.75rem 35dvh',
+    thumbnail: '0.15rem',
+    detail: '0.75rem',
+  };
 
   return (
     <svg
