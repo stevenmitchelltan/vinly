@@ -16,3 +16,10 @@ export function formatDate(dateString) {
     day: 'numeric',
   });
 }
+
+export const wineTypes = {
+  red: { label: 'Rood', color: '#a64b52' },
+  white: { label: 'Wit', color: '#ae8d42' },
+  rose: { label: 'Rosé', color: '#c47c8b' },
+  sparkling: { label: 'Bubbels', color: '#8c9561' },
+};

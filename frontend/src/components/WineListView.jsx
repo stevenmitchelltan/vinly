@@ -89,7 +89,14 @@ function ListRow({ wine, isFavorite, toggleFavorite, onWineClick }) {
         {/* Info */}
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-semibold text-th-text truncate group-hover:text-th-accent transition-colors">
-            {wine.name}
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); onWineClick?.(wine); }}
+              aria-haspopup="dialog"
+              className="block w-full truncate text-left rounded-sm hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-th-accent"
+            >
+              {wine.name}
+            </button>
           </h3>
           <div className="flex items-center gap-2 mt-1">
             <SupermarketIcon name={wine.supermarket} />

@@ -8,6 +8,8 @@ import { fetchWines } from '../services/api';
 import { useFavorites } from '../context/FavoritesContext';
 import WineDetailModal from '../components/WineDetailModal';
 import WineListView from '../components/WineListView';
+import ViewModeToggle from '../components/ViewModeToggle';
+import { wineTypes } from '../utils/wine';
 
 const SORT_OPTIONS = [
   { value: 'date', label: 'Nieuwste eerst' },
@@ -116,7 +118,26 @@ function Home() {
   }, [wines, selectedSupermarket, selectedType, debouncedQuery, sortBy, showFavorites, favorites]);
 
   // Count active filters
-  const activeFilterCount = [selectedSupermarket, selectedType, searchQuery].filter(Boolean).length;
+  const activeFilterCount = [selectedSupermarket, selectedType, searchQuery, showFavorites].filter(Boolean).length;
+
+  const changeViewMode = (mode) => {
+    setViewMode(mode);
+    localStorage.setItem('vinly-view-mode', mode);
+  };
+
+  const renderFavoritesToggle = (compact = false) => (favCount > 0 || showFavorites) && (
+    <button
+      onClick={() => setShowFavorites(!showFavorites)}
+      aria-label="Alleen favorieten"
+      aria-pressed={showFavorites}
+      className={`flex items-center gap-2 rounded-lg text-sm font-medium border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-th-accent ${compact ? 'px-3 py-1.5' : 'px-3 min-h-11'} ${showFavorites ? 'bg-burgundy-700/10 text-th-accent border-th-accent/30' : 'bg-th-elevated/60 text-th-text-sub border-th-border-sub hover:text-th-text'}`}
+    >
+      <svg className="w-4 h-4" fill={showFavorites ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+      </svg>
+      {compact ? favCount : `Alleen favorieten (${favCount})`}
+    </button>
+  );
 
   return (
     <div className="container mx-auto px-4 sm:px-6 pb-12">
@@ -127,7 +148,7 @@ function Home() {
       )}
 
       {/* Hero */}
-      <div className="text-center pt-6 sm:pt-10 pb-4 sm:pb-6">
+      <div className="text-center pt-4 md:pt-10 pb-3 md:pb-6">
         <h1 className="text-4xl sm:text-5xl font-black text-th-text tracking-tight leading-none mb-2 animate-scale-in">
           Vinly
         </h1>
@@ -169,7 +190,7 @@ function Home() {
           />
           {activeFilterCount > 0 && (
             <button
-              onClick={() => { setSelectedSupermarket(null); setSelectedType(null); setSearchQuery(''); }}
+              onClick={() => { setSelectedSupermarket(null); setSelectedType(null); setSearchQuery(''); setShowFavorites(false); }}
               className="text-xs text-th-text-dim hover:text-th-text transition-colors whitespace-nowrap"
             >
               Reset
@@ -179,9 +200,11 @@ function Home() {
       </div>
 
       {/* Mobile: collapsible filter drawer */}
-      <div className="md:hidden mb-4">
+      <div className="md:hidden mb-3">
         <button
           onClick={() => setFiltersOpen(!filtersOpen)}
+          aria-expanded={filtersOpen}
+          aria-controls="mobile-filters"
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-th-surface border border-th-border text-sm font-medium text-th-text-sub hover:text-th-text transition-colors w-full justify-between"
         >
           <span className="flex items-center gap-2">
@@ -211,8 +234,14 @@ function Home() {
             )}
             {selectedType && (
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-th-elevated text-xs font-medium text-th-text-sub">
-                {selectedType}
+                {wineTypes[selectedType]?.label || selectedType}
                 <button onClick={() => setSelectedType(null)} className="hover:text-th-text" aria-label={`Verwijder filter ${selectedType}`}>&times;</button>
+              </span>
+            )}
+            {showFavorites && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-th-elevated text-xs font-medium text-th-text-sub">
+                Favorieten
+                <button onClick={() => setShowFavorites(false)} className="hover:text-th-text" aria-label="Verwijder filter favorieten">&times;</button>
               </span>
             )}
             {searchQuery && (
@@ -226,7 +255,7 @@ function Home() {
 
         {/* Expanded mobile filters */}
         {filtersOpen && (
-          <div className="mt-3 bg-th-surface/50 backdrop-blur-sm rounded-2xl border border-th-border/80 p-5 space-y-6">
+          <div id="mobile-filters" className="mt-3 bg-th-surface/50 backdrop-blur-sm rounded-2xl border border-th-border/80 p-5 space-y-6">
             <SupermarketSelector
               supermarkets={supermarkets}
               selectedSupermarket={selectedSupermarket}
@@ -250,63 +279,38 @@ function Home() {
                 className="w-full rounded-xl bg-th-elevated/60 border border-th-border-sub px-5 py-3.5 text-th-text placeholder:text-th-text-dim focus:outline-none focus:ring-2 focus:ring-th-accent/30 focus:border-th-border-sub transition-all"
               />
             </div>
+            <div className="border-t border-th-border" />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-th-text-dim mb-3">Weergave</p>
+              <ViewModeToggle value={viewMode} onChange={changeViewMode} />
+            </div>
+            {renderFavoritesToggle()}
           </div>
         )}
       </div>
 
       {/* Results bar: count + favorites toggle + sort */}
       {!loading && (
-        <div className="flex items-center justify-between mb-6 animate-fade-in" style={{ animationDelay: '400ms' }}>
-          <p aria-live="polite" className="text-sm text-th-text-dim">
+        <div className="flex items-center justify-between gap-3 mb-5 md:mb-6 animate-fade-in" style={{ animationDelay: '400ms' }}>
+          <p aria-live="polite" className="shrink-0 whitespace-nowrap text-sm text-th-text-dim">
             <span className="text-th-text font-semibold">{displayedWines.length}</span>{' '}
-            {displayedWines.length === 1 ? 'wijn' : 'wijnen'} gevonden
+            {displayedWines.length === 1 ? 'wijn' : 'wijnen'}<span className="hidden md:inline"> gevonden</span>
           </p>
-          <div className="flex items-center gap-2">
-            {favCount > 0 && (
-              <button
-                onClick={() => setShowFavorites(!showFavorites)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  showFavorites
-                    ? 'bg-red-500/10 text-red-500 border border-red-500/30'
-                    : 'bg-th-elevated/60 text-th-text-sub border border-th-border-sub hover:text-th-text'
-                }`}
-              >
-                <svg className={`w-4 h-4 ${showFavorites ? 'fill-red-400 text-red-400' : ''}`} fill={showFavorites ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                </svg>
-                {favCount}
-              </button>
-            )}
-          {/* View toggle */}
-          <div className="flex rounded-lg border border-th-border-sub overflow-hidden">
-            <button
-              onClick={() => { setViewMode('grid'); localStorage.setItem('vinly-view-mode', 'grid'); }}
-              className={`p-1.5 transition-colors ${viewMode === 'grid' ? 'bg-th-elevated text-th-text' : 'text-th-text-dim hover:text-th-text'}`}
-              aria-label="Rasterweergave"
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="hidden md:flex items-center gap-2">
+              {renderFavoritesToggle(true)}
+              <ViewModeToggle value={viewMode} onChange={changeViewMode} compact />
+            </div>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              aria-label="Sorteer wijnen"
+              className="min-w-0 text-sm bg-th-elevated/60 border border-th-border-sub rounded-lg px-3 py-2 md:py-1.5 text-th-text-sub focus:outline-none focus:ring-2 focus:ring-th-accent/30"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-              </svg>
-            </button>
-            <button
-              onClick={() => { setViewMode('list'); localStorage.setItem('vinly-view-mode', 'list'); }}
-              className={`p-1.5 transition-colors ${viewMode === 'list' ? 'bg-th-elevated text-th-text' : 'text-th-text-dim hover:text-th-text'}`}
-              aria-label="Lijstweergave"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="text-sm bg-th-elevated/60 border border-th-border-sub rounded-lg px-3 py-1.5 text-th-text-sub focus:outline-none focus:ring-2 focus:ring-th-accent/30"
-          >
-            {SORT_OPTIONS.map((opt) => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
-            ))}
-          </select>
+              {SORT_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
           </div>
         </div>
       )}

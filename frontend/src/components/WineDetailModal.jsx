@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import ImageCarousel from './ImageCarousel';
-import { getWineTypeEmoji, formatDate } from '../utils/wine';
+import { wineTypes, formatDate } from '../utils/wine';
+import WineReview from './WineReview';
 import { useFavorites } from '../context/FavoritesContext';
 import { SupermarketIcon } from './icons/SupermarketIcons';
 
@@ -14,6 +15,23 @@ function WineDetailModal({ wine, onClose }) {
 
   const images = wine.image_urls || (wine.image_url ? [wine.image_url] : []);
   const favorited = isFavorite(wine.id);
+  const type = wineTypes[wine.wine_type];
+  const postUrl = (wine.post_url || '').split('#')[0];
+  const dialogRef = useRef(null);
+  const metadata = (
+    <div className="flex items-center gap-4 flex-1 min-w-0 text-xs text-th-text-sub">
+      <span className="inline-flex items-center gap-2 min-w-0">
+        <SupermarketIcon name={wine.supermarket} />
+        <span className="truncate">{wine.supermarket}</span>
+      </span>
+      {type && (
+        <span className="inline-flex items-center gap-1.5 shrink-0">
+          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: type.color }} aria-hidden="true" />
+          {type.label}
+        </span>
+      )}
+    </div>
+  );
 
   // Desktop: click-outside tracking
   const mouseDownTarget = useRef(null);
@@ -38,11 +56,32 @@ function WineDetailModal({ wine, onClose }) {
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const previousFocus = document.activeElement;
+    const visibleControls = () => Array.from(dialogRef.current?.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])') || [])
+      .filter(el => el.getClientRects().length > 0 && !el.disabled);
+    const closeButton = Array.from(dialogRef.current?.querySelectorAll('button[aria-label="Sluiten"]') || [])
+      .find(el => el.getClientRects().length > 0);
+    closeButton?.focus();
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key !== 'Tab') return;
+      const controls = visibleControls();
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (!first) return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     document.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = prev;
       document.removeEventListener('keydown', onKey);
+      previousFocus?.focus();
     };
   }, [onClose]);
 
@@ -98,7 +137,7 @@ function WineDetailModal({ wine, onClose }) {
   );
 
   return createPortal(
-    <div className="fixed inset-0 z-50">
+    <div ref={dialogRef} role="dialog" aria-modal="true" aria-label={wine.name} className="fixed inset-0 z-50">
 
       {/* ===== MOBILE: full-screen image + bottom sheet ===== */}
       <div className="md:hidden absolute inset-0 bg-black">
@@ -122,10 +161,11 @@ function WineDetailModal({ wine, onClose }) {
         <button
           className="absolute top-4 left-4 z-20 p-2.5 rounded-full bg-black/40 backdrop-blur-md active:scale-110 transition-transform"
           onClick={() => toggleFavorite(wine.id)}
+          aria-pressed={favorited}
           aria-label={favorited ? 'Verwijder uit favorieten' : 'Voeg toe aan favorieten'}
         >
           {favorited
-            ? heartFilled('w-5 h-5 text-red-400 fill-red-400')
+            ? heartFilled('w-5 h-5 text-burgundy-700 fill-burgundy-700')
             : heartOutline('w-5 h-5 text-white/80')
           }
         </button>
@@ -147,64 +187,44 @@ function WineDetailModal({ wine, onClose }) {
             onTouchMove={onDragMove}
             onTouchEnd={onDragEnd}
           >
-            <div className="flex justify-center pt-3 pb-3">
-              <div className="w-10 h-1 rounded-full bg-th-border-sub" />
-            </div>
+            <button
+              onClick={() => setSheetExpanded(!sheetExpanded)}
+              aria-expanded={sheetExpanded}
+              aria-label={sheetExpanded ? 'Toon minder wijninformatie' : 'Toon alle wijninformatie'}
+              className="flex justify-center items-center w-full h-11 rounded-t-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-th-accent"
+            >
+              <span className="w-10 h-1 rounded-full bg-th-border-sub" />
+            </button>
           </div>
 
           {/* Sheet content */}
           <div
             className={`px-5 pb-10 space-y-3 ${sheetExpanded ? 'overflow-y-auto' : 'overflow-hidden'}`}
-            style={{ height: 'calc(100% - 1.75rem)' }}
+            style={{ height: 'calc(100% - 2.75rem)' }}
           >
-            {/* Supermarket + type */}
-            <div className="flex items-center gap-1.5">
-              <span className="inline-flex items-center gap-1.5 bg-th-elevated text-th-text-sub px-3 py-1 rounded-full text-xs font-medium">
-                <SupermarketIcon name={wine.supermarket} />
-                <span className="truncate">{wine.supermarket}</span>
-              </span>
-              <span className="text-lg">{getWineTypeEmoji(wine.wine_type)}</span>
-            </div>
+            {metadata}
 
             {/* Wine name */}
-            <h2 className="text-xl font-bold text-th-text leading-tight">
+            <h2 className="font-fraunces text-xl font-semibold text-th-text leading-snug">
               {wine.name}
             </h2>
 
-            {/* Quote */}
-            {wine.rating && (
-              <blockquote className="text-sm font-medium text-th-text-sub italic leading-snug border-l-2 border-th-accent pl-3">
-                &ldquo;{wine.rating}&rdquo;
-              </blockquote>
-            )}
+            <WineReview wine={wine} className="text-sm" />
 
             {/* Description */}
             {wine.description && (
-              <p className="text-sm text-th-text-dim leading-snug">
+              <p className="text-sm text-th-text-sub leading-relaxed">
                 {wine.description}
               </p>
             )}
 
-            {/* Metadata — compact */}
-            <div className="pt-3 border-t border-th-border space-y-2">
-              <div className="flex items-center gap-1.5 text-sm flex-wrap">
-                <span className="font-semibold text-th-accent">@{wine.influencer_source}</span>
-                <span className="text-th-text-dim">·</span>
-                <span className="text-th-text-sub capitalize">{wine.wine_type}</span>
-                <span className="text-th-text-dim">·</span>
-                <span className="text-th-text-sub">{formatDate(wine.date_found)}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-th-text-dim">{wine.supermarket}</span>
-                <a
-                  href={(wine.post_url || '').split('#')[0]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-th-accent hover:underline font-medium"
-                >
-                  Originele post <span>&rarr;</span>
+            <div className="flex items-center justify-between gap-4 pt-3 border-t border-th-border">
+              <p className="text-xs text-th-text-dim">Gevonden op {formatDate(wine.date_found)}</p>
+              {postUrl && (
+                <a href={postUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 text-xs text-th-accent hover:underline underline-offset-2 font-medium rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-th-accent">
+                  Originele post <span aria-hidden="true">&rarr;</span>
                 </a>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -227,26 +247,21 @@ function WineDetailModal({ wine, onClose }) {
             <div className="flex-1 overflow-y-auto p-8 space-y-5">
               {/* Header */}
               <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2 flex-1 min-w-0">
-                  <span className="inline-flex items-center gap-2 bg-th-elevated text-th-text-sub px-4 py-1.5 rounded-full text-sm font-medium max-w-[160px]">
-                    <SupermarketIcon name={wine.supermarket} />
-                    <span className="truncate">{wine.supermarket}</span>
-                  </span>
-                  <span className="text-2xl flex-shrink-0">{getWineTypeEmoji(wine.wine_type)}</span>
-                </div>
+                {metadata}
                 <button
                   onClick={() => toggleFavorite(wine.id)}
+                  aria-pressed={favorited}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all active:scale-110 border border-th-border-sub hover:bg-th-elevated/60 flex-shrink-0"
                 >
                   {favorited
-                    ? heartFilled('w-5 h-5 text-red-400 fill-red-400')
+                    ? heartFilled('w-5 h-5 text-burgundy-700 fill-burgundy-700')
                     : heartOutline('w-5 h-5 text-th-text-dim')
                   }
                   <span className="text-th-text-sub">{favorited ? 'Opgeslagen' : 'Bewaren'}</span>
                 </button>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-lg hover:bg-th-elevated text-th-text-dim hover:text-th-text transition-colors flex-shrink-0"
+                  className="p-2 rounded-lg hover:bg-th-elevated text-th-text-dim hover:text-th-text transition-colors flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-th-accent"
                   aria-label="Sluiten"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -255,46 +270,24 @@ function WineDetailModal({ wine, onClose }) {
                 </button>
               </div>
 
-              <h2 className="text-3xl font-bold text-th-text leading-tight">{wine.name}</h2>
+              <h2 className="font-fraunces text-3xl font-semibold text-th-text leading-snug">{wine.name}</h2>
 
-              {wine.rating && (
-                <blockquote className="text-base font-medium text-th-text-sub italic leading-relaxed border-l-2 border-th-accent pl-4">
-                  &ldquo;{wine.rating}&rdquo;
-                </blockquote>
-              )}
+              <WineReview wine={wine} className="text-base" />
 
               {wine.description && (
-                <p className="text-th-text-dim leading-relaxed">{wine.description}</p>
+                <p className="text-th-text-sub leading-relaxed">{wine.description}</p>
               )}
 
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-th-border">
+              <div className="flex items-center justify-between gap-4 pt-4 border-t border-th-border">
                 <div>
-                  <p className="text-xs text-th-text-dim uppercase tracking-wider mb-1">Influencer</p>
-                  <p className="text-sm font-semibold text-th-accent">@{wine.influencer_source}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-th-text-dim uppercase tracking-wider mb-1">Gevonden op</p>
+                  <p className="text-xs text-th-text-dim mb-1">Gevonden op</p>
                   <p className="text-sm text-th-text-sub">{formatDate(wine.date_found)}</p>
                 </div>
-                <div>
-                  <p className="text-xs text-th-text-dim uppercase tracking-wider mb-1">Supermarkt</p>
-                  <p className="text-sm text-th-text-sub">{wine.supermarket}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-th-text-dim uppercase tracking-wider mb-1">Type</p>
-                  <p className="text-sm text-th-text-sub capitalize">{wine.wine_type}</p>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-th-border">
-                <a
-                  href={(wine.post_url || '').split('#')[0]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-th-accent hover:underline font-medium"
-                >
-                  Bekijk originele post <span>&rarr;</span>
-                </a>
+                {postUrl && (
+                  <a href={postUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-th-accent hover:underline underline-offset-2 font-medium rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-th-accent">
+                    Bekijk originele post <span aria-hidden="true">&rarr;</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>

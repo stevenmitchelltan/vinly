@@ -14,7 +14,7 @@ function BottlePhoto({ src, alt, presentation, layout = 'detail', onError }) {
 
   const padding = {
     card: '2.75rem 0.75rem 7.5rem',
-    catalogue: '1.25rem 3.5rem',
+    catalogue: '1.25rem 3rem',
     mobile: '3.5rem 0.75rem 35dvh',
     thumbnail: '0.15rem',
     detail: '0.75rem',
